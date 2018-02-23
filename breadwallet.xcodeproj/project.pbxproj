@@ -1438,6 +1438,8 @@
 		AA94556A2020DA9600B6ABB1 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		AA94556C2020DAB500B6ABB1 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		AA94556E2020DAFC00B6ABB1 /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
+		AAA13946203FC4E5006D5245 /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = src/Strings/bn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AAA13947203FC545006D5245 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = src/Strings/is.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AAF8A2102039271D00B47F58 /* bs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bs; path = src/Strings/bs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AAF8A2112039275300B47F58 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = src/Strings/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B969D992D959B5B85A1BDD91 /* Pods-breadwalletUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3744,6 +3746,8 @@
 				hi,
 				bs,
 				hr,
+				bn,
+				is,
 			);
 			mainGroup = 75A2A7871DA5934300A983D8;
 			productRefGroup = 75A2A7911DA5934300A983D8 /* Products */;
@@ -4699,6 +4703,8 @@
 				AA2FE9392031FB3F00E13DA7 /* hi */,
 				AAF8A2102039271D00B47F58 /* bs */,
 				AAF8A2112039275300B47F58 /* hr */,
+				AAA13946203FC4E5006D5245 /* bn */,
+				AAA13947203FC545006D5245 /* is */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
