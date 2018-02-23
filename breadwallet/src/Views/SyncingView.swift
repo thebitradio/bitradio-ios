@@ -61,7 +61,9 @@ class SyncingView : UIView {
 
     private let dateFormatter: DateFormatter = {
         let df = DateFormatter()
-        df.setLocalizedDateFormatFromTemplate("MMM d, yyyy")
+		df.dateStyle = .medium
+		df.timeStyle = .short
+		df.locale = Locale.current
         return df
     }()
 

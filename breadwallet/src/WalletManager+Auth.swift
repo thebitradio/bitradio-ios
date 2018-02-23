@@ -31,9 +31,6 @@ import sqlite3
 
 private let WalletSecAttrService = "io.digibyte.DigiByte"
 
-//FIXME:  We are TEMPORARILY overriding the earliest creation time to 12/24/2017 which is the date this wallet was first
-//distributed as seed restored wallets should not exist before this.  This can not stand for production however and needs
-// to be the date of the genesis block in the event that users of any BIP39/44 compatible wallets attempt to restore
 private let BIP39CreationTime = TimeInterval(BIP39_CREATION_TIME) - NSTimeIntervalSince1970
 
 /// WalletAuthenticator is a protocol whose implementors are able to interact with wallet authentication
@@ -81,8 +78,8 @@ extension WalletManager : WalletAuthenticator {
             try self.init(masterPubKey: BRMasterPubKey(), earliestKeyTime: 0, dbPath: dbPath, store: store)
             return
         }
-        
-        var earliestKeyTime = BIP39CreationTime
+		
+		var earliestKeyTime = BIP39CreationTime
         if let creationTime: Data = try keychainItem(key: KeychainKey.creationTime),
             creationTime.count == MemoryLayout<TimeInterval>.stride {
             creationTime.withUnsafeBytes { earliestKeyTime = $0.pointee }
