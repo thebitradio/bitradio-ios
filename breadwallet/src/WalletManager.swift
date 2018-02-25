@@ -459,7 +459,7 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
 					sqlite3_bind_blob(sql2, 9, [b.pointee.flags], flagLen, SQLITE_TRANSIENT)
 				} else {
 					print("skipped block with overflowed flagLen")
-					continue
+					//continue
 				}
 				
 				
@@ -469,7 +469,7 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
 									  SQLITE_TRANSIENT)
 				} else {
 					print("skipped block with overflowed hashesCount")
-					continue
+					//continue
 				}
 				
                 sqlite3_bind_blob(sql2, 11, [b.pointee.merkleRoot], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
