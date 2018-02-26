@@ -439,15 +439,14 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
                 sqlite3_bind_int(sql2, 1, pk)
 				
 				//FIXME: There are cases where some blocks are coming from a node where the block height is greater than or equal to INT32_MAX causing a crash
-				/*let maxHeight:Int32	 = INT32_MAX
+				let maxHeight:Int32	 = INT32_MAX
 				let height:Int32 = Int32(bitPattern: b.pointee.height)
 				if (height >= maxHeight) {
 					print("skipped block with overflowed block height")
 					continue
 				} else {
 					sqlite3_bind_int(sql2, 2, Int32(bitPattern: b.pointee.height))
-				}*/
-				sqlite3_bind_int(sql2, 2, Int32(bitPattern: b.pointee.height))
+				}
 				
                 sqlite3_bind_int(sql2, 3, Int32(bitPattern: b.pointee.nonce))
                 sqlite3_bind_int(sql2, 4, Int32(bitPattern: b.pointee.target))
@@ -457,25 +456,22 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
                 sqlite3_bind_blob(sql2, 8, [b.pointee.blockHash], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
 				
 				//FIXME: There are cases where some blocks are coming in from a node where the flagslen field exceeds the size of Int32
-				/*if let flagLen = Int32(exactly: b.pointee.flagsLen) {
+				if let flagLen = Int32(exactly: b.pointee.flagsLen) {
 					sqlite3_bind_blob(sql2, 9, [b.pointee.flags], flagLen, SQLITE_TRANSIENT)
 				} else {
 					print("skipped block with overflowed flagLen")
 					continue
-				}*/
-				sqlite3_bind_blob(sql2, 9, [b.pointee.flags], Int32(b.pointee.flagsLen), SQLITE_TRANSIENT)
+				}
 				
 				
 				//FIXME: There are cases where some blocks are coming in from a node where the flagslen field exceeds the size of Int32
-				/*if let hashesCount = Int32(exactly: MemoryLayout<UInt256>.size*b.pointee.hashesCount) {
+				if let hashesCount = Int32(exactly: MemoryLayout<UInt256>.size*b.pointee.hashesCount) {
 					sqlite3_bind_blob(sql2, 10, [b.pointee.hashes], hashesCount,
 									  SQLITE_TRANSIENT)
 				} else {
 					print("skipped block with overflowed hashesCount")
 					continue
-				}*/
-				sqlite3_bind_blob(sql2, 10, [b.pointee.hashes], Int32(MemoryLayout<UInt256>.size*b.pointee.hashesCount),
-								  SQLITE_TRANSIENT)
+				}
 				
                 sqlite3_bind_blob(sql2, 11, [b.pointee.merkleRoot], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
                 sqlite3_bind_blob(sql2, 12, [b.pointee.prevBlock], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
