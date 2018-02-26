@@ -72,7 +72,9 @@ class ApplicationController : Subscriber, Trackable {
                 }
             }
         }
-        updateAssetBundles()
+		//TODO: If DigiByte plans to create a NUXT based support app inside the wallet, we'll need to update this
+		// in order to keep the NUXT asset bundle up to date.
+        //updateAssetBundles()
         if !hasPerformedWalletDependentInitialization && didInitWallet {
             didInitWalletManager()
         }
