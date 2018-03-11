@@ -560,12 +560,14 @@ class BRPeerManager {
             Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.txStatusUpdate()
         },
         { (info, replace, blocks, blocksCount) in // saveBlocks
-            guard let info = info else { return }
+            guard let info = info else { print("ERR"); return }
             let blockRefs = [BRBlockRef?](UnsafeBufferPointer(start: blocks, count: blocksCount))
-			objc_sync_enter(blockRefs)
-			defer {
-				objc_sync_exit(blockRefs)
-			}
+            
+            // blockRefs is never beeing written to, multiple threads may safely use it.
+			//objc_sync_enter(blockRefs)
+			//defer {
+				//objc_sync_exit(blockRefs)
+			//}
             Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blockRefs)
         },
         { (info, replace, peers, peersCount) in // savePeers
