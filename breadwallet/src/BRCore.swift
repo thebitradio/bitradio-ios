@@ -562,11 +562,11 @@ class BRPeerManager {
         { (info, replace, blocks, blocksCount) in // saveBlocks
             guard let info = info else { return }
             let blockRefs = [BRBlockRef?](UnsafeBufferPointer(start: blocks, count: blocksCount))
-			objc_sync_enter(blockRefs)
-			defer {
-				objc_sync_exit(blockRefs)
+			
+			let lockQueue = DispatchQueue(label: "com.digibyte.persistblocks")
+			lockQueue.sync() {
+				Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blockRefs)
 			}
-            Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blockRefs)
         },
         { (info, replace, peers, peersCount) in // savePeers
             guard let info = info else { return }
