@@ -257,6 +257,7 @@ class WalletCoordinator : Subscriber, Trackable {
             //we need to make sure it's false before a rescan starts
             //self.store.perform(action: WalletChange.setIsSyncing(false))
             DispatchQueue.walletQueue.async {
+				self.lastBlockHeight = 0
                 self.walletManager.peerManager?.rescan()
             }
         })
