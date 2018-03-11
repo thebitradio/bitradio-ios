@@ -560,7 +560,7 @@ class BRPeerManager {
             Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.txStatusUpdate()
         },
         { (info, replace, blocks, blocksCount) in // saveBlocks
-            guard let info = info else { print("ERR"); return }
+            guard let info = info else { return }
             let blockRefs = [BRBlockRef?](UnsafeBufferPointer(start: blocks, count: blocksCount))
             
             // blockRefs is never beeing written to, multiple threads may safely use it.
