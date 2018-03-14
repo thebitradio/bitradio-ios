@@ -220,6 +220,7 @@
 		75A2A8231DA5938500A983D8 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75A2A81C1DA5938500A983D8 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		75C735AA1DAA1B9C00251ECF /* libunbound.c in Sources */ = {isa = PBXBuildFile; fileRef = 755CD4121DAA0E3E0075898E /* libunbound.c */; };
 		783FCF615914C953768FE3B5 /* Pods_breadwalletUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26AC9FA94AE1CA45B7A8ED5 /* Pods_breadwalletUITests.framework */; };
+		9F3EF3712059CA6400E3C837 /* BRBech32.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F3EF36F2059CA6400E3C837 /* BRBech32.c */; };
 		A8E3D5DBCCEC09FCE0CF76FE /* Pods_breadwalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4ED1454C2B4DE0BAFD4D8FE /* Pods_breadwalletTests.framework */; };
 		AA34562A2020CA7C00B2C462 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA3456282020CA7C00B2C462 /* Localizable.strings */; };
 		AA85B80C1FEAF84B008EB914 /* groestl.c in Sources */ = {isa = PBXBuildFile; fileRef = AA85B7ED1FEAF84A008EB914 /* groestl.c */; };
@@ -1371,6 +1372,9 @@
 		8873BEA64A49D1BBA1FA67CD /* Pods-breadwallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-breadwallet/Pods-breadwallet.debug.xcconfig"; sourceTree = "<group>"; };
 		9305BCC5C0E2A5C20ADA8F50 /* Pods_BRCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D3D68384132C21EAC8DDE34 /* Pods-breadwalletUITests.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletUITests.testnet.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.testnet.xcconfig"; sourceTree = "<group>"; };
+		9F3EF36E2059CA6400E3C837 /* BRChainParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRChainParams.h; sourceTree = "<group>"; };
+		9F3EF36F2059CA6400E3C837 /* BRBech32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BRBech32.c; sourceTree = "<group>"; };
+		9F3EF3702059CA6400E3C837 /* BRBech32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRBech32.h; sourceTree = "<group>"; };
 		A26AC9FA94AE1CA45B7A8ED5 /* Pods_breadwalletUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_breadwalletUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA147C022020CD6D005244A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = src/Strings/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA147C032020CE66005244A9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "src/Strings/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -2852,6 +2856,9 @@
 				75DC77B91DAA05B500932D9A /* BRBIP39WordsEn.h */,
 				75DC77BA1DAA05B500932D9A /* BRBloomFilter.c */,
 				75DC77BB1DAA05B500932D9A /* BRBloomFilter.h */,
+				9F3EF36F2059CA6400E3C837 /* BRBech32.c */,
+				9F3EF3702059CA6400E3C837 /* BRBech32.h */,
+				9F3EF36E2059CA6400E3C837 /* BRChainParams.h */,
 				75DC77BC1DAA05B500932D9A /* BRCrypto.c */,
 				75DC77BD1DAA05B500932D9A /* BRCrypto.h */,
 				75DC77BE1DAA05B500932D9A /* BRInt.h */,
@@ -4233,6 +4240,7 @@
 				AA85B8161FEAF84B008EB914 /* sph_luffa.c in Sources */,
 				755CD9E71DAA1A270075898E /* BRTransaction.c in Sources */,
 				755CD9E41DAA1A270075898E /* BRPeer.c in Sources */,
+				9F3EF3712059CA6400E3C837 /* BRBech32.c in Sources */,
 				755CD9DD1DAA1A270075898E /* BRBIP38Key.c in Sources */,
 				755CD9DA1DAA1A270075898E /* BRAddress.c in Sources */,
 				755CD9DB1DAA1A270075898E /* BRBase58.c in Sources */,
@@ -4865,6 +4873,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_COMMA = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -4873,6 +4882,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${SRCROOT}/Modules/digibytewallet-core",
 					"${SRCROOT}/Modules/digibytewallet-core/secp256k1",
+					"$(SRCROOT)/Modules/digibytewallet-core/crypto",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -4883,10 +4893,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_COMMA = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				HEADER_SEARCH_PATHS = (
 					"${SRCROOT}/Modules/digibytewallet-core",
 					"${SRCROOT}/Modules/digibytewallet-core/secp256k1",
+					"$(SRCROOT)/Modules/digibytewallet-core/crypto",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5559,6 +5571,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_COMMA = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -5568,6 +5581,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${SRCROOT}/Modules/digibytewallet-core",
 					"${SRCROOT}/Modules/digibytewallet-core/secp256k1",
+					"$(SRCROOT)/Modules/digibytewallet-core/crypto",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5867,6 +5881,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_COMMA = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -5876,6 +5891,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${SRCROOT}/Modules/digibytewallet-core",
 					"${SRCROOT}/Modules/digibytewallet-core/secp256k1",
+					"$(SRCROOT)/Modules/digibytewallet-core/crypto",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -6167,10 +6183,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_COMMA = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				HEADER_SEARCH_PATHS = (
 					"${SRCROOT}/Modules/digibytewallet-core",
 					"${SRCROOT}/Modules/digibytewallet-core/secp256k1",
+					"$(SRCROOT)/Modules/digibytewallet-core/crypto",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
