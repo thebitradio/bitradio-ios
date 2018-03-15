@@ -539,7 +539,7 @@ class BRPeerManager {
 		
 		//FIXME: We need to explore making a change to the core protocol so that it will download more headers per request
 		// in perpetuity rather than falling back to 500 from 2000
-		guard let cPtr = BRPeerManagerNew(wallet.cPtr, UInt32(earliestKeyTime + NSTimeIntervalSince1970),
+		guard let cPtr = BPPeerManagerMainNetNew(wallet.cPtr, UInt32(earliestKeyTime + NSTimeIntervalSince1970),
                                           &blockRefs, blockRefs.count, peers, peers.count) else { return nil }
 		
 		self.listener = listener
@@ -586,7 +586,7 @@ class BRPeerManager {
     
     // true if currently connected to at least one peer
     var isConnected: Bool {
-        return BRPeerManagerIsConnected(cPtr) != 0
+        return (BRPeerManagerConnectStatus(cPtr) == BRPeerStatusConnected)
     }
     
     // connect to bitcoin peer-to-peer network (also call this whenever networkIsReachable() status changes)
