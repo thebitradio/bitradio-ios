@@ -17,9 +17,10 @@ enum PaymentRequestType {
 struct PaymentRequest {
 
     init?(string: String) {
-        if var url = NSURL(string: string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).replacingOccurrences(of: " ", with: "%20")) {
-            if let scheme = url.scheme, let resourceSpecifier = url.resourceSpecifier, url.host == nil {
-                url = NSURL(string: "\(scheme)://\(resourceSpecifier)")!
+        if let trimmedUrl = NSURL(string: string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).replacingOccurrences(of: "://", with: ":").replacingOccurrences(of: " ", with: "%20")) {
+
+            if let scheme = trimmedUrl.scheme, let resourceSpecifier = trimmedUrl.resourceSpecifier, trimmedUrl.host == nil,
+                let url = NSURL(string: "\(scheme)://\(resourceSpecifier)") {
 
                 if url.scheme == "digibyte", let host = url.host {
                     toAddress = host
@@ -47,9 +48,9 @@ struct PaymentRequest {
                     type = r == nil ? .local : .remote
                     return
                 }
-            } else if url.scheme == "http" || url.scheme == "https" {
+            } else if trimmedUrl.scheme == "http" || trimmedUrl.scheme == "https" {
                 type = .remote
-                remoteRequest = url
+                remoteRequest = trimmedUrl
                 return
             }
         }
