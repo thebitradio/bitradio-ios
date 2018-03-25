@@ -432,68 +432,32 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
                     return
                 }
 
-                let timestampResult = Int32(bitPattern: b.pointee.timestamp).subtractingReportingOverflow(Int32(NSTimeIntervalSince1970))
-                guard !timestampResult.1 else { print("skipped block with overflowed timestamp"); continue }
+                let timestampResult = Int32(bitPattern: b.pointee.timestamp) - Int32(NSTimeIntervalSince1970)
+                if (timestampResult < 0) { print("skipped block with overflowed timestamp"); continue }
 
                 pk = pk + 1
                 sqlite3_bind_int(sql2, 1, pk)
-				
-				//FIXME: There are cases where some blocks are coming from a node where the block height is greater than or equal to INT32_MAX causing a crash
-				let maxHeight:Int32	 = INT32_MAX
-				let height:Int32 = Int32(bitPattern: b.pointee.height)
-				if (height >= maxHeight) {
-					print("skipped block with overflowed block height")
-					continue
-				} else {
-					sqlite3_bind_int(sql2, 2, Int32(bitPattern: b.pointee.height))
-				}
-				
+                sqlite3_bind_int(sql2, 2, Int32(bitPattern: b.pointee.height))
                 sqlite3_bind_int(sql2, 3, Int32(bitPattern: b.pointee.nonce))
                 sqlite3_bind_int(sql2, 4, Int32(bitPattern: b.pointee.target))
                 sqlite3_bind_int(sql2, 5, Int32(bitPattern: b.pointee.totalTx))
                 sqlite3_bind_int(sql2, 6, Int32(bitPattern: b.pointee.version))
-                sqlite3_bind_int(sql2, 7, timestampResult.0)
+                sqlite3_bind_int(sql2, 7, timestampResult)
                 sqlite3_bind_blob(sql2, 8, [b.pointee.blockHash], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
-				
+
                 // check for potential overflow
-                guard let flagLen: Int32 = {
-                    if b.pointee.flagsLen < 0 || UInt64(b.pointee.flagsLen) > INT32_MAX {
-                        return nil
-                    } else {
-                        return Int32(b.pointee.flagsLen)
-                    }
-                    }() else {
-                        print("skipped block with overflowed flagLen", b.pointee.flagsLen)
-                        continue
-                }
-                
+                let flagLen: Int32 = Int32(bitPattern: UInt32(b.pointee.flagsLen & 0xFFFFFFFF))
+
                 // bind
                 sqlite3_bind_blob(sql2, 9, [b.pointee.flags], flagLen, SQLITE_TRANSIENT)
-                
-                // check for potential int32 overflow
-                guard let (hashesCount, overflow): (Int32, Bool) = {
-                    if b.pointee.hashesCount < 0 || UInt64(b.pointee.hashesCount) > INT32_MAX {
-                        return (0, true)
-                    } else {
-                        let hashesCountTmp: Int32 = Int32(MemoryLayout<UInt256>.size)
-                        let (_, didOverflow) = hashesCountTmp.multipliedReportingOverflow(by: Int32(b.pointee.hashesCount))
-                        return (hashesCountTmp, didOverflow)
-                    }
-                    }() else {
-                        print("could not check overflow")
+
+                // check for potential int32 overflow  max 0xffffff * MemoryLayout<UInt256>.size
+                if (b.pointee.hashesCount > 0xFFFFFF) {
+                        print("to many hashes > 0xFFFFFF")
                         continue
                 }
-                
-                if (overflow) {
-                    print("skipped block with overflowed hashesCount")
-                    continue
-                } else if let hashesCount = Int32(exactly: hashesCount) {
-                    sqlite3_bind_blob(sql2, 10, [b.pointee.hashes], hashesCount,
-                                      SQLITE_TRANSIENT)
-                } else {
-                    print("still an overflow that occured, fix this! __MARK_FIX01__")
-                }
-				
+
+                sqlite3_bind_blob(sql2, 10, [b.pointee.hashes], Int32(MemoryLayout<UInt256>.size*b.pointee.hashesCount), SQLITE_TRANSIENT)
                 sqlite3_bind_blob(sql2, 11, [b.pointee.merkleRoot], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
                 sqlite3_bind_blob(sql2, 12, [b.pointee.prevBlock], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
 
