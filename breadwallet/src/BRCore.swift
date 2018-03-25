@@ -562,20 +562,20 @@ class BRPeerManager {
         { (info, replace, blocks, blocksCount) in // saveBlocks
             guard let info = info else { return }
             let blockRefs = [BRBlockRef?](UnsafeBufferPointer(start: blocks, count: blocksCount))
-			
-			let lockQueue = DispatchQueue(label: "com.digibyte.persistblocks")
-			lockQueue.sync() {
-				Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blockRefs)
-			}
+
+            let lockQueue = DispatchQueue(label: "com.digibyte.persistBlocks")
+            lockQueue.sync() {
+                Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blockRefs)
+            }
         },
         { (info, replace, peers, peersCount) in // savePeers
             guard let info = info else { return }
             let peerList = [BRPeer](UnsafeBufferPointer(start: peers, count: peersCount))
-			objc_sync_enter(peerList)
-			defer {
-				objc_sync_exit(peerList)
-			}
-            Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.savePeers(replace != 0, peerList)
+
+            let lockQueue = DispatchQueue(label: "com.digibyte.persistPeers")
+            lockQueue.sync() {
+                Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.savePeers(replace != 0, peerList)
+            }
         },
         { (info) -> Int32 in // networkIsReachable
             guard let info = info else { return 0 }
