@@ -103,7 +103,7 @@ class ScanViewController : UIViewController, Trackable {
         guide.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
 
         close.tap = { [weak self] in
-            self?.saveEvent("scan.dismiss")
+            //self?.saveEvent("scan.dismiss")
             self?.dismiss(animated: true, completion: {
                 self?.completion?(nil)
             })
@@ -150,9 +150,9 @@ class ScanViewController : UIViewController, Trackable {
                     device.torchMode = device.torchMode == .on ? .off : .on
                     device.unlockForConfiguration()
                     if device.torchMode == .on {
-                        self?.saveEvent("scan.torchOn")
+                        //self?.saveEvent("scan.torchOn")
                     } else {
-                        self?.saveEvent("scan.torchOn")
+                        //self?.saveEvent("scan.torchOn")
                     }
                 } catch let error {
                     print("Camera Torch error: \(error)")
@@ -192,7 +192,7 @@ extension ScanViewController : AVCaptureMetadataOutputObjectsDelegate {
         if self.currentUri != uri {
             self.currentUri = uri
             if let paymentRequest = PaymentRequest(string: uri) {
-                saveEvent("scan.digibyteUri")
+                //saveEvent("scan.digibyteUri")
                 guide.state = .positive
                 //Add a small delay so the green guide will be seen
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
@@ -208,7 +208,7 @@ extension ScanViewController : AVCaptureMetadataOutputObjectsDelegate {
 
     func handleKey(_ address: String) {
         if isValidURI(address) {
-            saveEvent("scan.privateKey")
+            //saveEvent("scan.privateKey")
             guide.state = .positive
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                 self.dismiss(animated: true, completion: {

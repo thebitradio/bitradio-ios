@@ -20,11 +20,11 @@ class URLController : Trackable {
     private var xSource, xSuccess, xError, uri: String?
 
     func handleUrl(_ url: URL) -> Bool {
-        saveEvent("send.handleURL", attributes: [
+        /*saveEvent("send.handleURL", attributes: [
             "scheme" : url.scheme ?? C.null,
             "host" : url.host ?? C.null,
             "path" : url.path
-        ])
+        ])*/
 
         switch url.scheme ?? "" {
         case "digibytewallet":

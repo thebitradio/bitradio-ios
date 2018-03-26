@@ -157,7 +157,7 @@ enum Biometrics {
         init(_ isBiometricsEnabled: Bool) {
             UserDefaults.isBiometricsEnabled = isBiometricsEnabled
             reduce = { $0.clone(isBiometricsEnabled: isBiometricsEnabled) }
-            saveEvent("event.enableBiometrics", attributes: ["isEnabled": "\(isBiometricsEnabled)"])
+            //saveEvent("event.enableBiometrics", attributes: ["isEnabled": "\(isBiometricsEnabled)"])
         }
     }
 }
@@ -168,7 +168,7 @@ enum DefaultCurrency {
         init(_ defaultCurrencyCode: String) {
             UserDefaults.defaultCurrencyCode = defaultCurrencyCode
             reduce = { $0.clone(defaultCurrencyCode: defaultCurrencyCode) }
-            saveEvent("event.setDefaultCurrency", attributes: ["code": defaultCurrencyCode])
+            //saveEvent("event.setDefaultCurrency", attributes: ["code": defaultCurrencyCode])
         }
     }
 }
@@ -178,7 +178,7 @@ enum RecommendRescan {
         let reduce: Reducer
         init(_ recommendRescan: Bool) {
             reduce = { $0.clone(recommendRescan: recommendRescan) }
-            saveEvent("event.recommendRescan")
+            //saveEvent("event.recommendRescan")
         }
     }
 }
@@ -198,7 +198,7 @@ enum MaxDigits {
         init(_ maxDigits: Int) {
             UserDefaults.maxDigits = maxDigits
             reduce = { $0.clone(maxDigits: maxDigits)}
-            saveEvent("maxDigits.set", attributes: ["maxDigits": "\(maxDigits)"])
+            //saveEvent("maxDigits.set", attributes: ["maxDigits": "\(maxDigits)"])
         }
     }
 }

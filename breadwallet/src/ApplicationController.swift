@@ -317,7 +317,7 @@ class ApplicationController : Subscriber, Trackable {
     }
 
     func performBackgroundFetch() {
-        saveEvent("appController.performBackgroundFetch")
+        //saveEvent("appController.performBackgroundFetch")
 		
         if let peerManager = walletManager?.peerManager, peerManager.syncProgress(fromStartHeight: peerManager.lastBlockHeight) < 1.0 {
             store.lazySubscribe(self, selector: { $0.walletState.syncState != $1.walletState.syncState }, callback: { state in
@@ -344,10 +344,10 @@ class ApplicationController : Subscriber, Trackable {
 
         DispatchQueue.global(qos: .utility).async {
             if group.wait(timeout: .now() + 25.0) == .timedOut {
-                self.saveEvent("appController.backgroundFetchFailed")
+                //self.saveEvent("appController.backgroundFetchFailed")
                 self.fetchCompletionHandler?(.failed)
             } else {
-                self.saveEvent("appController.backgroundFetchNewData")
+                //self.saveEvent("appController.backgroundFetchNewData")
                 self.fetchCompletionHandler?(.newData)
             }
             self.fetchCompletionHandler = nil

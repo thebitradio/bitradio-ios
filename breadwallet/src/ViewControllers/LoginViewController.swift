@@ -263,7 +263,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     }
 
     private func authenticationSucceded() {
-        saveEvent("login.success")
+        //saveEvent("login.success")
         let label = UILabel(font: subheader.font)
         label.textColor = .white
         label.text = S.UnlockScreen.unlocked
@@ -301,7 +301,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     }
 
     private func authenticationFailed() {
-        saveEvent("login.failed")
+        //saveEvent("login.failed")
         guard let pinView = pinView else { return }
         pinPad.view.isUserInteractionEnabled = false
         pinView.shake { [weak self] in
@@ -340,7 +340,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         if let disabledUntil = walletManager?.walletDisabledUntil {
             let now = Date().timeIntervalSince1970
             if disabledUntil > now {
-                saveEvent("login.locked")
+                //saveEvent("login.locked")
                 let disabledUntilDate = Date(timeIntervalSince1970: disabledUntil)
                 let unlockInterval = disabledUntil - now
                 let df = DateFormatter()
@@ -375,7 +375,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     }
 
     @objc private func unlock() {
-        saveEvent("login.unlocked")
+        //saveEvent("login.unlocked")
         subheader.pushNewText(S.UnlockScreen.subheader)
         pinPad.view.isUserInteractionEnabled = true
         unlockTimer = nil

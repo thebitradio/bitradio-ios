@@ -51,7 +51,7 @@ class MessageUIPresenter: NSObject, Trackable {
         let emailView = MFMailComposeViewController()
         emailView.setToRecipients([emailAddress])
         emailView.mailComposeDelegate = self
-        saveEvent("receive.presentMailCompose")
+        //saveEvent("receive.presentMailCompose")
         present(emailView)
     }
 
@@ -73,7 +73,7 @@ class MessageUIPresenter: NSObject, Trackable {
             textView.addAttachmentData(data, typeIdentifier: "public.image", filename: "digibyteqr.png")
         }
         textView.messageComposeDelegate = self
-        saveEvent("receive.presentMessage")
+        //saveEvent("receive.presentMessage")
         present(textView)
     }
 
@@ -92,14 +92,14 @@ class MessageUIPresenter: NSObject, Trackable {
     }
 
     private func showEmailUnavailableAlert() {
-        saveEvent("receive.emailUnavailable")
+        //saveEvent("receive.emailUnavailable")
         let alert = UIAlertController(title: S.ErrorMessages.emailUnavailableTitle, message: S.ErrorMessages.emailUnavailableMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
         presenter?.present(alert, animated: true, completion: nil)
     }
 
     private func showMessageUnavailableAlert() {
-        saveEvent("receive.messagingUnavailable")
+        //saveEvent("receive.messagingUnavailable")
         let alert = UIAlertController(title: S.ErrorMessages.messagingUnavailableTitle, message: S.ErrorMessages.messagingUnavailableMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
         presenter?.present(alert, animated: true, completion: nil)

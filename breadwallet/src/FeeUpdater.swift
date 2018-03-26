@@ -33,7 +33,7 @@ class FeeUpdater : Trackable {
         walletManager.apiClient?.feePerKb { newFees, error in
             guard error == nil else { print("feePerKb error: \(String(describing: error))"); completion(); return }
             guard newFees.regular < self.maxFeePerKB && newFees.economy > self.minFeePerKB else {
-                self.saveEvent("wallet.didUseDefaultFeePerKB")
+                //self.saveEvent("wallet.didUseDefaultFeePerKB")
                 return
             }
             self.store.perform(action: UpdateFees.set(newFees))

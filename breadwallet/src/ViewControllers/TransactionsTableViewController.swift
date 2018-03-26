@@ -267,7 +267,7 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
             if let trigger = currentPrompt.type.trigger {
                 store.trigger(name: trigger)
             }
-            saveEvent("prompt.\(currentPrompt.type.name).trigger")
+            //saveEvent("prompt.\(currentPrompt.type.name).trigger")
             self.currentPrompt = nil
             return
         }
@@ -294,10 +294,10 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
         guard !isSyncingViewVisible else { return }
         let types = PromptType.defaultOrder
         if let type = types.first(where: { $0.shouldPrompt(walletManager: walletManager, state: store.state) }) {
-            self.saveEvent("prompt.\(type.name).displayed")
+            //self.saveEvent("prompt.\(type.name).displayed")
             currentPrompt = Prompt(type: type)
             currentPrompt?.close.tap = { [weak self] in
-                self?.saveEvent("prompt.\(type.name).dismissed")
+                //self?.saveEvent("prompt.\(type.name).dismissed")
                 self?.currentPrompt = nil
             }
             if type == .biometrics {

@@ -207,7 +207,7 @@ class AmountViewController : UIViewController, Trackable {
     }
 
     private func toggleCurrency() {
-        saveEvent("amount.swapCurrency")
+        //saveEvent("amount.swapCurrency")
         selectedRate = selectedRate == nil ? store.state.currentRate : nil
         updateCurrencyToggleTitle()
     }

@@ -80,7 +80,7 @@ class WalletCoordinator : Subscriber, Trackable {
             guard let code = notification.userInfo?["errorCode"] else { return }
             guard let message = notification.userInfo?["errorDescription"] else { return }
             store.perform(action: WalletChange.setSyncingState(.connecting))
-            saveEvent("event.syncErrorMessage", attributes: ["message": "\(message) (\(code))"])
+            //saveEvent("event.syncErrorMessage", attributes: ["message": "\(message) (\(code))"])
             endActivity()
 
             if retryTimer == nil && reachability.isReachable {

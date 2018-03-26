@@ -84,7 +84,7 @@ class NodeSelectorViewController : UIViewController, Trackable {
 
     private func switchToAuto() {
         guard UserDefaults.customNodeIP != nil else { return } //noop if custom node is already nil
-        saveEvent("nodeSelector.switchToAuto")
+        //saveEvent("nodeSelector.switchToAuto")
         UserDefaults.customNodeIP = nil
         UserDefaults.customNodePort = nil
         button.title = S.NodeSelector.manualButton
@@ -100,7 +100,7 @@ class NodeSelectorViewController : UIViewController, Trackable {
         let okAction = UIAlertAction(title: S.Button.ok, style: .default, handler: { action in
             guard let ip = alert.textFields?.first, let port = alert.textFields?.last else { return }
             if let addressText = ip.text {
-                self.saveEvent("nodeSelector.switchToManual")
+                //self.saveEvent("nodeSelector.switchToManual")
                 var address = in_addr()
                 ascii2addr(AF_INET, addressText, &address)
                 UserDefaults.customNodeIP = Int(address.s_addr)

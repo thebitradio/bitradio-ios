@@ -203,7 +203,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     @objc private func addressTapped() {
         guard let text = address.text else { return }
-        saveEvent("receive.copiedAddress")
+        //saveEvent("receive.copiedAddress")
         UIPasteboard.general.string = text
         toggle(alertView: addressPopout, shouldAdjustPadding: false, shouldShrinkAfter: true)
         if sharePopout.isExpanded {
