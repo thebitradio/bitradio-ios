@@ -237,11 +237,11 @@
 		AA85B8171FEAF84B008EB914 /* sph_shavite.c in Sources */ = {isa = PBXBuildFile; fileRef = AA85B8041FEAF84A008EB914 /* sph_shavite.c */; };
 		AA85B8181FEAF84B008EB914 /* sph_simd.c in Sources */ = {isa = PBXBuildFile; fileRef = AA85B8061FEAF84A008EB914 /* sph_simd.c */; };
 		AA85B8191FEAF84B008EB914 /* skein.c in Sources */ = {isa = PBXBuildFile; fileRef = AA85B80A1FEAF84A008EB914 /* skein.c */; };
-		AA9455582020D40B00B6ABB1 /* BIP39Words.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA94555A2020D40B00B6ABB1 /* BIP39Words.plist */; };
 		AA9455692020D91C00B6ABB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9455682020D91B00B6ABB1 /* LaunchScreen.storyboard */; };
 		AA94556B2020DA9600B6ABB1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA94556A2020DA9600B6ABB1 /* MainInterface.storyboard */; };
 		AA94556D2020DAB500B6ABB1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA94556C2020DAB500B6ABB1 /* MainInterface.storyboard */; };
 		AA94556F2020DAFC00B6ABB1 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA94556E2020DAFC00B6ABB1 /* Interface.storyboard */; };
+		AAF3240D206B307E004D2BED /* BIP39Words.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA94555A2020D40B00B6ABB1 /* BIP39Words.plist */; };
 		C49F0287399E34837D60D3B8 /* Pods_breadwallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C879FCE32446182EABF9F93 /* Pods_breadwallet.framework */; };
 		CE03EC721EF193810038E3A8 /* String+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03EC711EF193800038E3A8 /* String+Keys.swift */; };
 		CE03EC741EF256AC0038E3A8 /* SimpleUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03EC731EF256AC0038E3A8 /* SimpleUTXO.swift */; };
@@ -1452,6 +1452,36 @@
 		AADF204A2066E84600E7A256 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "src/Strings/hi-IN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AADF204B2066E8B100E7A256 /* mr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mr; path = src/Strings/mr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AADF204C2066E8DF00E7A256 /* nb-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-NO"; path = "src/Strings/nb-NO.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		AAF323EF206B2FC7004D2BED /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "tr-TR"; path = "tr-TR.lproj/BIP39Words.plist"; sourceTree = "<group>"; };
+		AAF323F0206B2FCB004D2BED /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = nl; path = nl.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF323F1206B2FCC004D2BED /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = fi; path = fi.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF323F2206B2FCE004D2BED /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = de; path = de.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF323F3206B2FCF004D2BED /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = el; path = el.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF323F4206B2FD1004D2BED /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "hu-HU"; path = "hu-HU.lproj/BIP39Words.plist"; sourceTree = "<group>"; };
+		AAF323F5206B2FD3004D2BED /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "pt-PT"; path = "pt-PT.lproj/BIP39Words.plist"; sourceTree = "<group>"; };
+		AAF323F6206B2FD5004D2BED /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = ro; path = ro.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF323F7206B2FD6004D2BED /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = ru; path = ru.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF323F8206B2FD9004D2BED /* ar-001 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ar-001"; path = "ar-001.lproj/BIP39Words.plist"; sourceTree = "<group>"; };
+		AAF323F9206B2FDA004D2BED /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = id; path = id.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF323FA206B2FDD004D2BED /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "pt-BR"; path = "pt-BR.lproj/BIP39Words.plist"; sourceTree = "<group>"; };
+		AAF323FB206B2FDE004D2BED /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = vi; path = vi.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF323FC206B2FE0004D2BED /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = th; path = th.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF323FD206B2FE1004D2BED /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = uk; path = uk.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF323FE206B2FE2004D2BED /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = hi; path = hi.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF323FF206B2FE4004D2BED /* bs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = bs; path = bs.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF32400206B2FE5004D2BED /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = hr; path = hr.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF32401206B2FE6004D2BED /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = bn; path = bn.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF32402206B2FE7004D2BED /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = is; path = is.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF32403206B2FE9004D2BED /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = ms; path = ms.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF32404206B2FEA004D2BED /* te */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = te; path = te.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF32405206B2FEB004D2BED /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = ca; path = ca.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF32406206B2FEC004D2BED /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = sk; path = sk.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF32407206B2FED004D2BED /* tk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = tk; path = tk.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF32408206B2FEF004D2BED /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = af; path = af.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF32409206B2FF0004D2BED /* sq-AL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "sq-AL"; path = "sq-AL.lproj/BIP39Words.plist"; sourceTree = "<group>"; };
+		AAF3240A206B2FF1004D2BED /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "hi-IN"; path = "hi-IN.lproj/BIP39Words.plist"; sourceTree = "<group>"; };
+		AAF3240B206B2FF2004D2BED /* mr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = mr; path = mr.lproj/BIP39Words.plist; sourceTree = "<group>"; };
+		AAF3240C206B2FF3004D2BED /* nb-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "nb-NO"; path = "nb-NO.lproj/BIP39Words.plist"; sourceTree = "<group>"; };
 		AAF586122047A467004E530E /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = src/Strings/ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AAF586132047A532004E530E /* te */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = te; path = src/Strings/te.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AAF8A2102039271D00B47F58 /* bs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bs; path = src/Strings/bs.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -3821,10 +3851,10 @@
 			files = (
 				047876C020084BB200C422DE /* SupportStoryboard.storyboard in Resources */,
 				AA34562A2020CA7C00B2C462 /* Localizable.strings in Resources */,
+				AAF3240D206B307E004D2BED /* BIP39Words.plist in Resources */,
 				CEAA9EA31DC2FC700066731D /* CircularPro-Book.otf in Resources */,
 				222319B21F279B3C00008F20 /* POSTBouncer.html in Resources */,
 				CE473D7C1F042F1E00C0ACFD /* coinflip.aiff in Resources */,
-				AA9455582020D40B00B6ABB1 /* BIP39Words.plist in Resources */,
 				049B9B7F20104B65004EF1A1 /* Settings.bundle in Resources */,
 				CE5E6C9A1EB9135000A476DB /* Icon.xcassets in Resources */,
 				2218BD791E8F6CBA0091D5E8 /* AssetBundles.plist in Resources */,
@@ -4758,6 +4788,36 @@
 				AA9455632020D45B00B6ABB1 /* it */,
 				AA9455652020D46300B6ABB1 /* ko */,
 				AA9455672020D46E00B6ABB1 /* zh-Hant */,
+				AAF323EF206B2FC7004D2BED /* tr-TR */,
+				AAF323F0206B2FCB004D2BED /* nl */,
+				AAF323F1206B2FCC004D2BED /* fi */,
+				AAF323F2206B2FCE004D2BED /* de */,
+				AAF323F3206B2FCF004D2BED /* el */,
+				AAF323F4206B2FD1004D2BED /* hu-HU */,
+				AAF323F5206B2FD3004D2BED /* pt-PT */,
+				AAF323F6206B2FD5004D2BED /* ro */,
+				AAF323F7206B2FD6004D2BED /* ru */,
+				AAF323F8206B2FD9004D2BED /* ar-001 */,
+				AAF323F9206B2FDA004D2BED /* id */,
+				AAF323FA206B2FDD004D2BED /* pt-BR */,
+				AAF323FB206B2FDE004D2BED /* vi */,
+				AAF323FC206B2FE0004D2BED /* th */,
+				AAF323FD206B2FE1004D2BED /* uk */,
+				AAF323FE206B2FE2004D2BED /* hi */,
+				AAF323FF206B2FE4004D2BED /* bs */,
+				AAF32400206B2FE5004D2BED /* hr */,
+				AAF32401206B2FE6004D2BED /* bn */,
+				AAF32402206B2FE7004D2BED /* is */,
+				AAF32403206B2FE9004D2BED /* ms */,
+				AAF32404206B2FEA004D2BED /* te */,
+				AAF32405206B2FEB004D2BED /* ca */,
+				AAF32406206B2FEC004D2BED /* sk */,
+				AAF32407206B2FED004D2BED /* tk */,
+				AAF32408206B2FEF004D2BED /* af */,
+				AAF32409206B2FF0004D2BED /* sq-AL */,
+				AAF3240A206B2FF1004D2BED /* hi-IN */,
+				AAF3240B206B2FF2004D2BED /* mr */,
+				AAF3240C206B2FF3004D2BED /* nb-NO */,
 			);
 			name = BIP39Words.plist;
 			sourceTree = "<group>";
