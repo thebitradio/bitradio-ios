@@ -30,6 +30,7 @@ class StartViewController : UIViewController {
     private var logo: UIImageView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "Logo"))
         image.contentMode = .scaleAspectFit
+		image.tintColor = UIColor.whiteTint
         return image
     }()
     private var faq: UIButton

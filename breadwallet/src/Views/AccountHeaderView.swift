@@ -73,6 +73,7 @@ class AccountHeaderView : UIView, GradientDrawable, Subscriber {
     private var logo: UIImageView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "Logo"))
         image.contentMode = .scaleAspectFit
+		image.tintColor = UIColor.whiteTint
         return image
     }()
     private var balance: UInt64 = 0 {
