@@ -524,7 +524,7 @@ protocol BRPeerManagerListener {
     func syncStarted()
     func syncStopped(_ error: BRPeerManagerError?)
     func txStatusUpdate()
-    func saveBlocks(_ replace: Bool, _ blocks: [BRBlockRef?])
+    func saveBlocks(_ replace: Bool, _ blocks: [BRMerkleBlock?])
     func savePeers(_ replace: Bool, _ peers: [BRPeer])
     func networkIsReachable() -> Bool
 }
@@ -562,11 +562,14 @@ class BRPeerManager {
         { (info, replace, blocks, blocksCount) in // saveBlocks
             guard let info = info else { return }
             let blockRefs = [BRBlockRef?](UnsafeBufferPointer(start: blocks, count: blocksCount))
-
-            let lockQueue = DispatchQueue(label: "com.digibyte.persistBlocks")
-            lockQueue.sync() {
-                Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blockRefs)
-            }
+            
+            // extract blocks
+            let blocks = blockRefs.map({ (blockRef) -> BRMerkleBlock? in
+                if let b = blockRef { return b.pointee } else { return nil }
+            })
+            
+            print("blocksCount =", blocksCount, "& replace =", replace)
+            Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blocks)
         },
         { (info, replace, peers, peersCount) in // savePeers
             guard let info = info else { return }
