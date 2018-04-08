@@ -418,10 +418,6 @@ extension WalletManager : WalletAuthenticator {
         guard pin == "forceWipe" || authenticate(pin: pin) else { return false }
 
         do {
-            lazyWallet = nil
-            lazyPeerManager = nil
-            if db != nil { sqlite3_close(db) }
-            db = nil
             masterPubKey = BRMasterPubKey()
             didInitWallet = false
             earliestKeyTime = 0
@@ -441,6 +437,13 @@ extension WalletManager : WalletAuthenticator {
             try setKeychainItem(key: KeychainKey.seed, item: nil as Data?)
             try setKeychainItem(key: KeychainKey.mnemonic, item: nil as String?, authenticated: true)
             NotificationCenter.default.post(name: .WalletDidWipe, object: nil)
+            lazyWallet = nil
+            if let peerManager = lazyPeerManager {
+                peerManager.disconnect()
+                lazyPeerManager = nil
+            }
+            if db != nil { sqlite3_close(db) }
+            db = nil
             return true
         }
         catch let error {
