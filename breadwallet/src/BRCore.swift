@@ -567,9 +567,13 @@ class BRPeerManager {
             let blocks = blockRefs.map({ (blockRef) -> BRMerkleBlock? in
                 if let b = blockRef { return b.pointee } else { return nil }
             })
-            
+#if Debug
             print("blocksCount =", blocksCount, "& replace =", replace)
-            Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blocks)
+#endif
+            let lockQueue = DispatchQueue(label: "com.digibyte.persistBlocks")
+            lockQueue.sync() {
+                Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blocks)
+            }
         },
         { (info, replace, peers, peersCount) in // savePeers
             guard let info = info else { return }
