@@ -48,7 +48,6 @@ class RequestAmountViewController : UIViewController {
         setData()
         addActions()
         setupCopiedMessage()
-        setupShareButtons()
     }
 
     private func addSubviews() {
@@ -137,33 +136,10 @@ class RequestAmountViewController : UIViewController {
         addressPopout.contentView = copiedMessage
     }
 
-    private func setupShareButtons() {
-        let container = UIView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        let email = ShadowButton(title: S.Receive.emailButton, type: .tertiary)
-        let text = ShadowButton(title: S.Receive.textButton, type: .tertiary)
-        container.addSubview(email)
-        container.addSubview(text)
-        email.constrain([
-            email.constraint(.leading, toView: container, constant: C.padding[2]),
-            email.constraint(.top, toView: container, constant: buttonPadding),
-            email.constraint(.bottom, toView: container, constant: -buttonPadding),
-            email.trailingAnchor.constraint(equalTo: container.centerXAnchor, constant: -C.padding[1]) ])
-        text.constrain([
-            text.constraint(.trailing, toView: container, constant: -C.padding[2]),
-            text.constraint(.top, toView: container, constant: buttonPadding),
-            text.constraint(.bottom, toView: container, constant: -buttonPadding),
-            text.leadingAnchor.constraint(equalTo: container.centerXAnchor, constant: C.padding[1]) ])
-        sharePopout.contentView = container
-        email.addTarget(self, action: #selector(RequestAmountViewController.emailTapped), for: .touchUpInside)
-        text.addTarget(self, action: #selector(RequestAmountViewController.textTapped), for: .touchUpInside)
-    }
-
     @objc private func shareTapped() {
-        toggle(alertView: sharePopout, shouldAdjustPadding: true)
-        if addressPopout.isExpanded {
-            toggle(alertView: addressPopout, shouldAdjustPadding: false)
-        }
+        let activityViewController = UIActivityViewController(activityItems: [address.text!, qrCode.image!], applicationActivities: nil)
+        activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
+        present(activityViewController, animated: true, completion: {})
     }
 
     @objc private func addressTapped() {
