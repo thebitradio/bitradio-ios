@@ -536,13 +536,13 @@ class BRPeerManager {
     init?(wallet: BRWallet, earliestKeyTime: TimeInterval, blocks: [BRBlockRef?], peers: [BRPeer],
           listener: BRPeerManagerListener) {
         var blockRefs = blocks
-		
-		//FIXME: We need to explore making a change to the core protocol so that it will download more headers per request
-		// in perpetuity rather than falling back to 500 from 2000
-		guard let cPtr = BPPeerManagerMainNetNew(wallet.cPtr, UInt32(earliestKeyTime + NSTimeIntervalSince1970),
+
+        //FIXME: We need to explore making a change to the core protocol so that it will download more headers per request
+        // in perpetuity rather than falling back to 500 from 2000
+        guard let cPtr = BPPeerManagerMainNetNew(wallet.cPtr, UInt32(earliestKeyTime + NSTimeIntervalSince1970),
                                           &blockRefs, blockRefs.count, peers, peers.count) else { return nil }
-		
-		self.listener = listener
+
+        self.listener = listener
         self.cPtr = cPtr
         
         BRPeerManagerSetCallbacks(cPtr, Unmanaged.passUnretained(self).toOpaque(),
@@ -567,9 +567,13 @@ class BRPeerManager {
             let blocks = blockRefs.map({ (blockRef) -> BRMerkleBlock? in
                 if let b = blockRef { return b.pointee } else { return nil }
             })
-            
+#if Debug
             print("blocksCount =", blocksCount, "& replace =", replace)
-            Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blocks)
+#endif
+            let lockQueue = DispatchQueue(label: "com.digibyte.persistBlocks")
+            lockQueue.sync() {
+                Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blocks)
+            }
         },
         { (info, replace, peers, peersCount) in // savePeers
             guard let info = info else { return }
