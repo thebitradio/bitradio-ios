@@ -398,7 +398,7 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
         }
     }
     
-    func saveBlocks(_ replace: Bool, _ blocks: [BRBlockRef?]) {
+    func saveBlocks(_ replace: Bool, _ blocks: [BRMerkleBlock?]) {
         DispatchQueue.walletQueue.async {
             var pk: Int32 = 0
             sqlite3_exec(self.db, "begin exclusive", nil, nil, nil)
@@ -432,34 +432,34 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
                     return
                 }
 
-                let timestampResult = Int32(bitPattern: b.pointee.timestamp) - Int32(NSTimeIntervalSince1970)
+                let timestampResult = Int32(bitPattern: b.timestamp) - Int32(NSTimeIntervalSince1970)
                 if (timestampResult < 0) { print("skipped block with overflowed timestamp"); continue }
 
                 pk = pk + 1
                 sqlite3_bind_int(sql2, 1, pk)
-                sqlite3_bind_int(sql2, 2, Int32(bitPattern: b.pointee.height))
-                sqlite3_bind_int(sql2, 3, Int32(bitPattern: b.pointee.nonce))
-                sqlite3_bind_int(sql2, 4, Int32(bitPattern: b.pointee.target))
-                sqlite3_bind_int(sql2, 5, Int32(bitPattern: b.pointee.totalTx))
-                sqlite3_bind_int(sql2, 6, Int32(bitPattern: b.pointee.version))
+                sqlite3_bind_int(sql2, 2, Int32(bitPattern: b.height))
+                sqlite3_bind_int(sql2, 3, Int32(bitPattern: b.nonce))
+                sqlite3_bind_int(sql2, 4, Int32(bitPattern: b.target))
+                sqlite3_bind_int(sql2, 5, Int32(bitPattern: b.totalTx))
+                sqlite3_bind_int(sql2, 6, Int32(bitPattern: b.version))
                 sqlite3_bind_int(sql2, 7, timestampResult)
-                sqlite3_bind_blob(sql2, 8, [b.pointee.blockHash], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
+                sqlite3_bind_blob(sql2, 8, [b.blockHash], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
 
                 // check for potential overflow
-                let flagLen = Int32(UInt64(b.pointee.flagsLen) & 0x7FFFFFFF)
+                let flagLen = Int32(UInt64(b.flagsLen) & 0x7FFFFFFF)
 
                 // bind
-                sqlite3_bind_blob(sql2, 9, [b.pointee.flags], flagLen, SQLITE_TRANSIENT)
+                sqlite3_bind_blob(sql2, 9, [b.flags], flagLen, SQLITE_TRANSIENT)
 
                 // check for potential int32 overflow  max 0xffffff * MemoryLayout<UInt256>.size
-                if (b.pointee.hashesCount > 0xFFFFFF) {
+                if (b.hashesCount > 0xFFFFFF) {
                         print("to many hashes > 0xFFFFFF")
                         continue
                 }
 
-                sqlite3_bind_blob(sql2, 10, [b.pointee.hashes], Int32(MemoryLayout<UInt256>.size*b.pointee.hashesCount), SQLITE_TRANSIENT)
-                sqlite3_bind_blob(sql2, 11, [b.pointee.merkleRoot], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
-                sqlite3_bind_blob(sql2, 12, [b.pointee.prevBlock], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
+                sqlite3_bind_blob(sql2, 10, [b.hashes], Int32(MemoryLayout<UInt256>.size * b.hashesCount), SQLITE_TRANSIENT)
+                sqlite3_bind_blob(sql2, 11, [b.merkleRoot], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
+                sqlite3_bind_blob(sql2, 12, [b.prevBlock], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
 
                 guard sqlite3_step(sql2) == SQLITE_DONE else {
                     print(String(cString: sqlite3_errmsg(self.db)))

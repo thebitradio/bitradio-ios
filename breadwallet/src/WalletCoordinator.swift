@@ -253,6 +253,7 @@ class WalletCoordinator : Subscriber, Trackable {
 
         store.subscribe(self, name: .rescan, callback: { _ in
             self.store.perform(action: RecommendRescan.set(false))
+            self.store.perform(action: WalletChange.setIsRescanning(true))
             //In case rescan is called while a sync is in progess
             //we need to make sure it's false before a rescan starts
             //self.store.perform(action: WalletChange.setIsSyncing(false))
@@ -260,10 +261,6 @@ class WalletCoordinator : Subscriber, Trackable {
 				self.lastBlockHeight = 0
                 self.walletManager.peerManager?.rescan()
             }
-        })
-
-        store.subscribe(self, name: .rescan, callback: { _ in
-            self.store.perform(action: WalletChange.setIsRescanning(true))
         })
     }
 
