@@ -278,7 +278,7 @@ class BRWalletPlugin: BRHTTPRouterPlugin, BRWebSocketClient, Trackable {
 
     private func sendBitIDResponse(_ stringToSign: String, usingKey key: BRKey, request: BRHTTPRequest, asyncResp: BRHTTPResponse) -> Void {
         var key = key
-        let sig = BRBitID.signMessage(stringToSign, usingKey: key)
+        let sig = BRDigiID.signMessage(stringToSign, usingKey: key)
         let json: [String: Any] = [
             "signature": sig,
             "address": key.address() ?? ""

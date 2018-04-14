@@ -528,6 +528,26 @@ extension WalletManager : WalletAuthenticator {
             catch { return false }
         }
     }
+    
+    // returns base64 encoded signed message
+    private func signString(message: String) -> String? {
+        return autoreleasepool {
+            do {
+                var seed = UInt512()
+                defer { seed = UInt512() } // security
+                guard let wallet = wallet else { return nil }
+                guard let phrase: String = try keychainItem(key: KeychainKey.mnemonic) else { return nil }
+                BRBIP39DeriveKey(&seed, phrase, nil)
+                
+                //buildBitIdKey(url: message, index: 0)
+                //BRKeySign(, <#T##sig: UnsafeMutableRawPointer!##UnsafeMutableRawPointer!#>, <#T##sigLen: Int##Int#>, <#T##md: UInt256##UInt256#>)
+                
+                //return wallet.signTransaction(tx, forkId: forkId, seed: &seed)
+                return nil;
+            }
+            catch { return nil }
+        }
+    }
 }
 
 private func keychainItem<T>(key: String) throws -> T? {

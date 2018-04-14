@@ -1,5 +1,5 @@
 //
-//  BRBitID.swift
+//  BRDigiID.swift
 //  BreadWallet
 //
 //  Created by Samuel Sutch on 6/17/16.
@@ -27,19 +27,18 @@ import Foundation
 import Security
 import BRCore
 
-
-open class BRBitID : NSObject {
-    static let SCHEME = "bitid"
+open class BRDigiID : NSObject {
+    static let SCHEME = "digiid"
     static let PARAM_NONCE = "x"
     static let PARAM_UNSECURE = "u"
-    static let USER_DEFAULTS_NONCE_KEY = "brbitid_nonces"
+    static let USER_DEFAULTS_NONCE_KEY = "BRDigiID_nonces"
     static let DEFAULT_INDEX: UInt32 = 42
     
     class func isBitIDURL(_ url: URL!) -> Bool {
         return url.scheme == SCHEME
     }
     
-    static let BITCOIN_SIGNED_MESSAGE_HEADER = "Bitcoin Signed Message:\n".data(using: String.Encoding.utf8)!
+    static let BITCOIN_SIGNED_MESSAGE_HEADER = "DigiByte Signed Message:\n".data(using: String.Encoding.utf8)!
     
     class func formatMessageForBitcoinSigning(_ message: String) -> Data {
         let data = NSMutableData()
@@ -79,7 +78,7 @@ open class BRBitID : NSObject {
         
         // load previous nonces. we save all nonces generated for each service
         // so they are not used twice from the same device
-        if let existingNonces = defs.object(forKey: BRBitID.USER_DEFAULTS_NONCE_KEY) {
+        if let existingNonces = defs.object(forKey: BRDigiID.USER_DEFAULTS_NONCE_KEY) {
             allNonces = existingNonces as! [String: [String]]
         }
         if let existingSpecificNonces = allNonces[nonceKey] {
@@ -95,7 +94,7 @@ open class BRBitID : NSObject {
         // save out the nonce list
         specificNonces.append(nonce)
         allNonces[nonceKey] = specificNonces
-        defs.set(allNonces, forKey: BRBitID.USER_DEFAULTS_NONCE_KEY)
+        defs.set(allNonces, forKey: BRDigiID.USER_DEFAULTS_NONCE_KEY)
         
         return nonce
     }
@@ -125,10 +124,10 @@ open class BRBitID : NSObject {
                 }
                 return
             }
-            if let u = query[BRBitID.PARAM_UNSECURE] , u.count == 1 && u[0] == "1" {
+            if let u = query[BRDigiID.PARAM_UNSECURE] , u.count == 1 && u[0] == "1" {
                 scheme = "http"
             }
-            if let x = query[BRBitID.PARAM_NONCE] , x.count == 1 {
+            if let x = query[BRDigiID.PARAM_NONCE] , x.count == 1 {
                 nonce = x[0] // service is providing a nonce
             } else {
                 nonce = newNonce() // we are generating our own nonce
@@ -136,12 +135,12 @@ open class BRBitID : NSObject {
             let uri = "\(scheme)://\(url.host!)\(url.path)"
 
             // build a payload consisting of the signature, address and signed uri
-            guard var priv = walletManager.buildBitIdKey(url: uri, index: Int(BRBitID.DEFAULT_INDEX)) else {
+            guard var priv = walletManager.buildBitIdKey(url: uri, index: Int(BRDigiID.DEFAULT_INDEX)) else {
                 return
             }
 
-            let uriWithNonce = "bitid://\(url.host!)\(url.path)?x=\(nonce)"
-            let signature = BRBitID.signMessage(uriWithNonce, usingKey: priv)
+            let uriWithNonce = "digiid://\(url.host!)\(url.path)?x=\(nonce)"
+            let signature = BRDigiID.signMessage(uriWithNonce, usingKey: priv)
             let payload: [String: String] = [
                 "address": priv.address()!,
                 "signature": signature,
@@ -149,6 +148,10 @@ open class BRBitID : NSObject {
             ]
             let json = try! JSONSerialization.data(withJSONObject: payload, options: [])
 
+            // output:
+            //   let string = NSString(data: json, encoding: String.Encoding.utf8.rawValue)
+            //   print("DIGIID json:", string)
+            
             // send off said payload
             var req = URLRequest(url: URL(string: "\(uri)?x=\(nonce)")!)
             req.setValue("application/json", forHTTPHeaderField: "Content-Type")

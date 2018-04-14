@@ -64,8 +64,8 @@ class URLController : Trackable {
             return true
         case "digibyte":
             return handleBitcoinUri(url)
-        case "bitid":
-            if BRBitID.isBitIDURL(url) {
+        case "digiid":
+            if BRDigiID.isBitIDURL(url) {
                 handleBitId(url)
             }
             return true
@@ -104,8 +104,8 @@ class URLController : Trackable {
     }
 
     private func handleBitId(_ url: URL) {
-        let bitid = BRBitID(url: url, walletManager: walletManager)
-        let message = String(format: S.BitID.authenticationRequest, bitid.siteName)
+        let bitid = BRDigiID(url: url, walletManager: walletManager)
+        let message = String(format: S.BitID.authenticationRequest, bitid.url.host!)
         let alert = UIAlertController(title: S.BitID.title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: S.BitID.deny, style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: S.BitID.approve, style: .default, handler: { _ in

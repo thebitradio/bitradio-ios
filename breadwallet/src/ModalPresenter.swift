@@ -9,6 +9,8 @@
 import UIKit
 import LocalAuthentication
 
+typealias PresentDigiIdScan = ((@escaping DigiIDScanCompletion) -> Void)
+
 class ModalPresenter : Subscriber, Trackable {
 
     //MARK: - Public
@@ -93,6 +95,9 @@ class ModalPresenter : Subscriber, Trackable {
         })
         store.subscribe(self, name: .scanQr, callback: { _ in
             self.handleScanQrURL()
+        })
+        store.subscribe(self, name: .scanDigiId, callback: { _ in
+            self.handleDigiIdScanQrURL()
         })
         store.subscribe(self, name: .copyWalletAddresses(nil, nil), callback: {
             guard let trigger = $0 else { return }
@@ -282,6 +287,15 @@ class ModalPresenter : Subscriber, Trackable {
         }
         return root
     }
+    
+    private func presentDigiIdScan() {
+        guard let top = topViewController else { return }
+        let present = presentScan(parent: top)
+        store.perform(action: RootModalActions.Present(modal: .none))
+        present({ digiIdUrl in
+            print(digiIdUrl?.toAddress)
+        })
+    }
 
     private func menuViewController() -> UIViewController? {
         let menu = MenuViewController()
@@ -290,6 +304,12 @@ class ModalPresenter : Subscriber, Trackable {
             self?.modalTransitionDelegate.reset()
             menu?.dismiss(animated: true) {
                 self?.presentSecurityCenter()
+            }
+        }
+        menu.didTapDigiID = { [weak self, weak menu] in
+            self?.modalTransitionDelegate.reset()
+            menu?.dismiss(animated: true) {
+                self?.store.trigger(name: .scanDigiId)
             }
         }
         menu.didTapSupport = { [weak self, weak menu] in
@@ -323,6 +343,34 @@ class ModalPresenter : Subscriber, Trackable {
             guard let request = paymentRequest else { return }
             self.currentRequest = request
             self.presentModal(.send)
+        })
+    }
+    
+    private func presentLoginScanForDigiId() {
+        guard let top = topViewController else { return }
+        let present = presentDigiIdScan(parent: top)
+        store.perform(action: RootModalActions.Present(modal: .none))
+        present({ digiIdRequest in
+            guard let request = digiIdRequest else { return }
+            let url = URL(string: request.signString)
+            
+            if let signMessage = url {
+                let bitId: BRDigiID = BRDigiID(url: signMessage, walletManager: self.walletManager!)
+                bitId.runCallback(store: self.store, { (data, response, error) in
+                    // convert to json
+                    let json = try? JSONSerialization.jsonObject(with: data!, options: [])
+                    
+                    if let dictionary = json! as? [String: Any] {
+                        if let message = dictionary["message"] as? String {
+                            print("DIGIID message:", message)
+                        } else {
+                            print("DIGIID could not find message field")
+                        }
+                    } else {
+                        print("DIGIID could not parse DICT")
+                    }
+                })
+            }
         })
     }
 
@@ -486,6 +534,30 @@ class ModalPresenter : Subscriber, Trackable {
                 scanCompletion(paymentRequest)
                 parent?.view.isFrameChangeBlocked = false
             }, isValidURI: { address in
+                return address.isValidAddress
+            })
+            parent?.view.isFrameChangeBlocked = true
+            parent?.present(vc, animated: true, completion: {})
+        }
+    }
+    
+    private func presentDigiIdScan(parent: UIViewController) -> PresentDigiIdScan {
+        return { [weak parent] scanCompletion in
+            // check whether camera privileges are available
+            guard ScanViewController.isCameraAllowed else {
+                if let parent = parent {
+                    ScanViewController.presentCameraUnavailableAlert(fromRoot: parent)
+                }
+                return
+            }
+
+            // open scanner
+            let vc = ScanViewController(digiIdCompletion: { digiIdRequest in
+                scanCompletion(digiIdRequest)
+                parent?.view.isFrameChangeBlocked = false
+            }, isValidURI: { address in
+                print("DIGIID", address)
+                print("DIGIID", address.urlEscapedString)
                 return address.isValidAddress
             })
             parent?.view.isFrameChangeBlocked = true
@@ -729,16 +801,32 @@ class ModalPresenter : Subscriber, Trackable {
             }
         }
     }
+    
+    
 
     private func handleScanQrURL() {
         guard !store.state.isLoginRequired else { presentLoginScan(); return }
-
+        
         if topViewController is AccountViewController || topViewController is LoginViewController {
             presentLoginScan()
         } else {
             if let presented = UIApplication.shared.keyWindow?.rootViewController?.presentedViewController {
                 presented.dismiss(animated: true, completion: {
                     self.presentLoginScan()
+                })
+            }
+        }
+    }
+    
+    private func handleDigiIdScanQrURL() {
+        guard !store.state.isLoginRequired else { presentLoginScan(); return }
+        
+        if topViewController is AccountViewController || topViewController is LoginViewController {
+            presentLoginScanForDigiId()
+        } else {
+            if let presented = UIApplication.shared.keyWindow?.rootViewController?.presentedViewController {
+                presented.dismiss(animated: true, completion: {
+                    self.presentLoginScanForDigiId()
                 })
             }
         }
