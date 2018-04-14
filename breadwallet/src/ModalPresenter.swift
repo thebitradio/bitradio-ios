@@ -359,15 +359,21 @@ class ModalPresenter : Subscriber, Trackable {
                 bitId.runCallback(store: self.store, { (data, response, error) in
                     // convert to json
                     let json = try? JSONSerialization.jsonObject(with: data!, options: [])
+                    var msg = ""
                     
                     if let dictionary = json! as? [String: Any] {
                         if let message = dictionary["message"] as? String {
                             print("DIGIID message:", message)
-                        } else {
-                            print("DIGIID could not find message field")
+                            msg = "Error: \(message)"
                         }
                     } else {
-                        print("DIGIID could not parse DICT")
+                        msg = "Error: could not parse dict"
+                    }
+                    
+                    if msg.count > 0 {
+                        let alert = UIAlertController(title: "DigiID", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        top.present(alert, animated: true, completion: nil)
                     }
                 })
             }
