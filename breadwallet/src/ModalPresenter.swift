@@ -370,6 +370,7 @@ class ModalPresenter : Subscriber, Trackable {
                         msg = "Error: could not parse dict"
                     }
                     
+                    // show error
                     if msg.count > 0 {
                         let alert = UIAlertController(title: "DigiID", message: msg, preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

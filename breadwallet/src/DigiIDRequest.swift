@@ -38,6 +38,9 @@ struct DigiIdRequest {
                         switch key {
                         case "x":
                             callbackID = value
+                        case "origin":
+                            // callback url
+                            originURL = value
                         default:
                             print("Keys in DigiId url scheme not found: \(key)")
                         }
@@ -111,6 +114,7 @@ struct DigiIdRequest {
     var toAddress: String?
     let type: DigiIdRequestType
     var callbackID: String
+    var originURL: String?
     var remoteRequest: NSURL?
     var paymentProtoclRequest: PaymentProtocolRequest?
     var r: URL?
