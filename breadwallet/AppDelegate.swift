@@ -27,6 +27,8 @@ import UIKit
 import LocalAuthentication
 import Buglife
 
+var senderApp = ""
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private var window: UIWindow? {
@@ -85,6 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let sendingAppID: String = options[.sourceApplication] as! String
+        senderApp = sendingAppID
         return applicationController.open(url: url)
     }
 

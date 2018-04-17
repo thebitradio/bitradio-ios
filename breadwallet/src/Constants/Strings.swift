@@ -371,6 +371,7 @@ enum S {
         static let lock = NSLocalizedString("MenuButton.lock", value:"Lock Wallet", comment: "Menu button title")
         static let buy = NSLocalizedString("MenuButton.buy", value:"Buy DigiByte", comment: "Buy DigiByte title")
         static let report = NSLocalizedString("MenuButton.report", value: "Report Bug", comment: "Report Bug title")
+        static let digiid = "DigiID"
     }
 
     enum MenuViewController {
