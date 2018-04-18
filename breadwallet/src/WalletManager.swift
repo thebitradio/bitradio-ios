@@ -484,7 +484,7 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
                 sqlite3_bind_blob(sql2, 8, [b.blockHash], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
 
                 // check for potential overflow
-                let flagLen = Int32(UInt64(b.flagsLen) & 0x7FFFFFFF)
+                let flagLen = Int32(UInt64(b.flagsLen) & 0x01)
 
                 // bind
                 sqlite3_bind_blob(sql2, 9, [b.flags], flagLen, SQLITE_TRANSIENT)
