@@ -101,13 +101,23 @@ class StartFlowPresenter : Subscriber {
         return { [weak self] phrase in
             guard let myself = self else { return }
             let pinCreationView = UpdatePinViewController(store: myself.store, walletManager: myself.walletManager, type: .creationWithPhrase, showsBackButton: false, phrase: phrase)
+            
             pinCreationView.setPinSuccess = { [weak self] _ in
-                DispatchQueue.walletQueue.async {
-                    self?.walletManager.peerManager?.connect()
-                    DispatchQueue.main.async {
-                        self?.store.trigger(name: .didCreateOrRecoverWallet)
+                let req = OldestBlockRequest(self!.walletManager.wallet!.allAddresses, completion: { (success, hash, height, timestamp) in
+                    if timestamp != 0 && height > 0 {
+                        // set first block to start from
+                        self?.walletManager.startBlock = StartBlock(hash: hash, timestamp: timestamp, startHeight: height)
                     }
-                }
+                    
+                    DispatchQueue.walletQueue.async {
+                        self?.walletManager.peerManager?.connect()
+                        DispatchQueue.main.async {
+                            self?.store.trigger(name: .didCreateOrRecoverWallet)
+                        }
+                    }
+                })
+            
+                req.start()
             }
             myself.navigationController?.pushViewController(pinCreationView, animated: true)
         }

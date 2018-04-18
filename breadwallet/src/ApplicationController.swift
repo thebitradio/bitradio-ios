@@ -46,15 +46,53 @@ class ApplicationController : Subscriber, Trackable {
             }
         }
     }
-
-    private func initWallet() {
-        self.walletManager = try? WalletManager(store: self.store, dbPath: nil)
-        let _ = self.walletManager?.wallet //attempt to initialize wallet
+    
+    private func defaultInitWallet() {
         DispatchQueue.main.async {
             self.didInitWallet = true
             if !self.hasPerformedWalletDependentInitialization {
                 self.didInitWalletManager()
             }
+        }
+    }
+    
+    func firstBlockSyncInit(_ w: BRWallet) {
+        print("No blocks in database found. Trying to fetch first block of interest to start the sync at.")
+        let req = OldestBlockRequest(w.allAddresses, completion: { (success, hash, height, timestamp) in
+            if timestamp != 0 && height > 0 {
+                // set first block to start from
+                self.walletManager!.startBlock = StartBlock(hash: hash, timestamp: timestamp, startHeight: height)
+            }
+            
+            self.defaultInitWallet()
+        })
+        
+        req.start()
+    }
+    
+    private func initWallet() {
+        self.walletManager = try? WalletManager(store: self.store, dbPath: nil)
+        
+        // let _ = self.walletManager?.wipeWallet(pin: "forceWipe") // REMOVE
+        
+        var firstInit = false
+        var wallet: BRWallet?
+        
+        // attempt to initialize wallet
+        if let w = self.walletManager?.wallet {
+            if self.walletManager?.loadBlocks().count == 0 {
+                // first sync
+                firstInit = true
+                wallet = w
+            }
+        }
+        
+        if firstInit {
+            print("No blocks in database found. Trying to fetch first block of interest to start the sync at.")
+            firstBlockSyncInit(wallet!)
+        } else {
+            // Just start or resume the sync
+            defaultInitWallet()
         }
     }
 

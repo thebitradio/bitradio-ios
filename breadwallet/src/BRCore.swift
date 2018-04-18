@@ -532,18 +532,28 @@ protocol BRPeerManagerListener {
 class BRPeerManager {
     let cPtr: OpaquePointer
     let listener: BRPeerManagerListener
+    var startSyncFrom: UnsafeMutablePointer<BRMerkleBlock>? = nil
     
     init?(wallet: BRWallet, earliestKeyTime: TimeInterval, blocks: [BRBlockRef?], peers: [BRPeer],
-          listener: BRPeerManagerListener) {
+          listener: BRPeerManagerListener, startBlock: BRMerkleBlock? = nil) {
         var blockRefs = blocks
-		
-		//FIXME: We need to explore making a change to the core protocol so that it will download more headers per request
-		// in perpetuity rather than falling back to 500 from 2000
-		guard let cPtr = BPPeerManagerMainNetNew(wallet.cPtr, UInt32(earliestKeyTime + NSTimeIntervalSince1970),
-                                          &blockRefs, blockRefs.count, peers, peers.count) else { return nil }
+        
+        if let startBlock = startBlock {
+            // if startBlock was passed, we use Ex function to start sync from that specific block
+            startSyncFrom = UnsafeMutablePointer<BRMerkleBlock>.allocate(capacity: 1)
+            startSyncFrom?.initialize(to: startBlock)
+            
+            guard let cPtr = BPPeerManagerMainNetNewEx(wallet.cPtr, UInt32(earliestKeyTime + NSTimeIntervalSince1970),
+                                                     &blockRefs, blockRefs.count, peers, peers.count, startSyncFrom) else { return nil }
+            self.cPtr = cPtr
+        } else {
+            // just start sync using checkpoints, etc.
+            guard let cPtr = BPPeerManagerMainNetNew(wallet.cPtr, UInt32(earliestKeyTime + NSTimeIntervalSince1970),
+                                                     &blockRefs, blockRefs.count, peers, peers.count) else { return nil }
+            self.cPtr = cPtr
+        }
 		
 		self.listener = listener
-        self.cPtr = cPtr
         
         BRPeerManagerSetCallbacks(cPtr, Unmanaged.passUnretained(self).toOpaque(),
         { (info) in // syncStarted
@@ -597,6 +607,7 @@ class BRPeerManager {
         if let fixedAddress = UserDefaults.customNodeIP {
             setFixedPeer(address: fixedAddress, port: UserDefaults.customNodePort ?? C.standardPort)
         }
+        
         BRPeerManagerConnect(cPtr)
     }
     

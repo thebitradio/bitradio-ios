@@ -52,6 +52,12 @@ private func SafeSqlite3ColumnBlob<T>(statement: OpaquePointer, iCol: Int32) -> 
 // A WalletManger instance manages a single wallet, and that wallet's individual connection to the bitcoin network.
 // After instantiating a WalletManager object, call myWalletManager.peerManager.connect() to begin syncing.
 
+struct StartBlock {
+    let hash: String
+    let timestamp: Int64
+    let startHeight: Int
+}
+
 class WalletManager : BRWalletListener, BRPeerManagerListener {
     internal var didInitWallet = false
     internal let dbPath: String
@@ -62,7 +68,8 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
     internal let store: Store
     var masterPubKey = BRMasterPubKey()
     var earliestKeyTime: TimeInterval = 0
-
+    var startBlock: StartBlock? = nil
+    
     var wallet: BRWallet? {
         guard self.masterPubKey != BRMasterPubKey() else { return nil }
         guard let wallet = lazyWallet else {
@@ -86,11 +93,42 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
         guard self.wallet != nil else { return nil }
         return self.lazyPeerManager
     }
+    
+    private func split(_ str: String, _ count: Int) -> [String] {
+        return stride(from: 0, to: str.count, by: count).map { i -> String in
+            let startIndex = str.index(str.startIndex, offsetBy: i)
+            let endIndex   = str.index(startIndex, offsetBy: count, limitedBy: str.endIndex) ?? str.endIndex
+            return String(str[startIndex..<endIndex])
+        }
+    }
 
     internal lazy var lazyPeerManager: BRPeerManager? = {
         guard let wallet = self.wallet else { return nil }
-        return BRPeerManager(wallet: wallet, earliestKeyTime: self.earliestKeyTime,
-                             blocks: self.loadBlocks(), peers: self.loadPeers(), listener: self)
+        var merkleBlock: BRMerkleBlock? = nil
+        
+        if let s = startBlock {
+            // create merkleblock instance
+            var m = BRMerkleBlock()
+            
+            // array should contain 32 bytes
+            let u8: [UInt8] = split(s.hash, 2).map({ (s) -> UInt8 in
+                return UInt8(s, radix: 16)!
+            })
+            
+            // convert to uint256
+            let blockHash = UInt256(u8: (u8[0], u8[1], u8[2], u8[3], u8[4], u8[5], u8[6], u8[7], u8[8], u8[9], u8[10], u8[11], u8[12], u8[13], u8[14], u8[15], u8[16], u8[17], u8[18], u8[19], u8[20], u8[21], u8[22], u8[23], u8[24], u8[25], u8[26], u8[27], u8[28], u8[29], u8[30], u8[31]))
+        
+            m.blockHash = UInt256Reverse(blockHash)
+            m.height = UInt32(s.startHeight)
+            
+            // ToDo: This needs to be fixed in the whole application (especially core) ASAP (year 2038 :D)
+            m.timestamp = UInt32(s.timestamp)
+            
+            // assign
+            merkleBlock = m
+        }
+        
+        return BRPeerManager(wallet: wallet, earliestKeyTime: self.earliestKeyTime, blocks: self.loadBlocks(), peers: self.loadPeers(), listener: self, startBlock: merkleBlock)
     }()
 
     internal lazy var lazyWallet: BRWallet? = {
@@ -573,7 +611,7 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
         return transactions
     }
     
-    private func loadBlocks() -> [BRBlockRef?] {
+    func loadBlocks() -> [BRBlockRef?] {
         var blocks = [BRBlockRef?]()
         var sql: OpaquePointer? = nil
         sqlite3_prepare_v2(db, "select ZHEIGHT, ZNONCE, ZTARGET, ZTOTALTRANSACTIONS, ZVERSION, ZTIMESTAMP, " +
