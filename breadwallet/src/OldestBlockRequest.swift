@@ -2,7 +2,7 @@
 //  OldestBlockRequest.swift
 //  breadwallet
 //
-//  Created by Julian Jäger on 15.04.18.
+//  Created by YoshiCarlsberg on 15.04.18.
 //  Copyright © 2018 breadwallet LLC. All rights reserved.
 //
 
