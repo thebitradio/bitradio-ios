@@ -59,7 +59,7 @@ class ApplicationController : Subscriber, Trackable {
     func firstBlockSyncInit(_ w: BRWallet) {
         print("No blocks in database found. Trying to fetch first block of interest to start the sync at.")
         let req = OldestBlockRequest(w.allAddresses, completion: { (success, hash, height, timestamp) in
-            if timestamp != 0 && height > 0 {
+            if success && timestamp != 0 && height > 0 {
                 // set first block to start from
                 self.walletManager!.startBlock = StartBlock(hash: hash, timestamp: timestamp, startHeight: height)
             }

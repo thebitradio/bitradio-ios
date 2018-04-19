@@ -144,9 +144,15 @@ class OldestBlockRequest {
             // get the block data from the oldest transaction
             self.getBlock(oldestTx.blockhash, callback: { (block) in
                 if let b = block {
-                    self.oldestBlock = Block(hash: b.hash, blockHeight: b.height, blockTime: b.time)
+                    self.getBlock(b.previousblockhash, callback: { (prevBlock) in
+                        if let p = prevBlock {
+                            self.oldestBlock = Block(hash: p.hash, blockHeight: p.height, blockTime: p.time)
+                        }
+                        self.finish()
+                    })
+                } else {
+                    self.finish()
                 }
-                self.finish()
             })
         }
     }

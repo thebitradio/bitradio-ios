@@ -257,9 +257,26 @@ class WalletCoordinator : Subscriber, Trackable {
             //In case rescan is called while a sync is in progess
             //we need to make sure it's false before a rescan starts
             //self.store.perform(action: WalletChange.setIsSyncing(false))
-            DispatchQueue.walletQueue.async {
-				self.lastBlockHeight = 0
-                self.walletManager.peerManager?.rescan()
+            
+            if let w = self.walletManager.wallet {
+                let req = OldestBlockRequest(w.allAddresses, completion: { (success, hash, height, timestamp) in
+                    if success && timestamp != 0 && height > 0 {
+                        // set first block to start from
+                        self.walletManager.startBlock = StartBlock(hash: hash, timestamp: timestamp, startHeight: height)
+                    }
+                    
+                    DispatchQueue.walletQueue.async {
+                        self.lastBlockHeight = 0
+                        self.walletManager.peerManager?.rescan()
+                    }
+                })
+                
+                req.start()
+            } else {
+                DispatchQueue.walletQueue.async {
+                    self.lastBlockHeight = 0
+                    self.walletManager.peerManager?.rescan()
+                }
             }
         })
     }

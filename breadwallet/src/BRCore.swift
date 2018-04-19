@@ -553,7 +553,7 @@ class BRPeerManager {
             self.cPtr = cPtr
         }
 		
-	self.listener = listener
+        self.listener = listener
 
         BRPeerManagerSetCallbacks(cPtr, Unmanaged.passUnretained(self).toOpaque(),
         { (info) in // syncStarted
@@ -622,7 +622,12 @@ class BRPeerManager {
     
     // rescans blocks and transactions after earliestKeyTime (a new random download peer is also selected due to the
     // possibility that a malicious node might lie by omitting transactions that match the bloom filter)
-    func rescan() {
+    func rescan(block: BRMerkleBlock? = nil) {
+        if let start = block {
+            startSyncFrom = UnsafeMutablePointer<BRMerkleBlock>.allocate(capacity: 1)
+            startSyncFrom?.initialize(to: start)
+            BRPeerManagerSetStartBlock(self.cPtr, startSyncFrom)
+        }
         BRPeerManagerRescan(cPtr)
     }
     
