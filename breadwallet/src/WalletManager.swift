@@ -101,31 +101,35 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
             return String(str[startIndex..<endIndex])
         }
     }
-
+    
+    func generateMerkleBlock(s: StartBlock) -> BRMerkleBlock {
+        // create merkleblock instance
+        var m = BRMerkleBlock()
+        
+        // array should contain 32 bytes
+        let u8: [UInt8] = split(s.hash, 2).map({ (s) -> UInt8 in
+            return UInt8(s, radix: 16)!
+        })
+        
+        // convert to uint256
+        let blockHash = UInt256(u8: (u8[0], u8[1], u8[2], u8[3], u8[4], u8[5], u8[6], u8[7], u8[8], u8[9], u8[10], u8[11], u8[12], u8[13], u8[14], u8[15], u8[16], u8[17], u8[18], u8[19], u8[20], u8[21], u8[22], u8[23], u8[24], u8[25], u8[26], u8[27], u8[28], u8[29], u8[30], u8[31]))
+        
+        m.blockHash = UInt256Reverse(blockHash)
+        m.height = UInt32(s.startHeight)
+        
+        // ToDo: This needs to be fixed in the whole application (especially core) ASAP (year 2038 :D)
+        m.timestamp = UInt32(s.timestamp)
+        
+        // assign
+        return m
+    }
+    
     internal lazy var lazyPeerManager: BRPeerManager? = {
         guard let wallet = self.wallet else { return nil }
         var merkleBlock: BRMerkleBlock? = nil
         
         if let s = startBlock {
-            // create merkleblock instance
-            var m = BRMerkleBlock()
-            
-            // array should contain 32 bytes
-            let u8: [UInt8] = split(s.hash, 2).map({ (s) -> UInt8 in
-                return UInt8(s, radix: 16)!
-            })
-            
-            // convert to uint256
-            let blockHash = UInt256(u8: (u8[0], u8[1], u8[2], u8[3], u8[4], u8[5], u8[6], u8[7], u8[8], u8[9], u8[10], u8[11], u8[12], u8[13], u8[14], u8[15], u8[16], u8[17], u8[18], u8[19], u8[20], u8[21], u8[22], u8[23], u8[24], u8[25], u8[26], u8[27], u8[28], u8[29], u8[30], u8[31]))
-        
-            m.blockHash = UInt256Reverse(blockHash)
-            m.height = UInt32(s.startHeight)
-            
-            // ToDo: This needs to be fixed in the whole application (especially core) ASAP (year 2038 :D)
-            m.timestamp = UInt32(s.timestamp)
-            
-            // assign
-            merkleBlock = m
+            merkleBlock = generateMerkleBlock(s: s)
         }
         
         return BRPeerManager(wallet: wallet, earliestKeyTime: self.earliestKeyTime, blocks: self.loadBlocks(), peers: self.loadPeers(), listener: self, startBlock: merkleBlock)

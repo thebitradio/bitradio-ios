@@ -260,14 +260,18 @@ class WalletCoordinator : Subscriber, Trackable {
             
             if let w = self.walletManager.wallet {
                 let req = OldestBlockRequest(w.allAddresses, completion: { (success, hash, height, timestamp) in
+                    var start: Any? = nil
+                    
                     if success && timestamp != 0 && height > 0 {
                         // set first block to start from
-                        self.walletManager.startBlock = StartBlock(hash: hash, timestamp: timestamp, startHeight: height)
+                        let s = StartBlock(hash: hash, timestamp: timestamp, startHeight: height)
+                        self.walletManager.startBlock = s
+                        start = self.walletManager.generateMerkleBlock(s: s)
                     }
                     
                     DispatchQueue.walletQueue.async {
                         self.lastBlockHeight = 0
-                        self.walletManager.peerManager?.rescan()
+                        self.walletManager.peerManager?.rescan(block: start)
                     }
                 })
                 
