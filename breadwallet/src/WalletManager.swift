@@ -54,7 +54,7 @@ private func SafeSqlite3ColumnBlob<T>(statement: OpaquePointer, iCol: Int32) -> 
 
 struct StartBlock {
     let hash: String
-    let timestamp: Int64
+    let timestamp: Int
     let startHeight: Int
 }
 

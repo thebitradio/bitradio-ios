@@ -26,8 +26,18 @@ struct TransactionJSON: Decodable {
     var hash: String
     var version: Int
     var size: Int
-    var blocktime: Int64
+    var blocktime: Int
     var blockhash: String
+}
+
+struct BlockJSON: Decodable {
+    var hash: String
+    var confirmations: Int
+    var size: Int
+    var height: Int
+    var time: Int
+    var previousblockhash: String
+    var nextblockhash: String
 }
 
 class OldestBlockRequest {
@@ -35,14 +45,14 @@ class OldestBlockRequest {
     private struct Block {
         var hash: String
         var blockHeight: Int
-        var blockTime: Int64
+        var blockTime: Int
     }
     
-    static let addressBaseURL = "https://digiexplorer.info/api/addr"
+    static let multiAddressBaseURL = "https://digiexplorer.info/api/addrs" /*  /<addr1,addr2,...>/txs */
     static let txBaseURL = "https://digiexplorer.info/api/tx"
     static let blockBaseURL = "https://digiexplorer.info/api/block"
     private var oldestBlock: Block?
-    let onCompletion: (Bool, String, Int, Int64) -> Void // success, hash, blockHeight, blockTime
+    let onCompletion: (Bool, String, Int, Int) -> Void // success, hash, blockHeight, blockTime
     let session: URLSession
     let addresses: [String]
     
@@ -61,71 +71,38 @@ class OldestBlockRequest {
         })
     }
     
-    private func fetchTransactions(_ callback: @escaping ([String]) -> Void) {
+    private func fetchTransactions(_ callback: @escaping ([TransactionJSON]) -> Void) {
         callbackCalled = false
-        var transactions: [String] = []
+        var transactions: [TransactionJSON] = []
         
         if self.addresses.count == 0 {
             return finish()
         }
         
-        for i in 0 ..< self.addresses.count {
-            let address = self.addresses[i]
-            let url = "\(OldestBlockRequest.addressBaseURL)/\(address)"
-            let dataTask = self.session.dataTask(with: URL(string: url)!, completionHandler: { (data, response, error) in
-                if let err = error {
-                    print("SYNC: ERROR", err);
-                    self.next { callback(transactions) }
-                    return;
-                }
-                
-                guard let data = data else { return }
-                do {
-                    let parsedJSON = try JSONDecoder().decode(AddressInfoJSON.self, from: data)
-                    
-                    if let last = parsedJSON.transactions.last {
-                        transactions.append(last)
-                    }
-                } catch let jsonErr {
-                    print("SYNC: JSON ERROR", jsonErr);
-                }
-                
+        let addressStr = self.addresses.joined(separator: ",")
+        let url = "\(OldestBlockRequest.multiAddressBaseURL)/\(addressStr)/txs/"
+        let dataTask = self.session.dataTask(with: URL(string: url)!, completionHandler: { (data, response, error) in
+            if let err = error {
+                print("SYNC: ERROR", err);
                 self.next { callback(transactions) }
-            })
+                return;
+            }
             
-            dataTask.resume()
-        }
-    }
-    
-    private func getBlocks(_ transactions: [String], callback: @escaping ([Block]) -> Void) {
-        callbackCalled = false
+            guard let data = data else { return }
+            do {
+                let parsedJSON = try JSONDecoder().decode([TransactionJSON].self, from: data)
+                
+                for transaction in parsedJSON {
+                    transactions.append(transaction)
+                }
+            } catch let jsonErr {
+                print("SYNC: JSON ERROR", jsonErr);
+            }
+            
+            self.next { callback(transactions) }
+        })
         
-        var blocks: [Block] = []
-        for i in 0 ..< transactions.count {
-            let transaction = transactions[i]
-            
-            let url = "\(OldestBlockRequest.txBaseURL)/\(transaction)"
-            
-            let dataTask = self.session.dataTask(with: URL(string: url)!, completionHandler: { (data, response, error) in
-                if let err = error {
-                    print("SYNC:2 ERROR", err);
-                    self.next { callback(blocks) }
-                    return;
-                }
-                
-                guard let data = data else { return }
-                do {
-                    let parsedJSON = try JSONDecoder().decode(TransactionJSON.self, from: data)
-                    blocks.append(Block(hash: parsedJSON.blockhash , blockHeight: 0, blockTime: parsedJSON.blocktime))
-                } catch let jsonErr {
-                    print("SYNC:2 JSON ERROR", jsonErr);
-                }
-                
-                self.next { callback(blocks) }
-            })
-            
-            dataTask.resume()
-        }
+        dataTask.resume()
     }
     
     private func finish() {
@@ -135,42 +112,46 @@ class OldestBlockRequest {
         if let b = oldestBlock {
             self.onCompletion(true, b.hash, b.blockHeight, b.blockTime)
         } else {
-            self.onCompletion(true, "", 0, 0)
+            self.onCompletion(false, "", 0, 0)
         }
     }
     
-    private func getBlockHeight(_ blockHash: String, callback: @escaping (Int) -> Void) {
+    private func getBlock(_ blockHash: String, callback: @escaping (BlockJSON?) -> Void) {
         let url = "\(OldestBlockRequest.blockBaseURL)/\(blockHash)"
         let dataTask = self.session.dataTask(with: URL(string: url)!, completionHandler: { (data, response, error) in
             guard let data = data else { return }
             do {
-                let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-                callback(json!["height"] as! Int)
+                let json = try JSONDecoder().decode(BlockJSON.self, from: data)
+                callback(json)
             } catch {
-                print("Error deserializing JSON \(error)")
+                print("Error deserializing JSON \(error):", String.init(bytes: data, encoding: .utf8) ?? "<<null>>")
+                callback(nil)
             }
         })
         dataTask.resume()
     }
     
     func start() {
+        // get the transactions for the public wallet addresses
         self.fetchTransactions { (transactions) in
             if transactions.count == 0 { return self.finish() }
-            self.getBlocks(transactions, callback: { (blocks) in
-                guard var oldestBlock = blocks.max(by: { (a, b) -> Bool in
-                    return a.blockTime < b.blockTime
-                }) else { return self.finish() }
-                
-                self.getBlockHeight(oldestBlock.hash, callback: { (height) in
-                    oldestBlock.blockHeight = height
-                    self.oldestBlock = oldestBlock
-                    self.finish()
-                })
+            
+            // get the oldest transaction
+            guard let oldestTx = transactions.max(by: { (a, b) -> Bool in
+                return a.blocktime > b.blocktime
+            }) else { return self.finish() }
+        
+            // get the block data from the oldest transaction
+            self.getBlock(oldestTx.blockhash, callback: { (block) in
+                if let b = block {
+                    self.oldestBlock = Block(hash: b.hash, blockHeight: b.height, blockTime: b.time)
+                }
+                self.finish()
             })
         }
     }
     
-    init(_ addr: [String], completion: @escaping (Bool, String, Int, Int64) -> Void) {
+    init(_ addr: [String], completion: @escaping (Bool, String, Int, Int) -> Void) {
         onCompletion = completion
         
         // create session
