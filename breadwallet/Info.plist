@@ -183,5 +183,7 @@
 			</dict>
 		</dict>
 	</array>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Wallet Authentication</string>
 </dict>
 </plist>

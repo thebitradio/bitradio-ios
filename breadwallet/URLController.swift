@@ -122,7 +122,7 @@ class URLController : Trackable {
                     var r = 1
                     
                     if let origin = req?.originURL {
-                        // /* TESTING: */ if let origin = Optional("https://digiid.digibyteprojects.com/login") {
+                    // /* TESTING: */ if let origin = Optional("https://digiid.digibyteprojects.com/login") {
                         var url = ""
                         switch(senderApp) {
                             case "com.apple.mobilesafari":
@@ -156,8 +156,16 @@ class URLController : Trackable {
                         self.present(alert: alert)
                     }
                 } else {
-                    // Something went wrong, we'll display an alert 
-                    let alert = UIAlertController(title: S.BitID.error, message: S.BitID.errorMessage, preferredStyle: .alert)
+                    // Something went wrong, we'll display an alert
+                    var additionalInformation: String {
+                        if let resp = response as? HTTPURLResponse {
+                            return "\(resp.statusCode)"
+                        }
+                        
+                        return ""
+                    }
+                    
+                    let alert = UIAlertController(title: S.BitID.error, message: "\(S.BitID.errorMessage).\n\nStatus: \(additionalInformation)", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
                     self.present(alert: alert)
                 }
