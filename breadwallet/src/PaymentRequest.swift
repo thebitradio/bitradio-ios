@@ -102,7 +102,11 @@ struct PaymentRequest {
 
     static func requestString(withAddress: String, forAmount: UInt64) -> String {
         let btcAmount = convertToBTC(fromSatoshis: forAmount)
-        return "digibyte:\(withAddress)?amount=\(btcAmount)"
+        return "digibyte://\(withAddress)?amount=\(btcAmount)"
+    }
+
+    static func requestString(withAddress: String) -> String {
+        return "digibyte://\(withAddress)"
     }
 
     var toAddress: String?

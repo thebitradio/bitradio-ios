@@ -172,9 +172,16 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     }
 
     @objc private func shareTapped() {
-        let activityViewController = UIActivityViewController(activityItems: [address.text!, qrCode.image!], applicationActivities: nil)
-        activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
-        present(activityViewController, animated: true, completion: {})
+        if
+            let qrImage = qrCode.image,
+            let imgData = UIImageJPEGRepresentation(qrImage, 1.0),
+            let jpegRep = UIImage(data: imgData),
+            let address = address.text {
+                let paymentURI = PaymentRequest.requestString(withAddress: address)
+                let activityViewController = UIActivityViewController(activityItems: [paymentURI, jpegRep], applicationActivities: nil)
+                activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
+                present(activityViewController, animated: true, completion: {})
+        }
     }
 
     @objc private func addressTapped() {
@@ -185,14 +192,6 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         if sharePopout.isExpanded {
             toggle(alertView: sharePopout, shouldAdjustPadding: true)
         }
-    }
-
-    @objc private func emailTapped() {
-        presentEmail?(address.text!, qrCode.image!)
-    }
-
-    @objc private func textTapped() {
-        presentText?(address.text!, qrCode.image!)
     }
 
     private func toggle(alertView: InViewAlert, shouldAdjustPadding: Bool, shouldShrinkAfter: Bool = false) {
