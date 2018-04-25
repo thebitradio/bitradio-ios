@@ -137,9 +137,18 @@ class RequestAmountViewController : UIViewController {
     }
 
     @objc private func shareTapped() {
-        let activityViewController = UIActivityViewController(activityItems: [address.text!, qrCode.image!], applicationActivities: nil)
-        activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
-        present(activityViewController, animated: true, completion: {})
+
+        guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
+        let address = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
+
+        if
+            let qrImage = qrCode.image,
+            let jpegRep = UIImage(data: UIImageJPEGRepresentation(qrImage, 1.0)!) {
+                let activityViewController = UIActivityViewController(activityItems: [address, jpegRep], applicationActivities: nil)
+                activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
+                present(activityViewController, animated: true, completion: {})
+        }
+
     }
 
     @objc private func addressTapped() {
@@ -149,18 +158,6 @@ class RequestAmountViewController : UIViewController {
         if sharePopout.isExpanded {
             toggle(alertView: sharePopout, shouldAdjustPadding: true)
         }
-    }
-
-    @objc private func emailTapped() {
-        guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
-        let text = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
-        presentEmail?(text, qrCode.image!)
-    }
-
-    @objc private func textTapped() {
-        guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
-        let text = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
-        presentText?(text, qrCode.image!)
     }
 
     private func toggle(alertView: InViewAlert, shouldAdjustPadding: Bool, shouldShrinkAfter: Bool = false) {
