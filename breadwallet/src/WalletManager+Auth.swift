@@ -256,19 +256,31 @@ extension WalletManager : WalletAuthenticator {
 
     // show biometric dialog and call completion block with success or failure
     func authenticate(biometricsPrompt: String, completion: @escaping (BiometricsResult) -> ()) {
-        let policy = LAPolicy.deviceOwnerAuthenticationWithBiometrics
-        LAContext().evaluatePolicy(policy, localizedReason: biometricsPrompt,
-                                   reply: { success, error in
-                                    DispatchQueue.main.async {
-                                        if success { return completion(.success) }
-                                        guard let error = error else { return completion(.failure) }
-                                        if error._code == Int(kLAErrorUserCancel) {
-                                            return completion (.cancel)
-                                        } else if error._code == Int(kLAErrorUserFallback) {
-                                            return completion (.fallback)
-                                        }
-                                        completion(.failure)
-                                    } })
+        let ctx = LAContext()
+        var err: NSError?
+        
+        if ctx.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &err) {
+            if let error = err {
+                print(error)
+            }
+            ctx.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: biometricsPrompt) { (success, error) in
+                DispatchQueue.main.async {
+                    if success { return completion(.success) }
+                    
+                    guard let error = error else { return completion(.failure) }
+                    if error._code == Int(kLAErrorUserCancel) {
+                        return completion (.cancel)
+                    } else if error._code == Int(kLAErrorUserFallback) {
+                        return completion (.fallback)
+                    }
+                    completion(.failure)
+                }
+            }
+        } else {
+            if let error = err {
+                print(error)
+            }
+        }
     }
     
     // sign the given transaction using pin authentication
