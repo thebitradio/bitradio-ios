@@ -101,6 +101,12 @@
 	<string>Wallet Authentication</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Used to determine where you are - never recorded or shared with anyone</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Used to determine where you are - never recorded or shared with anyone</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Used to determine where you are - never recorded or shared with anyone</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to determine where you are - never recorded or shared with anyone</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Used to save qr code</string>
 	<key>NSPhotoLibraryUsageDescription</key>
