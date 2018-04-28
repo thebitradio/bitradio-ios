@@ -29,7 +29,7 @@ import LocalAuthentication
 import BRCore
 import sqlite3
 
-private let WalletSecAttrService = "io.digibyte.DigiByte"
+private let WalletSecAttrService = "org.digibytefoundation.DigiByte"
 
 private let BIP39CreationTime = TimeInterval(BIP39_CREATION_TIME) - NSTimeIntervalSince1970
 

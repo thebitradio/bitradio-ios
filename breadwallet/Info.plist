@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>DigiWallet</string>
+	<string>DigiByte</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -67,7 +67,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>io.digibyte.DigiByte</string>
+			<string>org.digibytefoundation.DigiByte</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>digibytewallet</string>

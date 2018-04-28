@@ -122,7 +122,7 @@ open class BRReplicatedKVStore: NSObject {
     init(encryptionKey: BRKey, remoteAdaptor: BRRemoteKVStoreAdaptor) throws {
         key = encryptionKey
         remote = remoteAdaptor
-        dbQueue = DispatchQueue(label: "io.digibyte.DigiByte.kvDBQueue", attributes: [])
+        dbQueue = DispatchQueue(label: "org.digibytefoundation.DigiByte.kvDBQueue", attributes: [])
         super.init()
         try self.openDatabase()
         try self.migrateDatabase()
