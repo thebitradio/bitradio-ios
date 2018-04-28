@@ -124,6 +124,16 @@ extern NSString * __nonnull const LIFENotificationUserSubmittedReport;
 @property (nonatomic, weak, nullable) id<BuglifeDelegate> delegate;
 
 /**
+ * Whether certain UIControl and navigation events will be logged. Defaults to `YES`
+ */
+@property (nonatomic) BOOL captureUserEventsEnabled;
+
+/**
+ * Whether the add additional attachments button will be displayed. Defaults to `YES`
+ */
+@property (nonatomic) BOOL allowsAdditionalAttachments;
+
+/**
  *  Default shared initializer that returns the Buglife singleton.
  *
  *  @return The shared Buglife singleton
@@ -197,6 +207,8 @@ extern NSString * __nonnull const LIFENotificationUserSubmittedReport;
  *  constructors, and include them in your array of custom input fields.
  *
  *  Set this property to null if you'd like to simply use the default field(s).
+ *  Set this property to `LIFEInputField.bugDetailInputFields()` if you want a Summary,
+ *  Steps to Reproduce, Expected Resutls, and Actual Results fields. 
  */
 @property (nonatomic, nullable) NSArray<LIFEInputField *> *inputFields;
 
