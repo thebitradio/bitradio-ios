@@ -45,6 +45,6 @@ struct C {
     static var standardPort: Int {
 		return E.isTestnet ? 12024 : 12024
     }
-	//FIXME: Before shipping to production, change this to DigiWallet.sqlite
+	//FIXME: Before shipping to production, change this to DigiByte.sqlite
 	static let sqliteFileName = "BreadWallet.sqlite"
 }
