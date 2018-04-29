@@ -5227,7 +5227,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp.watchkitextension;
@@ -5244,7 +5244,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp.watchkitextension;
@@ -5262,7 +5262,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				IBSC_MODULE = breadwallet_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
@@ -5279,7 +5279,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				IBSC_MODULE = breadwallet_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
@@ -5360,7 +5360,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.digibyte.digibytewalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digibyte.app/digibyte";
 			};
 			name = Debug;
 		};
@@ -5376,7 +5376,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.digibyte.digibytewalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digibyte.app/digibyte";
 			};
 			name = Release;
 		};
@@ -5414,7 +5414,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -5428,7 +5428,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -5442,11 +5442,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtensions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -5455,11 +5458,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtensions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -5467,7 +5473,7 @@
 		75A2A8251DA5938500A983D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -5481,7 +5487,7 @@
 		75A2A8261DA5938500A983D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -5667,7 +5673,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.digibyte.digibytewalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digibyte.app/digibyte";
 			};
 			name = Screenshots;
 		};
@@ -5691,7 +5697,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				IBSC_MODULE = breadwallet_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
@@ -5707,7 +5713,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp.watchkitextension;
@@ -5724,7 +5730,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -5738,11 +5744,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtensions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Screenshots;
@@ -5750,7 +5759,7 @@
 		CEA7E6901F09AC6A001F8C27 /* Screenshots */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -5984,7 +5993,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.digibyte.digibytewalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digibyte.app/digibyte";
 			};
 			name = Testnet;
 		};
@@ -6008,7 +6017,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				IBSC_MODULE = breadwallet_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
@@ -6024,7 +6033,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp.watchkitextension;
@@ -6041,7 +6050,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -6055,11 +6064,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtensions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Testnet;
@@ -6067,7 +6079,7 @@
 		CEA7E6A31F0AAA84001F8C27 /* Testnet */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -6293,7 +6305,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.digibyte.digibytewalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digibyte.app/digibyte";
 			};
 			name = Testflight;
 		};
@@ -6317,7 +6329,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				IBSC_MODULE = breadwallet_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
@@ -6333,7 +6345,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp.watchkitextension;
@@ -6350,7 +6362,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -6364,11 +6376,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtensions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Testflight;
@@ -6376,7 +6391,7 @@
 		CEE0EF5C1EBF8D7F0018DB36 /* Testflight */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = N6EWVJ7C87;
+				DEVELOPMENT_TEAM = G49J8N7X2F;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
