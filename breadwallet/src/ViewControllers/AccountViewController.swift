@@ -36,15 +36,10 @@ class AccountViewController : UIViewController, Subscriber {
                 loginView.modalPresentationCapturesStatusBarAppearance = true
                 loginView.shouldSelfDismiss = true
                 
-                store.subscribe(self, name: .showLogin, callback: { _ in
-                    self.present(self.loginView, animated: false, completion: {
-                        self.tempLoginView.remove()
-                        self.attemptShowWelcomeView()
-                    })
+                self.present(self.loginView, animated: false, completion: {
+                    self.tempLoginView.remove()
+                    self.attemptShowWelcomeView()
                 })
-                
-                store.trigger(name: .showLogin)
-                
             }
             transactionsTableView.walletManager = walletManager
             headerView.isWatchOnly = walletManager.isWatchOnly
