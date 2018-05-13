@@ -15,7 +15,6 @@ enum MenuButtonType {
     case lock
     case buy
     case report
-    case digiid
 
     var title: String {
         switch self {
@@ -31,8 +30,6 @@ enum MenuButtonType {
             return S.MenuButton.buy
         case .report:
             return S.MenuButton.report
-        case .digiid:
-            return S.MenuButton.digiid
         }
     }
 
@@ -50,8 +47,6 @@ enum MenuButtonType {
             return #imageLiteral(resourceName: "BuyBitcoin")
 		case .report:
 			return #imageLiteral(resourceName: "BugReport")
-        case .digiid:
-            return #imageLiteral(resourceName: "digiid.png")
         }
     }
 }

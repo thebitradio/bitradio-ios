@@ -306,12 +306,6 @@ class ModalPresenter : Subscriber, Trackable {
                 self?.presentSecurityCenter()
             }
         }
-        menu.didTapDigiID = { [weak self, weak menu] in
-            self?.modalTransitionDelegate.reset()
-            menu?.dismiss(animated: true) {
-                self?.store.trigger(name: .scanDigiId)
-            }
-        }
         menu.didTapSupport = { [weak self, weak menu] in
             menu?.dismiss(animated: true, completion: {
                 self?.presentFaq()

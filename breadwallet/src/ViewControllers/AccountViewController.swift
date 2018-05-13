@@ -25,6 +25,10 @@ class AccountViewController : UIViewController, Subscriber {
     var menuCallback: (() -> Void)? {
         didSet { footerView.menuCallback = menuCallback }
     }
+    
+    var digiIDCallback: (() -> Void)? {
+        didSet { footerView.digiIDCallback = digiIDCallback }
+    }
 
     var walletManager: WalletManager? {
         didSet {
