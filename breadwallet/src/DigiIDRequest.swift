@@ -27,6 +27,8 @@ struct DigiIdRequest {
                 
                 if url.scheme == "digiid", let host = url.host {
                     toAddress = host
+                    port = url.port
+                    
                     guard let components = url.query?.components(separatedBy: "&") else { type = .local; return }
                     for component in components {
                         let pair = component.components(separatedBy: "=")
@@ -41,6 +43,9 @@ struct DigiIdRequest {
                         case "origin":
                             // callback url
                             originURL = value
+                        case "u":
+                            // unsecure
+                            self.https = (value == "0")
                         default:
                             print("Keys in DigiId url scheme not found: \(key)")
                         }
@@ -71,8 +76,8 @@ struct DigiIdRequest {
         signString = ""
     }
     
-    func getHTTPUrl(https: Bool = true) -> NSURL? {
-        let newUri = signString.replacingOccurrences(of: "digiid://", with: https ? "https://" : "http://")
+    func getHTTPUrl() -> NSURL? {
+        let newUri = signString.replacingOccurrences(of: "digiid://", with: https! ? "https://" : "http://")
         return NSURL(fileURLWithPath: newUri);
     }
     
@@ -118,5 +123,7 @@ struct DigiIdRequest {
     var remoteRequest: NSURL?
     var paymentProtoclRequest: PaymentProtocolRequest?
     var r: URL?
+    var https: Bool? = true
     var signString: String
+    var port: NSNumber?
 }

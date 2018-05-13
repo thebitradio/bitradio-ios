@@ -35,10 +35,16 @@ class AccountViewController : UIViewController, Subscriber {
                 loginView.modalPresentationStyle = .overFullScreen
                 loginView.modalPresentationCapturesStatusBarAppearance = true
                 loginView.shouldSelfDismiss = true
-                present(loginView, animated: false, completion: {
-                    self.tempLoginView.remove()
-                    self.attemptShowWelcomeView()
+                
+                store.subscribe(self, name: .showLogin, callback: { _ in
+                    self.present(self.loginView, animated: false, completion: {
+                        self.tempLoginView.remove()
+                        self.attemptShowWelcomeView()
+                    })
                 })
+                
+                store.trigger(name: .showLogin)
+                
             }
             transactionsTableView.walletManager = walletManager
             headerView.isWatchOnly = walletManager.isWatchOnly
@@ -340,7 +346,9 @@ class AccountViewController : UIViewController, Subscriber {
             welcome.modalPresentationStyle = .overFullScreen
             welcome.modalPresentationCapturesStatusBarAppearance = true
             welcomeTransitingDelegate.shouldShowMaskView = false
+            
             loginView.present(welcome, animated: true, completion: nil)
+            
             UserDefaults.hasShownWelcome = true
         }
     }

@@ -22,6 +22,8 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         }
     }
     var shouldSelfDismiss = false
+    var authenticated = false
+    
     init(store: Store, isPresentedForLock: Bool, walletManager: WalletManager? = nil) {
         self.store = store
         self.walletManager = walletManager
@@ -138,7 +140,11 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         guard UIApplication.shared.applicationState != .background else { return }
         if shouldUseBiometrics && !hasAttemptedToShowBiometrics && !isPresentedForLock && UserDefaults.hasShownWelcome {
             hasAttemptedToShowBiometrics = true
-            biometricsTapped()
+            
+            // do not ask for fingerprint / faceid, if app was opened using an application url
+            if senderApp == "" {
+                biometricsTapped()
+            }
         }
         if !isResetting {
             lockIfNeeded()
@@ -264,6 +270,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     }
 
     private func authenticationSucceded() {
+        authenticated = true
         //saveEvent("login.success")
         let label = UILabel(font: subheader.font)
         label.textColor = .white
@@ -303,6 +310,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
 
     private func authenticationFailed() {
         //saveEvent("login.failed")
+        authenticated = false
         guard let pinView = pinView else { return }
         pinPad.view.isUserInteractionEnabled = false
         pinView.shake { [weak self] in
@@ -322,7 +330,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
 
     @objc func biometricsTapped() {
         guard !isWalletDisabled else { return }
-        walletManager?.authenticate(biometricsPrompt: S.UnlockScreen.touchIdPrompt, completion: { result in
+        self.walletManager?.authenticate(biometricsPrompt: S.UnlockScreen.touchIdPrompt, completion: { result in
             if result == .success {
                 self.authenticationSucceded()
             }

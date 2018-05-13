@@ -69,8 +69,9 @@ class URLController : Trackable {
         case "digiid":            
             if BRDigiID.isBitIDURL(url) {
                 handleBitId(url)
+                return true
             }
-            return true
+            return false
             
         default:
             return false
@@ -126,7 +127,7 @@ class URLController : Trackable {
                         var url = ""
                         switch(senderApp) {
                             case "com.apple.mobilesafari":
-                                // Safari does not have an url scheme. We can only hope that iOS open the url again using Safari.
+                                // Safari does not have an url scheme. We can only hope that iOS opens the url again using Safari.
                                 url = origin
                                 r = 0
                             case "com.google.chrome":
@@ -159,13 +160,27 @@ class URLController : Trackable {
                     // Something went wrong, we'll display an alert
                     var additionalInformation: String {
                         if let resp = response as? HTTPURLResponse {
-                            return "\(resp.statusCode)"
+                            return "Status: \(resp.statusCode)"
                         }
-                        
                         return ""
                     }
                     
-                    let alert = UIAlertController(title: S.BitID.error, message: "\(S.BitID.errorMessage).\n\nStatus: \(additionalInformation)", preferredStyle: .alert)
+                    var errorInformation: String {
+                        guard let data = data else { return S.BitID.errorMessage }
+                        
+                        do {
+                            // try to convert to json
+                            let json = try JSONSerialization.jsonObject(with: data) as! [String: Any]
+                            // format = { message: <error description> }
+                            return json["message"] as! String
+                        } catch {
+                            // just return response as string
+                            return String(data: data, encoding: String.Encoding.utf8) ?? S.BitID.errorMessage
+                        }
+                    }
+                    
+                    // show alert controller and display error description
+                    let alert = UIAlertController(title: S.BitID.error, message: "\(errorInformation).\n\n\(additionalInformation)", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
                     self.present(alert: alert)
                 }
