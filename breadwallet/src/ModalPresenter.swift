@@ -306,12 +306,6 @@ class ModalPresenter : Subscriber, Trackable {
                 self?.presentSecurityCenter()
             }
         }
-        menu.didTapDigiID = { [weak self, weak menu] in
-            self?.modalTransitionDelegate.reset()
-            menu?.dismiss(animated: true) {
-                self?.store.trigger(name: .scanDigiId)
-            }
-        }
         menu.didTapSupport = { [weak self, weak menu] in
             menu?.dismiss(animated: true, completion: {
                 self?.presentFaq()
@@ -352,27 +346,41 @@ class ModalPresenter : Subscriber, Trackable {
         store.perform(action: RootModalActions.Present(modal: .none))
         present({ digiIdRequest in
             guard let request = digiIdRequest else { return }
+            print("DIGIID", "SignString:", request.signString)
             let url = URL(string: request.signString)
             
             if let signMessage = url {
                 let bitId: BRDigiID = BRDigiID(url: signMessage, walletManager: self.walletManager!)
                 bitId.runCallback(store: self.store, { (data, response, error) in
-                    // convert to json
-                    let json = try? JSONSerialization.jsonObject(with: data!, options: [])
                     var msg = ""
                     
-                    if let dictionary = json! as? [String: Any] {
-                        if let message = dictionary["message"] as? String {
-                            print("DIGIID message:", message)
-                            msg = "Error: \(message)"
-                        }
+                    // check on errors
+                    if let e = error {
+                        msg = e.userInfo[NSLocalizedDescriptionKey] as! String
                     } else {
-                        msg = "Error: could not parse dict"
+                        // try to convert to json
+                        var json: Any?
+                        do {
+                            json = try JSONSerialization.jsonObject(with: data!, options: [])
+                        } catch let error as NSError {
+                            msg = error.localizedDescription
+                        }
+                        
+                        // try to read Digi-ID contents
+                        if let j = json {
+                            if let dictionary = j as? [String: Any] {
+                                if let message = dictionary["message"] as? String {
+                                    msg = "Error: \(message)"
+                                }
+                            } else {
+                                msg = "Error: could not parse dict"
+                            }
+                        }
                     }
                     
                     // show error
                     if msg.count > 0 {
-                        let alert = UIAlertController(title: "DigiID", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+                        let alert = UIAlertController(title: "Digi-ID", message: msg, preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                         top.present(alert, animated: true, completion: nil)
                     }
@@ -565,6 +573,7 @@ class ModalPresenter : Subscriber, Trackable {
             }, isValidURI: { address in
                 print("DIGIID", address)
                 print("DIGIID", address.urlEscapedString)
+            
                 return address.isValidAddress
             })
             parent?.view.isFrameChangeBlocked = true

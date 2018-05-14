@@ -284,9 +284,23 @@ class ApplicationController : Subscriber, Trackable {
             self.window.rootViewController?.present(transactionDetails, animated: true, completion: nil)
         }
         accountViewController = AccountViewController(store: store, didSelectTransaction: didSelectTransaction)
-        accountViewController?.sendCallback = { self.store.perform(action: RootModalActions.Present(modal: .send)) }
-        accountViewController?.receiveCallback = { self.store.perform(action: RootModalActions.Present(modal: .receive)) }
-        accountViewController?.menuCallback = { self.store.perform(action: RootModalActions.Present(modal: .menu)) }
+        
+        accountViewController?.sendCallback = {
+            self.store.perform(action: RootModalActions.Present(modal: .send))
+        }
+        
+        accountViewController?.receiveCallback = {
+            self.store.perform(action: RootModalActions.Present(modal: .receive))
+        }
+        
+        accountViewController?.menuCallback = {
+            self.store.perform(action: RootModalActions.Present(modal: .menu))
+        }
+        
+        accountViewController?.digiIDCallback = {
+            self.store.trigger(name: .scanDigiId)
+        }
+        
         window.rootViewController = accountViewController
     }
 

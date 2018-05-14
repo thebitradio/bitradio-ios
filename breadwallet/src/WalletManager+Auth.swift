@@ -262,6 +262,7 @@ extension WalletManager : WalletAuthenticator {
         if ctx.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &err) {
             if let error = err {
                 print(error)
+                return
             }
             ctx.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: biometricsPrompt) { (success, error) in
                 DispatchQueue.main.async {

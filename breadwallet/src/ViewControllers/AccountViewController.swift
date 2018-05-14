@@ -25,6 +25,10 @@ class AccountViewController : UIViewController, Subscriber {
     var menuCallback: (() -> Void)? {
         didSet { footerView.menuCallback = menuCallback }
     }
+    
+    var digiIDCallback: (() -> Void)? {
+        didSet { footerView.digiIDCallback = digiIDCallback }
+    }
 
     var walletManager: WalletManager? {
         didSet {
@@ -35,7 +39,8 @@ class AccountViewController : UIViewController, Subscriber {
                 loginView.modalPresentationStyle = .overFullScreen
                 loginView.modalPresentationCapturesStatusBarAppearance = true
                 loginView.shouldSelfDismiss = true
-                present(loginView, animated: false, completion: {
+                
+                self.present(self.loginView, animated: false, completion: {
                     self.tempLoginView.remove()
                     self.attemptShowWelcomeView()
                 })
@@ -340,7 +345,9 @@ class AccountViewController : UIViewController, Subscriber {
             welcome.modalPresentationStyle = .overFullScreen
             welcome.modalPresentationCapturesStatusBarAppearance = true
             welcomeTransitingDelegate.shouldShowMaskView = false
+            
             loginView.present(welcome, animated: true, completion: nil)
+            
             UserDefaults.hasShownWelcome = true
         }
     }

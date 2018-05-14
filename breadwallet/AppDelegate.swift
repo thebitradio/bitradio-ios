@@ -55,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        senderApp = ""
         applicationController.willEnterForeground()
     }
 
@@ -89,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let sendingAppID: String = options[.sourceApplication] as! String
         senderApp = sendingAppID
+        
         return applicationController.open(url: url)
     }
 
