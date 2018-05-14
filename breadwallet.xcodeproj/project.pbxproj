@@ -1390,6 +1390,7 @@
 		AA34562C2020CBB600B2C462 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "src/Strings/tr-TR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AA3FBDB7202E00F6003F687E /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = src/Strings/th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA3FBDB8202E01B2003F687E /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = src/Strings/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AA6565ED20A9249F00E8DD17 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = src/Strings/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA85B7ED1FEAF84A008EB914 /* groestl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = groestl.c; sourceTree = "<group>"; };
 		AA85B7EE1FEAF84A008EB914 /* groestl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = groestl.h; sourceTree = "<group>"; };
 		AA85B7EF1FEAF84A008EB914 /* qubit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qubit.c; sourceTree = "<group>"; };
@@ -3844,6 +3845,7 @@
 				ml,
 				mn,
 				ur,
+				cs,
 			);
 			mainGroup = 75A2A7871DA5934300A983D8;
 			productRefGroup = 75A2A7911DA5934300A983D8 /* Products */;
@@ -4827,6 +4829,7 @@
 				AAA7AF0E2095088000BAED3D /* ml */,
 				AAA7AF0F209508F600BAED3D /* mn */,
 				AAA7AF10209509FF00BAED3D /* ur */,
+				AA6565ED20A9249F00E8DD17 /* cs */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
