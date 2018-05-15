@@ -500,6 +500,20 @@ class ModalPresenter : Subscriber, Trackable {
                 })
             ]
         ]
+        
+#if REBRAND
+        let excludeManage: [String] = [
+            LAContext.biometricType() == .face ? S.Settings.faceIdLimit : S.Settings.touchIdLimit,
+            S.Settings.currency,
+            S.Settings.sync
+        ]
+        
+        rows["Manage"] = rows["Manage"]?.filter({ (s) -> Bool in
+            return excludeManage.index(of: s.title) == nil
+        })
+        
+        rows["Advanced"] = nil
+#endif
 
         if BRAPIClient.featureEnabled(.earlyAccess) {
             rows["DigiByte"]?.insert(Setting(title: S.Settings.earlyAccess, callback: {

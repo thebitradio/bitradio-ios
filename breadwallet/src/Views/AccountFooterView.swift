@@ -52,12 +52,22 @@ class AccountFooterView: UIView {
         if E.isScreenshots {
             menu.accessibilityLabel = "MENU"
         }
+        
+#if REBRAND
+        addSubview(menu)
+        let count: CGFloat = 1.0
 
+        menu.constrain([
+            menu.constraint(.leading, toView: self, constant: 0.0),
+            menu.constraint(.top, toView: self, constant: 0.0),
+            menu.constraint(.height, constant: C.Sizes.footerHeight),
+            NSLayoutConstraint(item: menu, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0/count, constant: 0.0)
+            ])
+#else
         addSubview(send)
         addSubview(receive)
         addSubview(digiID)
         addSubview(menu)
-
         let count: CGFloat = 4.0
         
         send.constrain([
@@ -84,6 +94,7 @@ class AccountFooterView: UIView {
             menu.constraint(.height, constant: C.Sizes.footerHeight),
             NSLayoutConstraint(item: menu, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0/count, constant: 1.0)
             ])
+#endif
     }
 
     @objc private func send() { sendCallback?() }
