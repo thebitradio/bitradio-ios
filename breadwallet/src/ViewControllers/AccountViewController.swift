@@ -127,18 +127,67 @@ class AccountViewController : UIViewController, Subscriber {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
+    
+    @objc private func digiID_clicked() {
+        digiIDCallback?()
+    }
 
     private func addSubviews() {
+#if REBRAND
+        
+        /* just display a Digi-ID logo that, when pressed, launches camera */
+        let digiIDImage = UIImageView(image: #imageLiteral(resourceName: "DigiID-Logo"))
+        digiIDImage.contentMode = UIViewContentMode.scaleAspectFit
+        
+        let descriptionLabel = UILabel()
+        descriptionLabel.text = "Click the Digi-ID logo to launch the scanner"
+        descriptionLabel.textColor = UIColor.gray
+        
+        view.backgroundColor = .white
+        view.addSubview(digiIDImage)
+        view.addSubview(descriptionLabel)
+        
+        digiIDImage.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let scale: CGFloat = 0.7
+        let image = #imageLiteral(resourceName: "DigiID-Logo")
+        let imageViewHeight = scale * view.frame.width / image.size.width * image.size.height
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(digiID_clicked))
+        tap.numberOfTapsRequired = 1
+        digiIDImage.isUserInteractionEnabled = true
+        digiIDImage.addGestureRecognizer(tap)
+        
+        // add constraints
+        NSLayoutConstraint.activate([
+            digiIDImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -30),
+            digiIDImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            digiIDImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: scale),
+            digiIDImage.heightAnchor.constraint(equalToConstant: imageViewHeight)
+        ])
+        
+        NSLayoutConstraint.activate([
+            descriptionLabel.bottomAnchor.constraint(equalTo: digiIDImage.bottomAnchor, constant: 50),
+            descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+#else
         view.addSubview(headerContainer)
         headerContainer.addSubview(headerView)
+#endif
+        
         view.addSubview(footerView)
         headerContainer.addSubview(searchHeaderview)
     }
 
     private func addConstraints() {
+#if REBRAND
+        
+#else
         headerContainer.constrainTopCorners(sidePadding: 0, topPadding: 0)
         headerContainer.constrain([ headerContainer.constraint(.height, constant: E.isIPhoneX ? accountHeaderHeight + 14.0 : accountHeaderHeight) ])
         headerView.constrain(toSuperviewEdges: nil)
+#endif
 
         footerView.constrainBottomCorners(sidePadding: 0, bottomPadding: 0)
         footerView.constrain([
@@ -282,6 +331,9 @@ class AccountViewController : UIViewController, Subscriber {
     }
 
     private func addTransactionsView() {
+#if REBRAND
+        
+#else
         addChildViewController(transactionsTableView, layout: {
             transactionsTableView.view.constrain(toSuperviewEdges: nil)
             if #available(iOS 11, *) {
@@ -303,6 +355,7 @@ class AccountViewController : UIViewController, Subscriber {
                              bottom: E.isIPhoneX ? footerHeight + 19 : footerHeight,
                              right: 0)
         })
+#endif
     }
 
     private func addAppLifecycleNotificationEvents() {

@@ -244,6 +244,10 @@ extension ReceiveViewController : ModalDisplayable {
     }
 
     var modalTitle: String {
+#if REBRAND
+        return "Login Key"
+#else
         return S.Receive.title
+#endif
     }
 }
