@@ -167,9 +167,18 @@ class AccountViewController : UIViewController, Subscriber {
             digiIDImage.heightAnchor.constraint(equalToConstant: imageViewHeight)
         ])
         
+        descriptionLabel.lineBreakMode = .byWordWrapping
+        //descriptionLabel.layer.borderColor = UIColor.red.cgColor
+        //descriptionLabel.layer.borderWidth = 1.0
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.textAlignment = .center
+        
         NSLayoutConstraint.activate([
-            descriptionLabel.bottomAnchor.constraint(equalTo: digiIDImage.bottomAnchor, constant: 50),
-            descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            descriptionLabel.bottomAnchor.constraint(equalTo: digiIDImage.bottomAnchor, constant: 60),
+            descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            descriptionLabel.heightAnchor.constraint(equalToConstant: 70.0)
         ])
 #else
         view.addSubview(headerContainer)

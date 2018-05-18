@@ -513,6 +513,7 @@ class ModalPresenter : Subscriber, Trackable {
         })
         
         rows.removeValue(forKey: "Advanced")
+#endif
         
         if BRAPIClient.featureEnabled(.earlyAccess) {
             rows["DigiByte"]?.insert(Setting(title: S.Settings.earlyAccess, callback: {
@@ -548,6 +549,7 @@ class ModalPresenter : Subscriber, Trackable {
         settingsNav.setBlackBackArrow()
         top.present(settingsNav, animated: true, completion: nil)
     }
+
 
     private func presentScan(parent: UIViewController) -> PresentScan {
         return { [weak parent] scanCompletion in

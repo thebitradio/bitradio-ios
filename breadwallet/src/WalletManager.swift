@@ -415,7 +415,7 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
 
     func syncStarted() {
         DispatchQueue.main.async() {
-            NotificationCenter.default.post(name: .WalletSyncStartedNotification, object: nil)
+            //NotificationCenter.default.post(name: .WalletSyncStartedNotification, object: nil)
         }
     }
     
