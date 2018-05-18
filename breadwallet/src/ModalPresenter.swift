@@ -514,8 +514,6 @@ class ModalPresenter : Subscriber, Trackable {
         
         rows.removeValue(forKey: "Advanced")
         
-#endif
-
         if BRAPIClient.featureEnabled(.earlyAccess) {
             rows["DigiByte"]?.insert(Setting(title: S.Settings.earlyAccess, callback: {
                 settingsNav.dismiss(animated: true, completion: {
