@@ -21,7 +21,7 @@ class ModalHeaderView : UIView {
     }
 
     init(title: String, style: ModalHeaderViewStyle, faqInfo: (Store, String)? = nil) {
-        self.title.text = title
+        self.title.text = title.uppercased()
         self.style = style
 
         if let faqInfo = faqInfo {
@@ -44,7 +44,7 @@ class ModalHeaderView : UIView {
     }
 
     //MARK - Private
-    private let title = UILabel(font: .customBold(size: 17.0))
+    private let title = UILabel(font: .customBody(size: 17.0), color: C.Colors.text)
     private let close = UIButton.close
     private var faq: UIButton? = nil
     private let border = UIView()
@@ -54,7 +54,6 @@ class ModalHeaderView : UIView {
     private func setupSubviews() {
         addSubview(title)
         addSubview(close)
-        addSubview(border)
         close.constrain([
             close.constraint(.leading, toView: self, constant: 0.0),
             close.constraint(.centerY, toView: self, constant: 0.0),
@@ -63,11 +62,8 @@ class ModalHeaderView : UIView {
         title.constrain([
             title.constraint(.centerX, toView: self, constant: 0.0),
             title.constraint(.centerY, toView: self, constant: 0.0) ])
-        border.constrain([
-            border.constraint(.height, constant: 1.0) ])
-        border.constrainBottomCorners(sidePadding: 0, bottomPadding: 0)
-
-        backgroundColor = .white
+        
+        backgroundColor = .clear
 
         setColors()
     }
@@ -84,14 +80,9 @@ class ModalHeaderView : UIView {
     }
 
     private func setColors() {
-        switch style {
-        case .light:
-            title.textColor = .white
-            close.tintColor = .white
-            faq?.tintColor = .white
-        case .dark:
-            border.backgroundColor = .secondaryShadow
-        }
+        title.textColor = C.Colors.text
+        close.tintColor = C.Colors.text
+        faq?.tintColor = C.Colors.text
     }
 
     required init?(coder aDecoder: NSCoder) {

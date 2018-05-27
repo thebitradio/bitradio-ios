@@ -41,14 +41,20 @@ class PresentPinAnimator : NSObject, UIViewControllerAnimatedTransitioning {
         guard let toView = transitionContext.view(forKey: .to) else { return }
         guard let toVc = transitionContext.viewController(forKey: .to) as? ContentBoxPresenter else { return }
 
+        /*
         let blurView = toVc.blurView
         blurView.frame = container.frame
         blurView.effect = nil
         container.addSubview(blurView)
-
+         */
+        
+        toVc.background.frame = UIScreen.main.bounds
+        toVc.background.alpha = 0
+        container.addSubview(toVc.background)
+        
         let fromFrame = container.frame
-        let maskView = UIView(frame: CGRect(x: 0, y: fromFrame.height, width: fromFrame.width, height: 40.0))
-        maskView.backgroundColor = .whiteTint
+        let maskView = UIView(frame: CGRect(x: 0, y: fromFrame.height, width: fromFrame.width, height: 80.0))
+        maskView.backgroundColor = C.Colors.background
         if shouldShowMaskView {
             container.addSubview(maskView)
         }
@@ -64,12 +70,13 @@ class PresentPinAnimator : NSObject, UIViewControllerAnimatedTransitioning {
         container.addSubview(toView)
 
         UIView.spring(duration, animations: {
-            maskView.frame = CGRect(x: 0, y: fromFrame.height - 30.0, width: fromFrame.width, height: 40.0)
+            maskView.frame = CGRect(x: 0, y: fromFrame.height - 100.0, width: fromFrame.width, height: 120.0)
             blurView.effect = toVc.effect
             toView.frame = finalToViewFrame
             toVc.contentBox.transform = .identity
+            toVc.background.alpha = 1.0
         }, completion: { completed in
-            maskView.removeFromSuperview()
+            // maskView.removeFromSuperview()
             transitionContext.completeTransition(true)
         })
     }
@@ -88,7 +95,8 @@ class DismissPinAnimator : NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(withDuration: duration, animations: {
             fromVc.blurView.effect = nil
             fromView.frame = fromView.frame.offsetBy(dx: 0, dy: fromView.frame.height)
-
+            fromVc.background.alpha = 0
+            
             let scaleFactor: CGFloat = 0.1
             let deltaX = fromVc.contentBox.frame.width * (1-scaleFactor)
             let deltaY = fromVc.contentBox.frame.height * (1-scaleFactor)

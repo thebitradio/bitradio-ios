@@ -19,12 +19,16 @@ class BiometricsSettingsViewController : UIViewController, Subscriber {
         super.init(nibName: nil, bundle: nil)
     }
 
-    private let header = RadialGradientView(backgroundColor: .darkPurple)
+    //private let header = RadialGradientView(backgroundColor: C.Colors.cardBackground)
+    private let header: UIView = {
+        let view = DigiRadialGradientView(backgroundColor: C.Colors.background, offset: 64.0, hideDigi: false)
+        return view
+    }()
     private let illustration = LAContext.biometricType() == .face ? UIImageView(image: #imageLiteral(resourceName: "FaceId-Large")) : UIImageView(image: #imageLiteral(resourceName: "TouchId-Large"))
-    private let label = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
-    private let switchLabel = UILabel(font: .customBold(size: 14.0), color: .darkText)
+    private let label = UILabel.wrapping(font: .customBody(size: 16.0), color: .white)
+    private let switchLabel = UILabel(font: .customMedium(size: 14.0), color: .white)
     private let toggle = GradientSwitch()
-    private let separator = UIView(color: .secondaryShadow)
+    private let separator = UIView(color: C.Colors.greyBlue)
     private let textView = UnEditableTextView()
     private let walletManager: WalletManager
     private let store: Store
@@ -48,6 +52,11 @@ class BiometricsSettingsViewController : UIViewController, Subscriber {
         super.viewDidAppear(animated)
         didTapSpendingLimit = false
         textView.attributedText = textViewText
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        didTapSpendingLimit = false
     }
 
     private func addSubviews() {
@@ -90,7 +99,7 @@ class BiometricsSettingsViewController : UIViewController, Subscriber {
 
     private func setData() {
         
-        view.backgroundColor = .white
+        view.backgroundColor = C.Colors.background
         title = LAContext.biometricType() == .face ? S.FaceIDSettings.title : S.TouchIdSettings.title
         label.text = LAContext.biometricType() == .face ? S.FaceIDSettings.label : S.TouchIdSettings.label
         switchLabel.text = LAContext.biometricType() == .face ? S.FaceIDSettings.switchLabel : S.TouchIdSettings.switchLabel
@@ -99,7 +108,9 @@ class BiometricsSettingsViewController : UIViewController, Subscriber {
         textView.textContainer.lineFragmentPadding = 0.0
         textView.delegate = self
         textView.attributedText = textViewText
-        textView.tintColor = .primaryButton
+        textView.backgroundColor = .clear
+        textView.textColor = C.Colors.lightText
+        
         addFaqButton()
         let hasSetToggleInitialValue = false
         store.subscribe(self, selector: { $0.isBiometricsEnabled != $1.isBiometricsEnabled }, callback: {
@@ -138,10 +149,11 @@ class BiometricsSettingsViewController : UIViewController, Subscriber {
         let string = "\(String(format: S.TouchIdSettings.spendingLimit, amount.bits, amount.localCurrency))\n\n\(String(format: customizeText, linkText))"
         let attributedString = NSMutableAttributedString(string: string, attributes: [
                 NSAttributedStringKey.font: UIFont.customBody(size: 13.0),
-                NSAttributedStringKey.foregroundColor: UIColor.darkText
+                NSAttributedStringKey.foregroundColor: C.Colors.lightText
             ])
         let linkAttributes = [
                 NSAttributedStringKey.font: UIFont.customMedium(size: 13.0),
+                NSAttributedStringKey.foregroundColor: UIColor.orange,
                 NSAttributedStringKey.link: NSURL(string:"http://spending-limit")!]
 
         if let range = string.range(of: linkText, options: [], range: nil, locale: nil) {
@@ -177,6 +189,11 @@ extension BiometricsSettingsViewController : UITextViewDelegate {
             guard !didTapSpendingLimit else { return false }
             didTapSpendingLimit = true
             presentSpendingLimit?()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                // if pin code canceled, enable it again
+                self.didTapSpendingLimit = false
+            }
         } else {
             presentCantUseBiometricsAlert()
         }

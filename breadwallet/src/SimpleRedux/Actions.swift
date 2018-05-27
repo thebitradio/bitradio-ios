@@ -20,6 +20,7 @@ struct HideStartFlow : Action {
         return State(isStartFlowVisible: false,
                      isLoginRequired: state.isLoginRequired,
                      rootModal: .none,
+                     hamburgerModal: .none,
                      walletState: state.walletState,
                      isBtcSwapped: state.isBtcSwapped,
                      currentRate: state.currentRate,
@@ -65,12 +66,21 @@ struct RootModalActions {
     }
 }
 
+struct HamburgerActions {
+    struct Present: Action {
+        let reduce: Reducer
+        init(modal: HamburgerMenuModal) {
+            reduce = { $0.hamburgerModal(modal) }
+        }
+    }
+}
+
 //MARK: - Wallet State
 enum WalletChange {
     struct setProgress: Action {
         let reduce: Reducer
-        init(progress: Double, timestamp: UInt32) {
-            reduce = { $0.clone(walletSyncProgress: progress, timestamp: timestamp) }
+        init(progress: Double, timestamp: UInt32, blockHeight: UInt32) {
+            reduce = { $0.clone(walletSyncProgress: progress, timestamp: timestamp, blockHeight: blockHeight) }
         }
     }
     struct setSyncingState: Action {
@@ -246,6 +256,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -265,6 +276,27 @@ extension State {
         return State(isStartFlowVisible: false,
                      isLoginRequired: isLoginRequired,
                      rootModal: type,
+                     hamburgerModal: hamburgerModal,
+                     walletState: walletState,
+                     isBtcSwapped: isBtcSwapped,
+                     currentRate: currentRate,
+                     rates: rates,
+                     alert: alert,
+                     isBiometricsEnabled: isBiometricsEnabled,
+                     defaultCurrencyCode: defaultCurrencyCode,
+                     recommendRescan: recommendRescan,
+                     isLoadingTransactions: isLoadingTransactions,
+                     maxDigits: maxDigits,
+                     isPushNotificationsEnabled: isPushNotificationsEnabled,
+                     isPromptingBiometrics: isPromptingBiometrics,
+                     pinLength: pinLength,
+                     fees: fees)
+    }
+    func hamburgerModal(_ type: HamburgerMenuModal) -> State {
+        return State(isStartFlowVisible: false,
+                     isLoginRequired: isLoginRequired,
+                     rootModal: rootModal,
+                     hamburgerModal: type,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -284,6 +316,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -299,11 +332,12 @@ extension State {
                      pinLength: pinLength,
                      fees: fees)
     }
-    func clone(walletSyncProgress: Double, timestamp: UInt32) -> State {
+    func clone(walletSyncProgress: Double, timestamp: UInt32, blockHeight: UInt32) -> State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
-                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletSyncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: timestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning),
+                     hamburgerModal: hamburgerModal,
+                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletSyncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: timestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning, blockHeight: blockHeight),
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
                      rates: rates,
@@ -322,7 +356,8 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
-                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning),
+                     hamburgerModal: hamburgerModal,
+                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning, blockHeight: walletState.blockHeight),
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
                      rates: rates,
@@ -341,7 +376,8 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
-                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning),
+                     hamburgerModal: hamburgerModal,
+                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning, blockHeight: walletState.blockHeight),
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
                      rates: rates,
@@ -360,7 +396,8 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
-                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning),
+                     hamburgerModal: hamburgerModal,
+                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning, blockHeight: walletState.blockHeight),
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
                      rates: rates,
@@ -379,7 +416,8 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
-                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletName, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning),
+                     hamburgerModal: hamburgerModal,
+                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletName, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning, blockHeight: walletState.blockHeight),
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
                      rates: rates,
@@ -398,7 +436,8 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
-                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning),
+                     hamburgerModal: hamburgerModal,
+                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: walletState.isRescanning, blockHeight: walletState.blockHeight),
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
                      rates: rates,
@@ -417,7 +456,8 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
-                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletCreationDate, isRescanning: walletState.isRescanning),
+                     hamburgerModal: hamburgerModal,
+                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletCreationDate, isRescanning: walletState.isRescanning, blockHeight: walletState.blockHeight),
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
                      rates: rates,
@@ -436,7 +476,8 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
-                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: isRescanning),
+                     hamburgerModal: hamburgerModal,
+                     walletState: WalletState(isConnected: walletState.isConnected, syncProgress: walletState.syncProgress, syncState: walletState.syncState, balance: walletState.balance, transactions: walletState.transactions, lastBlockTimestamp: walletState.lastBlockTimestamp, name: walletState.name, creationDate: walletState.creationDate, isRescanning: isRescanning, blockHeight: walletState.blockHeight),
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
                      rates: rates,
@@ -455,6 +496,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -474,6 +516,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -493,6 +536,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -512,6 +556,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -531,6 +576,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -550,6 +596,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -569,6 +616,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -588,6 +636,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -607,6 +656,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -626,6 +676,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -645,6 +696,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -664,6 +716,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -683,6 +736,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,
@@ -702,6 +756,7 @@ extension State {
         return State(isStartFlowVisible: isStartFlowVisible,
                      isLoginRequired: isLoginRequired,
                      rootModal: rootModal,
+                     hamburgerModal: hamburgerModal,
                      walletState: walletState,
                      isBtcSwapped: isBtcSwapped,
                      currentRate: currentRate,

@@ -18,9 +18,9 @@ class AmountViewController : UIViewController, Trackable {
         self.isPinPadExpandedAtLaunch = isPinPadExpandedAtLaunch
         self.isRequesting = isRequesting
         if let rate = store.state.currentRate, store.state.isBtcSwapped {
-            self.currencyToggle = ShadowButton(title: "\(rate.code) (\(rate.currencySymbol))", type: .tertiary)
+            self.currencyToggle = ShadowButton(title: "\(rate.code) (\(rate.currencySymbol))", type: .primary)
         } else {
-            self.currencyToggle = ShadowButton(title: S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits), type: .tertiary)
+            self.currencyToggle = ShadowButton(title: S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits), type: .primary)
         }
         self.feeSelector = FeeSelector(store: store)
         self.pinPad = PinPadViewController(style: .white, keyboardType: .decimalPad, maxDigits: store.state.maxDigits)
@@ -63,13 +63,13 @@ class AmountViewController : UIViewController, Trackable {
     private var pinPadHeight: NSLayoutConstraint?
     private var feeSelectorHeight: NSLayoutConstraint?
     private var feeSelectorTop: NSLayoutConstraint?
-    private let placeholder = UILabel(font: .customBody(size: 16.0), color: .grayTextTint)
-    private let amountLabel = UILabel(font: .customBody(size: 26.0), color: .darkText)
+    private let placeholder = UILabel(font: .customBody(size: 16.0), color: C.Colors.lightText)
+    private let amountLabel = UILabel(font: .customBody(size: 26.0), color: C.Colors.text)
     private let pinPad: PinPadViewController
     private let currencyToggle: ShadowButton
     private let border = UIView(color: .secondaryShadow)
     private let bottomBorder = UIView(color: .secondaryShadow)
-    private let cursor = BlinkingView(blinkColor: C.defaultTintColor)
+    private let cursor = BlinkingView(blinkColor: .orange)
     private let balanceLabel = UILabel()
     private let feeLabel = UILabel()
     private let feeContainer = InViewAlert(type: .secondary)

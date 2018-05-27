@@ -34,6 +34,12 @@ class ModalViewController : UIViewController, Subscriber {
     private let store: Store
     private let scrollView = UIScrollView()
     private let scrollViewContent = UIView()
+    
+    private let modalHeaderImage: UIImageView = {
+        let img = UIImageView(image: #imageLiteral(resourceName: "modalHeader"))
+        img.contentMode = .scaleAspectFit
+        return img
+    }()
 
     deinit {
 		
@@ -52,6 +58,8 @@ class ModalViewController : UIViewController, Subscriber {
     }
 
     private func addSubviews() {
+        view.addSubview(modalHeaderImage)
+        
         view.addSubview(header)
         view.addSubview(scrollView)
         scrollView.addSubview(scrollViewContent)
@@ -62,6 +70,12 @@ class ModalViewController : UIViewController, Subscriber {
     }
 
     private func addConstraints() {
+        modalHeaderImage.constrain([
+            modalHeaderImage.leftAnchor.constraint(equalTo: view.leftAnchor),
+            modalHeaderImage.topAnchor.constraint(equalTo: view.topAnchor),
+            modalHeaderImage.rightAnchor.constraint(equalTo: view.rightAnchor),
+        ])
+        
         header.constrain([
             header.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             header.bottomAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -70,7 +84,8 @@ class ModalViewController : UIViewController, Subscriber {
         scrollView.constrain([
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor) ])
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
         scrollViewContent.constrain([
             scrollViewContent.topAnchor.constraint(equalTo: scrollView.topAnchor),
             scrollViewContent.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
@@ -84,21 +99,26 @@ class ModalViewController : UIViewController, Subscriber {
         //of the content at initial layout
         view.layoutIfNeeded()
 
-        let height = scrollViewContent.bounds.size.height
-        let minHeight = scrollView.heightAnchor.constraint(greaterThanOrEqualToConstant: height)
-        let midHeight = scrollView.heightAnchor.constraint(equalTo: scrollViewContent.heightAnchor)
-        let maxHeight = scrollView.heightAnchor.constraint(lessThanOrEqualTo: view.heightAnchor, constant: -headerHeight)
-        midHeight.priority = UILayoutPriority.defaultLow
+        //let height = scrollViewContent.bounds.size.height
+        //let minHeight = scrollView.heightAnchor.constraint(greaterThanOrEqualToConstant: height)
+        //let midHeight = scrollView.heightAnchor.constraint(equalTo: scrollViewContent.heightAnchor)
+        //let maxHeight = scrollView.heightAnchor.constraint(lessThanOrEqualTo: view.heightAnchor, constant: -headerHeight)
+        
+        let maxHeight = scrollView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -2*headerHeight)
+        
+        //midHeight.priority = UILayoutPriority.defaultLow
         scrollView.constrain([
-            minHeight,
-            midHeight,
-            maxHeight ])
+        //    minHeight,
+        //    midHeight,
+            maxHeight
+        ])
 
     }
 
     private func setInitialData() {
         view.backgroundColor = .clear
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = .clear
+        
         scrollView.delaysContentTouches = false
         if var modalPresentable = childViewController as? ModalPresentable {
             modalPresentable.parentView = view

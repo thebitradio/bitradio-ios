@@ -10,21 +10,100 @@ import UIKit
 
 class CheckView : UIView, AnimatableIcon {
 
+    init(_ size: Double) {
+        super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
+        
+        let image = UIImageView(image: #imageLiteral(resourceName: "check"))
+        image.contentMode = .scaleAspectFit
+        self.addSubview(image)
+        
+        image.constrain([
+            image.topAnchor.constraint(equalTo: self.topAnchor),
+            image.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            image.leftAnchor.constraint(equalTo: self.leftAnchor),
+            image.rightAnchor.constraint(equalTo: self.rightAnchor),
+        ])
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     public func animate() {
         let check = UIBezierPath()
-        check.move(to: CGPoint(x: 32.5, y: 47.0))
-        check.addLine(to: CGPoint(x: 43.0, y: 57.0))
-        check.addLine(to: CGPoint(x: 63, y: 37.4))
-
+        
+        // viewBox="0 0 100 116
+        // M38 48.969l2.182-2.125 4.909 3.187s5.468-6.06 15.818-9.031L62 43.125S50.566 47.92 45.09 58L38 48.969z
+        // professorcloud.com/svg-to-canvas output:
+        /*
+        var draw = function(ctx) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.lineTo(100,0);
+            ctx.lineTo(100,116);
+            ctx.lineTo(0,116);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(0,0);
+            ctx.translate(0,0);
+            ctx.scale(1,1);
+            ctx.translate(0,0);
+            ctx.strokeStyle = 'rgba(0,0,0,0)';
+            ctx.lineCap = 'butt';
+            ctx.lineJoin = 'miter';
+            ctx.miterLimit = 4;
+            ctx.save();
+            ctx.fillStyle = "rgba(0, 0, 0, 0)";
+            ctx.save();
+            ctx.fillStyle = "#ffffff";
+         
+            ctx.beginPath();
+            ctx.moveTo(38, 48.969);
+            ctx.lineTo(40.182, 46.844);
+            ctx.lineTo(45.091, 50.031);
+            ctx.bezierCurveTo(45.091, 50.031, 50.559, 43.971, 60.909, 41);
+            ctx.lineTo(62, 43.125);
+            ctx.bezierCurveTo(62, 43.125, 50.566, 47.92, 45.09, 58);
+            ctx.lineTo(38, 48.969);
+            ctx.closePath();
+            ctx.fill();
+         
+            ctx.stroke();
+            ctx.restore();
+            ctx.restore();
+            ctx.restore();
+        };
+        */
+        let scaleX = self.frame.width / 100
+        let scaleY = self.frame.height / 116
+        
+        check.move(to: CGPoint(x: 38 * scaleX, y: 48.969 * scaleY))
+        check.addLine(to: CGPoint(x: 40.182 * scaleX, y: 46.844 * scaleY))
+        check.addLine(to: CGPoint(x: 45.091 * scaleX, y: 50.031 * scaleY))
+        check.addCurve(
+            to: CGPoint(x: 60.909 * scaleX, y: 41 * scaleY),
+            controlPoint1: CGPoint(x: 45.091 * scaleX, y: 50.031 * scaleY),
+            controlPoint2: CGPoint(x: 50.559 * scaleX, y: 43.971 * scaleX)
+        )
+        check.addLine(to: CGPoint(x: 62 * scaleX, y: 43.125 * scaleY))
+        check.addCurve(
+            to: CGPoint(x: 45.09 * scaleX, y: 58 * scaleY),
+            controlPoint1: CGPoint(x: 62 * scaleX, y: 43.125 * scaleY),
+            controlPoint2: CGPoint(x: 50.566 * scaleX, y: 47.92 * scaleX)
+        )
+        check.addLine(to: CGPoint(x: 38 * scaleX, y: 48.969 * scaleY))
+        check.close()
+        
         let shape = CAShapeLayer()
         shape.path = check.cgPath
-        shape.lineWidth = 9.0
+        shape.lineWidth = 1.0
         shape.strokeColor = UIColor.white.cgColor
-        shape.fillColor = UIColor.clear.cgColor
+        shape.fillColor = UIColor.white.cgColor
         shape.strokeStart = 0.0
         shape.strokeEnd = 0.0
-        shape.lineCap = "round"
-        shape.lineJoin = "round"
+        shape.lineCap = kCALineCapButt
+        shape.lineJoin = kCALineCapRound
         layer.addSublayer(shape)
 
         let animation = CABasicAnimation(keyPath: "strokeEnd")
@@ -32,13 +111,13 @@ class CheckView : UIView, AnimatableIcon {
         animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
-        animation.duration = 0.3
+        animation.duration = 0.6
 
         shape.add(animation, forKey: nil)
     }
 
     override func draw(_ rect: CGRect) {
-
+/*
         let checkcircle = UIBezierPath()
         checkcircle.move(to: CGPoint(x: 47.76, y: -0))
         checkcircle.addCurve(to: CGPoint(x: 0, y: 47.76), controlPoint1: CGPoint(x: 21.38, y: -0), controlPoint2: CGPoint(x: 0, y: 21.38))
@@ -56,7 +135,7 @@ class CheckView : UIView, AnimatableIcon {
 
         UIColor.white.setFill()
         checkcircle.fill()
-
+*/
         //This is the non-animated check left here for now as a reference
 //        let check = UIBezierPath()
 //        check.move(to: CGPoint(x: 30.06, y: 51.34))

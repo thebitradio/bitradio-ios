@@ -16,12 +16,12 @@ class StartWipeWalletViewController : UIViewController {
     }
 
     private let didTapNext: () -> Void
-    private let header = RadialGradientView(backgroundColor: .blue, offset: 64.0)
+    private let header = RadialGradientView(backgroundColor: C.Colors.background, offset: 64.0)
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "RestoreIllustration"))
-    private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
-    private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
+    private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: C.Colors.text)
+    private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: C.Colors.text)
     private let button = ShadowButton(title: S.RecoverWallet.next, type: .primary)
-    private let bullet = UIImageView(image: #imageLiteral(resourceName: "deletecircle"))
+    private let bullet = UIImageView(image: #imageLiteral(resourceName: "deletecircle").withRenderingMode(.alwaysTemplate))
 
     override func viewDidLoad() {
         addSubviews()
@@ -68,7 +68,9 @@ class StartWipeWalletViewController : UIViewController {
     }
 
     private func setInitialData() {
-        view.backgroundColor = .white
+        view.backgroundColor = C.Colors.background
+        bullet.tintColor = UIColor(red: 0xFF / 255, green: 0x74 / 255, blue: 0x16 / 255, alpha: 1.0)
+        
         illustration.contentMode = .scaleAspectFill
         message.text = S.WipeWallet.startMessage
         warning.text = S.WipeWallet.startWarning

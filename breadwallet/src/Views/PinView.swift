@@ -19,7 +19,7 @@ class PinView : UIView {
     var itemSize: CGFloat {
         switch style {
         case .create:
-            return 24.0
+            return 44.0
         case .login:
             return 16.0
         }
@@ -35,8 +35,8 @@ class PinView : UIView {
         self.length = length
         switch style {
         case .create:
-            unFilled = (0...(length-1)).map { _ in Circle(color: .borderGray) }
-            filled = (0...(length-1)).map { _ in Circle(color: .black) }
+            unFilled = (0...(length-1)).map { _ in Circle(color: C.Colors.dark3) }
+            filled = (0...(length-1)).map { _ in return Circle(color: .black).filled() }
         case .login:
             unFilled = (0...(length-1)).map { _ in Circle(color: .white) }
             filled = (0...(length-1)).map { _ in Circle(color: .gradientStart) }
@@ -90,16 +90,19 @@ class PinView : UIView {
         circles.enumerated().forEach { index, circle in
             addSubview(circle)
             let leadingConstraint: NSLayoutConstraint?
+            let padding = (width - itemSize * CGFloat(length)) / CGFloat(length - 1) + 2
+            
             if index == 0 {
                 leadingConstraint = circle.constraint(.leading, toView: self, constant: 0.0)
             } else {
-                leadingConstraint = NSLayoutConstraint(item: circle, attribute: .leading, relatedBy: .equal, toItem: circles[index - 1], attribute: .trailing, multiplier: 1.0, constant: 8.0)
+                leadingConstraint = NSLayoutConstraint(item: circle, attribute: .leading, relatedBy: .equal, toItem: circles[index - 1], attribute: .trailing, multiplier: 1.0, constant: padding)
             }
             circle.constrain([
                 circle.constraint(.width, constant: itemSize),
                 circle.constraint(.height, constant: itemSize),
                 circle.constraint(.centerY, toView: self, constant: nil),
-                leadingConstraint ])
+                leadingConstraint
+            ])
         }
     }
 

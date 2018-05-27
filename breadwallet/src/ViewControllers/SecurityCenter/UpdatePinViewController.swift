@@ -13,36 +13,33 @@ enum UpdatePinType {
     case creationNoPhrase
     case creationWithPhrase
     case update
+    case login
 }
 
-class UpdatePinViewController : UIViewController, Subscriber {
+private let biometricsSize: CGFloat = 128.0
+private let topControlHeight: CGFloat = 32.0
+
+class UpdatePinViewController : PINViewController {
 
     //MARK: - Public
     var setPinSuccess: ((String) -> Void)?
     var resetFromDisabledSuccess: (() -> Void)?
     var resetFromDisabledWillSucceed: (() -> Void)?
-
+    
     init(store: Store, walletManager: WalletManager, type: UpdatePinType, showsBackButton: Bool = true, phrase: String? = nil) {
-        self.store = store
         self.walletManager = walletManager
         self.phrase = phrase
-        self.pinView = PinView(style: .create, length: store.state.pinLength)
         self.showsBackButton = showsBackButton
         self.faq = UIButton.buildFaqButton(store: store, articleId: ArticleIds.setPin)
         self.type = type
-        super.init(nibName: nil, bundle: nil)
+        super.init(store: store, style: .create)
     }
 
     //MARK: - Private
-    private let header = UILabel.wrapping(font: .customBold(size: 26.0), color: .darkText)
-    private let instruction = UILabel.wrapping(font: .customBody(size: 14.0), color: .darkText)
-    private let caption = UILabel.wrapping(font: .customBody(size: 13.0), color: .secondaryGrayText)
-    private var pinView: PinView
-    private let pinPad = PinPadViewController(style: .white, keyboardType: .pinPad, maxDigits: 0)
-    private let spacer = UIView()
-    private let store: Store
     private let walletManager: WalletManager
     private let faq: UIButton
+    private var currentPin: String?
+    
     private var step: Step = .verify {
         didSet {
             switch step {
@@ -66,13 +63,14 @@ class UpdatePinViewController : UIViewController, Subscriber {
             }
         }
     }
-    private var currentPin: String?
+    
     private var newPin: String?
     private var phrase: String?
     private let type: UpdatePinType
     private var isCreatingPin: Bool {
         return type != .update
     }
+    
     private let newPinLength = 6
     private let showsBackButton: Bool
 
@@ -81,68 +79,34 @@ class UpdatePinViewController : UIViewController, Subscriber {
         case new
         case confirmNew
     }
-
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         addSubviews()
         addConstraints()
         setData()
     }
-
-    private func addSubviews() {
-        view.addSubview(header)
-        view.addSubview(instruction)
-        view.addSubview(caption)
-        view.addSubview(pinView)
-        view.addSubview(faq)
-        faq.isHidden = true // TODO: Writeup support/FAQ documentation for digibyte wallet
-        view.addSubview(spacer)
-    }
-
+    
     private func addConstraints() {
-        header.constrain([
-            header.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: C.padding[2]),
-            header.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            header.trailingAnchor.constraint(equalTo: faq.leadingAnchor, constant: -C.padding[1]) ])
-        instruction.constrain([
-            instruction.leadingAnchor.constraint(equalTo: header.leadingAnchor),
-            instruction.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[2]),
-            instruction.trailingAnchor.constraint(equalTo: header.trailingAnchor) ])
-        pinView.constrain([
-            pinView.centerYAnchor.constraint(equalTo: spacer.centerYAnchor),
-            pinView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pinView.widthAnchor.constraint(equalToConstant: pinView.width),
-            pinView.heightAnchor.constraint(equalToConstant: pinView.itemSize) ])
-        if E.isIPhoneX {
-            addChildViewController(pinPad, layout: {
-                pinPad.view.constrainBottomCorners(sidePadding: 0.0, bottomPadding: 0.0)
-                pinPad.view.constrain([pinPad.view.heightAnchor.constraint(equalToConstant: pinPad.height),
-                                       pinPad.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[3])])
-            })
-        } else {
-            addChildViewController(pinPad, layout: {
-                pinPad.view.constrainBottomCorners(sidePadding: 0.0, bottomPadding: 0.0)
-                pinPad.view.constrain([pinPad.view.heightAnchor.constraint(equalToConstant: pinPad.height)])
-            })
-        }
-        spacer.constrain([
-            spacer.topAnchor.constraint(equalTo: instruction.bottomAnchor),
-            spacer.bottomAnchor.constraint(equalTo: caption.topAnchor) ])
         faq.constrain([
             faq.topAnchor.constraint(equalTo: header.topAnchor),
             faq.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]),
             faq.constraint(.height, constant: 44.0),
-            faq.constraint(.width, constant: 44.0)])
-        caption.constrain([
-            caption.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            caption.bottomAnchor.constraint(equalTo: pinPad.view.topAnchor, constant: -C.padding[2]),
-            caption.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
+            faq.constraint(.width, constant: 44.0)
+        ])
+    }
+    
+    private func addSubviews() {
+        view.addSubview(faq)
+        faq.isHidden = true // TODO: Writeup support/FAQ documentation for digibyte wallet
     }
 
     private func setData() {
         caption.text = S.UpdatePin.caption
-        view.backgroundColor = .whiteTint
         header.text = isCreatingPin ? S.UpdatePin.createTitle : S.UpdatePin.updateTitle
         instruction.text = isCreatingPin ? S.UpdatePin.createInstruction : S.UpdatePin.enterCurrent
+        
         pinPad.ouputDidUpdate = { [weak self] text in
             guard let step = self?.step else { return }
             switch step {
@@ -161,7 +125,7 @@ class UpdatePinViewController : UIViewController, Subscriber {
         } else {
             caption.isHidden = true
         }
-
+        
         if !showsBackButton {
             navigationItem.leftBarButtonItem = nil
             navigationItem.hidesBackButton = true
@@ -281,5 +245,503 @@ class UpdatePinViewController : UIViewController, Subscriber {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+/*
+  _                 _       _   _ _
+ | |               (_)     | | | (_)
+ | |     ___   __ _ _ _ __ | | | |_  _____      __
+ | |    / _ \ / _` | | '_ \| | | | |/ _ \ \ /\ / /
+ | |___| (_) | (_| | | | | \ \_/ / |  __/\ V  V /
+ \_____/\___/ \__, |_|_| |_|\___/|_|\___| \_/\_/
+               __/ |         C o n t r o l l e r
+               |___/
+*/
+class LoginViewController: PINViewController, Trackable {
+    var w: WalletManager?
+    
+    var hidePinView = true {
+        didSet {
+            DispatchQueue.main.async {
+                self.pinView.isHidden = self.hidePinView
+            }
+        }
+    }
+    
+    var hideActivityView = false {
+        didSet {
+            DispatchQueue.main.async {
+                self.activityView.isHidden = self.hideActivityView
+            }
+        }
+    }
+    
+    var walletManager: WalletManager? {
+        didSet {
+            guard walletManager != nil else {
+                hidePinView = true
+                hideActivityView = false
+                return
+            }
+            hidePinView = false
+            hideActivityView = true
+        }
+    }
+    var shouldSelfDismiss = false
+    var authenticated = false
+    
+    //MARK: - Private
+    private let disabledView: WalletDisabledView
+    private var hasAttemptedToShowBiometrics = false
+    private let lockedOverlay = UIVisualEffectView()
+    private var isResetting = false
+    private var unlockTimer: Timer?
+    private let isPresentedForLock: Bool
+    private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    private let securityCheckLabel = UILabel(font: .customMedium(size: 12), color: C.Colors.blueGrey)
+
+    private let biometricsView: UIView = {
+        let view = UIView()
+
+        let label = UILabel(font: UIFont.customBody(size: 14), color: .white)
+        label.text = LAContext.biometricType() == .face ? S.UnlockScreen.faceIdText : S.UnlockScreen.touchIdText
+        label.textAlignment = .center
+        
+        let biometricsImage = { () -> UIImageView in
+            if LAContext.biometricType() == .face {
+                return UIImageView(image: #imageLiteral(resourceName: "faceId"))
+            } else {
+                return UIImageView(image: #imageLiteral(resourceName: "touchId"))
+            }
+        }()
+        
+        biometricsImage.contentMode = .scaleAspectFit
+        biometricsImage.isUserInteractionEnabled = true
+        
+        view.addSubview(biometricsImage)
+        view.addSubview(label)
+    
+        label.constrain([
+            label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            label.topAnchor.constraint(equalTo: biometricsImage.bottomAnchor, constant: 20),
+        ])
+        
+        biometricsImage.constrain([
+            //biometricsImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            biometricsImage.topAnchor.constraint(equalTo: view.topAnchor),
+            //biometricsImage.leftAnchor.constraint(equalTo: view.leftAnchor),
+            //biometricsImage.rightAnchor.constraint(equalTo: view.rightAnchor),
+            biometricsImage.widthAnchor.constraint(equalToConstant: biometricsSize),
+            biometricsImage.heightAnchor.constraint(equalToConstant: biometricsSize),
+            biometricsImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
+        
+        return view
+    }()
+    
+    init(store: Store, isPresentedForLock: Bool, walletManager: WalletManager? = nil) {
+        self.walletManager = walletManager
+        self.disabledView = WalletDisabledView(store: store)
+        self.isPresentedForLock = isPresentedForLock
+        
+        super.init(store: store)
+    }
+    
+    private func setData() {
+        securityCheckLabel.text = "SECURITY\nCHECK"
+        securityCheckLabel.numberOfLines = 2
+        securityCheckLabel.textAlignment = .center
+        securityCheckLabel.lineBreakMode = .byWordWrapping
+        
+        header.text = S.UnlockScreen.subheader
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addSubviews()
+        addConstraints()
+        addBiometricsButton()
+        addPinPadCallback()
+        setData()
+        
+        disabledView.didTapReset = { [weak self] in
+            guard let store = self?.store else { return }
+            guard let walletManager = self?.walletManager else { return }
+            self?.isResetting = true
+            let nc = UINavigationController()
+            let recover = EnterPhraseViewController(store: store, walletManager: walletManager, reason: .validateForResettingPin({ phrase in
+                let updatePin = UpdatePinViewController(store: store, walletManager: walletManager, type: .creationWithPhrase, showsBackButton: false, phrase: phrase)
+                nc.pushViewController(updatePin, animated: true)
+                updatePin.resetFromDisabledWillSucceed = {
+                    self?.disabledView.isHidden = true
+                }
+                updatePin.resetFromDisabledSuccess = {
+                    self?.authenticationSucceded()
+                }
+            }))
+            recover.addCloseNavigationItem()
+            nc.viewControllers = [recover]
+            nc.navigationBar.tintColor = .whiteTint
+            nc.navigationBar.titleTextAttributes = [
+                NSAttributedStringKey.foregroundColor: UIColor.darkText,
+                NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
+            ]
+            nc.setClearNavbar()
+            nc.navigationBar.isTranslucent = false
+            nc.navigationBar.barTintColor = .whiteTint
+            nc.viewControllers = [recover]
+            self?.present(nc, animated: true, completion: nil)
+        }
+        store.subscribe(self, name: .loginFromSend, callback: {_ in
+            self.authenticationSucceded()
+        })
+    }
+    
+    private func addPinPadCallback() {
+        pinPad.ouputDidUpdate = { [weak self] pin in
+            guard let myself = self else { return }
+            guard let pinView = self?.pinView else { return }
+            let attemptLength = pin.utf8.count
+            pinView.fill(attemptLength)
+            self?.pinPad.isAppendingDisabled = attemptLength < myself.store.state.pinLength ? false : true
+            if attemptLength == myself.store.state.pinLength {
+                self?.authenticate(pin: pin)
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard UIApplication.shared.applicationState != .background else { return }
+        if shouldUseBiometrics && !hasAttemptedToShowBiometrics && !isPresentedForLock && UserDefaults.hasShownWelcome {
+            hasAttemptedToShowBiometrics = true
+            
+            // do not ask for fingerprint / faceid, if app was opened using an application url
+            if senderApp == "" {
+                biometricsTapped()
+            }
+        }
+        if !isResetting {
+            lockIfNeeded()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        unlockTimer?.invalidate()
+    }
+
+    private func addSubviews() {
+        if walletManager == nil {
+            view.addSubview(activityView)
+        }
+        
+        view.addSubview(securityCheckLabel)
+    }
+    
+    private func addConstraints() {
+        if walletManager == nil {
+            activityView.constrain([
+                activityView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                activityView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20.0)
+            ])
+            activityView.startAnimating()
+        }
+        
+        securityCheckLabel.constrain([
+            securityCheckLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 16),
+            securityCheckLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            securityCheckLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            securityCheckLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+        ])
+        
+        constraints["header.top"]?.isActive = false
+        
+        header.constrain([
+            header.topAnchor.constraint(equalTo: securityCheckLabel.bottomAnchor, constant: 18),
+            header.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
+            header.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]),
+            header.heightAnchor.constraint(equalToConstant: 15),
+        ])
+    }
+    
+    private func addBiometricsButton() {
+        guard shouldUseBiometrics else { return }
+        
+        view.addSubview(biometricsView)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(biometricsTapped))
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        biometricsView.addGestureRecognizer(tap)
+        
+        let deviceHeight = Double((UIApplication.shared.keyWindow?.bounds.height)!)
+        
+        biometricsView.constrain([
+            biometricsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            biometricsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            //biometricsView.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 5),
+            biometricsView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: deviceHeight < 600.0 ? -102 : -120),
+            biometricsView.heightAnchor.constraint(equalToConstant: 130),
+        ])
+        
+        constraints["pinView.centerY"]?.isActive = false
+        pinView.constrain([
+            pinView.topAnchor.constraint(equalTo: biometricsView.bottomAnchor, constant: deviceHeight < 600.0 ? 48 : 105)
+        ])
+    }
+    
+    private func authenticate(pin: String) {
+        guard let walletManager = walletManager else { return }
+        guard !E.isScreenshots else { return authenticationSucceded() }
+        guard walletManager.authenticate(pin: pin) else { return authenticationFailed() }
+        authenticationSucceded()
+    }
+    
+    private func authenticationSucceded() {
+        authenticated = true
+        //saveEvent("login.success")
+        let label = UILabel(font: .customMedium(size: 14))
+        label.textColor = .white
+        label.text = S.UnlockScreen.unlocked
+        label.alpha = 0.0
+        let lock = UIImageView(image: #imageLiteral(resourceName: "unlock"))
+        lock.alpha = 0.0
+        
+        view.addSubview(label)
+        view.addSubview(lock)
+        
+        label.constrain([
+            label.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: -C.padding[1]),
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor) ])
+        lock.constrain([
+            lock.topAnchor.constraint(equalTo: label.bottomAnchor, constant: C.padding[1]),
+            lock.centerXAnchor.constraint(equalTo: label.centerXAnchor) ])
+        view.layoutIfNeeded()
+        
+        UIView.spring(0.6, delay: 0.1, animations: {
+            self.pinView.alpha = 0.0
+            self.pinPad.view.alpha = 0.0
+            self.biometricsView.alpha = 0.0
+            self.header.alpha = 0.0
+            self.securityCheckLabel.alpha = 0.0
+            
+            lock.alpha = 1.0
+            label.alpha = 1.0
+            
+            self.view.layoutIfNeeded()
+        }) { completion in
+            if self.shouldSelfDismiss {
+                self.dismiss(animated: true, completion: nil)
+            }
+            self.store.perform(action: LoginSuccess())
+            self.store.trigger(name: .showStatusBar)
+        }
+    }
+    
+    private func authenticationFailed() {
+        //saveEvent("login.failed")
+        authenticated = false
+        pinPad.view.isUserInteractionEnabled = false
+        pinView.shake { [weak self] in
+            self?.pinPad.view.isUserInteractionEnabled = true
+        }
+        pinPad.clear()
+        DispatchQueue.main.asyncAfter(deadline: .now() + pinView.shakeDuration) { [weak self] in
+            self?.pinView.fill(0)
+            self?.lockIfNeeded()
+        }
+    }
+    
+    private var shouldUseBiometrics: Bool {
+        guard let walletManager = self.walletManager else { return false }
+        return LAContext.canUseBiometrics && !walletManager.pinLoginRequired && store.state.isBiometricsEnabled
+    }
+    
+    @objc func biometricsTapped() {
+        print("DEBUG disabled")
+        guard !isWalletDisabled else { return }
+        self.walletManager?.authenticate(biometricsPrompt: S.UnlockScreen.touchIdPrompt, completion: { result in
+            if result == .success {
+                self.authenticationSucceded()
+            }
+        })
+    }
+    
+    private func lockIfNeeded() {
+        if let disabledUntil = walletManager?.walletDisabledUntil {
+            let now = Date().timeIntervalSince1970
+            if disabledUntil > now {
+                //saveEvent("login.locked")
+                let disabledUntilDate = Date(timeIntervalSince1970: disabledUntil)
+                let unlockInterval = disabledUntil - now
+                let df = DateFormatter()
+                df.setLocalizedDateFormatFromTemplate(unlockInterval > C.secondsInDay ? "h:mm:ss a MMM d, yyy" : "h:mm:ss a")
+                
+                disabledView.setTimeLabel(string: String(format: S.UnlockScreen.disabled, df.string(from: disabledUntilDate)))
+                
+                pinPad.view.isUserInteractionEnabled = false
+                unlockTimer?.invalidate()
+                unlockTimer = Timer.scheduledTimer(timeInterval: unlockInterval, target: self, selector: #selector(LoginViewController.unlock), userInfo: nil, repeats: false)
+                
+                if disabledView.superview == nil {
+                    view.addSubview(disabledView)
+                    setNeedsStatusBarAppearanceUpdate()
+                    disabledView.constrain(toSuperviewEdges: nil)
+                    disabledView.show()
+                }
+            } else {
+                pinPad.view.isUserInteractionEnabled = true
+                disabledView.hide { [weak self] in
+                    self?.disabledView.removeFromSuperview()
+                    self?.setNeedsStatusBarAppearanceUpdate()
+                }
+            }
+        }
+    }
+    
+    private var isWalletDisabled: Bool {
+        guard let walletManager = walletManager else { return false }
+        let now = Date().timeIntervalSince1970
+        return walletManager.walletDisabledUntil > now
+    }
+    
+    @objc private func unlock() {
+        //saveEvent("login.unlocked")
+        caption.pushNewText(S.UnlockScreen.subheader)
+        pinPad.view.isUserInteractionEnabled = true
+        unlockTimer = nil
+        disabledView.hide { [weak self] in
+            self?.disabledView.removeFromSuperview()
+            self?.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// Base class
+class PINViewController: UIViewController, Subscriber {
+    fileprivate let store: Store
+    
+    fileprivate let header = UILabel.wrapping(font: .customBold(size: 26.0), color: .darkText)
+    fileprivate let instruction = UILabel.wrapping(font: .customBody(size: 14.0), color: .darkText)
+    fileprivate let caption = UILabel.wrapping(font: .customBody(size: 13.0), color: .secondaryGrayText)
+    fileprivate var pinView: PinView
+    fileprivate let pinPad = PinPadViewController(style: .white, keyboardType: .pinPad, maxDigits: 0)
+    fileprivate let spacer = UIView()
+    
+    fileprivate var constraints: [String: NSLayoutConstraint] = [:]
+    
+    init(store: Store, style: PinViewStyle = .create) {
+        self.store = store
+        self.pinView = PinView(style: style, length: store.state.pinLength)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    private func configurate() {
+        view.backgroundColor = C.Colors.background
+        
+        caption.textAlignment = .center
+        caption.textColor = C.Colors.text
+        caption.font = UIFont.customBody(size: 16)
+        
+        header.textAlignment = .center
+        header.textColor = C.Colors.text
+        header.font = UIFont.customBody(size: 16)
+        
+        instruction.textAlignment = .center
+        instruction.textColor = C.Colors.text
+        instruction.font = UIFont.customBody(size: 15)
+    }
+    
+    override func viewDidLoad() {
+        configurate()
+        addSubviews()
+        addConstraints()
+    }
+    
+    private func addSubviews() {
+        view.addSubview(header)
+        view.addSubview(instruction)
+        view.addSubview(caption)
+        view.addSubview(pinView)
+        view.addSubview(spacer)
+    }
+    
+    private func setData() {
+        caption.text = S.UpdatePin.caption
+        //header.text = isCreatingPin ? S.UpdatePin.createTitle : S.UpdatePin.updateTitle
+        //instruction.text = isCreatingPin ? S.UpdatePin.createInstruction : S.UpdatePin.enterCurrent
+        
+        pinPad.ouputDidUpdate = { [weak self] text in
+            self?.checkPIN(text)
+        }
+        
+        // caption.isHidden = false
+    }
+    
+    private func checkPIN(_ pin: String) {
+        print("PIN: ", pin)
+    }
+    
+    private func addConstraints() {
+        constraints["header.top"] = header.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: C.padding[2])
+        header.constrain([
+            constraints["header.top"],
+            header.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
+            header.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2])
+        ])
+        
+        instruction.constrain([
+            instruction.leadingAnchor.constraint(equalTo: header.leadingAnchor),
+            instruction.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[2]),
+            instruction.trailingAnchor.constraint(equalTo: header.trailingAnchor)
+        ])
+        
+        constraints["pinView.centerY"] = pinView.centerYAnchor.constraint(equalTo: spacer.centerYAnchor, constant: 0)
+        pinView.constrain([
+            constraints["pinView.centerY"],
+            pinView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pinView.widthAnchor.constraint(equalToConstant: pinView.width),
+            pinView.heightAnchor.constraint(equalToConstant: pinView.itemSize)
+        ])
+        
+        if E.isIPhoneX {
+            addChildViewController(pinPad, layout: {
+                pinPad.view.constrainBottomCorners(sidePadding: 0.0, bottomPadding: 0.0)
+                pinPad.view.constrain([pinPad.view.heightAnchor.constraint(equalToConstant: pinPad.height),
+                                       pinPad.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[3])])
+            })
+        } else {
+            addChildViewController(pinPad, layout: {
+                pinPad.view.constrainBottomCorners(sidePadding: 0.0, bottomPadding: 0.0)
+                pinPad.view.constrain([pinPad.view.heightAnchor.constraint(equalToConstant: pinPad.height)])
+            })
+        }
+        spacer.constrain([
+            spacer.topAnchor.constraint(equalTo: instruction.bottomAnchor),
+            spacer.bottomAnchor.constraint(equalTo: caption.topAnchor) ])
+        caption.constrain([
+            caption.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
+            caption.bottomAnchor.constraint(equalTo: pinPad.view.topAnchor, constant: -C.padding[2]),
+            caption.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }

@@ -11,11 +11,11 @@ import BRCore
 
 class NodeSelectorViewController : UIViewController, Trackable {
 
-    let titleLabel = UILabel(font: .customBold(size: 26.0), color: .darkText)
-    private let nodeLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let node = UILabel(font: .customBody(size: 14.0), color: .darkText)
-    private let statusLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let status = UILabel(font: .customBody(size: 14.0), color: .darkText)
+    let titleLabel = UILabel(font: .customMedium(size: 26.0), color: C.Colors.text)
+    private let nodeLabel = UILabel(font: .customMedium(size: 14.0), color: C.Colors.text)
+    private let node = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
+    private let statusLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
+    private let status = UILabel(font: .customMedium(size: 14.0), color: C.Colors.text)
     private let button: ShadowButton
     private let walletManager: WalletManager
     private var okAction: UIAlertAction?
@@ -47,7 +47,13 @@ class NodeSelectorViewController : UIViewController, Trackable {
     }
 
     private func addConstraints() {
-        titleLabel.pinTopLeft(padding: C.padding[2])
+        //titleLabel.pinTopLeft(toView: view, topPadding: 80)
+        titleLabel.constrain([
+            titleLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+        ])
+        
         nodeLabel.pinTopLeft(toView: titleLabel, topPadding: C.padding[2])
         node.pinTopLeft(toView: nodeLabel, topPadding: 0)
         statusLabel.pinTopLeft(toView: node, topPadding: C.padding[2])
@@ -60,7 +66,7 @@ class NodeSelectorViewController : UIViewController, Trackable {
     }
 
     private func setInitialData() {
-        view.backgroundColor = .whiteTint
+        view.backgroundColor = C.Colors.background
         titleLabel.text = S.NodeSelector.title
         nodeLabel.text = S.NodeSelector.nodeLabel
         statusLabel.text = S.NodeSelector.statusLabel

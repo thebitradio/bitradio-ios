@@ -20,23 +20,72 @@ class StartViewController : UIViewController {
     }
 
     //MARK: - Private
+    private let designAdditionalImage1: UIImageView = {
+        let image = UIImageView(image: #imageLiteral(resourceName: "LoginBackground1"))
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    private let designAdditionalImage2: UIImageView = {
+        let image = UIImageView(image: #imageLiteral(resourceName: "LoginBackground2"))
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    private let logo: UIImageView = {
+        let image = UIImageView(image: #imageLiteral(resourceName: "DigiLogo"))
+        image.contentMode = .scaleAspectFit
+        image.tintColor = UIColor.whiteTint
+        return image
+    }()
+    
     private let message = UILabel(font: .customMedium(size: 18.0), color: .whiteTint)
-    private let create = ShadowButton(title: S.StartViewController.createButton, type: .primary)
-    private let recover = ShadowButton(title: S.StartViewController.recoverButton, type: .secondary)
+    // private let create = ShadowButton(title: S.StartViewController.createButton, type: .primary)
+    // private let recover = ShadowButton(title: S.StartViewController.recoverButton, type: .secondary)
+    
+    private let create: UIButton = {
+        let button = UIButton()
+        let gradient = CAGradientLayer()
+        button.setTitle(S.StartViewController.createButton.uppercased(), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Helvetica", size: 13)
+        button.titleLabel?.setCharacterSpacing(1.0)
+        
+        gradient.frame = button.bounds
+        gradient.colors = [
+            UIColor(red: 0x00 / 255, green: 0x66 / 255, blue: 0xCC / 255, alpha: 1).cgColor, // 0066cc
+            UIColor(red: 0x00 / 255, green: 0x23 / 255, blue: 0x52 / 255, alpha: 1).cgColor, // 002352
+        ]
+        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradient.locations = [0.0, 1.0]
+        button.layer.insertSublayer(gradient, at: 0)
+        button.layer.cornerRadius = 3.0
+        button.layer.masksToBounds = true
+        button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        return button
+    }()
+    
+    private let recover: UIButton = {
+        let button = UIButton()
+        button.setTitle(S.StartViewController.recoverButton, for: .normal)
+        button.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        button.titleLabel?.font = UIFont(name: "Helvetica", size: 13)
+        button.titleLabel?.setCharacterSpacing(1.0)
+        return button
+    }()
+    
     private let store: Store
     private let didTapRecover: () -> Void
     private let didTapCreate: () -> Void
-    private let background = LoginBackgroundView()
-    private var logo: UIImageView = {
-        let image = UIImageView(image: #imageLiteral(resourceName: "Logo"))
-        image.contentMode = .scaleAspectFit
-		image.tintColor = UIColor.whiteTint
-        return image
+    // private let background = LoginBackgroundView()
+    private let background: UIView = {
+        let view = UIView()
+        view.backgroundColor = C.Colors.background
+        return view
     }()
+    
     private var faq: UIButton
 
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = C.Colors.background
         setData()
         addSubviews()
         addConstraints()
@@ -53,6 +102,8 @@ class StartViewController : UIViewController {
 
     private func addSubviews() {
         view.addSubview(background)
+        view.addSubview(designAdditionalImage1)
+        view.addSubview(designAdditionalImage2)
         view.addSubview(logo)
         view.addSubview(message)
         view.addSubview(create)
@@ -60,25 +111,46 @@ class StartViewController : UIViewController {
         view.addSubview(faq)
         faq.isHidden = true // TODO: Writeup support/FAQ documentation for digibyte wallet
     }
+    
+    override func viewDidLayoutSubviews() {
+        // update the gradient frame
+        if create.layer.sublayers != nil {
+            create.layer.sublayers!.first!.frame = create.bounds
+        }
+    }
 
     private func addConstraints() {
         background.constrain(toSuperviewEdges: nil)
-        let yConstraint = NSLayoutConstraint(item: logo, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.5, constant: 0.0)
+        
         logo.constrain([
-            logo.constraint(.centerX, toView: view, constant: nil),
-            yConstraint,
-            logo.constraint(.height, constant: C.Sizes.logoHeight) ])
+            logo.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            logo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            logo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: C.Sizes.logoWidthPercentage)
+        ])
+        
+        designAdditionalImage1.constrain([
+            designAdditionalImage1.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0.0),
+            designAdditionalImage1.topAnchor.constraint(equalTo: view.topAnchor, constant: 6.0),
+            designAdditionalImage1.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.38),
+        ])
+        
+        designAdditionalImage2.constrain([
+            designAdditionalImage2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0),
+            designAdditionalImage2.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0),
+            designAdditionalImage2.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
+        ])
+        
         message.constrain([
             message.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
             message.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: C.padding[3]),
             message.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
         recover.constrain([
-            recover.constraint(.leading, toView: view, constant: C.padding[2]),
-            recover.constraint(.bottom, toView: view, constant: -C.padding[3]),
-            recover.constraint(.trailing, toView: view, constant: -C.padding[2]),
-            recover.constraint(.height, constant: C.Sizes.buttonHeight) ])
+            recover.constraint(.leading, toView: view, constant: 40.0),
+            recover.constraint(.bottom, toView: view, constant: -48.0),
+            recover.constraint(.trailing, toView: view, constant: -40.0),
+            recover.constraint(.height, constant: 30.0) ])
         create.constrain([
-            create.constraint(toTop: recover, constant: -C.padding[2]),
+            create.constraint(toTop: recover, constant: -12),
             create.constraint(.centerX, toView: recover, constant: nil),
             create.constraint(.width, toView: recover, constant: nil),
             create.constraint(.height, constant: C.Sizes.buttonHeight) ])

@@ -28,7 +28,7 @@ class ModalPresenter : Subscriber, Trackable {
     //MARK: - Private
     private let store: Store
     private let window: UIWindow
-    private let alertHeight: CGFloat = 260.0
+    private let alertHeight: CGFloat = 350.0
     private let modalTransitionDelegate: ModalTransitionDelegate
     private let messagePresenter = MessageUIPresenter()
     private let securityCenterNavigationDelegate = SecurityCenterNavigationDelegate()
@@ -52,12 +52,15 @@ class ModalPresenter : Subscriber, Trackable {
                         selector: { $0.rootModal != $1.rootModal},
                         callback: { self.presentModal($0.rootModal) })
         store.subscribe(self,
+                        selector: { $0.hamburgerModal != $1.hamburgerModal},
+                        callback: { self.hamburgerMenuViewController($0.hamburgerModal) })
+        store.subscribe(self,
                         selector: { $0.alert != $1.alert && $1.alert != nil },
                         callback: { self.handleAlertChange($0.alert) })
         store.subscribe(self, name: .presentFaq(""), callback: {
             guard let trigger = $0 else { return }
             if case .presentFaq(let articleId) = trigger {
-                self.presentFaq(articleId: articleId)
+                self.makeFaq(articleId: articleId)
             }
         })
 
@@ -140,10 +143,12 @@ class ModalPresenter : Subscriber, Trackable {
             self.store.perform(action: RootModalActions.Present(modal: .none))
             return
         }
+        
         vc.transitioningDelegate = modalTransitionDelegate
         vc.modalPresentationStyle = .overFullScreen
         vc.modalPresentationCapturesStatusBarAppearance = true
         configuration?(vc)
+
         topViewController?.present(vc, animated: true, completion: {
             self.store.perform(action: RootModalActions.Present(modal: .none))
             self.store.trigger(name: .hideStatusBar)
@@ -157,27 +162,46 @@ class ModalPresenter : Subscriber, Trackable {
         })
     }
 
-    private func presentAlert(_ type: AlertType, completion: @escaping ()->Void) {
+    func presentAlert(_ type: AlertType, completion: @escaping ()->Void) {
         let alertView = AlertView(type: type)
         let window = UIApplication.shared.keyWindow!
         let size = window.bounds.size
+        
+        let backgroundView = UIImageView(image: #imageLiteral(resourceName: "alertViewBg"))
+        backgroundView.contentMode = .scaleToFill
+        backgroundView.alpha = 0.0
+        backgroundView.backgroundColor = UIColor.clear
+        
+        window.addSubview(backgroundView)
         window.addSubview(alertView)
 
+        backgroundView.constrain([
+            backgroundView.heightAnchor.constraint(equalTo: window.heightAnchor),
+            backgroundView.widthAnchor.constraint(equalTo: window.widthAnchor),
+        ])
+        
         let topConstraint = alertView.constraint(.top, toView: window, constant: size.height)
         alertView.constrain([
-            alertView.constraint(.width, constant: size.width),
             alertView.constraint(.height, constant: alertHeight + 25.0),
-            alertView.constraint(.leading, toView: window, constant: nil),
-            topConstraint ])
+            alertView.leadingAnchor.constraint(equalTo: window.leadingAnchor, constant: 20),
+            alertView.trailingAnchor.constraint(equalTo: window.trailingAnchor, constant: -20),
+            topConstraint,
+        ])
+        
+        //alertView.layer.borderWidth = 1
+        //alertView.layer.borderColor = UIColor.white.cgColor
+        
         window.layoutIfNeeded()
-
+        
         UIView.spring(0.6, animations: {
-            topConstraint?.constant = size.height - self.alertHeight
+            topConstraint?.constant = size.height / 2 - self.alertHeight / 2
+            backgroundView.alpha = 1.0
             window.layoutIfNeeded()
         }, completion: { _ in
             alertView.animate()
             UIView.spring(0.6, delay: 2.0, animations: {
                 topConstraint?.constant = size.height
+                backgroundView.alpha = 0
                 window.layoutIfNeeded()
             }, completion: { _ in
                 //TODO - Make these callbacks generic
@@ -192,11 +216,12 @@ class ModalPresenter : Subscriber, Trackable {
                 }
                 completion()
                 alertView.removeFromSuperview()
+                backgroundView.removeFromSuperview()
             })
         })
     }
 
-    private func presentFaq(articleId: String? = nil) {
+    private func makeFaq(articleId: String? = nil) {
         //guard let supportCenter = supportCenter else { return }
         guard let supportCenter = UIStoryboard.init(name: "SupportStoryboard", bundle: Bundle.main).instantiateInitialViewController() else { return }
         supportCenter.modalPresentationStyle = .overFullScreen
@@ -204,19 +229,38 @@ class ModalPresenter : Subscriber, Trackable {
         //supportCenter.transitioningDelegate = supportCenter
         /*let url = articleId == nil ? "/support" : "/support/article?slug=\(articleId!)"
         supportCenter.navigate(to: url)*/
+        
         topViewController?.present(supportCenter, animated: true, completion: {})
     }
 
+    private func hamburgerMenuViewController(_ type: HamburgerMenuModal) {
+        self.store.perform(action: HamburgerActions.Present(modal: .none)) // reset the state
+        
+        switch(type) {
+            case .none:
+                return
+            case .securityCenter:
+                return makeSecurityCenter()
+            case .support:
+                return makeFaq()
+            case .settings:
+                return makeSettings()
+            case .lockWallet:
+                store.trigger(name: .lock)
+                return
+        }
+    }
+    
     private func rootModalViewController(_ type: RootModal) -> UIViewController? {
         switch type {
         case .none:
             return nil
         case .send:
             return makeSendView()
+        case .showAddress:
+            return showAddressView()
         case .receive:
             return receiveView(isRequestAmountVisible: true)
-        case .menu:
-            return menuViewController()
         case .loginScan:
             return nil //The scan view needs a custom presentation
         case .loginAddress:
@@ -288,6 +332,23 @@ class ModalPresenter : Subscriber, Trackable {
         return root
     }
     
+    private func showAddressView() -> UIViewController? {
+        guard let wallet = walletManager?.wallet else { return nil }
+        let receiveVC = ShowAddressViewController(wallet: wallet, store: store)
+        let root = ModalViewController(childViewController: receiveVC, store: store)
+        receiveVC.presentEmail = { [weak self, weak root] address, image in
+            guard let root = root else { return }
+            self?.messagePresenter.presenter = root
+            self?.messagePresenter.presentMailCompose(bitcoinAddress: address, image: image)
+        }
+        receiveVC.presentText = { [weak self, weak root] address, image in
+            guard let root = root else { return }
+            self?.messagePresenter.presenter = root
+            self?.messagePresenter.presentMessageCompose(address: address, image: image)
+        }
+        return root
+    }
+    
     private func presentDigiIdScan() {
         guard let top = topViewController else { return }
         let present = presentScan(parent: top)
@@ -295,38 +356,6 @@ class ModalPresenter : Subscriber, Trackable {
         present({ digiIdUrl in
             print(digiIdUrl?.toAddress)
         })
-    }
-
-    private func menuViewController() -> UIViewController? {
-        let menu = MenuViewController()
-        let root = ModalViewController(childViewController: menu, store: store)
-        menu.didTapSecurity = { [weak self, weak menu] in
-            self?.modalTransitionDelegate.reset()
-            menu?.dismiss(animated: true) {
-                self?.presentSecurityCenter()
-            }
-        }
-        menu.didTapSupport = { [weak self, weak menu] in
-            menu?.dismiss(animated: true, completion: {
-                self?.presentFaq()
-            })
-        }
-        menu.didTapLock = { [weak self, weak menu] in
-            menu?.dismiss(animated: true) {
-                self?.store.trigger(name: .lock)
-            }
-        }
-        menu.didTapSettings = { [weak self, weak menu] in
-            menu?.dismiss(animated: true) {
-                self?.presentSettings()
-            }
-        }
-        menu.didTapBuy = { [weak self, weak menu] in
-            menu?.dismiss(animated: true, completion: {
-                self?.presentBuyController("/buy")
-            })
-        }
-        return root
     }
 
     private func presentLoginScan() {
@@ -389,7 +418,7 @@ class ModalPresenter : Subscriber, Trackable {
         })
     }
 
-    private func presentSettings() {
+    private func makeSettings() {
         guard let top = topViewController else { return }
         guard let walletManager = self.walletManager else { return }
         let settingsNav = UINavigationController()
@@ -420,6 +449,9 @@ class ModalPresenter : Subscriber, Trackable {
                     nc.setClearNavbar()
                     nc.setWhiteStyle()
                     nc.delegate = myself.wipeNavigationDelegate
+                    //nc.navigationBar.tintColor = .clear
+                    nc.navigationBar.barTintColor = .clear
+                    nc.navigationBar.isTranslucent = true
                     let start = StartWipeWalletViewController {
                         let recover = EnterPhraseViewController(store: myself.store, walletManager: walletManager, reason: .validateForWipingWallet( {
                             myself.wipeWallet()
@@ -427,6 +459,7 @@ class ModalPresenter : Subscriber, Trackable {
                         nc.pushViewController(recover, animated: true)
                     }
                     start.addCloseNavigationItem(tintColor: .white)
+                    start.navigationController?.navigationBar.tintColor = .clear
                     start.navigationItem.title = S.WipeWallet.title
                 // TODO: Writeup support/FAQ documentation for digibyte wallet
                     /*let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.wipeWallet)
@@ -539,14 +572,15 @@ class ModalPresenter : Subscriber, Trackable {
         )
 
         let settings = SettingsViewController(sections: sections, rows: rows)
-        settings.addCloseNavigationItem()
+        settings.addCloseNavigationItem(tintColor: .white)
         settingsNav.viewControllers = [settings]
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-        view.backgroundColor = .whiteTint
+        view.backgroundColor = C.Colors.background
         settingsNav.navigationBar.setBackgroundImage(view.imageRepresentation, for: .default)
         settingsNav.navigationBar.shadowImage = UIImage()
-        settingsNav.navigationBar.isTranslucent = false
+        settingsNav.navigationBar.isTranslucent = true
         settingsNav.setBlackBackArrow()
+        settingsNav.navigationBar.tintColor = .clear
         top.present(settingsNav, animated: true, completion: nil)
     }
 
@@ -596,7 +630,7 @@ class ModalPresenter : Subscriber, Trackable {
         }
     }
 
-    private func presentSecurityCenter() {
+    private func makeSecurityCenter() {
         guard let walletManager = walletManager else { return }
         let securityCenter = SecurityCenterViewController(store: store, walletManager: walletManager)
         let nc = ModalNavigationController(rootViewController: securityCenter)

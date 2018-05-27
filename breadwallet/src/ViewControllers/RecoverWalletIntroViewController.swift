@@ -18,8 +18,30 @@ class RecoverWalletIntroViewController : UIViewController {
 
     //MARK: - Private
     private let didTapNext: () -> Void
-    private let header = RadialGradientView(backgroundColor: .purple)
-    private let nextButton = ShadowButton(title: S.RecoverWallet.next, type: .primary)
+    private let header = RadialGradientView(backgroundColor: C.Colors.background)
+    
+    // private let nextButton = ShadowButton(title: S.RecoverWallet.next, type: .primary)
+    private let nextButton: UIButton = {
+        let button = UIButton()
+        let gradient = CAGradientLayer()
+        button.setTitle(S.RecoverWallet.next.uppercased(), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Helvetica", size: 13)
+        button.titleLabel?.setCharacterSpacing(1.0)
+        
+        gradient.frame = button.bounds
+        gradient.colors = [
+            UIColor(red: 0x00 / 255, green: 0x66 / 255, blue: 0xCC / 255, alpha: 1).cgColor, // 0066cc
+            UIColor(red: 0x00 / 255, green: 0x23 / 255, blue: 0x52 / 255, alpha: 1).cgColor, // 002352
+        ]
+        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradient.locations = [0.0, 1.0]
+        button.layer.insertSublayer(gradient, at: 0)
+        button.layer.cornerRadius = 3.0
+        button.layer.masksToBounds = true
+        button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        return button
+    }()
     private let label = UILabel(font: .customBody(size: 16.0))
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "RecoverWalletIllustration"))
 
@@ -54,10 +76,11 @@ class RecoverWalletIntroViewController : UIViewController {
     }
 
     private func setData() {
-        view.backgroundColor = .white
+        view.backgroundColor = C.Colors.background
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.text = S.RecoverWallet.intro
+        label.textColor = C.Colors.text
         nextButton.tap = didTapNext
         title = S.RecoverWallet.header
     }

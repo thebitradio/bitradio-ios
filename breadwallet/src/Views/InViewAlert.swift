@@ -94,7 +94,7 @@ class InViewAlert: UIView {
     private var fillColor: UIColor {
         switch type {
         case .primary:
-            return .primaryButton
+            return C.Colors.background
         case .secondary:
             return .grayBackgroundTint
         }

@@ -60,10 +60,10 @@ class EnterPhraseCell : UICollectionViewCell {
 
     //MARK: - Private
     let textField = UITextField()
-    private let label = UILabel(font: .customBody(size: 13.0), color: .secondaryShadow)
+    private let label = UILabel(font: .customBody(size: 13.0), color: C.Colors.blueGrey)
     private let nextField = UIButton.icon(image: #imageLiteral(resourceName: "RightArrow"), accessibilityLabel: S.RecoverWallet.rightArrow)
     private let previousField = UIButton.icon(image: #imageLiteral(resourceName: "LeftArrow"), accessibilityLabel: S.RecoverWallet.leftArrow)
-    private let done = UIButton(type: .system)
+    private let done = UIButton()
     fileprivate let separator = UIView(color: .secondaryShadow)
     fileprivate var hasDisplayedInvalidState = false
 
@@ -94,24 +94,28 @@ class EnterPhraseCell : UICollectionViewCell {
         textField.textAlignment = .center
         textField.autocapitalizationType = .none
         textField.delegate = self
+        textField.textColor = .white
         textField.addTarget(self, action: #selector(EnterPhraseCell.textChanged(textField:)), for: .editingChanged)
 
         label.textAlignment = .center
-        previousField.tintColor = .secondaryGrayText
-        nextField.tintColor = .secondaryGrayText
+        previousField.tintColor = .white
+        nextField.tintColor = .white
+        
+        done.setTitleColor(.orange, for: .normal)
         done.setTitle(S.RecoverWallet.done, for: .normal)
     }
 
     private var accessoryView: UIView {
         let view = UIView(color: .secondaryButton)
         view.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 44)
-        let topBorder = UIView(color: .secondaryShadow)
-        view.addSubview(topBorder)
+        view.backgroundColor = .clear
+        // let topBorder = UIView(color: .secondaryShadow)
+        // view.addSubview(topBorder)
         view.addSubview(previousField)
         view.addSubview(nextField)
         view.addSubview(done)
-
-        topBorder.constrainTopCorners(height: 1.0)
+        
+        //topBorder.constrainTopCorners(height: 1.0)
         previousField.constrain([
             previousField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
             previousField.topAnchor.constraint(equalTo: view.topAnchor),
@@ -158,7 +162,7 @@ extension EnterPhraseCell : UITextFieldDelegate {
         guard let isWordValid = isWordValid else { return }
         guard let word = textField.text else { return }
         if isWordValid(word) || word == "" {
-            textField.textColor = .darkText
+            textField.textColor = C.Colors.weirdGreen
             separator.backgroundColor = .secondaryShadow
         } else {
             textField.textColor = .cameraGuideNegative

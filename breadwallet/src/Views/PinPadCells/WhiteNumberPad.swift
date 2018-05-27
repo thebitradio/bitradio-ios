@@ -11,7 +11,7 @@ import UIKit
 class WhiteNumberPad : GenericPinPadCell {
 
     override func setAppearance() {
-
+        
         if text == "0" {
             topLabel.isHidden = true
             centerLabel.isHidden = false
@@ -21,20 +21,20 @@ class WhiteNumberPad : GenericPinPadCell {
         }
 
         if isHighlighted {
-            backgroundColor = .secondaryShadow
-            topLabel.textColor = .darkText
-            centerLabel.textColor = .darkText
-            sublabel.textColor = .darkText
+            backgroundColor = C.Colors.background
+            topLabel.textColor = .white
+            centerLabel.textColor = .white
+            sublabel.textColor = .white
         } else {
             if text == "" || text == deleteKeyIdentifier {
-                backgroundColor = .whiteTint
+                backgroundColor = C.Colors.background
                 imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
-                imageView.tintColor = .grayTextTint
+                imageView.tintColor = C.Colors.blueGrey
             } else {
-                backgroundColor = .whiteTint
-                topLabel.textColor = .grayTextTint
-                centerLabel.textColor = .grayTextTint
-                sublabel.textColor = .grayTextTint
+                backgroundColor = C.Colors.background
+                topLabel.textColor = C.Colors.blueGrey
+                centerLabel.textColor = C.Colors.blueGrey
+                sublabel.textColor = C.Colors.blueGrey
             }
         }
     }

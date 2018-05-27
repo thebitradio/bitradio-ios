@@ -65,7 +65,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     private var feeType: Fee?
 
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         view.addSubview(addressCell)
         view.addSubview(descriptionCell)
         view.addSubview(sendButton)

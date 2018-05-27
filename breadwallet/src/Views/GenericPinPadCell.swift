@@ -13,7 +13,8 @@ class GenericPinPadCell : UICollectionViewCell {
     var text: String? {
         didSet {
             if text == deleteKeyIdentifier {
-                imageView.image = #imageLiteral(resourceName: "Delete")
+                imageView.image = #imageLiteral(resourceName: "removeCharacter")
+                imageView.tintColor = C.Colors.blueGrey
                 topLabel.text = ""
                 centerLabel.text = ""
             } else {
@@ -99,7 +100,10 @@ class GenericPinPadCell : UICollectionViewCell {
         set { }
     }
 
-    func setAppearance() {}
+    func setAppearance() {
+        self.backgroundColor = C.Colors.background
+        
+    }
     func setSublabel() {}
 
     required init?(coder aDecoder: NSCoder) {

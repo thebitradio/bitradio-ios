@@ -10,7 +10,7 @@ import UIKit
 
 class GradientCircle: UIView, GradientDrawable {
 
-    static let defaultSize: CGFloat = 64.0
+    static let defaultSize: CGFloat = 48.0
 
     init() {
         super.init(frame: CGRect())

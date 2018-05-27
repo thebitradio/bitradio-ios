@@ -17,18 +17,18 @@ class StartPaperPhraseViewController : UIViewController {
         button = ShadowButton(title: buttonTitle, type: .primary)
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     private let button: ShadowButton
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "PaperKey"))
     private let pencil = UIImageView(image: #imageLiteral(resourceName: "Pencil"))
-    private let explanation = UILabel.wrapping(font: UIFont.customBody(size: 16.0))
+    private let explanation = UILabel.wrapping(font: UIFont.customBody(size: 16.0), color: C.Colors.text)
     private let store: Store
-    private let header = RadialGradientView(backgroundColor: .pink, offset: 64.0)
+    private let header = RadialGradientView(backgroundColor: C.Colors.background, offset: 64.0)
     private let footer = UILabel.wrapping(font: .customBody(size: 13.0), color: .secondaryGrayText)
     private let callback: () -> Void
 
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = C.Colors.background
         explanation.text = S.StartPaperPhrase.body
         addSubviews()
         addConstraints()
@@ -39,6 +39,13 @@ class StartPaperPhraseViewController : UIViewController {
             let df = DateFormatter()
             df.setLocalizedDateFormatFromTemplate("MMMM d, yyyy")
             footer.text = String(format: S.StartPaperPhrase.date, df.string(from: writePaperPhraseDate))
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        // update the gradient frame
+        if button.layer.sublayers != nil {
+            button.layer.sublayers!.first!.frame = button.bounds
         }
     }
 

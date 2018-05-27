@@ -220,8 +220,19 @@
 		75C735AA1DAA1B9C00251ECF /* libunbound.c in Sources */ = {isa = PBXBuildFile; fileRef = 755CD4121DAA0E3E0075898E /* libunbound.c */; };
 		783FCF615914C953768FE3B5 /* Pods_breadwalletUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26AC9FA94AE1CA45B7A8ED5 /* Pods_breadwalletUITests.framework */; };
 		785BA39C2087EDE800739B5E /* OldestBlockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BA39B2087EDE700739B5E /* OldestBlockRequest.swift */; };
+		787CA16720B06BBE005C4B92 /* UILabel+CharacterSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787CA16620B06BBE005C4B92 /* UILabel+CharacterSpacing.swift */; };
+		787CA16B20B0840E005C4B92 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787CA16A20B081AC005C4B92 /* Rubik-Bold.ttf */; };
+		787CA16C20B0840F005C4B92 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787CA16920B081AC005C4B92 /* Rubik-Medium.ttf */; };
+		787CA16D20B08412005C4B92 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787CA16820B081AB005C4B92 /* Rubik-Regular.ttf */; };
+		787CA16E20B08412005C4B92 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787CA16820B081AB005C4B92 /* Rubik-Regular.ttf */; };
+		787CA16F20B08414005C4B92 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787CA16920B081AC005C4B92 /* Rubik-Medium.ttf */; };
+		787CA17020B08416005C4B92 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787CA16A20B081AC005C4B92 /* Rubik-Bold.ttf */; };
 		789FAE04208151E2003AF958 /* DigiIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789FAE03208151E2003AF958 /* DigiIDRequest.swift */; };
 		789FAE0620828447003AF958 /* BRDigiID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789FAE0520828447003AF958 /* BRDigiID.swift */; };
+		78B6BBF520B87F48003A2F29 /* SyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6BBF420B87F47003A2F29 /* SyncViewController.swift */; };
+		78B6BBF720B8C625003A2F29 /* UIView+TapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6BBF620B8C625003A2F29 /* UIView+TapGesture.swift */; };
+		78B6BBF920BAFE05003A2F29 /* Rebrand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B6BBF820BAFE05003A2F29 /* Rebrand.xcassets */; };
+		78B6BBFB20BB3352003A2F29 /* ShowAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6BBFA20BB3352003A2F29 /* ShowAddressViewController.swift */; };
 		9F3EF3712059CA6400E3C837 /* BRBech32.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F3EF36F2059CA6400E3C837 /* BRBech32.c */; };
 		A8E3D5DBCCEC09FCE0CF76FE /* Pods_breadwalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4ED1454C2B4DE0BAFD4D8FE /* Pods_breadwalletTests.framework */; };
 		AA34562A2020CA7C00B2C462 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA3456282020CA7C00B2C462 /* Localizable.strings */; };
@@ -350,10 +361,7 @@
 		CEAA9E971DC18E1F0066731D /* PhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA9E961DC18E1F0066731D /* PhraseView.swift */; };
 		CEAA9E991DC262800066731D /* ConfirmPaperPhraseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA9E981DC262800066731D /* ConfirmPaperPhraseViewController.swift */; };
 		CEAA9E9B1DC2B9320066731D /* ConfirmPhrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA9E9A1DC2B9320066731D /* ConfirmPhrase.swift */; };
-		CEAA9E9E1DC2F90C0066731D /* CircularPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEAA9E9D1DC2F90C0066731D /* CircularPro-Bold.otf */; };
 		CEAA9EA01DC2F9F50066731D /* UIFont+BRWAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA9E9F1DC2F9F50066731D /* UIFont+BRWAdditions.swift */; };
-		CEAA9EA31DC2FC700066731D /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEAA9EA11DC2FC700066731D /* CircularPro-Book.otf */; };
-		CEAA9EA41DC2FC700066731D /* CircularPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEAA9EA21DC2FC700066731D /* CircularPro-Medium.otf */; };
 		CEAA9EA61DC3246F0066731D /* StartNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA9EA51DC3246F0066731D /* StartNavigationDelegate.swift */; };
 		CEAA9EA81DC3342E0066731D /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA9EA71DC3342E0066731D /* PinView.swift */; };
 		CEAFC8611E5D5B0500E4FD06 /* SegmentedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAFC8601E5D5B0500E4FD06 /* SegmentedButton.swift */; };
@@ -1370,8 +1378,16 @@
 		75DC783C1DAA05B500932D9A /* test.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test.c; sourceTree = "<group>"; };
 		75FEFD1B1DAED56E00203D3A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		785BA39B2087EDE700739B5E /* OldestBlockRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OldestBlockRequest.swift; path = src/OldestBlockRequest.swift; sourceTree = "<group>"; };
+		787CA16620B06BBE005C4B92 /* UILabel+CharacterSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+CharacterSpacing.swift"; sourceTree = "<group>"; };
+		787CA16820B081AB005C4B92 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		787CA16920B081AC005C4B92 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		787CA16A20B081AC005C4B92 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		789FAE03208151E2003AF958 /* DigiIDRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DigiIDRequest.swift; path = src/DigiIDRequest.swift; sourceTree = "<group>"; };
 		789FAE0520828447003AF958 /* BRDigiID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRDigiID.swift; path = src/Platform/BRDigiID.swift; sourceTree = "<group>"; };
+		78B6BBF420B87F47003A2F29 /* SyncViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncViewController.swift; path = src/ViewControllers/SyncViewController.swift; sourceTree = "<group>"; };
+		78B6BBF620B8C625003A2F29 /* UIView+TapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+TapGesture.swift"; path = "src/Extensions/UIView+TapGesture.swift"; sourceTree = "<group>"; };
+		78B6BBF820BAFE05003A2F29 /* Rebrand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Rebrand.xcassets; sourceTree = "<group>"; };
+		78B6BBFA20BB3352003A2F29 /* ShowAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowAddressViewController.swift; path = src/ViewControllers/RootModals/ShowAddressViewController.swift; sourceTree = "<group>"; };
 		83AD48DD756ACA069301ADD3 /* Pods-breadwalletUITests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletUITests.screenshots.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.screenshots.xcconfig"; sourceTree = "<group>"; };
 		8873BEA64A49D1BBA1FA67CD /* Pods-breadwallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-breadwallet/Pods-breadwallet.debug.xcconfig"; sourceTree = "<group>"; };
 		9305BCC5C0E2A5C20ADA8F50 /* Pods_BRCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1628,10 +1644,7 @@
 		CEAA9E961DC18E1F0066731D /* PhraseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhraseView.swift; path = src/Views/PhraseView.swift; sourceTree = "<group>"; };
 		CEAA9E981DC262800066731D /* ConfirmPaperPhraseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfirmPaperPhraseViewController.swift; path = src/ViewControllers/ConfirmPaperPhraseViewController.swift; sourceTree = "<group>"; };
 		CEAA9E9A1DC2B9320066731D /* ConfirmPhrase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfirmPhrase.swift; path = src/Views/ConfirmPhrase.swift; sourceTree = "<group>"; };
-		CEAA9E9D1DC2F90C0066731D /* CircularPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularPro-Bold.otf"; path = "Fonts/CircularPro-Bold.otf"; sourceTree = "<group>"; };
 		CEAA9E9F1DC2F9F50066731D /* UIFont+BRWAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIFont+BRWAdditions.swift"; path = "src/Extensions/UIFont+BRWAdditions.swift"; sourceTree = "<group>"; };
-		CEAA9EA11DC2FC700066731D /* CircularPro-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularPro-Book.otf"; path = "Fonts/CircularPro-Book.otf"; sourceTree = "<group>"; };
-		CEAA9EA21DC2FC700066731D /* CircularPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularPro-Medium.otf"; path = "Fonts/CircularPro-Medium.otf"; sourceTree = "<group>"; };
 		CEAA9EA51DC3246F0066731D /* StartNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartNavigationDelegate.swift; path = src/FlowControllers/StartNavigationDelegate.swift; sourceTree = "<group>"; };
 		CEAA9EA71DC3342E0066731D /* PinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinView.swift; path = src/Views/PinView.swift; sourceTree = "<group>"; };
 		CEAFC8601E5D5B0500E4FD06 /* SegmentedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegmentedButton.swift; path = src/Controls/SegmentedButton.swift; sourceTree = "<group>"; };
@@ -2756,6 +2769,7 @@
 				2218BD781E8F6CBA0091D5E8 /* AssetBundles.plist */,
 				CED486DD1F70A179007406D3 /* bread-frontend.tar */,
 				75A2A79A1DA5934300A983D8 /* Assets.xcassets */,
+				78B6BBF820BAFE05003A2F29 /* Rebrand.xcassets */,
 				CE5E6C991EB9135000A476DB /* Icon.xcassets */,
 				AA9455682020D91B00B6ABB1 /* LaunchScreen.storyboard */,
 				75A2A79F1DA5934300A983D8 /* Info.plist */,
@@ -3052,6 +3066,7 @@
 				CEBF32EF1DDCD30600348FC6 /* AccountViewController.swift */,
 				CE20C9061DBC587200C8397A /* StartViewController.swift */,
 				CEAA9E8E1DC074410066731D /* StartPaperPhraseViewController.swift */,
+				78B6BBF420B87F47003A2F29 /* SyncViewController.swift */,
 				CEAA9E921DC110E70066731D /* WritePaperPhraseViewController.swift */,
 				CEAA9E981DC262800066731D /* ConfirmPaperPhraseViewController.swift */,
 				CEBF32F51DDCEAF900348FC6 /* TransactionsTableViewController.swift */,
@@ -3115,6 +3130,8 @@
 				CE03EC711EF193800038E3A8 /* String+Keys.swift */,
 				CEC4CF081F0C84AB00E5C82E /* UIViewController+Alerts.swift */,
 				CE47A8DF1F7DA54000FF35BA /* UIScreen+Additions.swift */,
+				787CA16620B06BBE005C4B92 /* UILabel+CharacterSpacing.swift */,
+				78B6BBF620B8C625003A2F29 /* UIView+TapGesture.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3282,9 +3299,9 @@
 			isa = PBXGroup;
 			children = (
 				AA94555A2020D40B00B6ABB1 /* BIP39Words.plist */,
-				CEAA9EA11DC2FC700066731D /* CircularPro-Book.otf */,
-				CEAA9EA21DC2FC700066731D /* CircularPro-Medium.otf */,
-				CEAA9E9D1DC2F90C0066731D /* CircularPro-Bold.otf */,
+				787CA16A20B081AC005C4B92 /* Rubik-Bold.ttf */,
+				787CA16920B081AC005C4B92 /* Rubik-Medium.ttf */,
+				787CA16820B081AB005C4B92 /* Rubik-Regular.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -3325,6 +3342,7 @@
 				CEC6AA431DEFCDE900EE5AFD /* ModalViewController.swift */,
 				CEC6AA3F1DEFC87300EE5AFD /* SendViewController.swift */,
 				CEC6AA411DEFC88F00EE5AFD /* ReceiveViewController.swift */,
+				78B6BBFA20BB3352003A2F29 /* ShowAddressViewController.swift */,
 				CEC6AA451DEFCE9200EE5AFD /* MenuViewController.swift */,
 				CEC6AA4C1DF0741100EE5AFD /* ModalDisplayable.swift */,
 			);
@@ -3885,20 +3903,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787CA16B20B0840E005C4B92 /* Rubik-Bold.ttf in Resources */,
 				047876C020084BB200C422DE /* SupportStoryboard.storyboard in Resources */,
 				AA34562A2020CA7C00B2C462 /* Localizable.strings in Resources */,
 				AAF3240D206B307E004D2BED /* BIP39Words.plist in Resources */,
-				CEAA9EA31DC2FC700066731D /* CircularPro-Book.otf in Resources */,
 				222319B21F279B3C00008F20 /* POSTBouncer.html in Resources */,
 				CE473D7C1F042F1E00C0ACFD /* coinflip.aiff in Resources */,
 				049B9B7F20104B65004EF1A1 /* Settings.bundle in Resources */,
 				CE5E6C9A1EB9135000A476DB /* Icon.xcassets in Resources */,
+				78B6BBF920BAFE05003A2F29 /* Rebrand.xcassets in Resources */,
 				2218BD791E8F6CBA0091D5E8 /* AssetBundles.plist in Resources */,
-				CEAA9EA41DC2FC700066731D /* CircularPro-Medium.otf in Resources */,
-				CEAA9E9E1DC2F90C0066731D /* CircularPro-Bold.otf in Resources */,
 				AA9455692020D91C00B6ABB1 /* LaunchScreen.storyboard in Resources */,
 				CED486DE1F70A179007406D3 /* bread-frontend.tar in Resources */,
 				75A2A79B1DA5934300A983D8 /* Assets.xcassets in Resources */,
+				787CA16D20B08412005C4B92 /* Rubik-Regular.ttf in Resources */,
+				787CA16C20B0840F005C4B92 /* Rubik-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3921,8 +3940,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEFFA2D11EB3BD730085C5D1 /* LoadingIndicator.xcassets in Resources */,
+				787CA17020B08416005C4B92 /* Rubik-Bold.ttf in Resources */,
+				787CA16E20B08412005C4B92 /* Rubik-Regular.ttf in Resources */,
 				AA94556F2020DAFC00B6ABB1 /* Interface.storyboard in Resources */,
 				75A2A7C11DA5934300A983D8 /* Assets.xcassets in Resources */,
+				787CA16F20B08414005C4B92 /* Rubik-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4317,6 +4339,7 @@
 				CEA05CC31F21B53C00D850F0 /* FeeSelector.swift in Sources */,
 				CE20C8F21DBAF71500C8397A /* ApplicationController.swift in Sources */,
 				CEC4CF071F0C48DD00E5C82E /* StartWipeWalletViewController.swift in Sources */,
+				78B6BBF520B87F48003A2F29 /* SyncViewController.swift in Sources */,
 				7528D2981ECF655500925DBC /* PaymentProtocol.swift in Sources */,
 				22A9A9491DF61945000F0016 /* BRBSPatch.swift in Sources */,
 				CE92F9F61DEDF6890046B516 /* UIViewControllerContextTransitioning+BRAdditions.swift in Sources */,
@@ -4397,6 +4420,7 @@
 				CEE20C341EA5B4550086F724 /* ArticleIds.swift in Sources */,
 				CEE65DF01E39056F0002994D /* Rate.swift in Sources */,
 				CEE20C361EA5B4620086F724 /* Constants.swift in Sources */,
+				78B6BBFB20BB3352003A2F29 /* ShowAddressViewController.swift in Sources */,
 				CE3754AF1DDE6E2E0045B0CB /* RoundedContainer.swift in Sources */,
 				CEC6AA461DEFCE9200EE5AFD /* MenuViewController.swift in Sources */,
 				CEEC707F1E8D6B4100EF788E /* SettingsViewController.swift in Sources */,
@@ -4409,6 +4433,7 @@
 				22A9A94E1DF61945000F0016 /* BRHTTPIndexMiddleware.swift in Sources */,
 				CE124CF81E67A8E500DFA146 /* TransactionDirection.swift in Sources */,
 				CE8CD8DD1E2D9EF200785E02 /* Sender.swift in Sources */,
+				78B6BBF720B8C625003A2F29 /* UIView+TapGesture.swift in Sources */,
 				CE4DFB2C1E9BE5880014009E /* ReScanViewController.swift in Sources */,
 				CE44BA1F1F353AB200392A1A /* WalletManager+BCash.swift in Sources */,
 				CE8F0AE31EB91BB500AA7642 /* SearchHeaderView.swift in Sources */,
@@ -4450,6 +4475,7 @@
 				22122B721F0B8996000E9AB9 /* BRAPIClient+Events.swift in Sources */,
 				CE4B6C201E233C2C00CF935B /* UITableView+Additions.swift in Sources */,
 				CE760EDC1E561DF900EFAC2B /* SecurityCenterViewController.swift in Sources */,
+				787CA16720B06BBE005C4B92 /* UILabel+CharacterSpacing.swift in Sources */,
 				CEEC70861E94397D00EF788E /* UserDefaults+Additions.swift in Sources */,
 				22A9A9501DF61945000F0016 /* BRHTTPServer.swift in Sources */,
 				22A9A9531DF61945000F0016 /* BRLinkPlugin.swift in Sources */,
@@ -5189,7 +5215,7 @@
 				);
 				INFOPLIST_FILE = breadwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DREBRAND -DDebug";
+				OTHER_SWIFT_FLAGS = "-DDebug";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -5524,7 +5550,7 @@
 				);
 				INFOPLIST_FILE = breadwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DDebug -DScreenshots -DREBRAND -DTestnet";
+				OTHER_SWIFT_FLAGS = "-DDebug -DScreenshots -DTestnet";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

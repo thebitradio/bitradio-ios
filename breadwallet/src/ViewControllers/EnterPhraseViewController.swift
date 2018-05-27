@@ -45,9 +45,9 @@ class EnterPhraseViewController : UIViewController, UIScrollViewDelegate, Custom
     private let reason: PhraseEntryReason
     private let enterPhrase: EnterPhraseCollectionViewController
     private let errorLabel = UILabel.wrapping(font: .customBody(size: 16.0), color: .cameraGuideNegative)
-    private let instruction = UILabel(font: .customBold(size: 14.0), color: .darkText)
-    internal let titleLabel = UILabel.wrapping(font: .customBold(size: 26.0), color: .darkText)
-    private let subheader = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
+    private let instruction = UILabel(font: UIFont.customBody(size: 14.0), color: .white)
+    internal let titleLabel = UILabel.wrapping(font: .customBold(size: 26.0), color: .white)
+    private let subheader = UILabel.wrapping(font: .customBody(size: 16.0), color: .white)
     private let faq: UIButton
     private let scrollView = UIScrollView()
     private let container = UIView()
@@ -65,6 +65,10 @@ class EnterPhraseViewController : UIViewController, UIScrollViewDelegate, Custom
     }
 
     private func addSubviews() {
+        scrollView.backgroundColor = C.Colors.background
+        container.backgroundColor = C.Colors.background
+        navigationController?.navigationBar.isTranslucent = true
+        
         view.addSubview(scrollView)
         scrollView.addSubview(container)
         container.addSubview(titleLabel)
@@ -92,17 +96,21 @@ class EnterPhraseViewController : UIViewController, UIScrollViewDelegate, Custom
         titleLabel.constrain([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
             titleLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: C.padding[1]),
-            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: faq.leadingAnchor) ])
+            titleLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+        ])
         subheader.constrain([
             subheader.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             subheader.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            subheader.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
+            subheader.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
+        ])
         instruction.constrain([
-            instruction.topAnchor.constraint(equalTo: subheader.bottomAnchor, constant: C.padding[3]),
-            instruction.leadingAnchor.constraint(equalTo: subheader.leadingAnchor) ])
+            instruction.topAnchor.constraint(equalTo: subheader.bottomAnchor, constant: C.padding[5]),
+            instruction.leadingAnchor.constraint(equalTo: subheader.leadingAnchor),
+            instruction.trailingAnchor.constraint(equalTo: subheader.trailingAnchor)
+        ])
         enterPhrase.view.constrain([
             enterPhrase.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            enterPhrase.view.topAnchor.constraint(equalTo: instruction.bottomAnchor, constant: C.padding[1]),
+            enterPhrase.view.topAnchor.constraint(equalTo: instruction.bottomAnchor, constant: C.padding[2]),
             enterPhrase.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]),
             enterPhrase.view.heightAnchor.constraint(equalToConstant: enterPhrase.height) ])
         errorLabel.constrain([
@@ -121,7 +129,11 @@ class EnterPhraseViewController : UIViewController, UIScrollViewDelegate, Custom
     }
 
     private func setData() {
-        view.backgroundColor = .secondaryButton
+        view.backgroundColor = C.Colors.background
+        instruction.textAlignment = .center
+        titleLabel.textAlignment = .center
+        subheader.textAlignment = .center
+        
         errorLabel.text = S.RecoverWallet.invalid
         errorLabel.isHidden = true
         errorLabel.textAlignment = .center

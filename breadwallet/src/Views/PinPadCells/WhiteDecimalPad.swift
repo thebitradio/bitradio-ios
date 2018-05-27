@@ -12,11 +12,11 @@ class WhiteDecimalPad : GenericPinPadCell {
 
     override func setAppearance() {
         if isHighlighted {
-            centerLabel.backgroundColor = .secondaryShadow
-            centerLabel.textColor = .darkText
+            centerLabel.backgroundColor = UIColor(white: 1, alpha: 0.1)
+            centerLabel.textColor = C.Colors.text
         } else {
-            centerLabel.backgroundColor = .white
-            centerLabel.textColor = .grayTextTint
+            centerLabel.backgroundColor = .clear
+            centerLabel.textColor = C.Colors.text
         }
     }
 

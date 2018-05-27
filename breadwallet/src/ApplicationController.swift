@@ -126,6 +126,19 @@ class ApplicationController : Subscriber, Trackable {
         window.makeKeyAndVisible()
         listenForPushNotificationRequest()
         offMainInitialization()
+        
+        #if Debug
+        if (false) {
+            DispatchQueue.main.async {
+                self.modalPresenter?.presentAlert(AlertType.pinSet(callback: {
+                    print(1111)
+                }), completion: {
+                    print(2222)
+                })
+            }
+        }
+        #endif
+        
         store.subscribe(self, name: .reinitWalletManager(nil), callback: {
             guard let trigger = $0 else { return }
             if case .reinitWalletManager(let callback) = trigger {
@@ -293,9 +306,15 @@ class ApplicationController : Subscriber, Trackable {
             self.store.perform(action: RootModalActions.Present(modal: .receive))
         }
         
+        accountViewController?.showAddressCallback = {
+            self.store.perform(action: RootModalActions.Present(modal: .showAddress))
+        }
+        
+        /*
         accountViewController?.menuCallback = {
             self.store.perform(action: RootModalActions.Present(modal: .menu))
         }
+ */
         
         accountViewController?.digiIDCallback = {
             self.store.trigger(name: .scanDigiId)

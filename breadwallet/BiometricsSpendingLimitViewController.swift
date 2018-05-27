@@ -17,8 +17,8 @@ class BiometricsSpendingLimitViewController: UITableViewController, Subscriber {
     private let limits: [UInt64] = [0, 10000000, 100000000, 1000000000, 10000000000]
     private var selectedLimit: UInt64?
     private var header: UIView?
-    private let amount = UILabel(font: .customMedium(size: 26.0), color: .darkText)
-    private let body = UILabel.wrapping(font: .customBody(size: 13.0), color: .darkText)
+    private let amount = UILabel(font: .customMedium(size: 26.0), color: .white)
+    private let body = UILabel.wrapping(font: .customBody(size: 13.0), color: C.Colors.lightText)
     
     init(walletManager: WalletManager, store: Store) {
         self.walletManager = walletManager
@@ -27,20 +27,23 @@ class BiometricsSpendingLimitViewController: UITableViewController, Subscriber {
     }
 
     override func viewDidLoad() {
+        view.layer.masksToBounds = true
+        view.backgroundColor = C.Colors.background
         if limits.contains(walletManager.spendingLimit) {
             selectedLimit = walletManager.spendingLimit
         }
         tableView.register(SeparatorCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         tableView.estimatedSectionHeaderHeight = 50.0
-        tableView.backgroundColor = .whiteTint
+        tableView.backgroundColor = C.Colors.background
         tableView.separatorStyle = .none
 
-        let titleLabel = UILabel(font: .customBold(size: 17.0), color: .darkText)
+        let titleLabel = UILabel(font: .customMedium(size: 17.0), color: .white)
         let biometricsTitle = LAContext.biometricType() == .face ? S.FaceIdSpendingLimit.title : S.TouchIdSpendingLimit.title
         titleLabel.text = biometricsTitle
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
+        navigationController?.navigationBar.backgroundColor = C.Colors.background
 
         // TODO: Writeup support/FAQ documentation for digibyte wallet
         /*let faqButton = UIButton.buildFaqButton(store: store, articleId: ArticleIds.touchIdSpendingLimit)
@@ -48,6 +51,7 @@ class BiometricsSpendingLimitViewController: UITableViewController, Subscriber {
         navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]*/
 
         body.text = S.TouchIdSpendingLimit.body
+        body.backgroundColor = C.Colors.background
 
         //If the user has a limit that is not a current option, we display their limit
         if !limits.contains(walletManager.spendingLimit) {
@@ -63,12 +67,15 @@ class BiometricsSpendingLimitViewController: UITableViewController, Subscriber {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return limits.count
+        return limits.count // ToDo: add custom amount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let limit = limits[indexPath.row]
+        cell.textLabel?.textColor = C.Colors.text
+        cell.backgroundColor = C.Colors.background
+        
         if limit == 0 {
             cell.textLabel?.text = S.TouchIdSpendingLimit.requirePasscode
         } else {
@@ -77,7 +84,7 @@ class BiometricsSpendingLimitViewController: UITableViewController, Subscriber {
         }
         if limits[indexPath.row] == selectedLimit {
             let check = UIImageView(image: #imageLiteral(resourceName: "CircleCheck").withRenderingMode(.alwaysTemplate))
-            check.tintColor = C.defaultTintColor
+            check.tintColor = .orange
             cell.accessoryView = check
         } else {
             cell.accessoryView = nil
@@ -97,7 +104,7 @@ class BiometricsSpendingLimitViewController: UITableViewController, Subscriber {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let header = self.header { return header }
-        let header = UIView(color: .whiteTint)
+        let header = UIView(color: C.Colors.background)
         header.addSubview(amount)
         header.addSubview(body)
         amount.pinTopLeft(padding: C.padding[2])
@@ -116,5 +123,9 @@ class BiometricsSpendingLimitViewController: UITableViewController, Subscriber {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }

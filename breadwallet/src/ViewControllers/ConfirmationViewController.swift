@@ -11,6 +11,10 @@ import LocalAuthentication
 
 class ConfirmationViewController : UIViewController, ContentBoxPresenter {
 
+    let background: UIImageView = {
+        return UIImageView()
+    }()
+    
     init(amount: Satoshis, fee: Satoshis, feeType: Fee, state: State, selectedRate: Rate?, minimumFractionDigits: Int?, address: String, isUsingBiometrics: Bool) {
         self.amount = amount
         self.feeAmount = fee

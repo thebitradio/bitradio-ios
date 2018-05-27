@@ -45,7 +45,7 @@ extension PresentModalAnimator : UIViewControllerAnimatedTransitioning {
         var maskView: UIView?
         if shouldCoverBottomGap {
             maskView = UIView(frame: CGRect(x: 0, y: fromFrame.height, width: fromFrame.width, height: 40.0))
-            maskView?.backgroundColor = .white
+            maskView?.backgroundColor = C.Colors.background
             container.addSubview(maskView!)
         }
 
