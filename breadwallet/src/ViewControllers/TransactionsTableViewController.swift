@@ -16,7 +16,9 @@ enum TransactionFilterMode {
     case showIncoming
 }
 
-
+// global
+// only show table row animation once!
+var firstLoad: Bool = true
 
 class TransactionsTableViewController : UITableViewController, Subscriber, Trackable {
 
@@ -32,6 +34,12 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
     let filterMode: TransactionFilterMode
     let didSelectTransaction: ([Transaction], Int) -> Void
 
+    private var hideRows = true {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     var filters: [TransactionFilter] = [] {
         didSet {
             transactions = filters.reduce(allTransactions, { $0.filter($1) })
@@ -91,6 +99,17 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
         return (currentPrompt != nil)
     }
 
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if firstLoad {
+            cell.transform = CGAffineTransform(translationX: 0, y: 800)
+            UIView.spring(0.5 + (Double(indexPath.row) * 0.2), animations: {
+                cell.transform = CGAffineTransform.identity
+            }) { (completed) in
+                firstLoad = false
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -109,6 +128,16 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
                             self.reload()
         })
 
+        // create animation
+        store.subscribe(self, selector: { $0.walletState.syncState != $1.walletState.syncState || $0.isLoginRequired != $1.isLoginRequired },
+                        callback: { state in
+                            if !state.isLoginRequired && state.walletState.syncState == .success {
+                                DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                                    self.hideRows = false
+                                })
+                            }
+        })
+        
         store.subscribe(self,
                         selector: { $0.isBtcSwapped != $1.isBtcSwapped },
                         callback: { self.isBtcSwapped = $0.isBtcSwapped })
@@ -178,7 +207,7 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
         if hasExtraSection && section == 0 {
             return 1
         } else {
-            return transactions.count
+            return hideRows ? 0 : transactions.count
         }
     }
 

@@ -13,7 +13,7 @@ import MachO
 let accountHeaderHeight: CGFloat = 136.0
 private let transactionsLoadingViewHeightConstant: CGFloat = 48.0
 
-class BalanceView: UIView, Subscriber {
+fileprivate class BalanceView: UIView, Subscriber {
     private let balanceHeaderLabel = UILabel(font: .customMedium(size: 12))
     private var balanceLabel: UpdatingLabel //(font: .customMedium(size: 32), color: C.Colors.text) // DGB
     private var currencyLabel: UpdatingLabel //(font: .customMedium(size: 16)) // USD
@@ -159,7 +159,7 @@ class BalanceView: UIView, Subscriber {
     }
 }
 
-class CustomSegmentedControl: UIControl {
+fileprivate class CustomSegmentedControl: UIControl {
     
     private var padding: CGFloat = 7.0
     
@@ -283,13 +283,15 @@ class CustomSegmentedControl: UIControl {
     }
 }
 
-class HamburgerViewMenu: UIView {
+fileprivate class HamburgerViewMenu: UIView {
     private let bgImage = UIImageView(image: #imageLiteral(resourceName: "hamburgerBg"))
     private var digibyteLogo = UIImageView(image: #imageLiteral(resourceName: "DigiByteSymbol"))
     private let walletLabel = UILabel(font: .customMedium(size: 18), color: C.Colors.text)
     private let walletVersionLabel = UILabel(font: .customMedium(size: 11), color: .gray)
-    private var y: CGFloat = 289.0
+    private var y: CGFloat = 0
     private var supervc: HamburgerViewMenuProtocol? = nil
+    private var scrollView = UIScrollView()
+    private var scrollInner = UIStackView()
     
     private let buttonHeight: CGFloat = 78.0
     
@@ -306,6 +308,16 @@ class HamburgerViewMenu: UIView {
         setStyles()
     }
     
+    func animationStep(progress: CGFloat) {
+        let progress = progress < 0 ? 0 : (progress > 1 ? 1 : progress)
+        
+        if progress < 0.3 {
+            digibyteLogo.transform = CGAffineTransform.init(scaleX: 0.3, y: 0.3)
+        } else {
+            digibyteLogo.transform = CGAffineTransform.init(scaleX: progress, y: progress)
+        }
+    }
+    
     private func addSubviews() {
         bgImage.contentMode = .scaleAspectFit
         
@@ -313,6 +325,9 @@ class HamburgerViewMenu: UIView {
         addSubview(digibyteLogo)
         addSubview(walletLabel)
         addSubview(walletVersionLabel)
+        addSubview(scrollView)
+        
+        scrollView.addSubview(scrollInner)
     }
     
     private func addConstraints() {
@@ -339,6 +354,22 @@ class HamburgerViewMenu: UIView {
             walletVersionLabel.topAnchor.constraint(equalTo: walletLabel.bottomAnchor, constant: 6),
             walletVersionLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
             walletVersionLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
+            walletVersionLabel.heightAnchor.constraint(equalToConstant: 20),
+        ])
+        
+        scrollView.constrain([
+            scrollView.topAnchor.constraint(equalTo: walletVersionLabel.bottomAnchor, constant: 30),
+            scrollView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            scrollView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
+        
+        scrollInner.constrain([
+            scrollInner.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            scrollInner.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+            scrollInner.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
+            scrollInner.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            scrollInner.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
     }
     
@@ -347,6 +378,11 @@ class HamburgerViewMenu: UIView {
         
         walletLabel.textAlignment = .center
         walletVersionLabel.textAlignment = .center
+        
+        scrollInner.axis = .vertical
+        scrollInner.alignment = .top
+        scrollInner.distribution = .equalSpacing
+        scrollInner.spacing = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -364,17 +400,17 @@ class HamburgerViewMenu: UIView {
         button.titleLabel?.font = UIFont.customBody(size: 18)
         button.setTitleColor(.gray, for: .normal)
         button.setTitleColor(C.Colors.text, for: .highlighted)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: E.is320wDevice ? 35 : 50, bottom: 0, right: 0)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: E.is320wDevice ? 55 : 80, bottom: 0, right: 0)
         button.tintColor = .gray
         button.contentHorizontalAlignment = .left
         
-        addSubview(button)
+        scrollInner.addArrangedSubview(button)
         
         button.constrain([
-            button.topAnchor.constraint(equalTo: topAnchor, constant: y),
-            button.leftAnchor.constraint(equalTo: leftAnchor),
-            button.rightAnchor.constraint(equalTo: rightAnchor),
+//            button.topAnchor.constraint(equalTo: scrollInner.topAnchor, constant: y),
+//            button.leftAnchor.constraint(equalTo: scrollInner.leftAnchor),
+            button.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1),
             button.heightAnchor.constraint(equalToConstant: buttonHeight)
         ])
         
@@ -388,7 +424,7 @@ class HamburgerViewMenu: UIView {
     }
 }
 
-protocol HamburgerViewMenuProtocol {
+fileprivate protocol HamburgerViewMenuProtocol {
     func closeHamburgerMenu()
 }
 
@@ -587,7 +623,6 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     }
     
     @objc private func gesturePan(_ sender: UIPanGestureRecognizer) {
-        
         guard let menuLeftConstraint = menuLeftConstraint else { return }
 
         let width = hamburgerMenuView.frame.width
@@ -597,10 +632,12 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         } else if sender.state == UIGestureRecognizerState.changed {
             let translationX = sender.translation(in: sender.view).x
             if translationX > 0 {
-                menuLeftConstraint.constant = -15
+                menuLeftConstraint.constant = -15 + sqrt(translationX)
+                hamburgerMenuView.animationStep(progress: 1)
                 fadeView.alpha = 1
             } else if translationX < -width - 15 {
                 menuLeftConstraint.constant = -width
+                hamburgerMenuView.animationStep(progress: 0)
                 fadeView.alpha = 0
             } else {
                 menuLeftConstraint.constant = translationX - 15
@@ -608,6 +645,8 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
                 let ratio = (width + translationX - 15) / width
                 let alphaValue = ratio
                 fadeView.alpha = alphaValue
+                print("RATIO", ratio)
+                hamburgerMenuView.animationStep(progress: ratio)
             }
             view.layoutIfNeeded()
         } else {
@@ -681,12 +720,14 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         hamburgerMenuViewIsAnimating = true
         
         menuLeftConstraint?.constant = -15
-        fadeView.alpha = 0
+        // fadeView.alpha = 0
         fadeView.isHidden = false
         
         UIView.spring(0.3, animations: {
+        //UIView.animate(withDuration: 0.3, animations: {
             self.view.layoutIfNeeded()
             self.fadeView.alpha = 1.0
+            self.hamburgerMenuView.animationStep(progress: 1.0)
         }, completion: { (finished) in
             self.edgeGesture.isEnabled = false
             self.hamburgerMenuViewIsAnimating = false
@@ -699,8 +740,10 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         menuLeftConstraint?.constant = -hamburgerMenuView.frame.width
         
         UIView.spring(0.3, animations: {
+        // UIView.animate(withDuration: 0.3, animations: {
             self.view.layoutIfNeeded()
             self.fadeView.alpha = 0.0
+            self.hamburgerMenuView.animationStep(progress: 0)
         }) { (finished) in
             self.edgeGesture.isEnabled = true
             self.fadeView.isHidden = true

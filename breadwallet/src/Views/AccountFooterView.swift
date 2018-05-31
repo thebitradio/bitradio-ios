@@ -2,8 +2,8 @@
 //  AccountFooterView.swift
 //  breadwallet
 //
-//  Created by Adrian Corscadden on 2016-11-16.
-//  Copyright © 2016 breadwallet LLC. All rights reserved.
+//  Created by Yoshi Jaeger on 2018-05-23.
+//  Copyright © 2018 Digibyte Foundation. All rights reserved.
 //
 
 import UIKit
@@ -89,10 +89,47 @@ fileprivate struct RadialGradientViewButtonModel {
     let targetOffset: CGFloat
 }
 
-fileprivate class RadialGradientMenu: UIView {
-    private var hasSetup: Bool = false
+fileprivate class RadialGradientCircleBackgroundView: UIView {
     private let startColor: UIColor
     private let endColor: UIColor
+    
+    init(startColor: UIColor, endColor: UIColor) {
+        self.startColor = startColor
+        self.endColor = endColor
+        
+        super.init(frame: CGRect())
+        
+        clipsToBounds = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draw(_ rect: CGRect) {
+        guard let currentContext = UIGraphicsGetCurrentContext() else { return }
+        currentContext.saveGState()
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        
+        guard let startColorComponents = startColor.cgColor.components else { return }
+        guard let endColorComponents = endColor.cgColor.components else { return }
+        
+        let colorComponents: [CGFloat] = [startColorComponents[0], startColorComponents[1], startColorComponents[2], startColorComponents[3], endColorComponents[0], endColorComponents[1], endColorComponents[2], endColorComponents[3]]
+        
+        let locations: [CGFloat] = [0.0, 1.0]
+        guard let gradient = CGGradient(colorSpace: colorSpace, colorComponents: colorComponents, locations: locations, count: 2) else { return }
+        
+        let startPoint = CGPoint(x: 0, y: self.bounds.height)
+        let endPoint = CGPoint(x: self.bounds.width, y: self.bounds.height)
+        
+        currentContext.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: CGGradientDrawingOptions(rawValue: UInt32(0)))
+        currentContext.restoreGState()
+    }
+}
+
+fileprivate class RadialGradientMenu: UIView {
+    private var hasSetup: Bool = false
     private var size: CGSize = CGSize(width: 41, height: 41) {
         didSet {
             guard let superview = superview else { return }
@@ -102,6 +139,7 @@ fileprivate class RadialGradientMenu: UIView {
     
     private let buttonText = UILabel(font: .customMedium(size: 24), color: C.Colors.text)
     private var currentOffset: CGFloat = 0
+    private var currentProgress: CGFloat = 0
     private var buttonModels: [RadialGradientViewButtonModel] = []
     
     override func layoutSubviews() {
@@ -111,8 +149,73 @@ fileprivate class RadialGradientMenu: UIView {
         configure()
         
         bringButtonsToFront()
+        addPanGesture()
         
         hasSetup = true
+    }
+    
+    private func addPanGesture() {
+        let gesture = UIPanGestureRecognizer()
+        gesture.maximumNumberOfTouches = 1
+        gesture.addTarget(self, action: #selector(handlePan(_:)))
+        buttonText.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func handlePan(_ sender: UIPanGestureRecognizer) {
+        if sender.state == .began {
+            // started
+            guard currentProgress == 0 && !animating else {
+                // cancel
+                sender.isEnabled = false
+                sender.isEnabled = true
+                return
+            }
+
+        } else if sender.state == .changed {
+            // changed
+            let translationY = -sender.translation(in: sender.view).y
+            guard translationY > 0 else { return }
+            
+            let progress = translationY / (currentOffset+20) * 1.5
+            menuAnimationStep(progress)
+        } else {
+            // ended
+            let translationY = -sender.translation(in: sender.view).y
+            guard translationY > 0 else { return }
+            
+            let progress = translationY / (currentOffset+20) * 1.5
+            decideToOpenOrNot(progress)
+        }
+    }
+    
+    private func decideToOpenOrNot(_ progress: CGFloat) {
+        if progress > 0.5 {
+            let _ = openMenu()
+        } else {
+            opened = true
+            let _ = closeMenu()
+        }
+    }
+    
+    private func menuAnimationStep(_ progress: CGFloat) {
+        var progress = (progress < 0 ? 0 : progress)
+        if progress > 1 {
+            progress = sqrt(sqrt(progress))
+        }
+        let screenWidth = UIScreen.main.bounds.width
+        let widthScale = screenWidth / size.width * 1.1
+        let heightScale = 2*(currentOffset + 20) / size.height
+        var scale = max(widthScale, heightScale) * progress
+        scale = (scale < 1 ? 1 : scale)
+        
+        self.circleView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        self.buttonText.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4 * progress)
+        for i in 0..<self.buttonModels.count {
+            let element = self.buttonModels[i]
+            let view = element.view
+            view.frame.origin.y = -element.targetOffset * progress
+            view.alpha = 1 * progress
+        }
     }
     
     private func centerButtonImageAndTitle(button: UIButton) {
@@ -129,7 +232,7 @@ fileprivate class RadialGradientMenu: UIView {
         addSubview(buttonText)
     }
     
-    let circleView = UIView()
+    let circleView: RadialGradientCircleBackgroundView
     var opened: Bool = false
     
     private var animating: Bool = false
@@ -147,19 +250,11 @@ fileprivate class RadialGradientMenu: UIView {
         animating = true
         
         UIView.spring(0.3, animations: {
-            self.circleView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            self.buttonText.transform = CGAffineTransform(rotationAngle: 0)
-            
-            for i in 0..<self.buttonModels.count {
-                let element = self.buttonModels[i]
-                let offset = element.targetOffset
-                let view = element.view
-                view.frame.origin.y += offset
-                view.alpha = 0
-            }
+            self.menuAnimationStep(0.0)
         }) { (finished) in
             self.animating = false
             self.opened = false
+            self.currentProgress = 0
             callback?()
         }
         
@@ -171,23 +266,12 @@ fileprivate class RadialGradientMenu: UIView {
         guard !opened else { return false }
         animating = true
         
-        let screenWidth = UIScreen.main.bounds.width
-        let widthScale = screenWidth / size.width * 1.1
-        let heightScale = 2*(currentOffset + 70) / size.height
-        let scale = max(widthScale, heightScale)
-        
         UIView.spring(0.3, animations: {
-            self.circleView.transform = CGAffineTransform(scaleX: scale, y: scale)
-            self.buttonText.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
-            for i in 0..<self.buttonModels.count {
-                let element = self.buttonModels[i]
-                let view = element.view
-                view.frame.origin.y -= element.targetOffset
-                view.alpha = 1
-            }
+            self.menuAnimationStep(1.0)
         }) { (finished) in
             self.animating = false
             self.opened = true
+            self.currentProgress = 1
             callback?()
         }
         
@@ -219,13 +303,13 @@ fileprivate class RadialGradientMenu: UIView {
     }
     
     private func configure() {
-        //circleView.layer.masksToBounds = true
         circleView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        //circleView.backgroundColor = .blue
         circleView.backgroundColor = UIColor(red: 0x02 / 255, green: 0x52 / 255, blue: 0xAA / 255, alpha: 1)
         circleView.layer.cornerRadius = size.width / 2
         circleView.frame = CGRect(origin: CGPoint(), size: size)
         circleView.setNeedsLayout()
+        
+        circleView.contentMode = UIViewContentMode.redraw
         
         buttonText.text = "+"
         buttonText.textColor = .white
@@ -237,14 +321,10 @@ fileprivate class RadialGradientMenu: UIView {
         t.numberOfTapsRequired = 1
         t.numberOfTouchesRequired = 1
         buttonText.addGestureRecognizer(t)
-        
-        // layer
-        // self.layer.anchorPoint = CGPoint(x: size.width / 2, y: size.width / 2)
     }
     
     init(startColor: UIColor, endColor: UIColor) {
-        self.startColor = startColor
-        self.endColor = endColor
+        circleView = RadialGradientCircleBackgroundView(startColor: startColor, endColor: endColor)
         super.init(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: size))
     }
     
@@ -403,25 +483,17 @@ class AccountFooterView: UIView {
         // menu background images
         let bgImage = #imageLiteral(resourceName: "tabBg")
         let backgroundImage = UIImageView(image: bgImage)
-        backgroundImage.contentMode = .scaleAspectFit
+        // backgroundImage.contentMode = .scaleAspectFit
         let backgroundHelper = UIView()
-        //backgroundHelper.backgroundColor = C.Colors.background
         backgroundHelper.backgroundColor = UIColor(red: 0x0F / 255, green: 0x0F / 255, blue: 0x1A / 255, alpha: 1)
         
         // calculate offsets
-        let scale = UIScreen.main.bounds.width / bgImage.size.width
-        height = bgImage.size.height * scale
-        let buttonSize = 44 * scale
+        let buttonSize: CGFloat = 44
         let menuOffset = CGFloat(E.isIPhoneX ? 0 : self.menuOffset)
         
         // center button
-        /*
-         let menuButton = UIButton()
-         menuButton.setTitle("", for: .normal)
-         menuButton.setBackgroundImage(#imageLiteral(resourceName: "mainAction"), for: .normal)
-         menuButton.layer.cornerRadius = buttonSize / 2
-         menuButton.showsTouchWhenHighlighted = true
-         */
+        backgroundImage.isUserInteractionEnabled = true
+        backgroundHelper.isUserInteractionEnabled = true
         
         circleButton.addMenuItem(img: #imageLiteral(resourceName: "receiveArrow"), text: "Receive") {
             self.receiveCallback?()
@@ -470,10 +542,11 @@ class AccountFooterView: UIView {
         
         backgroundImage.constrain([
             backgroundImage.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: menuOffset),
-            backgroundImage.leftAnchor.constraint(equalTo: backgroundView.leftAnchor),
-            backgroundImage.rightAnchor.constraint(equalTo: backgroundView.rightAnchor),
+            backgroundImage.centerXAnchor.constraint(equalTo: backgroundHelper.centerXAnchor, constant: 0),
+            //backgroundImage.leftAnchor.constraint(equalTo: backgroundView.leftAnchor),
+            //backgroundImage.rightAnchor.constraint(equalTo: backgroundView.rightAnchor),
             // backgroundImage.topAnchor.constraint(equalTo: backgroundView.topAnchor),
-            backgroundImage.heightAnchor.constraint(equalToConstant: height),
+            //backgroundImage.heightAnchor.constraint(equalToConstant: height),
             ])
         
         digiIDButton.constrain([
@@ -484,21 +557,21 @@ class AccountFooterView: UIView {
             ])
         
         circleButton.constrain([
-            circleButton.topAnchor.constraint(equalTo: backgroundImage.topAnchor, constant: scale * (30)),
+            circleButton.bottomAnchor.constraint(equalTo: backgroundImage.bottomAnchor, constant: -42),
             circleButton.centerXAnchor.constraint(equalTo: backgroundImage.centerXAnchor, constant: -2.5),
             circleButton.widthAnchor.constraint(equalToConstant: buttonSize),
             circleButton.heightAnchor.constraint(equalToConstant: buttonSize),
             ])
         
         hamburgerButton.constrain([
-            hamburgerButton.leftAnchor.constraint(equalTo: backgroundImage.leftAnchor, constant: 40),
-            hamburgerButton.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: 20 * scale),
+            hamburgerButton.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: 40),
+            hamburgerButton.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: 20),
             hamburgerButton.widthAnchor.constraint(equalToConstant: 30),
             ])
         
         qrButton.constrain([
-            qrButton.rightAnchor.constraint(equalTo: backgroundImage.rightAnchor, constant: -40),
-            qrButton.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: 20 * scale),
+            qrButton.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -40),
+            qrButton.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: 20),
             qrButton.widthAnchor.constraint(equalToConstant: 25),
             qrButton.heightAnchor.constraint(equalToConstant: 25),
         ])
@@ -531,7 +604,7 @@ class AccountFooterView: UIView {
             backgroundView.leftAnchor.constraint(equalTo: self.leftAnchor),
             backgroundView.rightAnchor.constraint(equalTo: self.rightAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-            ])
+        ])
         
         self.constrain([
             self.heightAnchor.constraint(equalToConstant: height)
