@@ -25,7 +25,6 @@
 		0EEC6C55C36AAF499567F13468844DC0 /* LIFEWindowBlindsAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FD7430A493E1A559C947A2376683A21 /* LIFEWindowBlindsAnimator.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		107CD6FA6F6B59FA63DE700FAA06BCC8 /* LIFEAttachmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 384550A3A2FE627A0D854FD68547DCC1 /* LIFEAttachmentView.m */; };
 		10AD578AA531D3F9BE59B16B50599BE1 /* LIFESwizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9D204AEDAA3BFE22FCD393FD765B2 /* LIFESwizzler.m */; };
-		110C20E1F736AA09A41AE5A4A6F50F1F /* Pods-breadwalletUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B105E7CEF4A19E0C228E93C2CEC15A /* Pods-breadwalletUITests-dummy.m */; };
 		116EB1F6ABEF593D6FAFFDCE21048D29 /* UIViewController+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C85475DC0C3E48B4B22B43BBA49056 /* UIViewController+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		120F3F0DC77B1719C97EAEE654CAAFBC /* LIFEAVFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C3646D42D838C008BBC9E870256594F /* LIFEAVFoundation.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		127AC32E1F931EF587BA134DDBB210F5 /* LIFEAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5133D9B36C246CB541B4B918C86165 /* LIFEAppInfo.m */; };
@@ -36,6 +35,7 @@
 		1713C648A4692C7C087B12D6B0C2BBE1 /* LIFEDependencyLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8754D510B7C3818DBD2358C302454DCD /* LIFEDependencyLoader.m */; };
 		173134DE301AE2FE341F52582AB926E3 /* LIFECompatibilityUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E767992BCFF81E7534933F820C136CF /* LIFECompatibilityUtils.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		18E51FB90AE57634A61E29C96691B2D4 /* NSError+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A728E280021C630485A82D1F907BAEF9 /* NSError+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		19E20C87446967012B3887003FE984F4 /* Pods-breadwalletUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B38842AAB4D46F2B79F0B5E33A2BE87 /* Pods-breadwalletUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B9DCA629C9A688A6BB3AB4E8D86A5A4 /* LIFEStepsToReproduceCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A88DA2D43FB9AF8CC56A4DE5463C4D5A /* LIFEStepsToReproduceCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1C30889C9C393D0D09A3F2FDC36A72AF /* LIFEAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = C76BB5E9C98DE16669558F7802EFB62F /* LIFEAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1DA344F9D4F97A7473BC90A7C6B1DB72 /* LIFEReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 3035D7E13C0A8A3C37411889140B2DEF /* LIFEReport.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -47,6 +47,7 @@
 		252023BBF50BFD9D48057190875F22D4 /* LIFEAttachmentView.h in Headers */ = {isa = PBXBuildFile; fileRef = D6D00799CBE2993E15C4748D75C7F3D9 /* LIFEAttachmentView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		260B419113FB57E11217B1FDE0F5AD57 /* LIFETTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C9D126ED17C948437C8207CFBE5EFF5 /* LIFETTYLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		26610D1CC02A1FCA8D8B7E394E3229FC /* LIFETextInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B051B6CB1209F6CA31FCBD37930402 /* LIFETextInputField.m */; };
+		26EF1068CEA977F42E2FD0018CB3DC22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		28F026217BFBD6340C7DE6ABDEB3F43D /* UITextView+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 517F267010E309071A0151992FD07EFE /* UITextView+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		297F334D3AFC0F2F5EF0A3F24A706B29 /* LIFEImageFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF62CFA0DCDB4B8D7D9F9D2D3AA490A /* LIFEImageFormat.m */; };
 		2A4598C27F04DF66E0B6B30539EAA76C /* LIFEReportAttachmentImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 645363D8326F354F5BC27A66A24AFECC /* LIFEReportAttachmentImpl.m */; };
@@ -93,6 +94,7 @@
 		545CAAE707D93341BA53DD27694FFD43 /* LIFERecordingShrinker.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C890ECCF504791576BC80287E97C9 /* LIFERecordingShrinker.m */; };
 		5586C30FFBC999AE6DDB2B94E195B607 /* LIFEArrowAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8573AA8D6FBB2B35AD71E3E00C3D6C /* LIFEArrowAnnotationView.m */; };
 		566B27AB672FDFAD5705141D29C4F03E /* LIFEInputField.h in Headers */ = {isa = PBXBuildFile; fileRef = 676AA6BB7BB007ABE33C7F78086F5ECC /* LIFEInputField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5774039A836D9F027D122292A247A331 /* Pods-breadwalletTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0A41D01BAC00F385790AEA2816975B /* Pods-breadwalletTests-dummy.m */; };
 		596F91F033EFBDC7FFDB64516EE1ABAC /* LIFEDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = A0EE314A9387457F7BB9DB893D17FE2E /* LIFEDeviceInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		59A411FFAFE726943F2EB0C8AA758F20 /* LIFEComponentPickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C103784BF4FFA9353C2AD3C772CA59 /* LIFEComponentPickerCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5AA3D1A5430551097D324724926518A4 /* LIFEOverlayWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 568C8883F140D74366DBA31193E17E51 /* LIFEOverlayWindow.m */; };
@@ -117,6 +119,7 @@
 		6B037AA95AC5EB692ADE54B47DF4626A /* LIFEScreenshotAnnotatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F7CA030C538B3B17A089BA4060038 /* LIFEScreenshotAnnotatorViewController.m */; };
 		6B36E3F7EFEB0A1D266B56541C292576 /* UIView+LIFEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B03E45183D314D5ED5DA41DBA9A39B /* UIView+LIFEAdditions.m */; };
 		6C56B6D35920408E49F47DFEE6F774F5 /* LIFEReproStep.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E4FBBBF543FE0317E8317FB390DD88 /* LIFEReproStep.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6CC8C82997FC6330E1A5FD703E72D29E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		6DA1835677B286B43FBC9922B9DCEC68 /* LIFETitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2645852C0B0B3813B564C41C3FD9F010 /* LIFETitleCell.m */; };
 		6DC6B2BA29F9E9F93397D306094D35D9 /* LIFEInputField+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CE429F84AE57ADE2DDFB53A0A2C13E9 /* LIFEInputField+Protected.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6DF8E4A57003E1F868C53257E07440D4 /* LIFENetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D349CB334C9F6A029D8915DCCE4D2D3D /* LIFENetworkManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -158,6 +161,7 @@
 		94B52CF8A1DDA096DDE83D40A1A89505 /* LIFEJelloView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1AB0B54A99FB50310EBB9993844ED5 /* LIFEJelloView.m */; };
 		94B5C14B4D2E1EFEBCB3752BAAB0FDA3 /* LIFEAlertAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D47BE98AD0470906A4D50637E4E01CC /* LIFEAlertAnimator.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		95A3F54CF45DA00FA48764774856428C /* LIFEFloatingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 763825243F2A04C277F4169D5E33478E /* LIFEFloatingButton.m */; };
+		95A87246721992AE1548AF34B27167A7 /* Pods-breadwalletUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B105E7CEF4A19E0C228E93C2CEC15A /* Pods-breadwalletUITests-dummy.m */; };
 		97B2D241AEAA5E21A00BC184A5824968 /* LIFEPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F8421D6B3BBB3D3B24E351BF78F4FD /* LIFEPanGestureRecognizer.m */; };
 		99FF551D174DE08294100DC2499B7A32 /* LIFEToolButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E4578B61C945AF0ECF75986A97A2D22 /* LIFEToolButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9A9FA720AB0C693F393A4BBEED92D619 /* LIFEAppInfoProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C4AEF8B9DDC8173E3F4EE960384952 /* LIFEAppInfoProvider.m */; };
@@ -178,7 +182,6 @@
 		A33A0B49C82CADDE1168CC67DF13A7BE /* LIFEAwesomeLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18853782F861A979987EDE0373E9C5AA /* LIFEAwesomeLogger.m */; };
 		A36F939D06DADC87317F187D520BB0DE /* LIFENotificationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA31ED2DFF19C6B9AC2526DEA5D5E13 /* LIFENotificationLogger.m */; };
 		A4FE56E5B1D1B3D77264E98663990059 /* LIFEDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9901DCDCBEEFE8A952DB8B0A4A8DA932 /* LIFEDataProvider.m */; };
-		A59F834920EB45F6E06F7F6D5F43CB42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		A5BCC78D34F8B8F94770DF737D6C4A44 /* LIFEPickerInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = 632B9D5906E020E6DBCFD922AE1BC4BC /* LIFEPickerInputField.m */; };
 		A88066DF86FD8D19B331821F1FB8AA54 /* LIFEComponentPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2F7E210F583E68548666E4E784382 /* LIFEComponentPickerCell.m */; };
 		A964E83775FC6DA588D9BD17D28B5D73 /* LIFEImageProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 23D16885B9DFF24ADA9194A4830F609A /* LIFEImageProcessor.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -190,13 +193,11 @@
 		B189B15AEB0767A30EFD11A2103E462C /* LIFEContinuousForceTouchGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C853814BD94390F708652593211850B /* LIFEContinuousForceTouchGestureRecognizer.m */; };
 		B19895A4DEBA99B92FC2EA82AAF9A41C /* LIFEOverlayWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 88A6C92B62D72D71BBEAF02BB8DE6A6E /* LIFEOverlayWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B1DB984A8D8626359859A65393CFC1CD /* LIFEContainerModalDismissAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 895E8EECA242167FE6936AE89AF0E39E /* LIFEContainerModalDismissAnimator.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B40C0BDE20FB91DD47D79A88E30276AE /* Pods-breadwalletTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0A41D01BAC00F385790AEA2816975B /* Pods-breadwalletTests-dummy.m */; };
 		B578A9CACBC5B9A800C77B0724C7502A /* NSArray+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = B795B47884439F2AE2F3342B0FE450D0 /* NSArray+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B63FECCA2CFA125FC1BFC07F5DA58D42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		B792408BB55CB60D1DBC9A1365401A02 /* NSMutableDictionary+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 51AD2CDFA738CDB8676F71F36431A475 /* NSMutableDictionary+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B9D51B849C231DFBC2D3083FF70DFC79 /* Pods-breadwalletTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E3203BC4DC241A7B86C212BD37249252 /* Pods-breadwalletTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA7FCF8868FF1692F0D9B3DFB1820229 /* NSString+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C12C14D481C43873745ED042620E7A /* NSString+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BB136E571FD2C33E271BF780FED20012 /* LIFEAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EAFE3516B90B88CC6EB1B5A7ECDB3B /* LIFEAlertAction.m */; };
-		BC20A4BCFB653132AE086270285FC518 /* Pods-breadwalletUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B38842AAB4D46F2B79F0B5E33A2BE87 /* Pods-breadwalletUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC2C29B2B85CB23E8D5D873E0A02C426 /* LIFEDependencyLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = C649F7102A8868B7D0217FC2D7A7CAEB /* LIFEDependencyLoader.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BC41ADCD7BB1430B2136537E63AEDB75 /* LIFEImageEditorView.h in Headers */ = {isa = PBXBuildFile; fileRef = B71066988CE543E1046EAA7FBA59ED41 /* LIFEImageEditorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BFA30885726B55032DDD33BFDD0A89D4 /* UIBezierPath+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = E40CFDC75775E37553EF7DA04D52BC85 /* UIBezierPath+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -212,6 +213,7 @@
 		C974972678AB6F63D9BE109E0E98F4B9 /* UITableView+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49064A01B994F9AD28726D279498EF76 /* UITableView+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C9ED18F030E73965E08B6F14573FE1ED /* LIFEImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37301F77682F9C5E2FAA20F3E2DEA30 /* LIFEImagePickerController.m */; };
 		CB1BDE34A427ACD8E97A49CDBFD2506D /* LIFEAnnotatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 890775E1283E41DC4E0C374BE8965390 /* LIFEAnnotatedImageView.m */; };
+		CB78C33AB806038953CE2BB2A7B29083 /* Pods-breadwalletTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E3203BC4DC241A7B86C212BD37249252 /* Pods-breadwalletTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB97F69F5EE3569058F48C1FCE6A6F05 /* LIFEAppInfoProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AB132900E4515D6B63EE3E88150F6D3 /* LIFEAppInfoProvider.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CBDD7226DBBCF7D72DE2CD5EED23414B /* LIFEToolButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B07134B94D0F0CD66B5B9E2B527CC21B /* LIFEToolButton.m */; };
 		CDF42749F2D49C9F62963025E757222E /* LIFEPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA15055526B3EDBB8FA3FDF6A4BA8F0A /* LIFEPickerViewController.m */; };
@@ -225,7 +227,6 @@
 		D658AFC43EF8657074BCF57D24A46DF6 /* NSString+LIFEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92130E67B723E2BEF60ECA169B3C2D /* NSString+LIFEAdditions.m */; };
 		D6AFB02E883F8CB18FB0B83B48F74C17 /* LIFEContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C075ACA69DC28EF56AAD06A6DB1A19 /* LIFEContainerViewController.m */; };
 		D717246DC464A0F71AB63C036C12897E /* LIFENotificationLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 87F2E84BB49B42A48EA326F410709BA0 /* LIFENotificationLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D787A137AEE3244D4303F6BA7F73A345 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		D792BEBFE192292FEEE82704AAB1CC62 /* LIFEFloatingButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C548C4722ADF9DC98DD348E44BBB497 /* LIFEFloatingButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D95BCB91FB9879D15D53E2E21EFC389A /* LIFEGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = A4CA4C7FFD5F74CC1FAD3D007BFDC645 /* LIFEGeometry.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D965F6F427C525667ED822A83195EAE6 /* NSMutableDictionary+LIFEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4118621A355150D0DE82C77DD9E93B83 /* NSMutableDictionary+LIFEAdditions.m */; };
@@ -234,6 +235,7 @@
 		DAF4A8718646092E19CF6AD9D47D5F2F /* NSLayoutConstraint+LIFEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A97F00EECF565C0D49A1F8AC1456A06 /* NSLayoutConstraint+LIFEAdditions.m */; };
 		E14CDF0D5C3CEE38C01EBA34EF14B6EB /* LIFECompatibilityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E4365CF1DC883611D19B9FF96E359815 /* LIFECompatibilityUtils.m */; };
 		E16AE5D3815B2B301F465A4AAF4EB50C /* LIFEContainerTransitionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = C081EDB3C4B8BD5EE6614BADCFC01699 /* LIFEContainerTransitionContext.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E2C17FEACEF040B62BAC9629C3A9F738 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		E5F5EA83670F9EBDAE361AE18D4C6C89 /* LIFEPoweredByBuglifeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CEC339EC25F030F75029D2121F55C /* LIFEPoweredByBuglifeView.m */; };
 		E8B712F615EC8CB53FD2C5567763CB50 /* LIFEContainerModalPresentAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ADF2ED9BE1C9F4AED15E08F9A462111 /* LIFEContainerModalPresentAnimator.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EAAA7DA5E60A864194195FBF8BE02519 /* LIFETextInputField.h in Headers */ = {isa = PBXBuildFile; fileRef = 4639F3B554AD8F7E98E68A238A7A17E0 /* LIFETextInputField.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -245,7 +247,6 @@
 		F25867CB1787BCEED09B944CE1C53661 /* LIFEReportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF73751A38D9D5D0274BA35F5D6B54E5 /* LIFEReportTableViewController.m */; };
 		F30175514E9D584B3999191EEC037F4F /* LIFEContainerModalPresentAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 292707FBD672116AF9932161C11DD0D0 /* LIFEContainerModalPresentAnimator.m */; };
 		F34A701B11B77061E3BF0DFD1F2CFCDF /* LIFEVideoAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2F16EA19DA3807226D3F1A7D6BA7C /* LIFEVideoAttachment.m */; };
-		F37236A07630539776A24EB78F3DBBE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		F4F921B783F64B9498DB1E768A9E70A7 /* LIFEDeviceBatteryState.h in Headers */ = {isa = PBXBuildFile; fileRef = AF6C5875F3FFAE010C7FB84EFB7661AC /* LIFEDeviceBatteryState.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F5F8B155066E7E47AC1AF84C43E105CF /* LIFEImageEditorSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FEEE2C7F4130E62E2DA06B9BE20D38 /* LIFEImageEditorSegmentedControl.m */; };
 		F6F5DF9C85BC68C75FCA7246C142D420 /* LIFEBlurAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED71BC8BA2361986FF9A20C2D93922A /* LIFEBlurAnnotationView.m */; };
@@ -255,7 +256,6 @@
 		FB3047150F41E28ABAEE107FDCEE7FAD /* LIFEImageFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B2AB498016CDD324EDF5FE5D43D1A27 /* LIFEImageFormat.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FB96A83472B6E42689432BAFF03B648D /* LIFEReportWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD5E27C6C6F7A49DBDFD2EDC9E341CA /* LIFEReportWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FC1441BEF070102F6D888F5AFFCC631C /* LIFEStepsToReproTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CE56FB130F1E048E805493453A3F79B /* LIFEStepsToReproTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FC801A645DD77ECFFEC791882CDC0CEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		FD48776F6D30D2A58C1DA360FCEBC67A /* UIViewController+LIFEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7E428AF8C85585753FFC2FD7D14A68 /* UIViewController+LIFEAdditions.m */; };
 		FDF7156356F59CAD785637B703AA2AC4 /* LIFECategories.h in Headers */ = {isa = PBXBuildFile; fileRef = A2F653FE0DD0AB189CE01C44578835B4 /* LIFECategories.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FDF91C922F8BE48D22A481BEDA22CB42 /* LIFEScreenshotContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 755DD309A8A8B80429E5DD8536421935 /* LIFEScreenshotContext.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -268,20 +268,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 627D186CB33F8AAB453AAEE23E6C9DE7;
 			remoteInfo = Buglife;
-		};
-		EF216DBE675A4BA39A26078535BAD9D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2CF9C4F98F715C0779F3B38D327CFF42;
-			remoteInfo = "Pods-breadwallet";
-		};
-		F0DBAA4D715113E6157B24B774B9C49F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2CF9C4F98F715C0779F3B38D327CFF42;
-			remoteInfo = "Pods-breadwallet";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -382,7 +368,6 @@
 		57F8421D6B3BBB3D3B24E351BF78F4FD /* LIFEPanGestureRecognizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEPanGestureRecognizer.m; path = Source/Views/GestureRecognizers/LIFEPanGestureRecognizer.m; sourceTree = "<group>"; };
 		58A78075CEBB3D1458EB125F22BF0D4F /* LIFEWhatHappenedTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEWhatHappenedTextView.m; path = Source/Views/LIFEWhatHappenedTextView.m; sourceTree = "<group>"; };
 		58D15A83EF835B4664E6DC01B6223057 /* LIFEReachability.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReachability.m; path = Source/Services/LIFEReachability.m; sourceTree = "<group>"; };
-		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		5B055CD263441C0E7DBED0FE737F4CA1 /* LIFEStepsToReproduceCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEStepsToReproduceCell.m; path = Source/Views/LIFEStepsToReproduceCell.m; sourceTree = "<group>"; };
 		5B41E7417374A88EF859E08C2CB99C67 /* LIFEAppearanceImpl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAppearanceImpl.m; path = Source/Views/LIFEAppearanceImpl.m; sourceTree = "<group>"; };
 		5BA31ED2DFF19C6B9AC2526DEA5D5E13 /* LIFENotificationLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFENotificationLogger.m; path = Source/Services/Logging/LIFENotificationLogger.m; sourceTree = "<group>"; };
@@ -398,6 +383,7 @@
 		639B5940B35C9808B0379C84C3396540 /* LIFEImagePickerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEImagePickerController.h; path = Source/Services/LIFEImagePickerController.h; sourceTree = "<group>"; };
 		645363D8326F354F5BC27A66A24AFECC /* LIFEReportAttachmentImpl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReportAttachmentImpl.m; path = Source/Models/LIFEReportAttachmentImpl.m; sourceTree = "<group>"; };
 		646373AD3234C38A0246CBCE2AD0B9C9 /* LIFETextFieldCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFETextFieldCell.h; path = Source/Views/LIFETextFieldCell.h; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		668BE2DB5C421A4D476270163ADC42B0 /* LIFEPanGestureRecognizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEPanGestureRecognizer.h; path = Source/Views/GestureRecognizers/LIFEPanGestureRecognizer.h; sourceTree = "<group>"; };
 		676AA6BB7BB007ABE33C7F78086F5ECC /* LIFEInputField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEInputField.h; path = Source/LIFEInputField.h; sourceTree = "<group>"; };
 		67926A30812419DBD31BE8903601F928 /* LIFELogMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELogMacros.h; path = Source/Services/Logging/LIFELogMacros.h; sourceTree = "<group>"; };
@@ -461,7 +447,6 @@
 		94259CE1BFBDFBFBDB76D023971325C2 /* Pods-breadwalletUITests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletUITests.testflight.xcconfig"; sourceTree = "<group>"; };
 		94D98607427E68ECB42C0CB6348E048F /* UITableView+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+LIFEAdditions.m"; path = "Source/Additions/UITableView+LIFEAdditions.m"; sourceTree = "<group>"; };
 		958BC4B451C3EC2AEEDA26305BAA1572 /* LIFEReportAttachmentImpl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEReportAttachmentImpl.h; path = Source/Models/LIFEReportAttachmentImpl.h; sourceTree = "<group>"; };
-		9731B62A973D45540B163948C5307F2E /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevealServer.framework; path = "RevealServer-14/iOS/RevealServer.framework"; sourceTree = "<group>"; };
 		97E17AC833D8BBDB7A12A9F480452DDF /* LIFEJelloLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEJelloLayer.h; path = "Source/Views/Jello View/LIFEJelloLayer.h"; sourceTree = "<group>"; };
 		9878DBAE818DED9EBEC21F341D7C4B21 /* Pods-breadwalletTests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletTests.testflight.xcconfig"; sourceTree = "<group>"; };
 		98BA234379A7DB044D945B28DB4C2863 /* LIFELocalizedStringProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELocalizedStringProvider.h; path = Source/Views/LIFELocalizedStringProvider.h; sourceTree = "<group>"; };
@@ -572,6 +557,7 @@
 		F11C726EF394F8D2E0533986DAB08BA9 /* LIFELoupeAnnotationView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELoupeAnnotationView.h; path = Source/Views/AnnotationViews/LIFELoupeAnnotationView.h; sourceTree = "<group>"; };
 		F1F1C570EF238EB12A96F76DE8D5A54C /* LIFEWindowBlindsAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEWindowBlindsAnimator.m; path = "Source/Views/Container Window/LIFEWindowBlindsAnimator.m"; sourceTree = "<group>"; };
 		F228D0DED9B82B8BEA6B9C658D2010C9 /* LIFEASLLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEASLLogger.m; path = Source/Services/Logging/LIFEASLLogger.m; sourceTree = "<group>"; };
+		F563010170AE633BC509F70498782CC3 /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevealServer.framework; path = "RevealServer-15/iOS/RevealServer.framework"; sourceTree = "<group>"; };
 		F8D33B56415537CB2F2BD75A75FBBAE6 /* LIFEAppearanceImpl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAppearanceImpl.h; path = Source/Views/LIFEAppearanceImpl.h; sourceTree = "<group>"; };
 		F9F78874DB0FA95BBE9E276D885DE2D6 /* UIDevice+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+LIFEAdditions.m"; path = "Source/Additions/UIDevice+LIFEAdditions.m"; sourceTree = "<group>"; };
 		FB60ACE699ED87A265D6E51C610A1115 /* LIFERecordingShrinker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFERecordingShrinker.h; path = Source/Services/LIFERecordingShrinker.h; sourceTree = "<group>"; };
@@ -581,19 +567,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7A9BCFA6EA0A8F2853658E3C70EE0745 /* Frameworks */ = {
+		0C2DC0CB1DD8AAF8B5A47A5B57F4FD5E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D787A137AEE3244D4303F6BA7F73A345 /* Foundation.framework in Frameworks */,
+				26EF1068CEA977F42E2FD0018CB3DC22 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C1887B8F15B6095EA04A3B8A2EDB80D4 /* Frameworks */ = {
+		BA699B3EAB4F9001A95168B9ED42C969 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A59F834920EB45F6E06F7F6D5F43CB42 /* Foundation.framework in Frameworks */,
+				E2C17FEACEF040B62BAC9629C3A9F738 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,7 +587,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC801A645DD77ECFFEC791882CDC0CEF /* Foundation.framework in Frameworks */,
+				6CC8C82997FC6330E1A5FD703E72D29E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,7 +595,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F37236A07630539776A24EB78F3DBBE7 /* Foundation.framework in Frameworks */,
+				B63FECCA2CFA125FC1BFC07F5DA58D42 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +605,7 @@
 		1218BFEE344E752A3631F834C8274B99 /* Reveal-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				B79C7EF4D04C167BD49F0BFF75D1C5B3 /* Frameworks */,
+				E52CD5ADD7DC23414F588DF9C159F60F /* Frameworks */,
 			);
 			name = "Reveal-SDK";
 			path = "Reveal-SDK";
@@ -665,14 +651,6 @@
 			);
 			name = "Pods-breadwalletTests";
 			path = "Target Support Files/Pods-breadwalletTests";
-			sourceTree = "<group>";
-		};
-		5E0D919E635D23B70123790B8308F8EF /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 		6162D04EBE5F2FB93F0A27C6EAF960FD /* Targets Support Files */ = {
@@ -975,14 +953,6 @@
 			path = "Target Support Files/Pods-breadwalletUITests";
 			sourceTree = "<group>";
 		};
-		B79C7EF4D04C167BD49F0BFF75D1C5B3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9731B62A973D45540B163948C5307F2E /* RevealServer.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		BA3F2E5A43B5EBACE1FC4EB8C3D74EE2 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1000,7 +970,23 @@
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5E0D919E635D23B70123790B8308F8EF /* iOS */,
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		E52CD5ADD7DC23414F588DF9C159F60F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F563010170AE633BC509F70498782CC3 /* RevealServer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1160,43 +1146,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C19DB8AEE0F46E2FF6070A043A68C33E /* Headers */ = {
+		69B60A54B77FF1860838344CACE2438F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9D51B849C231DFBC2D3083FF70DFC79 /* Pods-breadwalletTests-umbrella.h in Headers */,
+				19E20C87446967012B3887003FE984F4 /* Pods-breadwalletUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA8005F18B123CBADA954A566372AA28 /* Headers */ = {
+		C2FE20C3C21AC7FB62535117F3020481 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC20A4BCFB653132AE086270285FC518 /* Pods-breadwalletUITests-umbrella.h in Headers */,
+				CB78C33AB806038953CE2BB2A7B29083 /* Pods-breadwalletTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1F94FC29686409A958ECED61868D3AF7 /* Pods-breadwalletTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 17E9BC3DDA3B034CF55D3A8B128ED836 /* Build configuration list for PBXNativeTarget "Pods-breadwalletTests" */;
-			buildPhases = (
-				245B6C279B8CBC88207879F77C32BBCC /* Sources */,
-				C1887B8F15B6095EA04A3B8A2EDB80D4 /* Frameworks */,
-				C19DB8AEE0F46E2FF6070A043A68C33E /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B84D726595BCE6636538AD666B7B887F /* PBXTargetDependency */,
-			);
-			name = "Pods-breadwalletTests";
-			productName = "Pods-breadwalletTests";
-			productReference = 57287B9B839A2624D301200400C726B2 /* Pods_breadwalletTests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		2CF9C4F98F715C0779F3B38D327CFF42 /* Pods-breadwallet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38916D0F34462B8F9E5B671992DD47C2 /* Build configuration list for PBXNativeTarget "Pods-breadwallet" */;
@@ -1232,22 +1200,38 @@
 			productReference = 36B5367DB910C6421F7FA91174AB15D3 /* Buglife.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B83BE9644DCEF50FFCC671DD1D82D4B8 /* Pods-breadwalletUITests */ = {
+		8AC63DFBB9FF7914D6CC998EE4FC55DC /* Pods-breadwalletUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE8ADC530A8681307AE6C5C0ADF3B855 /* Build configuration list for PBXNativeTarget "Pods-breadwalletUITests" */;
+			buildConfigurationList = 5CECBA024BCAAD79D64E8633BE8A5389 /* Build configuration list for PBXNativeTarget "Pods-breadwalletUITests" */;
 			buildPhases = (
-				2F86A9DCEC5E23958DC869592BFE95BD /* Sources */,
-				7A9BCFA6EA0A8F2853658E3C70EE0745 /* Frameworks */,
-				EA8005F18B123CBADA954A566372AA28 /* Headers */,
+				2AA60AE92FD7AC8B1ED366F237838379 /* Sources */,
+				BA699B3EAB4F9001A95168B9ED42C969 /* Frameworks */,
+				69B60A54B77FF1860838344CACE2438F /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				128AABCC6F9BD2FF647730551982106A /* PBXTargetDependency */,
 			);
 			name = "Pods-breadwalletUITests";
 			productName = "Pods-breadwalletUITests";
 			productReference = 184075166571D1DADBC9DB592477FF7B /* Pods_breadwalletUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D99707B01F6AFCDA6C085910CFA4E22D /* Pods-breadwalletTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BF8B6D186A3DD848FEB6895A28A9173 /* Build configuration list for PBXNativeTarget "Pods-breadwalletTests" */;
+			buildPhases = (
+				22F0EF56C4A72051473EFEF0848190B1 /* Sources */,
+				0C2DC0CB1DD8AAF8B5A47A5B57F4FD5E /* Frameworks */,
+				C2FE20C3C21AC7FB62535117F3020481 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-breadwalletTests";
+			productName = "Pods-breadwalletTests";
+			productReference = 57287B9B839A2624D301200400C726B2 /* Pods_breadwalletTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1273,18 +1257,26 @@
 			targets = (
 				627D186CB33F8AAB453AAEE23E6C9DE7 /* Buglife */,
 				2CF9C4F98F715C0779F3B38D327CFF42 /* Pods-breadwallet */,
-				1F94FC29686409A958ECED61868D3AF7 /* Pods-breadwalletTests */,
-				B83BE9644DCEF50FFCC671DD1D82D4B8 /* Pods-breadwalletUITests */,
+				D99707B01F6AFCDA6C085910CFA4E22D /* Pods-breadwalletTests */,
+				8AC63DFBB9FF7914D6CC998EE4FC55DC /* Pods-breadwalletUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		245B6C279B8CBC88207879F77C32BBCC /* Sources */ = {
+		22F0EF56C4A72051473EFEF0848190B1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B40C0BDE20FB91DD47D79A88E30276AE /* Pods-breadwalletTests-dummy.m in Sources */,
+				5774039A836D9F027D122292A247A331 /* Pods-breadwalletTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2AA60AE92FD7AC8B1ED366F237838379 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95A87246721992AE1548AF34B27167A7 /* Pods-breadwalletUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1293,14 +1285,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AFB4AECC6701076A44C837FF3A0735F /* Pods-breadwallet-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2F86A9DCEC5E23958DC869592BFE95BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				110C20E1F736AA09A41AE5A4A6F50F1F /* Pods-breadwalletUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1430,18 +1414,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		128AABCC6F9BD2FF647730551982106A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-breadwallet";
-			target = 2CF9C4F98F715C0779F3B38D327CFF42 /* Pods-breadwallet */;
-			targetProxy = EF216DBE675A4BA39A26078535BAD9D3 /* PBXContainerItemProxy */;
-		};
-		B84D726595BCE6636538AD666B7B887F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-breadwallet";
-			target = 2CF9C4F98F715C0779F3B38D327CFF42 /* Pods-breadwallet */;
-			targetProxy = F0DBAA4D715113E6157B24B774B9C49F /* PBXContainerItemProxy */;
-		};
 		EF338F930331B0F5E8E4C77E163227C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Buglife;
@@ -1451,493 +1423,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		04471668BA07A43CC209D3886340F8C2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Buglife/Buglife-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Buglife/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Buglife/Buglife.modulemap";
-				PRODUCT_MODULE_NAME = Buglife;
-				PRODUCT_NAME = Buglife;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		115218D9D57B7AFE9BB1C9CA1F5B8BD4 /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7DA08D212862282C018D00D3A865316F /* Pods-breadwallet.screenshots.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Screenshots;
-		};
-		1B27EFD978842534CC5C3DC2231CEAF6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3441D08A94C632C2F7443D38038778C /* Pods-breadwalletUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		210B2B7B3967261A4DE150D6122384B0 /* Testflight */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Buglife/Buglife-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Buglife/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Buglife/Buglife.modulemap";
-				PRODUCT_MODULE_NAME = Buglife;
-				PRODUCT_NAME = Buglife;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Testflight;
-		};
-		217FB6F86346C285B942A2784F6EC204 /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FAB45ABB98E92A09517372B36830332 /* Pods-breadwalletTests.screenshots.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Screenshots;
-		};
-		23A9F13DC959820173CB7661264BE073 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AF2FE198B546B5C2F9149C8CF5D955B /* Pods-breadwalletTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		25F762E8A5E2C22F2A345901D3465365 /* Testflight */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_TESTFLIGHT=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Testflight;
-		};
-		2C5679A288403A279421C94B634AB6F1 /* Testnet */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 184CEBB8DB37E5DEF307C04BBBB1CECD /* Pods-breadwalletTests.testnet.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Testnet;
-		};
-		2E590EA58200A2BA140BE74D546FF1F4 /* Testnet */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_TESTNET=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Testnet;
-		};
-		30CF54FBAB3EA9BFEA7DE6E1290D8066 /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8725C9C4F0A505533578C41FC94EED6 /* Pods-breadwalletUITests.screenshots.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Screenshots;
-		};
-		438353F3561A3A420ECE4350CE551018 /* Testnet */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Buglife/Buglife-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Buglife/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Buglife/Buglife.modulemap";
-				PRODUCT_MODULE_NAME = Buglife;
-				PRODUCT_NAME = Buglife;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Testnet;
-		};
-		4DA34612BAA6BF76ABBBBBEE9C42D5AE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 907C4E3F3220721B6AC5031E828725D8 /* Pods-breadwalletUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		68D2261971F7FA699EF0772373311CCC /* Testflight */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C74A74EDC2F832CAE782026C71929A0 /* Pods-breadwallet.testflight.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Testflight;
-		};
-		7A13380657132A6FAD5CDA3DC3502ACD /* Testflight */ = {
+		132985A5E93E3447DC692A3E6BE87996 /* Testflight */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 94259CE1BFBDFBFBDB76D023971325C2 /* Pods-breadwalletUITests.testflight.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1957,7 +1446,7 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Pods_breadwalletUITests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1967,11 +1456,10 @@
 			};
 			name = Testflight;
 		};
-		80604EADAA3D0BE425684752BEBA64FF /* Testnet */ = {
+		4032D4E70DD7D20749EDE6E102AE0B9C /* Testnet */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AFDFA028867786A234619B45C8505A77 /* Pods-breadwallet.testnet.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1991,7 +1479,7 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Pods_breadwallet;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2001,7 +1489,106 @@
 			};
 			name = Testnet;
 		};
-		8B33C5230DE4A9DFA6D8F46505DD7AF7 /* Debug */ = {
+		433AF72807A7AF1373B39DD5D0DC329C /* Testnet */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B832FE5829653A3BDA6B1D7936A8F82 /* Pods-breadwalletUITests.testnet.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_breadwalletUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Testnet;
+		};
+		43AD1F88E33E6CFC8237745C46D2C585 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AF2FE198B546B5C2F9149C8CF5D955B /* Pods-breadwalletTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_breadwalletTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		483942437DC9747F3AE89FD457C6B8B8 /* Testnet */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 184CEBB8DB37E5DEF307C04BBBB1CECD /* Pods-breadwalletTests.testnet.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_breadwalletTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Testnet;
+		};
+		5011B865762FC0C0A28ECEC4CB63DC68 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2033,7 +1620,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2058,17 +1644,80 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		9E0B5E78CCB229637FCF14CE1DE0C345 /* Testflight */ = {
+		50A454FC2F17EC49D84213DCE54F4836 /* Testnet */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9878DBAE818DED9EBEC21F341D7C4B21 /* Pods-breadwalletTests.testflight.xcconfig */;
+			baseConfigurationReference = 0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Buglife/Buglife-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Buglife/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Buglife/Buglife.modulemap";
+				PRODUCT_NAME = Buglife;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Testnet;
+		};
+		5D6297AD7DFDB69FCFE8422FCDD3B4AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 907C4E3F3220721B6AC5031E828725D8 /* Pods-breadwalletUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_breadwalletUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		71652BC93CD560757A90CABE04C7F8A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E95909EE4C1DC52DE094F75F87FB0920 /* Pods-breadwalletTests.debug.xcconfig */;
+			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2088,21 +1737,19 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Pods_breadwalletTests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Testflight;
+			name = Debug;
 		};
-		A909C76CCEF1E506C1497043D69A36A3 /* Debug */ = {
+		7CE9C36D48730981F9E158B2AB98EEED /* Testflight */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16DC45E32A585097AACBE84676BB1E17 /* Pods-breadwallet.debug.xcconfig */;
+			baseConfigurationReference = 9878DBAE818DED9EBEC21F341D7C4B21 /* Pods-breadwalletTests.testflight.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2112,26 +1759,58 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Pods_breadwalletTests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Testflight;
 		};
-		B42B54097A876E8A982CBF5DAA91B1AB /* Release */ = {
+		807F3C5819BFF366F7E972650D9CB0A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Buglife/Buglife-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Buglife/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Buglife/Buglife.modulemap";
+				PRODUCT_NAME = Buglife;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		827269710C98D60C14D46BC6AF9BF728 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2163,7 +1842,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2184,110 +1862,13 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		B53B210335FA73C7BA747B4AA5557E88 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Buglife/Buglife-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Buglife/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Buglife/Buglife.modulemap";
-				PRODUCT_MODULE_NAME = Buglife;
-				PRODUCT_NAME = Buglife;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		BF2C5257E627FAD1BF939EC7AAF6C730 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA436C528A5950989FDBD84039E17F1B /* Pods-breadwallet.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		CBE46D179E252D1D88A7FBFADE239789 /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Buglife/Buglife-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Buglife/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Buglife/Buglife.modulemap";
-				PRODUCT_MODULE_NAME = Buglife;
-				PRODUCT_NAME = Buglife;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Screenshots;
-		};
-		D3A54BDEDE980D1B8F8756E9A9AFD33F /* Screenshots */ = {
+		88BEEBE3627B7AF28E19FBA9964FFA1F /* Screenshots */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2319,7 +1900,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2340,16 +1920,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Screenshots;
 		};
-		F2F400C99AB6B6340A47962DE403D474 /* Testnet */ = {
+		A7B35A32C004C8237F4BD9E79B20269D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B832FE5829653A3BDA6B1D7936A8F82 /* Pods-breadwalletUITests.testnet.xcconfig */;
+			baseConfigurationReference = BA436C528A5950989FDBD84039E17F1B /* Pods-breadwallet.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2359,17 +1939,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Pods_breadwallet;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2377,13 +1957,12 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Testnet;
+			name = Release;
 		};
-		F85CFE1D471785272D6ACC73412A5932 /* Debug */ = {
+		AA81D2A07B353A8B693210B3A08723FB /* Screenshots */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E95909EE4C1DC52DE094F75F87FB0920 /* Pods-breadwalletTests.debug.xcconfig */;
+			baseConfigurationReference = 9FAB45ABB98E92A09517372B36830332 /* Pods-breadwalletTests.screenshots.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2403,7 +1982,101 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Pods_breadwalletTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Screenshots;
+		};
+		B0B0240BEAEA53419BC8D5C28C68D951 /* Screenshots */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Buglife/Buglife-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Buglife/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Buglife/Buglife.modulemap";
+				PRODUCT_NAME = Buglife;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Screenshots;
+		};
+		B5F40062605AEBEBC55753DB505CE516 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Buglife/Buglife-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Buglife/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Buglife/Buglife.modulemap";
+				PRODUCT_NAME = Buglife;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B8133299AEAA079E81931AC1E090A205 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16DC45E32A585097AACBE84676BB1E17 /* Pods-breadwallet.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_breadwallet;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2412,17 +2085,296 @@
 			};
 			name = Debug;
 		};
+		BC868F35EBFD44CF3A97BF464EF4DC2C /* Screenshots */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DA08D212862282C018D00D3A865316F /* Pods-breadwallet.screenshots.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_breadwallet;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Screenshots;
+		};
+		C839DFCBAFC81699082D58BF7A48B468 /* Testnet */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_TESTNET=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Testnet;
+		};
+		CC6D9D15F5912282864D28973F751E6A /* Testflight */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C74A74EDC2F832CAE782026C71929A0 /* Pods-breadwallet.testflight.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_breadwallet;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Testflight;
+		};
+		D3FCC7B4DF267B974DD9B1016ECDBF25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3441D08A94C632C2F7443D38038778C /* Pods-breadwalletUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_breadwalletUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E59C84ED5BECAECF083A53C478E33C9E /* Testflight */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_TESTFLIGHT=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Testflight;
+		};
+		ECFB04688B5C37A132F445666800C7CD /* Screenshots */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8725C9C4F0A505533578C41FC94EED6 /* Pods-breadwalletUITests.screenshots.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_breadwalletUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Screenshots;
+		};
+		F3317785DC739474ED9622DD11929FFE /* Testflight */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Buglife/Buglife-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Buglife/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Buglife/Buglife.modulemap";
+				PRODUCT_NAME = Buglife;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Testflight;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		17E9BC3DDA3B034CF55D3A8B128ED836 /* Build configuration list for PBXNativeTarget "Pods-breadwalletTests" */ = {
+		0BF8B6D186A3DD848FEB6895A28A9173 /* Build configuration list for PBXNativeTarget "Pods-breadwalletTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F85CFE1D471785272D6ACC73412A5932 /* Debug */,
-				23A9F13DC959820173CB7661264BE073 /* Release */,
-				217FB6F86346C285B942A2784F6EC204 /* Screenshots */,
-				9E0B5E78CCB229637FCF14CE1DE0C345 /* Testflight */,
-				2C5679A288403A279421C94B634AB6F1 /* Testnet */,
+				71652BC93CD560757A90CABE04C7F8A8 /* Debug */,
+				43AD1F88E33E6CFC8237745C46D2C585 /* Release */,
+				AA81D2A07B353A8B693210B3A08723FB /* Screenshots */,
+				7CE9C36D48730981F9E158B2AB98EEED /* Testflight */,
+				483942437DC9747F3AE89FD457C6B8B8 /* Testnet */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2430,11 +2382,11 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8B33C5230DE4A9DFA6D8F46505DD7AF7 /* Debug */,
-				B42B54097A876E8A982CBF5DAA91B1AB /* Release */,
-				D3A54BDEDE980D1B8F8756E9A9AFD33F /* Screenshots */,
-				25F762E8A5E2C22F2A345901D3465365 /* Testflight */,
-				2E590EA58200A2BA140BE74D546FF1F4 /* Testnet */,
+				5011B865762FC0C0A28ECEC4CB63DC68 /* Debug */,
+				827269710C98D60C14D46BC6AF9BF728 /* Release */,
+				88BEEBE3627B7AF28E19FBA9964FFA1F /* Screenshots */,
+				E59C84ED5BECAECF083A53C478E33C9E /* Testflight */,
+				C839DFCBAFC81699082D58BF7A48B468 /* Testnet */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2442,11 +2394,23 @@
 		38916D0F34462B8F9E5B671992DD47C2 /* Build configuration list for PBXNativeTarget "Pods-breadwallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A909C76CCEF1E506C1497043D69A36A3 /* Debug */,
-				BF2C5257E627FAD1BF939EC7AAF6C730 /* Release */,
-				115218D9D57B7AFE9BB1C9CA1F5B8BD4 /* Screenshots */,
-				68D2261971F7FA699EF0772373311CCC /* Testflight */,
-				80604EADAA3D0BE425684752BEBA64FF /* Testnet */,
+				B8133299AEAA079E81931AC1E090A205 /* Debug */,
+				A7B35A32C004C8237F4BD9E79B20269D /* Release */,
+				BC868F35EBFD44CF3A97BF464EF4DC2C /* Screenshots */,
+				CC6D9D15F5912282864D28973F751E6A /* Testflight */,
+				4032D4E70DD7D20749EDE6E102AE0B9C /* Testnet */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5CECBA024BCAAD79D64E8633BE8A5389 /* Build configuration list for PBXNativeTarget "Pods-breadwalletUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D6297AD7DFDB69FCFE8422FCDD3B4AF /* Debug */,
+				D3FCC7B4DF267B974DD9B1016ECDBF25 /* Release */,
+				ECFB04688B5C37A132F445666800C7CD /* Screenshots */,
+				132985A5E93E3447DC692A3E6BE87996 /* Testflight */,
+				433AF72807A7AF1373B39DD5D0DC329C /* Testnet */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2454,23 +2418,11 @@
 		6DE2EC4A001AD84D323B3CE7A99176B3 /* Build configuration list for PBXNativeTarget "Buglife" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				04471668BA07A43CC209D3886340F8C2 /* Debug */,
-				B53B210335FA73C7BA747B4AA5557E88 /* Release */,
-				CBE46D179E252D1D88A7FBFADE239789 /* Screenshots */,
-				210B2B7B3967261A4DE150D6122384B0 /* Testflight */,
-				438353F3561A3A420ECE4350CE551018 /* Testnet */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CE8ADC530A8681307AE6C5C0ADF3B855 /* Build configuration list for PBXNativeTarget "Pods-breadwalletUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4DA34612BAA6BF76ABBBBBEE9C42D5AE /* Debug */,
-				1B27EFD978842534CC5C3DC2231CEAF6 /* Release */,
-				30CF54FBAB3EA9BFEA7DE6E1290D8066 /* Screenshots */,
-				7A13380657132A6FAD5CDA3DC3502ACD /* Testflight */,
-				F2F400C99AB6B6340A47962DE403D474 /* Testnet */,
+				B5F40062605AEBEBC55753DB505CE516 /* Debug */,
+				807F3C5819BFF366F7E972650D9CB0A6 /* Release */,
+				B0B0240BEAEA53419BC8D5C28C68D951 /* Screenshots */,
+				F3317785DC739474ED9622DD11929FFE /* Testflight */,
+				50A454FC2F17EC49D84213DCE54F4836 /* Testnet */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

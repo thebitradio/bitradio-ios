@@ -1,20 +1,15 @@
 PODS:
   - Buglife (2.8.0)
-  - Reveal-SDK (14)
+  - Reveal-SDK (15)
 
 DEPENDENCIES:
   - Buglife
   - Reveal-SDK
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Buglife
-    - Reveal-SDK
-
 SPEC CHECKSUMS:
   Buglife: fed8594db4b440bc85d44629b90f2575713e8825
-  Reveal-SDK: 55b5c5545233b680c2f8da734f202acc15d422b7
+  Reveal-SDK: 25e21896c478b60b948f876043f91570d368d23d
 
 PODFILE CHECKSUM: 7a1bb5411c8928f66145510302178fb3b3e39d29
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.4.0
