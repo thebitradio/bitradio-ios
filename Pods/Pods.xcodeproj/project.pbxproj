@@ -35,7 +35,6 @@
 		1713C648A4692C7C087B12D6B0C2BBE1 /* LIFEDependencyLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8754D510B7C3818DBD2358C302454DCD /* LIFEDependencyLoader.m */; };
 		173134DE301AE2FE341F52582AB926E3 /* LIFECompatibilityUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E767992BCFF81E7534933F820C136CF /* LIFECompatibilityUtils.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		18E51FB90AE57634A61E29C96691B2D4 /* NSError+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A728E280021C630485A82D1F907BAEF9 /* NSError+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		19E20C87446967012B3887003FE984F4 /* Pods-breadwalletUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B38842AAB4D46F2B79F0B5E33A2BE87 /* Pods-breadwalletUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B9DCA629C9A688A6BB3AB4E8D86A5A4 /* LIFEStepsToReproduceCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A88DA2D43FB9AF8CC56A4DE5463C4D5A /* LIFEStepsToReproduceCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1C30889C9C393D0D09A3F2FDC36A72AF /* LIFEAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = C76BB5E9C98DE16669558F7802EFB62F /* LIFEAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1DA344F9D4F97A7473BC90A7C6B1DB72 /* LIFEReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 3035D7E13C0A8A3C37411889140B2DEF /* LIFEReport.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -45,14 +44,13 @@
 		23BD2C9762633CF4E9F43EE189753E1E /* LIFEBugButtonWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBD5B8C6758D4A73DF01CF51020B5EB /* LIFEBugButtonWindow.m */; };
 		2408604B977CE167478E45439F0B7754 /* LIFEComponentPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5303716E30D9F40B56895D792C2EC3B2 /* LIFEComponentPickerViewController.m */; };
 		252023BBF50BFD9D48057190875F22D4 /* LIFEAttachmentView.h in Headers */ = {isa = PBXBuildFile; fileRef = D6D00799CBE2993E15C4748D75C7F3D9 /* LIFEAttachmentView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		25BA8F8416E9BF09EE4A95259A3DF0BF /* Pods-digibyte-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A5376754F3C0904920DDCA98B4A6E482 /* Pods-digibyte-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		260B419113FB57E11217B1FDE0F5AD57 /* LIFETTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C9D126ED17C948437C8207CFBE5EFF5 /* LIFETTYLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		26610D1CC02A1FCA8D8B7E394E3229FC /* LIFETextInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B051B6CB1209F6CA31FCBD37930402 /* LIFETextInputField.m */; };
-		26EF1068CEA977F42E2FD0018CB3DC22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		28F026217BFBD6340C7DE6ABDEB3F43D /* UITextView+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 517F267010E309071A0151992FD07EFE /* UITextView+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		297F334D3AFC0F2F5EF0A3F24A706B29 /* LIFEImageFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF62CFA0DCDB4B8D7D9F9D2D3AA490A /* LIFEImageFormat.m */; };
 		2A4598C27F04DF66E0B6B30539EAA76C /* LIFEReportAttachmentImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 645363D8326F354F5BC27A66A24AFECC /* LIFEReportAttachmentImpl.m */; };
 		2A9D0955325947A7C21066244D15F829 /* LIFEASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A0F8E60A7E5D403DD8107353C2A7D07 /* LIFEASLLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2AFB4AECC6701076A44C837FF3A0735F /* Pods-breadwallet-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E920DDC1CF0F136C0E5EB6AC44ADD1 /* Pods-breadwallet-dummy.m */; };
 		2BA6FCBB78159F4BC2262FBFB8B082F6 /* LIFEContainerTransitionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BC8D179AB5F6D1196D76566BC61CA5 /* LIFEContainerTransitionContext.m */; };
 		2BC0C7B03A369407CB8F8D128E64F132 /* LIFEJelloView.h in Headers */ = {isa = PBXBuildFile; fileRef = B2B261BCD12A8F5BDF24499A258EDFC1 /* LIFEJelloView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2D2DF0A998814DBE1E4904D94293CEE9 /* LIFEPoweredByBuglifeView.h in Headers */ = {isa = PBXBuildFile; fileRef = D918FE073AD5607F7711FC4F06BEEF98 /* LIFEPoweredByBuglifeView.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -77,11 +75,13 @@
 		3E7F1D50AB5BDF8E6A3CABE7CCDAFEBE /* LIFEScreenshotContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBEFD650F77FBB2C6A002368BE33607 /* LIFEScreenshotContext.m */; };
 		3F5CBDFBFDB4A2220CC2EA30A4FFA00B /* LIFEBugButtonWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 073B3809B8EB2F9CE3A6C1F0BD369088 /* LIFEBugButtonWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4010A3EB477EAF538BAA23FDC3D9F861 /* LIFEUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA8EA83CE76C3AD75E28939461969DC /* LIFEUserDefaults.m */; };
+		424959BDFAAD43869C316E1DC7545FC9 /* Pods-digibyteUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F606E71D000799424D82864237C929 /* Pods-digibyteUITests-dummy.m */; };
 		42D9563CFDD234767B496F49778A65DA /* UIWindow+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BD8FFC6F7F9F6F48B7516CA8508A1670 /* UIWindow+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		43D15FE27E32E25DA79B283B8474154C /* LIFEReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441E91EF921BD5538C6A311BC5DFEBC /* LIFEReportView.m */; };
 		445FD192CFA4F87113469C0446D7BCB9 /* LIFEStepsToReproTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476EABF9A96751870E3E36A49D916901 /* LIFEStepsToReproTableViewController.m */; };
 		467D246EA05DD74218E8695D5DD87DDA /* LIFETextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBB37324D5526D2D5D61BDB6548D451 /* LIFETextFieldCell.m */; };
 		475EAD31B6ABC5F6DD4430C8E45525C3 /* LIFENetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AFC5DF20E0E251FEEA91BF95E9472 /* LIFENetworkManager.m */; };
+		47E23AA055A22DBEEA5663E60997C06C /* Pods-digibyteTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3545FA5CBF480A7209CF79690D82E6A9 /* Pods-digibyteTests-dummy.m */; };
 		485FF49B45623F5879D6C7DCDE6F272C /* LIFEAnnotatedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 467E684BB869CA55D13337934E7006AD /* LIFEAnnotatedImage.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4A83ED2A26A6CD5C3626D929064BEE4F /* Buglife+UIStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 112094728727A62ADE56664BE4EF6D63 /* Buglife+UIStuff.m */; };
 		4AF40EC62F59608851CE383016C4D02A /* UIView+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C687E0EAF3B296A2BB5DDAB8631F63A /* UIView+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -94,7 +94,7 @@
 		545CAAE707D93341BA53DD27694FFD43 /* LIFERecordingShrinker.m in Sources */ = {isa = PBXBuildFile; fileRef = 710C890ECCF504791576BC80287E97C9 /* LIFERecordingShrinker.m */; };
 		5586C30FFBC999AE6DDB2B94E195B607 /* LIFEArrowAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8573AA8D6FBB2B35AD71E3E00C3D6C /* LIFEArrowAnnotationView.m */; };
 		566B27AB672FDFAD5705141D29C4F03E /* LIFEInputField.h in Headers */ = {isa = PBXBuildFile; fileRef = 676AA6BB7BB007ABE33C7F78086F5ECC /* LIFEInputField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5774039A836D9F027D122292A247A331 /* Pods-breadwalletTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0A41D01BAC00F385790AEA2816975B /* Pods-breadwalletTests-dummy.m */; };
+		57FADF6E08763C63F1BA9FB235867283 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		596F91F033EFBDC7FFDB64516EE1ABAC /* LIFEDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = A0EE314A9387457F7BB9DB893D17FE2E /* LIFEDeviceInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		59A411FFAFE726943F2EB0C8AA758F20 /* LIFEComponentPickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C103784BF4FFA9353C2AD3C772CA59 /* LIFEComponentPickerCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5AA3D1A5430551097D324724926518A4 /* LIFEOverlayWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 568C8883F140D74366DBA31193E17E51 /* LIFEOverlayWindow.m */; };
@@ -119,7 +119,7 @@
 		6B037AA95AC5EB692ADE54B47DF4626A /* LIFEScreenshotAnnotatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6F7CA030C538B3B17A089BA4060038 /* LIFEScreenshotAnnotatorViewController.m */; };
 		6B36E3F7EFEB0A1D266B56541C292576 /* UIView+LIFEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B03E45183D314D5ED5DA41DBA9A39B /* UIView+LIFEAdditions.m */; };
 		6C56B6D35920408E49F47DFEE6F774F5 /* LIFEReproStep.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E4FBBBF543FE0317E8317FB390DD88 /* LIFEReproStep.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6CC8C82997FC6330E1A5FD703E72D29E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		6C7F4E7057B49E5E96FEECE39565F1FA /* Pods-digibyteTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F49A69CEE4BB9EC3B8C23447C47CB228 /* Pods-digibyteTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6DA1835677B286B43FBC9922B9DCEC68 /* LIFETitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2645852C0B0B3813B564C41C3FD9F010 /* LIFETitleCell.m */; };
 		6DC6B2BA29F9E9F93397D306094D35D9 /* LIFEInputField+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CE429F84AE57ADE2DDFB53A0A2C13E9 /* LIFEInputField+Protected.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6DF8E4A57003E1F868C53257E07440D4 /* LIFENetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D349CB334C9F6A029D8915DCCE4D2D3D /* LIFENetworkManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -161,7 +161,6 @@
 		94B52CF8A1DDA096DDE83D40A1A89505 /* LIFEJelloView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1AB0B54A99FB50310EBB9993844ED5 /* LIFEJelloView.m */; };
 		94B5C14B4D2E1EFEBCB3752BAAB0FDA3 /* LIFEAlertAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D47BE98AD0470906A4D50637E4E01CC /* LIFEAlertAnimator.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		95A3F54CF45DA00FA48764774856428C /* LIFEFloatingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 763825243F2A04C277F4169D5E33478E /* LIFEFloatingButton.m */; };
-		95A87246721992AE1548AF34B27167A7 /* Pods-breadwalletUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B105E7CEF4A19E0C228E93C2CEC15A /* Pods-breadwalletUITests-dummy.m */; };
 		97B2D241AEAA5E21A00BC184A5824968 /* LIFEPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F8421D6B3BBB3D3B24E351BF78F4FD /* LIFEPanGestureRecognizer.m */; };
 		99FF551D174DE08294100DC2499B7A32 /* LIFEToolButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E4578B61C945AF0ECF75986A97A2D22 /* LIFEToolButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9A9FA720AB0C693F393A4BBEED92D619 /* LIFEAppInfoProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C4AEF8B9DDC8173E3F4EE960384952 /* LIFEAppInfoProvider.m */; };
@@ -196,6 +195,7 @@
 		B578A9CACBC5B9A800C77B0724C7502A /* NSArray+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = B795B47884439F2AE2F3342B0FE450D0 /* NSArray+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B63FECCA2CFA125FC1BFC07F5DA58D42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		B792408BB55CB60D1DBC9A1365401A02 /* NSMutableDictionary+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 51AD2CDFA738CDB8676F71F36431A475 /* NSMutableDictionary+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BA25EEDD0099D96C9A871C79547F842B /* Pods-digibyteUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D877CE08A0F270A4C0E01F2641CB03C /* Pods-digibyteUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA7FCF8868FF1692F0D9B3DFB1820229 /* NSString+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C12C14D481C43873745ED042620E7A /* NSString+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BB136E571FD2C33E271BF780FED20012 /* LIFEAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EAFE3516B90B88CC6EB1B5A7ECDB3B /* LIFEAlertAction.m */; };
 		BC2C29B2B85CB23E8D5D873E0A02C426 /* LIFEDependencyLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = C649F7102A8868B7D0217FC2D7A7CAEB /* LIFEDependencyLoader.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -208,12 +208,10 @@
 		C5B7B448B5780D91A169CFAC1F6AC89F /* NSArray+LIFEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A7317E8D139813A45492048C7F70CE79 /* NSArray+LIFEAdditions.m */; };
 		C609C28DEEFED6F750590C241CF366FE /* LIFEFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 618451C4A3BFA54B909B5D10820E8C32 /* LIFEFileLogger.m */; };
 		C7008E31FC5F2AC8EFB12DD8A8C140A3 /* LIFELog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF5764E7E9BA00ACFEB37D63077B49 /* LIFELog.m */; };
-		C72FC3019AF2FFF5E53F2E1D14935CD7 /* Pods-breadwallet-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C720E72F06492182DFD34BFA77BFFED7 /* Pods-breadwallet-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C952C03EBA409258734699E7CD7CE556 /* LIFEWindowBlindsAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F1C570EF238EB12A96F76DE8D5A54C /* LIFEWindowBlindsAnimator.m */; };
 		C974972678AB6F63D9BE109E0E98F4B9 /* UITableView+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49064A01B994F9AD28726D279498EF76 /* UITableView+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C9ED18F030E73965E08B6F14573FE1ED /* LIFEImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37301F77682F9C5E2FAA20F3E2DEA30 /* LIFEImagePickerController.m */; };
 		CB1BDE34A427ACD8E97A49CDBFD2506D /* LIFEAnnotatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 890775E1283E41DC4E0C374BE8965390 /* LIFEAnnotatedImageView.m */; };
-		CB78C33AB806038953CE2BB2A7B29083 /* Pods-breadwalletTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E3203BC4DC241A7B86C212BD37249252 /* Pods-breadwalletTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB97F69F5EE3569058F48C1FCE6A6F05 /* LIFEAppInfoProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AB132900E4515D6B63EE3E88150F6D3 /* LIFEAppInfoProvider.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CBDD7226DBBCF7D72DE2CD5EED23414B /* LIFEToolButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B07134B94D0F0CD66B5B9E2B527CC21B /* LIFEToolButton.m */; };
 		CDF42749F2D49C9F62963025E757222E /* LIFEPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA15055526B3EDBB8FA3FDF6A4BA8F0A /* LIFEPickerViewController.m */; };
@@ -228,16 +226,18 @@
 		D6AFB02E883F8CB18FB0B83B48F74C17 /* LIFEContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C075ACA69DC28EF56AAD06A6DB1A19 /* LIFEContainerViewController.m */; };
 		D717246DC464A0F71AB63C036C12897E /* LIFENotificationLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 87F2E84BB49B42A48EA326F410709BA0 /* LIFENotificationLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D792BEBFE192292FEEE82704AAB1CC62 /* LIFEFloatingButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C548C4722ADF9DC98DD348E44BBB497 /* LIFEFloatingButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D8C2C214378CCF0007C994E6855B5A59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		D95BCB91FB9879D15D53E2E21EFC389A /* LIFEGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = A4CA4C7FFD5F74CC1FAD3D007BFDC645 /* LIFEGeometry.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D965F6F427C525667ED822A83195EAE6 /* NSMutableDictionary+LIFEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4118621A355150D0DE82C77DD9E93B83 /* NSMutableDictionary+LIFEAdditions.m */; };
 		D98AD39253A0C971B9CBF6B57CF0556B /* LIFEAlertActionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCDCEDA1E66BE040B29FFDA3C9A97B1 /* LIFEAlertActionView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DAD4BB7F73DFF05DBEAE145E9AA85536 /* LIFELogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D6C0FFA02543CEB4363A93527F8187C4 /* LIFELogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DAF4A8718646092E19CF6AD9D47D5F2F /* NSLayoutConstraint+LIFEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A97F00EECF565C0D49A1F8AC1456A06 /* NSLayoutConstraint+LIFEAdditions.m */; };
+		E1212E01269DAF75A25753B9226F0B7A /* Pods-digibyte-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF062AD6529AA4910C6CE347055B15A /* Pods-digibyte-dummy.m */; };
 		E14CDF0D5C3CEE38C01EBA34EF14B6EB /* LIFECompatibilityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E4365CF1DC883611D19B9FF96E359815 /* LIFECompatibilityUtils.m */; };
 		E16AE5D3815B2B301F465A4AAF4EB50C /* LIFEContainerTransitionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = C081EDB3C4B8BD5EE6614BADCFC01699 /* LIFEContainerTransitionContext.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E2C17FEACEF040B62BAC9629C3A9F738 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		E5F5EA83670F9EBDAE361AE18D4C6C89 /* LIFEPoweredByBuglifeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CEC339EC25F030F75029D2121F55C /* LIFEPoweredByBuglifeView.m */; };
 		E8B712F615EC8CB53FD2C5567763CB50 /* LIFEContainerModalPresentAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ADF2ED9BE1C9F4AED15E08F9A462111 /* LIFEContainerModalPresentAnimator.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E9D4A09213E776D27F45D38CBAE4090C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		EAAA7DA5E60A864194195FBF8BE02519 /* LIFETextInputField.h in Headers */ = {isa = PBXBuildFile; fileRef = 4639F3B554AD8F7E98E68A238A7A17E0 /* LIFETextInputField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE49D5014BD41F94AAF336E7FE83A69F /* LIFEAnnotatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEF1C3EE917826FE862BB25A57F70 /* LIFEAnnotatedImage.m */; };
 		EF5CF6CF3114614F82C05FF87A23CA13 /* LIFEReportBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = B01386B45B6642C90EEE8EFC4092C1E4 /* LIFEReportBuilder.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -262,7 +262,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AD0701A24AB6323C2E51678134ED36E4 /* PBXContainerItemProxy */ = {
+		29C8E1247FE6F96FAF193D00D69CEFEB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -275,18 +275,19 @@
 		003844047B3B17F06F7564EF53830727 /* LIFELocalizedStringProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFELocalizedStringProvider.m; path = Source/Views/LIFELocalizedStringProvider.m; sourceTree = "<group>"; };
 		021E65E80ED2CD0340970CDB69B1864C /* UIDevice+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIDevice+LIFEAdditions.h"; path = "Source/Additions/UIDevice+LIFEAdditions.h"; sourceTree = "<group>"; };
 		0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Buglife.xcconfig; sourceTree = "<group>"; };
+		034E1EC984AB0DEF14321538BF648B01 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04238B5A5EF10AE617B607B313BB8D5F /* LIFEMenuPopoverView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEMenuPopoverView.m; path = Source/Views/LIFEMenuPopoverView.m; sourceTree = "<group>"; };
 		04BEBB6EC5D39A6420A4AA99BDCBFCAE /* LIFEAnnotation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAnnotation.m; path = Source/Models/LIFEAnnotation.m; sourceTree = "<group>"; };
 		053EF643581E5E1665C28CA948809A4D /* LIFEMenuPopoverView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEMenuPopoverView.h; path = Source/Views/LIFEMenuPopoverView.h; sourceTree = "<group>"; };
+		05434B84D8FA2CD4868D1A119F410A40 /* Pods-digibyteUITests.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyteUITests.testnet.xcconfig"; sourceTree = "<group>"; };
 		073B3809B8EB2F9CE3A6C1F0BD369088 /* LIFEBugButtonWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEBugButtonWindow.h; path = Source/Views/LIFEBugButtonWindow.h; sourceTree = "<group>"; };
 		07E1DC5B4C1F9C22485B8972D209F2B5 /* LIFEAVPlayerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAVPlayerViewController.m; path = Source/Controllers/LIFEAVPlayerViewController.m; sourceTree = "<group>"; };
 		0958DD8CD924A006EB151AD965DA2C09 /* LIFEToastView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEToastView.m; path = Source/Views/Toast/LIFEToastView.m; sourceTree = "<group>"; };
 		0A2BE0BCCC6FDF73641762ACEF7835F8 /* Buglife+LocalizedStrings.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Buglife+LocalizedStrings.m"; path = "Source/Buglife+LocalizedStrings.m"; sourceTree = "<group>"; };
-		0AC7F5095E8F164230D93C6080C8DD37 /* Pods-breadwalletTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-breadwalletTests-resources.sh"; sourceTree = "<group>"; };
-		0C74A74EDC2F832CAE782026C71929A0 /* Pods-breadwallet.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwallet.testflight.xcconfig"; sourceTree = "<group>"; };
 		0C853814BD94390F708652593211850B /* LIFEContinuousForceTouchGestureRecognizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEContinuousForceTouchGestureRecognizer.m; path = Source/Views/GestureRecognizers/LIFEContinuousForceTouchGestureRecognizer.m; sourceTree = "<group>"; };
 		0C9CEC339EC25F030F75029D2121F55C /* LIFEPoweredByBuglifeView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEPoweredByBuglifeView.m; path = Source/Views/LIFEPoweredByBuglifeView.m; sourceTree = "<group>"; };
 		0CE56FB130F1E048E805493453A3F79B /* LIFEStepsToReproTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEStepsToReproTableViewController.h; path = Source/Controllers/LIFEStepsToReproTableViewController.h; sourceTree = "<group>"; };
+		0D877CE08A0F270A4C0E01F2641CB03C /* Pods-digibyteUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-digibyteUITests-umbrella.h"; sourceTree = "<group>"; };
 		0E767992BCFF81E7534933F820C136CF /* LIFECompatibilityUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFECompatibilityUtils.h; path = Source/Additions/LIFECompatibilityUtils.h; sourceTree = "<group>"; };
 		0F1AB0B54A99FB50310EBB9993844ED5 /* LIFEJelloView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEJelloView.m; path = "Source/Views/Jello View/LIFEJelloView.m"; sourceTree = "<group>"; };
 		0FD7430A493E1A559C947A2376683A21 /* LIFEWindowBlindsAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEWindowBlindsAnimator.h; path = "Source/Views/Container Window/LIFEWindowBlindsAnimator.h"; sourceTree = "<group>"; };
@@ -294,11 +295,9 @@
 		11D59F8C4CFFC579807291D1487EF3A9 /* LIFETitleCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFETitleCell.h; path = Source/Views/LIFETitleCell.h; sourceTree = "<group>"; };
 		14BA4BAC8E575EF77CB14A59B0ADFE92 /* LIFEContainerAlertToImageEditorAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEContainerAlertToImageEditorAnimator.m; path = "Source/Views/Container Window/LIFEContainerAlertToImageEditorAnimator.m"; sourceTree = "<group>"; };
 		154B9EC880AB885E57A7FC63EDBE7304 /* LIFEPickerInputField+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "LIFEPickerInputField+Protected.h"; path = "Source/Protected/LIFEPickerInputField+Protected.h"; sourceTree = "<group>"; };
-		16DC45E32A585097AACBE84676BB1E17 /* Pods-breadwallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwallet.debug.xcconfig"; sourceTree = "<group>"; };
-		17669B63F467C4814E74088766AF402C /* Pods-breadwalletTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-breadwalletTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		184075166571D1DADBC9DB592477FF7B /* Pods_breadwalletUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_breadwalletUITests.framework; path = "Pods-breadwalletUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		184CEBB8DB37E5DEF307C04BBBB1CECD /* Pods-breadwalletTests.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletTests.testnet.xcconfig"; sourceTree = "<group>"; };
+		1712FB9676BA179B2924F7AA7128D396 /* Pods-digibyteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyteTests.release.xcconfig"; sourceTree = "<group>"; };
 		18853782F861A979987EDE0373E9C5AA /* LIFEAwesomeLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAwesomeLogger.m; path = Source/LIFEAwesomeLogger.m; sourceTree = "<group>"; };
+		192B3D4A9BE121EFC449E0EFB08A4649 /* Pods-digibyteTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-digibyteTests.modulemap"; sourceTree = "<group>"; };
 		1ADF2ED9BE1C9F4AED15E08F9A462111 /* LIFEContainerModalPresentAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEContainerModalPresentAnimator.h; path = "Source/Views/Container Window/LIFEContainerModalPresentAnimator.h"; sourceTree = "<group>"; };
 		1BD5E27C6C6F7A49DBDFD2EDC9E341CA /* LIFEReportWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEReportWindow.h; path = Source/Views/LIFEReportWindow.h; sourceTree = "<group>"; };
 		1C3646D42D838C008BBC9E870256594F /* LIFEAVFoundation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAVFoundation.h; path = Source/Services/LIFEAVFoundation.h; sourceTree = "<group>"; };
@@ -306,41 +305,43 @@
 		1CE429F84AE57ADE2DDFB53A0A2C13E9 /* LIFEInputField+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "LIFEInputField+Protected.h"; path = "Source/Protected/LIFEInputField+Protected.h"; sourceTree = "<group>"; };
 		1D306D018619096495BFC8D0BE10D636 /* LIFEScreenshotAnnotatorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEScreenshotAnnotatorViewController.h; path = Source/Controllers/LIFEScreenshotAnnotatorViewController.h; sourceTree = "<group>"; };
 		1D4F7F5D795E79EC4886B1AA29AC4A5D /* LIFEAttachmentManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAttachmentManager.h; path = Source/Services/LIFEAttachmentManager.h; sourceTree = "<group>"; };
+		1DF062AD6529AA4910C6CE347055B15A /* Pods-digibyte-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-digibyte-dummy.m"; sourceTree = "<group>"; };
 		2181457F14AD4817E4E895FB141126F7 /* LIFEDeviceInfoProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEDeviceInfoProvider.m; path = Source/Services/LIFEDeviceInfoProvider.m; sourceTree = "<group>"; };
 		21C103784BF4FFA9353C2AD3C772CA59 /* LIFEComponentPickerCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEComponentPickerCell.h; path = Source/Views/LIFEComponentPickerCell.h; sourceTree = "<group>"; };
 		23D16885B9DFF24ADA9194A4830F609A /* LIFEImageProcessor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEImageProcessor.h; path = Source/Services/LIFEImageProcessor.h; sourceTree = "<group>"; };
+		258F9A3B690C498D92EEA02B1D2115C3 /* Pods-digibyteTests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyteTests.screenshots.xcconfig"; sourceTree = "<group>"; };
 		2645852C0B0B3813B564C41C3FD9F010 /* LIFETitleCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFETitleCell.m; path = Source/Views/LIFETitleCell.m; sourceTree = "<group>"; };
 		26D0EA625B21900F80088C06BDBB2FD3 /* LIFEWhatHappenedTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEWhatHappenedTextView.h; path = Source/Views/LIFEWhatHappenedTextView.h; sourceTree = "<group>"; };
 		292707FBD672116AF9932161C11DD0D0 /* LIFEContainerModalPresentAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEContainerModalPresentAnimator.m; path = "Source/Views/Container Window/LIFEContainerModalPresentAnimator.m"; sourceTree = "<group>"; };
 		292A715B04672BCFC2CE09089A1CF241 /* LIFELogViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELogViewController.h; path = Source/Controllers/LIFELogViewController.h; sourceTree = "<group>"; };
 		2A97F00EECF565C0D49A1F8AC1456A06 /* NSLayoutConstraint+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+LIFEAdditions.m"; path = "Source/Additions/NSLayoutConstraint+LIFEAdditions.m"; sourceTree = "<group>"; };
+		2B3B5B2A13A37ADD5EA9BBFF6828D822 /* Pods-digibyteUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-digibyteUITests.modulemap"; sourceTree = "<group>"; };
 		2B5085F9749EEB96EBAC8B7726928FD5 /* LIFELogFacility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFELogFacility.m; path = Source/Services/LIFELogFacility.m; sourceTree = "<group>"; };
-		2B832FE5829653A3BDA6B1D7936A8F82 /* Pods-breadwalletUITests.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletUITests.testnet.xcconfig"; sourceTree = "<group>"; };
 		2C548C4722ADF9DC98DD348E44BBB497 /* LIFEFloatingButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEFloatingButton.h; path = Source/Views/LIFEFloatingButton.h; sourceTree = "<group>"; };
 		2D54A818FA730D2CBB77E85D13003821 /* UITextView+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITextView+LIFEAdditions.m"; path = "Source/Additions/UITextView+LIFEAdditions.m"; sourceTree = "<group>"; };
 		2EC27DF11CA75887EC3185A71041553B /* UIImage+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+LIFEAdditions.m"; path = "Source/Additions/UIImage+LIFEAdditions.m"; sourceTree = "<group>"; };
-		2F089447C6C79ADA27ED86F3907F9D2A /* Pods-breadwallet-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-breadwallet-resources.sh"; sourceTree = "<group>"; };
 		2F1611C8ED0D3AB813AAB6233381BAB1 /* LIFEReportBuilder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReportBuilder.m; path = Source/Services/LIFEReportBuilder.m; sourceTree = "<group>"; };
 		3035D7E13C0A8A3C37411889140B2DEF /* LIFEReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEReport.h; path = Source/Models/LIFEReport.h; sourceTree = "<group>"; };
 		30D17DFD3BEE2F66DE24F43946518DC5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3116F9489A760A13B35801D0DE6E8F6F /* LIFENavigationController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFENavigationController.m; path = Source/Controllers/LIFENavigationController.m; sourceTree = "<group>"; };
 		32E6567C0B93BA0C13C6CCFFE359A5BC /* LIFEToastView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEToastView.h; path = Source/Views/Toast/LIFEToastView.h; sourceTree = "<group>"; };
-		36B5367DB910C6421F7FA91174AB15D3 /* Buglife.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Buglife.framework; path = Buglife.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34B1A06C91B89749A63E0E660754DBF9 /* Pods-digibyteUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-digibyteUITests-resources.sh"; sourceTree = "<group>"; };
+		3545FA5CBF480A7209CF79690D82E6A9 /* Pods-digibyteTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-digibyteTests-dummy.m"; sourceTree = "<group>"; };
 		36DC731373372B49AB57602B8AF6EE05 /* Buglife.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Buglife.modulemap; sourceTree = "<group>"; };
 		379CE47896E46A95F542099ADA43BD29 /* LIFEAwesomeLogger+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "LIFEAwesomeLogger+Protected.h"; path = "Source/Protected/LIFEAwesomeLogger+Protected.h"; sourceTree = "<group>"; };
 		37C85475DC0C3E48B4B22B43BBA49056 /* UIViewController+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+LIFEAdditions.h"; path = "Source/Additions/UIViewController+LIFEAdditions.h"; sourceTree = "<group>"; };
 		384550A3A2FE627A0D854FD68547DCC1 /* LIFEAttachmentView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAttachmentView.m; path = Source/Views/LIFEAttachmentView.m; sourceTree = "<group>"; };
 		3A7655033B7F1F60E7705A0BEDB37B5C /* LIFELogFacility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELogFacility.h; path = Source/Services/LIFELogFacility.h; sourceTree = "<group>"; };
-		3AF2FE198B546B5C2F9149C8CF5D955B /* Pods-breadwalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletTests.release.xcconfig"; sourceTree = "<group>"; };
 		3AF3E86243D582E09D60917CDF409356 /* LIFEVideoAttachment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEVideoAttachment.h; path = Source/Models/LIFEVideoAttachment.h; sourceTree = "<group>"; };
 		3B0ED7D5311C3B3C8B3B8B05D6BC50BB /* LIFEGeometry.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEGeometry.m; path = Source/Additions/LIFEGeometry.m; sourceTree = "<group>"; };
-		3B38842AAB4D46F2B79F0B5E33A2BE87 /* Pods-breadwalletUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-breadwalletUITests-umbrella.h"; sourceTree = "<group>"; };
+		3BB4B7315B1AF738B2F028466E734689 /* Buglife.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Buglife.framework; path = Buglife.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BC675A3068E16749A7A8A82BE926565 /* Pods-digibyte.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyte.screenshots.xcconfig"; sourceTree = "<group>"; };
 		3CCDCEDA1E66BE040B29FFDA3C9A97B1 /* LIFEAlertActionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAlertActionView.h; path = "Source/Controllers/Alert View/LIFEAlertActionView.h"; sourceTree = "<group>"; };
-		3D536005C7050D77B2743358AC51D757 /* Pods-breadwalletTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-breadwalletTests.modulemap"; sourceTree = "<group>"; };
 		3DD1191714E77A18F2FD5F11252059AB /* LIFEDeviceInfoProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEDeviceInfoProvider.h; path = Source/Services/LIFEDeviceInfoProvider.h; sourceTree = "<group>"; };
 		3FBD88B5D7CB069D8D21B9A998821D16 /* LIFEAppInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAppInfo.h; path = Source/Models/LIFEAppInfo.h; sourceTree = "<group>"; };
 		4118621A355150D0DE82C77DD9E93B83 /* NSMutableDictionary+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+LIFEAdditions.m"; path = "Source/Additions/NSMutableDictionary+LIFEAdditions.m"; sourceTree = "<group>"; };
 		444563505E14974326706255143D2B7F /* LIFELoupeAnnotationView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFELoupeAnnotationView.m; path = Source/Views/AnnotationViews/LIFELoupeAnnotationView.m; sourceTree = "<group>"; };
+		452D9CD9839F6DE1369600CB1E344B20 /* Pods-digibyte.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyte.release.xcconfig"; sourceTree = "<group>"; };
 		4639F3B554AD8F7E98E68A238A7A17E0 /* LIFETextInputField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFETextInputField.h; path = Source/LIFETextInputField.h; sourceTree = "<group>"; };
 		467E684BB869CA55D13337934E7006AD /* LIFEAnnotatedImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAnnotatedImage.h; path = Source/Models/LIFEAnnotatedImage.h; sourceTree = "<group>"; };
 		476EABF9A96751870E3E36A49D916901 /* LIFEStepsToReproTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEStepsToReproTableViewController.m; path = Source/Controllers/LIFEStepsToReproTableViewController.m; sourceTree = "<group>"; };
@@ -349,45 +350,43 @@
 		49E4FBBBF543FE0317E8317FB390DD88 /* LIFEReproStep.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEReproStep.h; path = Source/Models/LIFEReproStep.h; sourceTree = "<group>"; };
 		4A0F8E60A7E5D403DD8107353C2A7D07 /* LIFEASLLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEASLLogger.h; path = Source/Services/Logging/LIFEASLLogger.h; sourceTree = "<group>"; };
 		4C687E0EAF3B296A2BB5DDAB8631F63A /* UIView+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+LIFEAdditions.h"; path = "Source/Additions/UIView+LIFEAdditions.h"; sourceTree = "<group>"; };
-		4EEFE70B27BEC98A1BA5BB3F896F52CF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FAA0D27B169DF4A01AE9E931D00E2B6 /* LIFEAnnotationView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAnnotationView.m; path = Source/Views/AnnotationViews/LIFEAnnotationView.m; sourceTree = "<group>"; };
 		4FC6E27922A8D438D5A2E1885854D416 /* LIFELog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELog.h; path = Source/Services/Logging/LIFELog.h; sourceTree = "<group>"; };
-		507B84D6FFD77EEE863CEFB63C377879 /* Pods_breadwallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_breadwallet.framework; path = "Pods-breadwallet.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50CA3210EEC389486235D4E17D7DB865 /* LIFEContinuousForceTouchGestureRecognizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEContinuousForceTouchGestureRecognizer.h; path = Source/Views/GestureRecognizers/LIFEContinuousForceTouchGestureRecognizer.h; sourceTree = "<group>"; };
-		51578DE60B1F63E6AA7EFEA61A8CB2C2 /* Pods-breadwallet-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-breadwallet-acknowledgements.plist"; sourceTree = "<group>"; };
 		517F267010E309071A0151992FD07EFE /* UITextView+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextView+LIFEAdditions.h"; path = "Source/Additions/UITextView+LIFEAdditions.h"; sourceTree = "<group>"; };
 		51AD2CDFA738CDB8676F71F36431A475 /* NSMutableDictionary+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+LIFEAdditions.h"; path = "Source/Additions/NSMutableDictionary+LIFEAdditions.h"; sourceTree = "<group>"; };
 		529B36657BC4354CD742CC48802426DD /* LIFEAlertAction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAlertAction.h; path = "Source/Controllers/Alert View/LIFEAlertAction.h"; sourceTree = "<group>"; };
 		52BD01A1F18F1FB17842D3DA717BC0B8 /* Buglife-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Buglife-umbrella.h"; sourceTree = "<group>"; };
 		5303716E30D9F40B56895D792C2EC3B2 /* LIFEComponentPickerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEComponentPickerViewController.m; path = Source/Controllers/LIFEComponentPickerViewController.m; sourceTree = "<group>"; };
 		554DDCD056064F60770ED2C71E3CE96F /* LIFETTYLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFETTYLogger.m; path = Source/Services/Logging/LIFETTYLogger.m; sourceTree = "<group>"; };
-		55A0FC2F9A7A1BC4A866F8600B4BE3DA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		568C8883F140D74366DBA31193E17E51 /* LIFEOverlayWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEOverlayWindow.m; path = Source/Views/LIFEOverlayWindow.m; sourceTree = "<group>"; };
-		57287B9B839A2624D301200400C726B2 /* Pods_breadwalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_breadwalletTests.framework; path = "Pods-breadwalletTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		573EF1873D123CE17B11C487D54770E6 /* LIFEArrowAnnotationView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEArrowAnnotationView.h; path = Source/Views/AnnotationViews/LIFEArrowAnnotationView.h; sourceTree = "<group>"; };
 		57F8421D6B3BBB3D3B24E351BF78F4FD /* LIFEPanGestureRecognizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEPanGestureRecognizer.m; path = Source/Views/GestureRecognizers/LIFEPanGestureRecognizer.m; sourceTree = "<group>"; };
 		58A78075CEBB3D1458EB125F22BF0D4F /* LIFEWhatHappenedTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEWhatHappenedTextView.m; path = Source/Views/LIFEWhatHappenedTextView.m; sourceTree = "<group>"; };
 		58D15A83EF835B4664E6DC01B6223057 /* LIFEReachability.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReachability.m; path = Source/Services/LIFEReachability.m; sourceTree = "<group>"; };
+		59535B6999F7FA057ECA7335DAD4B5CA /* Pods-digibyte.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyte.debug.xcconfig"; sourceTree = "<group>"; };
+		59F606E71D000799424D82864237C929 /* Pods-digibyteUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-digibyteUITests-dummy.m"; sourceTree = "<group>"; };
 		5B055CD263441C0E7DBED0FE737F4CA1 /* LIFEStepsToReproduceCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEStepsToReproduceCell.m; path = Source/Views/LIFEStepsToReproduceCell.m; sourceTree = "<group>"; };
 		5B41E7417374A88EF859E08C2CB99C67 /* LIFEAppearanceImpl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAppearanceImpl.m; path = Source/Views/LIFEAppearanceImpl.m; sourceTree = "<group>"; };
 		5BA31ED2DFF19C6B9AC2526DEA5D5E13 /* LIFENotificationLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFENotificationLogger.m; path = Source/Services/Logging/LIFENotificationLogger.m; sourceTree = "<group>"; };
 		5BEBBC85EE8A62F454CB1674CDEF52B1 /* LIFEJelloLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEJelloLayer.m; path = "Source/Views/Jello View/LIFEJelloLayer.m"; sourceTree = "<group>"; };
 		5CF62CFA0DCDB4B8D7D9F9D2D3AA490A /* LIFEImageFormat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEImageFormat.m; path = Source/Models/LIFEImageFormat.m; sourceTree = "<group>"; };
-		5DE158EB046D065D79EE2118E136367F /* Pods-breadwalletUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-breadwalletUITests.modulemap"; sourceTree = "<group>"; };
+		5DBB79D0F7AF6E6762EC06B87F9C1FE1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DC8EB40686948C8E2E055454A28C2D1 /* Pods_digibyte.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_digibyte.framework; path = "Pods-digibyte.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E4578B61C945AF0ECF75986A97A2D22 /* LIFEToolButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEToolButton.h; path = "Source/Controllers/Image Editor/LIFEToolButton.h"; sourceTree = "<group>"; };
 		618451C4A3BFA54B909B5D10820E8C32 /* LIFEFileLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEFileLogger.m; path = Source/Services/Logging/LIFEFileLogger.m; sourceTree = "<group>"; };
 		61CBBAD3F6112BEF002F9C72117115C8 /* LIFEToastController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEToastController.m; path = Source/Views/Toast/LIFEToastController.m; sourceTree = "<group>"; };
+		623DCAC7650074B6F338A461CED3D67C /* Pods-digibyte.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-digibyte.modulemap"; sourceTree = "<group>"; };
 		629A01E8C066E0CBC6B2F71DEA996AE9 /* LIFETextInputViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFETextInputViewController.h; path = Source/Controllers/LIFETextInputViewController.h; sourceTree = "<group>"; };
-		62F22E2ECB681B58580439DB11E51103 /* Pods-breadwalletUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-breadwalletUITests-resources.sh"; sourceTree = "<group>"; };
 		632B9D5906E020E6DBCFD922AE1BC4BC /* LIFEPickerInputField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEPickerInputField.m; path = Source/LIFEPickerInputField.m; sourceTree = "<group>"; };
 		639B5940B35C9808B0379C84C3396540 /* LIFEImagePickerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEImagePickerController.h; path = Source/Services/LIFEImagePickerController.h; sourceTree = "<group>"; };
 		645363D8326F354F5BC27A66A24AFECC /* LIFEReportAttachmentImpl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReportAttachmentImpl.m; path = Source/Models/LIFEReportAttachmentImpl.m; sourceTree = "<group>"; };
 		646373AD3234C38A0246CBCE2AD0B9C9 /* LIFETextFieldCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFETextFieldCell.h; path = Source/Views/LIFETextFieldCell.h; sourceTree = "<group>"; };
+		65799FDDE953D9BCD150F67960C97A63 /* Pods-digibyteTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-digibyteTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		668BE2DB5C421A4D476270163ADC42B0 /* LIFEPanGestureRecognizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEPanGestureRecognizer.h; path = Source/Views/GestureRecognizers/LIFEPanGestureRecognizer.h; sourceTree = "<group>"; };
 		676AA6BB7BB007ABE33C7F78086F5ECC /* LIFEInputField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEInputField.h; path = Source/LIFEInputField.h; sourceTree = "<group>"; };
 		67926A30812419DBD31BE8903601F928 /* LIFELogMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELogMacros.h; path = Source/Services/Logging/LIFELogMacros.h; sourceTree = "<group>"; };
-		67BCE77BEC78802FC109193AB65D83AC /* Pods-breadwalletTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-breadwalletTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		67C4AEF8B9DDC8173E3F4EE960384952 /* LIFEAppInfoProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAppInfoProvider.m; path = Source/Services/LIFEAppInfoProvider.m; sourceTree = "<group>"; };
 		6992A438F2F9AFE6E1C0883C44AC33C1 /* LIFEFileLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEFileLogger.h; path = Source/Services/Logging/LIFEFileLogger.h; sourceTree = "<group>"; };
 		6A17FBEFDD259E5EB8F29A11C3AFE860 /* LIFETelephonyNetworkInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFETelephonyNetworkInfo.h; path = Source/Services/LIFETelephonyNetworkInfo.h; sourceTree = "<group>"; };
@@ -396,6 +395,7 @@
 		6AB132900E4515D6B63EE3E88150F6D3 /* LIFEAppInfoProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAppInfoProvider.h; path = Source/Services/LIFEAppInfoProvider.h; sourceTree = "<group>"; };
 		6B5111E720FEFAE0A01C032F79AE43B2 /* LIFEImageEditorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEImageEditorView.m; path = "Source/Controllers/Image Editor/LIFEImageEditorView.m"; sourceTree = "<group>"; };
 		6BAF5764E7E9BA00ACFEB37D63077B49 /* LIFELog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFELog.m; path = Source/Services/Logging/LIFELog.m; sourceTree = "<group>"; };
+		6C22723B4CB071257E7224AE7AEA2FEC /* Pods-digibyte-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-digibyte-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6D47BE98AD0470906A4D50637E4E01CC /* LIFEAlertAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAlertAnimator.h; path = "Source/Controllers/Alert View/LIFEAlertAnimator.h"; sourceTree = "<group>"; };
 		6D5F540A26C2D3087CAD6B1F2C656B0C /* LIFEAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAlertView.m; path = "Source/Controllers/Alert View/LIFEAlertView.m"; sourceTree = "<group>"; };
 		6D7E428AF8C85585753FFC2FD7D14A68 /* UIViewController+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+LIFEAdditions.m"; path = "Source/Additions/UIViewController+LIFEAdditions.m"; sourceTree = "<group>"; };
@@ -404,6 +404,7 @@
 		70FC25E74A26F9049821E0053DEA79CE /* UIApplication+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+LIFEAdditions.h"; path = "Source/Additions/UIApplication+LIFEAdditions.h"; sourceTree = "<group>"; };
 		710C890ECCF504791576BC80287E97C9 /* LIFERecordingShrinker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFERecordingShrinker.m; path = Source/Services/LIFERecordingShrinker.m; sourceTree = "<group>"; };
 		71461C27F91F28D6B0A5FDB0FF194506 /* LIFEToastControllerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEToastControllerView.h; path = Source/Views/Toast/LIFEToastControllerView.h; sourceTree = "<group>"; };
+		721F6E8120E641FF78F166D16990649B /* Pods-digibyteTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-digibyteTests-resources.sh"; sourceTree = "<group>"; };
 		73E693B4F88646B9886179536B4E6FBA /* LIFEAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAttribute.m; path = Source/Models/LIFEAttribute.m; sourceTree = "<group>"; };
 		73E98BC488BA03B4E247D9A95F9DCB4D /* LIFEReportView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEReportView.h; path = Source/Views/LIFEReportView.h; sourceTree = "<group>"; };
 		74352869C8B46471ED617419BDC01265 /* LIFEInputField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEInputField.m; path = Source/LIFEInputField.m; sourceTree = "<group>"; };
@@ -418,7 +419,6 @@
 		7B15C6E23BF16A378E2A8DA8259DA533 /* LIFEJSONLogFileFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEJSONLogFileFormatter.m; path = Source/Services/Logging/LIFEJSONLogFileFormatter.m; sourceTree = "<group>"; };
 		7B538F468115ABE20DD4DF3354D6911A /* LIFEContainerAlertToImageEditorAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEContainerAlertToImageEditorAnimator.h; path = "Source/Views/Container Window/LIFEContainerAlertToImageEditorAnimator.h"; sourceTree = "<group>"; };
 		7D13A483F49893BCB74BCACC0C4DF249 /* LIFEAlertActionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAlertActionView.m; path = "Source/Controllers/Alert View/LIFEAlertActionView.m"; sourceTree = "<group>"; };
-		7DA08D212862282C018D00D3A865316F /* Pods-breadwallet.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwallet.screenshots.xcconfig"; sourceTree = "<group>"; };
 		7F231E2C0C251DB43BC65376F5834CA8 /* LIFEAVPlayerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAVPlayerViewController.h; path = Source/Controllers/LIFEAVPlayerViewController.h; sourceTree = "<group>"; };
 		7F6FBF3B81E5646F80B2683373E19CEC /* LIFEReportViewControllerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEReportViewControllerDelegate.h; path = Source/Controllers/LIFEReportViewControllerDelegate.h; sourceTree = "<group>"; };
 		7FBD5B8C6758D4A73DF01CF51020B5EB /* LIFEBugButtonWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEBugButtonWindow.m; path = Source/Views/LIFEBugButtonWindow.m; sourceTree = "<group>"; };
@@ -426,7 +426,6 @@
 		827C799FB0F36061D127BFA470942023 /* LIFELogViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFELogViewController.m; path = Source/Controllers/LIFELogViewController.m; sourceTree = "<group>"; };
 		82FEEE2C7F4130E62E2DA06B9BE20D38 /* LIFEImageEditorSegmentedControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEImageEditorSegmentedControl.m; path = "Source/Controllers/Image Editor/LIFEImageEditorSegmentedControl.m"; sourceTree = "<group>"; };
 		8441E91EF921BD5538C6A311BC5DFEBC /* LIFEReportView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReportView.m; path = Source/Views/LIFEReportView.m; sourceTree = "<group>"; };
-		84E920DDC1CF0F136C0E5EB6AC44ADD1 /* Pods-breadwallet-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-breadwallet-dummy.m"; sourceTree = "<group>"; };
 		84FD4AF259E85E4A0D147426537B3C5A /* LIFEUserDefaults.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEUserDefaults.h; path = Source/Services/LIFEUserDefaults.h; sourceTree = "<group>"; };
 		851E4DB3E06E022A8262C97F33B7C8DF /* Buglife+UIStuff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Buglife+UIStuff.h"; path = "Source/Additions/Buglife+UIStuff.h"; sourceTree = "<group>"; };
 		85D068C519F390401E5438F3565A68B6 /* LIFEImageEditorSegmentedControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEImageEditorSegmentedControl.h; path = "Source/Controllers/Image Editor/LIFEImageEditorSegmentedControl.h"; sourceTree = "<group>"; };
@@ -440,15 +439,14 @@
 		895E8EECA242167FE6936AE89AF0E39E /* LIFEContainerModalDismissAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEContainerModalDismissAnimator.h; path = "Source/Views/Container Window/LIFEContainerModalDismissAnimator.h"; sourceTree = "<group>"; };
 		8AA9D204AEDAA3BFE22FCD393FD765B2 /* LIFESwizzler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFESwizzler.m; path = Source/Services/LIFESwizzler.m; sourceTree = "<group>"; };
 		8C9D126ED17C948437C8207CFBE5EFF5 /* LIFETTYLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFETTYLogger.h; path = Source/Services/Logging/LIFETTYLogger.h; sourceTree = "<group>"; };
+		8D27549F38286722BA1BF237B2DD89F1 /* Pods-digibyteUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-digibyteUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		8E1555F6BD33B09EE73DAD84751C3830 /* LIFEReport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReport.m; path = Source/Models/LIFEReport.m; sourceTree = "<group>"; };
 		8ED71BC8BA2361986FF9A20C2D93922A /* LIFEBlurAnnotationView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEBlurAnnotationView.m; path = Source/Views/AnnotationViews/LIFEBlurAnnotationView.m; sourceTree = "<group>"; };
-		907C4E3F3220721B6AC5031E828725D8 /* Pods-breadwalletUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		94259CE1BFBDFBFBDB76D023971325C2 /* Pods-breadwalletUITests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletUITests.testflight.xcconfig"; sourceTree = "<group>"; };
+		93C306F9C8CAEF1CEA3F25E061A5E367 /* Pods-digibyteTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-digibyteTests-frameworks.sh"; sourceTree = "<group>"; };
 		94D98607427E68ECB42C0CB6348E048F /* UITableView+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+LIFEAdditions.m"; path = "Source/Additions/UITableView+LIFEAdditions.m"; sourceTree = "<group>"; };
 		958BC4B451C3EC2AEEDA26305BAA1572 /* LIFEReportAttachmentImpl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEReportAttachmentImpl.h; path = Source/Models/LIFEReportAttachmentImpl.h; sourceTree = "<group>"; };
 		97E17AC833D8BBDB7A12A9F480452DDF /* LIFEJelloLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEJelloLayer.h; path = "Source/Views/Jello View/LIFEJelloLayer.h"; sourceTree = "<group>"; };
-		9878DBAE818DED9EBEC21F341D7C4B21 /* Pods-breadwalletTests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletTests.testflight.xcconfig"; sourceTree = "<group>"; };
 		98BA234379A7DB044D945B28DB4C2863 /* LIFELocalizedStringProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELocalizedStringProvider.h; path = Source/Views/LIFELocalizedStringProvider.h; sourceTree = "<group>"; };
 		9901DCDCBEEFE8A952DB8B0A4A8DA932 /* LIFEDataProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEDataProvider.m; path = Source/Services/LIFEDataProvider.m; sourceTree = "<group>"; };
 		9A2A3AF157FCF25DC71EDE01F2784554 /* Buglife+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Buglife+Protected.h"; path = "Source/Protected/Buglife+Protected.h"; sourceTree = "<group>"; };
@@ -461,7 +459,6 @@
 		9E30D5A9B0DB5355D01C0DAC4D1E677F /* LIFEMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEMacros.h; path = Source/Additions/LIFEMacros.h; sourceTree = "<group>"; };
 		9F12979ABD5603813EB3672E6D3D3BD0 /* Buglife+LocalizedStrings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Buglife+LocalizedStrings.h"; path = "Source/Buglife+LocalizedStrings.h"; sourceTree = "<group>"; };
 		9F7C30D1C0D180AB893AC0BA7854F445 /* LIFEImageEditorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEImageEditorViewController.h; path = "Source/Controllers/Image Editor/LIFEImageEditorViewController.h"; sourceTree = "<group>"; };
-		9FAB45ABB98E92A09517372B36830332 /* Pods-breadwalletTests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletTests.screenshots.xcconfig"; sourceTree = "<group>"; };
 		9FC1D516743520F50570F4FE7FCD26E0 /* UIColor+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+LIFEAdditions.m"; path = "Source/Additions/UIColor+LIFEAdditions.m"; sourceTree = "<group>"; };
 		A0E3F0DE237D20C35A266BFBAC5EB1AF /* UIImage+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+LIFEAdditions.h"; path = "Source/Additions/UIImage+LIFEAdditions.h"; sourceTree = "<group>"; };
 		A0EE314A9387457F7BB9DB893D17FE2E /* LIFEDeviceInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEDeviceInfo.h; path = Source/Models/LIFEDeviceInfo.h; sourceTree = "<group>"; };
@@ -471,43 +468,40 @@
 		A2F653FE0DD0AB189CE01C44578835B4 /* LIFECategories.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFECategories.h; path = Source/Additions/LIFECategories.h; sourceTree = "<group>"; };
 		A3822E082E7B5F1F5CA42805E4F37627 /* LIFETelephonyNetworkInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFETelephonyNetworkInfo.m; path = Source/Services/LIFETelephonyNetworkInfo.m; sourceTree = "<group>"; };
 		A4CA4C7FFD5F74CC1FAD3D007BFDC645 /* LIFEGeometry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEGeometry.h; path = Source/Additions/LIFEGeometry.h; sourceTree = "<group>"; };
-		A5861E8682B468868D5F96A2EF77B767 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5376754F3C0904920DDCA98B4A6E482 /* Pods-digibyte-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-digibyte-umbrella.h"; sourceTree = "<group>"; };
 		A68451FE675EA3BCBA7A6BBEC102986A /* LIFEComponentPickerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEComponentPickerViewController.h; path = Source/Controllers/LIFEComponentPickerViewController.h; sourceTree = "<group>"; };
 		A728E280021C630485A82D1F907BAEF9 /* NSError+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSError+LIFEAdditions.h"; path = "Source/Additions/NSError+LIFEAdditions.h"; sourceTree = "<group>"; };
 		A7317E8D139813A45492048C7F70CE79 /* NSArray+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+LIFEAdditions.m"; path = "Source/Additions/NSArray+LIFEAdditions.m"; sourceTree = "<group>"; };
-		A75E0E9935330F5ED501C42BF7951B29 /* Pods-breadwalletUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-breadwalletUITests-frameworks.sh"; sourceTree = "<group>"; };
 		A88DA2D43FB9AF8CC56A4DE5463C4D5A /* LIFEStepsToReproduceCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEStepsToReproduceCell.h; path = Source/Views/LIFEStepsToReproduceCell.h; sourceTree = "<group>"; };
 		A8959B64791420B5BCF3E9CB6A8EFF52 /* LIFETextInputViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFETextInputViewController.m; path = Source/Controllers/LIFETextInputViewController.m; sourceTree = "<group>"; };
-		A9B3839807C8FFC8CE1BE6226A91EFDB /* Pods-breadwallet-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-breadwallet-acknowledgements.markdown"; sourceTree = "<group>"; };
 		ABA8EA83CE76C3AD75E28939461969DC /* LIFEUserDefaults.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEUserDefaults.m; path = Source/Services/LIFEUserDefaults.m; sourceTree = "<group>"; };
 		ABBA124DBFAEA37F3584714C7B5E475E /* LIFEDataProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEDataProvider.h; path = Source/Services/LIFEDataProvider.h; sourceTree = "<group>"; };
+		AD115DC71CFC792AE5017DF7C95A8DB4 /* Pods-digibyte.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyte.testflight.xcconfig"; sourceTree = "<group>"; };
 		AD76F1985AFF1F7C509820C669ADF770 /* LIFEAnnotatedImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAnnotatedImageView.h; path = Source/Views/LIFEAnnotatedImageView.h; sourceTree = "<group>"; };
+		AD7D0F2AC9780BBF3AD70487D5EE3BE4 /* Pods-digibyteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyteUITests.release.xcconfig"; sourceTree = "<group>"; };
 		ADDDEF1C3EE917826FE862BB25A57F70 /* LIFEAnnotatedImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAnnotatedImage.m; path = Source/Models/LIFEAnnotatedImage.m; sourceTree = "<group>"; };
 		AE5B5B550B48ADFB6E0D18F8BDD1758F /* LIFEAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAttribute.h; path = Source/Models/LIFEAttribute.h; sourceTree = "<group>"; };
 		AE7B7B01CE616E71113BD15FD85F8AAA /* LIFEContainerModalDismissAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEContainerModalDismissAnimator.m; path = "Source/Views/Container Window/LIFEContainerModalDismissAnimator.m"; sourceTree = "<group>"; };
 		AF6C5875F3FFAE010C7FB84EFB7661AC /* LIFEDeviceBatteryState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEDeviceBatteryState.h; path = Source/Models/LIFEDeviceBatteryState.h; sourceTree = "<group>"; };
-		AFDFA028867786A234619B45C8505A77 /* Pods-breadwallet.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwallet.testnet.xcconfig"; sourceTree = "<group>"; };
 		B01386B45B6642C90EEE8EFC4092C1E4 /* LIFEReportBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEReportBuilder.h; path = Source/Services/LIFEReportBuilder.h; sourceTree = "<group>"; };
 		B0690220E3E5E3C9F5678424567370E8 /* LIFEAnnotationView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAnnotationView.h; path = Source/Views/AnnotationViews/LIFEAnnotationView.h; sourceTree = "<group>"; };
 		B07134B94D0F0CD66B5B9E2B527CC21B /* LIFEToolButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEToolButton.m; path = "Source/Controllers/Image Editor/LIFEToolButton.m"; sourceTree = "<group>"; };
 		B2B261BCD12A8F5BDF24499A258EDFC1 /* LIFEJelloView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEJelloView.h; path = "Source/Views/Jello View/LIFEJelloView.h"; sourceTree = "<group>"; };
+		B30A104565AD5110A8D3B1F23B050071 /* Pods-digibyte-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-digibyte-acknowledgements.plist"; sourceTree = "<group>"; };
 		B6323BCDA6EB7BE9A9B93B7676074D7E /* LIFEAlertController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAlertController.m; path = "Source/Controllers/Alert View/LIFEAlertController.m"; sourceTree = "<group>"; };
 		B670A20DFAA6B95EFE7FBE691FB09694 /* LIFEAlertController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAlertController.h; path = "Source/Controllers/Alert View/LIFEAlertController.h"; sourceTree = "<group>"; };
 		B71066988CE543E1046EAA7FBA59ED41 /* LIFEImageEditorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEImageEditorView.h; path = "Source/Controllers/Image Editor/LIFEImageEditorView.h"; sourceTree = "<group>"; };
 		B795B47884439F2AE2F3342B0FE450D0 /* NSArray+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+LIFEAdditions.h"; path = "Source/Additions/NSArray+LIFEAdditions.h"; sourceTree = "<group>"; };
 		B7F9BF26D3AFF86F4AB92C6A2A0A1742 /* LIFEAwesomeLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAwesomeLogger.h; path = Source/LIFEAwesomeLogger.h; sourceTree = "<group>"; };
-		B8725C9C4F0A505533578C41FC94EED6 /* Pods-breadwalletUITests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletUITests.screenshots.xcconfig"; sourceTree = "<group>"; };
-		BA0A41D01BAC00F385790AEA2816975B /* Pods-breadwalletTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-breadwalletTests-dummy.m"; sourceTree = "<group>"; };
 		BA15055526B3EDBB8FA3FDF6A4BA8F0A /* LIFEPickerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEPickerViewController.m; path = Source/Controllers/LIFEPickerViewController.m; sourceTree = "<group>"; };
-		BA436C528A5950989FDBD84039E17F1B /* Pods-breadwallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwallet.release.xcconfig"; sourceTree = "<group>"; };
+		BD00798BA9DD6BFF607B5EBEAD019FAC /* Pods-digibyteTests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyteTests.testflight.xcconfig"; sourceTree = "<group>"; };
 		BD1ED9571BE7ECAB47D5EDA50B89E94E /* NSLayoutConstraint+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+LIFEAdditions.h"; path = "Source/Additions/NSLayoutConstraint+LIFEAdditions.h"; sourceTree = "<group>"; };
 		BD2890633E29A360DF7F399BEAEF9FB4 /* LIFEToastController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEToastController.h; path = Source/Views/Toast/LIFEToastController.h; sourceTree = "<group>"; };
 		BD8FFC6F7F9F6F48B7516CA8508A1670 /* UIWindow+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIWindow+LIFEAdditions.h"; path = "Source/Additions/UIWindow+LIFEAdditions.h"; sourceTree = "<group>"; };
 		BE5133D9B36C246CB541B4B918C86165 /* LIFEAppInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAppInfo.m; path = Source/Models/LIFEAppInfo.m; sourceTree = "<group>"; };
-		BEEF754EE225E92602CE447A387C5C6B /* Pods-breadwallet-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-breadwallet-frameworks.sh"; sourceTree = "<group>"; };
+		BEF1611335656CC5E71058A386542AD0 /* Pods_digibyteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_digibyteTests.framework; path = "Pods-digibyteTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C081EDB3C4B8BD5EE6614BADCFC01699 /* LIFEContainerTransitionContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEContainerTransitionContext.h; path = "Source/Views/Container Window/LIFEContainerTransitionContext.h"; sourceTree = "<group>"; };
 		C31FEC5F07E8FDA0851280359C483FAC /* LIFEReportWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReportWindow.m; path = Source/Views/LIFEReportWindow.m; sourceTree = "<group>"; };
-		C3441D08A94C632C2F7443D38038778C /* Pods-breadwalletUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C35320E1E49FE026506D55C4D74272FD /* LIFEPickerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEPickerViewController.h; path = Source/Controllers/LIFEPickerViewController.h; sourceTree = "<group>"; };
 		C36412283665AA85DDA2E258E8900B2A /* LIFEReproStep.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReproStep.m; path = Source/Models/LIFEReproStep.m; sourceTree = "<group>"; };
 		C377C74808AB6FE164772C517AE6FCD3 /* LIFEContainerWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEContainerWindow.h; path = "Source/Views/Container Window/LIFEContainerWindow.h"; sourceTree = "<group>"; };
@@ -515,34 +509,38 @@
 		C4BC8D179AB5F6D1196D76566BC61CA5 /* LIFEContainerTransitionContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEContainerTransitionContext.m; path = "Source/Views/Container Window/LIFEContainerTransitionContext.m"; sourceTree = "<group>"; };
 		C4CEB426AF5F95503110DE7F0FC2637A /* LIFEAnnotation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAnnotation.h; path = Source/Models/LIFEAnnotation.h; sourceTree = "<group>"; };
 		C649F7102A8868B7D0217FC2D7A7CAEB /* LIFEDependencyLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEDependencyLoader.h; path = Source/Services/LIFEDependencyLoader.h; sourceTree = "<group>"; };
-		C720E72F06492182DFD34BFA77BFFED7 /* Pods-breadwallet-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-breadwallet-umbrella.h"; sourceTree = "<group>"; };
 		C76BB5E9C98DE16669558F7802EFB62F /* LIFEAppearance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAppearance.h; path = Source/LIFEAppearance.h; sourceTree = "<group>"; };
-		C7DD3FF6021B48BC3193D09FC8FEE791 /* Pods-breadwalletUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-breadwalletUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C8B5D58D4E3EAFE04274DDAE126FD25A /* LIFEToastControllerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEToastControllerView.m; path = Source/Views/Toast/LIFEToastControllerView.m; sourceTree = "<group>"; };
+		CA5AB47CAF491C44502D5637754D48C8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD8573AA8D6FBB2B35AD71E3E00C3D6C /* LIFEArrowAnnotationView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEArrowAnnotationView.m; path = Source/Views/AnnotationViews/LIFEArrowAnnotationView.m; sourceTree = "<group>"; };
+		CDD3C3EBD849E1E9CEA9202B1B80361D /* Pods-digibyteUITests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyteUITests.screenshots.xcconfig"; sourceTree = "<group>"; };
 		CF73751A38D9D5D0274BA35F5D6B54E5 /* LIFEReportTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReportTableViewController.m; path = Source/Controllers/LIFEReportTableViewController.m; sourceTree = "<group>"; };
-		CFBD3E91DF36AD2ED927DDF7A7011463 /* Pods-breadwalletUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-breadwalletUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		CFE2F7E210F583E68548666E4E784382 /* LIFEComponentPickerCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEComponentPickerCell.m; path = Source/Views/LIFEComponentPickerCell.m; sourceTree = "<group>"; };
+		D00E73D6A61EFFDC831458DA0DF6D687 /* Pods-digibyteTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-digibyteTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D349CB334C9F6A029D8915DCCE4D2D3D /* LIFENetworkManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFENetworkManager.h; path = Source/Services/LIFENetworkManager.h; sourceTree = "<group>"; };
 		D3C3077C2D63CA4C83B77AA546EAF366 /* NSError+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSError+LIFEAdditions.m"; path = "Source/Additions/NSError+LIFEAdditions.m"; sourceTree = "<group>"; };
 		D56DD895D30510F0CE8ABE4D19C165F4 /* LIFEContextAwareLogFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEContextAwareLogFormatter.h; path = Source/Services/Logging/LIFEContextAwareLogFormatter.h; sourceTree = "<group>"; };
 		D6C0FFA02543CEB4363A93527F8187C4 /* LIFELogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELogger.h; path = Source/Services/Logging/LIFELogger.h; sourceTree = "<group>"; };
 		D6D00799CBE2993E15C4748D75C7F3D9 /* LIFEAttachmentView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAttachmentView.h; path = Source/Views/LIFEAttachmentView.h; sourceTree = "<group>"; };
-		D7B105E7CEF4A19E0C228E93C2CEC15A /* Pods-breadwalletUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-breadwalletUITests-dummy.m"; sourceTree = "<group>"; };
+		D730A91F3BD15A93138664128DF25557 /* Pods-digibyte.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyte.testnet.xcconfig"; sourceTree = "<group>"; };
+		D89FDF2B69B1EF5D87BA29D631B7F76F /* Pods-digibyteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyteTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D90CAE4A50D4A636A83DD00B3EA34477 /* Pods-digibyteUITests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyteUITests.testflight.xcconfig"; sourceTree = "<group>"; };
 		D918FE073AD5607F7711FC4F06BEEF98 /* LIFEPoweredByBuglifeView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEPoweredByBuglifeView.h; path = Source/Views/LIFEPoweredByBuglifeView.h; sourceTree = "<group>"; };
-		D9898E258A55BD9FACF5262197EDE47A /* Pods-breadwallet.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-breadwallet.modulemap"; sourceTree = "<group>"; };
+		DADC7D316C00A322E91B0BCDC8AC17AE /* Pods-digibyteUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyteUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DBF44AB73BF5A9883E0F71BB6F73C565 /* Pods-digibyte-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-digibyte-resources.sh"; sourceTree = "<group>"; };
 		E09071AFE07CE08AFE65D2D8D6140644 /* LIFEPickerInputField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEPickerInputField.h; path = Source/LIFEPickerInputField.h; sourceTree = "<group>"; };
+		E0C5CB546A9C2FABED77B6F12E99900C /* Pods-digibyteUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-digibyteUITests-frameworks.sh"; sourceTree = "<group>"; };
 		E0CC450AC951050921A08CB4BCDFA751 /* LIFEReportOwner.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEReportOwner.h; path = Source/Models/LIFEReportOwner.h; sourceTree = "<group>"; };
 		E1843E430FFC380D0EC04670D2E978BF /* UIBezierPath+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIBezierPath+LIFEAdditions.m"; path = "Source/Additions/UIBezierPath+LIFEAdditions.m"; sourceTree = "<group>"; };
-		E3203BC4DC241A7B86C212BD37249252 /* Pods-breadwalletTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-breadwalletTests-umbrella.h"; sourceTree = "<group>"; };
 		E37301F77682F9C5E2FAA20F3E2DEA30 /* LIFEImagePickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEImagePickerController.m; path = Source/Services/LIFEImagePickerController.m; sourceTree = "<group>"; };
 		E3D78829437988ACF5C512BFD77FE74E /* Buglife.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Buglife.h; path = Source/Buglife.h; sourceTree = "<group>"; };
 		E40CFDC75775E37553EF7DA04D52BC85 /* UIBezierPath+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIBezierPath+LIFEAdditions.h"; path = "Source/Additions/UIBezierPath+LIFEAdditions.h"; sourceTree = "<group>"; };
 		E4365CF1DC883611D19B9FF96E359815 /* LIFECompatibilityUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFECompatibilityUtils.m; path = Source/Additions/LIFECompatibilityUtils.m; sourceTree = "<group>"; };
 		E4F8FB01964E91EEE9987C893252FF51 /* LIFECategories.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFECategories.m; path = Source/Additions/LIFECategories.m; sourceTree = "<group>"; };
+		E5736F54EB6F6CC72109802FD003677A /* Pods-digibyte-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-digibyte-frameworks.sh"; sourceTree = "<group>"; };
+		E60CC02E96AFA1252C052C9043558F71 /* Pods-digibyteTests.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-digibyteTests.testnet.xcconfig"; sourceTree = "<group>"; };
 		E7DB2C1B8D98B04F38DFE67459649328 /* LIFEAVFoundation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAVFoundation.m; path = Source/Services/LIFEAVFoundation.m; sourceTree = "<group>"; };
 		E8C6ADC0239F0207AF8C07DFAC36B767 /* LIFEDeviceInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEDeviceInfo.m; path = Source/Models/LIFEDeviceInfo.m; sourceTree = "<group>"; };
-		E95909EE4C1DC52DE094F75F87FB0920 /* Pods-breadwalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-breadwalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E95CC46E00EB6525F2B8E563C633768A /* LIFEAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAlertView.h; path = "Source/Controllers/Alert View/LIFEAlertView.h"; sourceTree = "<group>"; };
 		E9B03E45183D314D5ED5DA41DBA9A39B /* UIView+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+LIFEAdditions.m"; path = "Source/Additions/UIView+LIFEAdditions.m"; sourceTree = "<group>"; };
 		EA4AFC5DF20E0E251FEEA91BF95E9472 /* LIFENetworkManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFENetworkManager.m; path = Source/Services/LIFENetworkManager.m; sourceTree = "<group>"; };
@@ -551,14 +549,16 @@
 		EB76BE454391E306EAF102A27093C482 /* LIFEScreenshotAnnotatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEScreenshotAnnotatorView.m; path = Source/Views/LIFEScreenshotAnnotatorView.m; sourceTree = "<group>"; };
 		EC527A4CF765D4C61AE2D938EB90C0BE /* UIWindow+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIWindow+LIFEAdditions.m"; path = "Source/Additions/UIWindow+LIFEAdditions.m"; sourceTree = "<group>"; };
 		ECBB37324D5526D2D5D61BDB6548D451 /* LIFETextFieldCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFETextFieldCell.m; path = Source/Views/LIFETextFieldCell.m; sourceTree = "<group>"; };
-		ECFFE178DC01E169093388B967BE8F3E /* Pods-breadwalletTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-breadwalletTests-frameworks.sh"; sourceTree = "<group>"; };
 		ED190529F94671EBEAA4666179C8BFCA /* UIColor+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+LIFEAdditions.h"; path = "Source/Additions/UIColor+LIFEAdditions.h"; sourceTree = "<group>"; };
 		EF9C4B4436D880A701AEF446F3106279 /* LIFEAttachmentManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAttachmentManager.m; path = Source/Services/LIFEAttachmentManager.m; sourceTree = "<group>"; };
 		F11C726EF394F8D2E0533986DAB08BA9 /* LIFELoupeAnnotationView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELoupeAnnotationView.h; path = Source/Views/AnnotationViews/LIFELoupeAnnotationView.h; sourceTree = "<group>"; };
 		F1F1C570EF238EB12A96F76DE8D5A54C /* LIFEWindowBlindsAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEWindowBlindsAnimator.m; path = "Source/Views/Container Window/LIFEWindowBlindsAnimator.m"; sourceTree = "<group>"; };
 		F228D0DED9B82B8BEA6B9C658D2010C9 /* LIFEASLLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEASLLogger.m; path = Source/Services/Logging/LIFEASLLogger.m; sourceTree = "<group>"; };
+		F49A69CEE4BB9EC3B8C23447C47CB228 /* Pods-digibyteTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-digibyteTests-umbrella.h"; sourceTree = "<group>"; };
 		F563010170AE633BC509F70498782CC3 /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevealServer.framework; path = "RevealServer-15/iOS/RevealServer.framework"; sourceTree = "<group>"; };
+		F70FD4BD399F0D9C698BA3EDD9025DC3 /* Pods_digibyteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_digibyteUITests.framework; path = "Pods-digibyteUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D33B56415537CB2F2BD75A75FBBAE6 /* LIFEAppearanceImpl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAppearanceImpl.h; path = Source/Views/LIFEAppearanceImpl.h; sourceTree = "<group>"; };
+		F959A44D258CC6ECCDA991C9116B2EAB /* Pods-digibyteUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-digibyteUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		F9F78874DB0FA95BBE9E276D885DE2D6 /* UIDevice+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+LIFEAdditions.m"; path = "Source/Additions/UIDevice+LIFEAdditions.m"; sourceTree = "<group>"; };
 		FB60ACE699ED87A265D6E51C610A1115 /* LIFERecordingShrinker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFERecordingShrinker.h; path = Source/Services/LIFERecordingShrinker.h; sourceTree = "<group>"; };
 		FB64DC8D191948294A3AE948C99E0366 /* Buglife.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Buglife.m; path = Source/Buglife.m; sourceTree = "<group>"; };
@@ -567,27 +567,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0C2DC0CB1DD8AAF8B5A47A5B57F4FD5E /* Frameworks */ = {
+		BAE6F26B8C37EBE7B2EF3578AB343405 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26EF1068CEA977F42E2FD0018CB3DC22 /* Foundation.framework in Frameworks */,
+				57FADF6E08763C63F1BA9FB235867283 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA699B3EAB4F9001A95168B9ED42C969 /* Frameworks */ = {
+		C14E440F9026433ED97630FB5D39BEF1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2C17FEACEF040B62BAC9629C3A9F738 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CB71AA08595C7E40F1EE1BC0DC571395 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6CC8C82997FC6330E1A5FD703E72D29E /* Foundation.framework in Frameworks */,
+				E9D4A09213E776D27F45D38CBAE4090C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,9 +591,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F689894AC3ED82342D8E653987D42FE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8C2C214378CCF0007C994E6855B5A59 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08282D984DE6AD9143759DEC2A563176 /* Pods-digibyteTests */ = {
+			isa = PBXGroup;
+			children = (
+				034E1EC984AB0DEF14321538BF648B01 /* Info.plist */,
+				192B3D4A9BE121EFC449E0EFB08A4649 /* Pods-digibyteTests.modulemap */,
+				D00E73D6A61EFFDC831458DA0DF6D687 /* Pods-digibyteTests-acknowledgements.markdown */,
+				65799FDDE953D9BCD150F67960C97A63 /* Pods-digibyteTests-acknowledgements.plist */,
+				3545FA5CBF480A7209CF79690D82E6A9 /* Pods-digibyteTests-dummy.m */,
+				93C306F9C8CAEF1CEA3F25E061A5E367 /* Pods-digibyteTests-frameworks.sh */,
+				721F6E8120E641FF78F166D16990649B /* Pods-digibyteTests-resources.sh */,
+				F49A69CEE4BB9EC3B8C23447C47CB228 /* Pods-digibyteTests-umbrella.h */,
+				D89FDF2B69B1EF5D87BA29D631B7F76F /* Pods-digibyteTests.debug.xcconfig */,
+				1712FB9676BA179B2924F7AA7128D396 /* Pods-digibyteTests.release.xcconfig */,
+				258F9A3B690C498D92EEA02B1D2115C3 /* Pods-digibyteTests.screenshots.xcconfig */,
+				BD00798BA9DD6BFF607B5EBEAD019FAC /* Pods-digibyteTests.testflight.xcconfig */,
+				E60CC02E96AFA1252C052C9043558F71 /* Pods-digibyteTests.testnet.xcconfig */,
+			);
+			name = "Pods-digibyteTests";
+			path = "Target Support Files/Pods-digibyteTests";
+			sourceTree = "<group>";
+		};
 		1218BFEE344E752A3631F834C8274B99 /* Reveal-SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,56 +632,57 @@
 			path = "Reveal-SDK";
 			sourceTree = "<group>";
 		};
-		1768D02F418401A6ACBE9B9BDC04A153 /* Pods-breadwallet */ = {
+		3BE4FBA20F23DBE5C129CB88A3C71F94 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A5861E8682B468868D5F96A2EF77B767 /* Info.plist */,
-				D9898E258A55BD9FACF5262197EDE47A /* Pods-breadwallet.modulemap */,
-				A9B3839807C8FFC8CE1BE6226A91EFDB /* Pods-breadwallet-acknowledgements.markdown */,
-				51578DE60B1F63E6AA7EFEA61A8CB2C2 /* Pods-breadwallet-acknowledgements.plist */,
-				84E920DDC1CF0F136C0E5EB6AC44ADD1 /* Pods-breadwallet-dummy.m */,
-				BEEF754EE225E92602CE447A387C5C6B /* Pods-breadwallet-frameworks.sh */,
-				2F089447C6C79ADA27ED86F3907F9D2A /* Pods-breadwallet-resources.sh */,
-				C720E72F06492182DFD34BFA77BFFED7 /* Pods-breadwallet-umbrella.h */,
-				16DC45E32A585097AACBE84676BB1E17 /* Pods-breadwallet.debug.xcconfig */,
-				BA436C528A5950989FDBD84039E17F1B /* Pods-breadwallet.release.xcconfig */,
-				7DA08D212862282C018D00D3A865316F /* Pods-breadwallet.screenshots.xcconfig */,
-				0C74A74EDC2F832CAE782026C71929A0 /* Pods-breadwallet.testflight.xcconfig */,
-				AFDFA028867786A234619B45C8505A77 /* Pods-breadwallet.testnet.xcconfig */,
+				3BB4B7315B1AF738B2F028466E734689 /* Buglife.framework */,
+				5DC8EB40686948C8E2E055454A28C2D1 /* Pods_digibyte.framework */,
+				BEF1611335656CC5E71058A386542AD0 /* Pods_digibyteTests.framework */,
+				F70FD4BD399F0D9C698BA3EDD9025DC3 /* Pods_digibyteUITests.framework */,
 			);
-			name = "Pods-breadwallet";
-			path = "Target Support Files/Pods-breadwallet";
+			name = Products;
 			sourceTree = "<group>";
 		};
-		5B4DE6CA0FB26BB574A599313311C970 /* Pods-breadwalletTests */ = {
+		54D437BF20C689D172A688962CF55818 /* Pods-digibyte */ = {
 			isa = PBXGroup;
 			children = (
-				55A0FC2F9A7A1BC4A866F8600B4BE3DA /* Info.plist */,
-				3D536005C7050D77B2743358AC51D757 /* Pods-breadwalletTests.modulemap */,
-				67BCE77BEC78802FC109193AB65D83AC /* Pods-breadwalletTests-acknowledgements.markdown */,
-				17669B63F467C4814E74088766AF402C /* Pods-breadwalletTests-acknowledgements.plist */,
-				BA0A41D01BAC00F385790AEA2816975B /* Pods-breadwalletTests-dummy.m */,
-				ECFFE178DC01E169093388B967BE8F3E /* Pods-breadwalletTests-frameworks.sh */,
-				0AC7F5095E8F164230D93C6080C8DD37 /* Pods-breadwalletTests-resources.sh */,
-				E3203BC4DC241A7B86C212BD37249252 /* Pods-breadwalletTests-umbrella.h */,
-				E95909EE4C1DC52DE094F75F87FB0920 /* Pods-breadwalletTests.debug.xcconfig */,
-				3AF2FE198B546B5C2F9149C8CF5D955B /* Pods-breadwalletTests.release.xcconfig */,
-				9FAB45ABB98E92A09517372B36830332 /* Pods-breadwalletTests.screenshots.xcconfig */,
-				9878DBAE818DED9EBEC21F341D7C4B21 /* Pods-breadwalletTests.testflight.xcconfig */,
-				184CEBB8DB37E5DEF307C04BBBB1CECD /* Pods-breadwalletTests.testnet.xcconfig */,
+				5DBB79D0F7AF6E6762EC06B87F9C1FE1 /* Info.plist */,
+				623DCAC7650074B6F338A461CED3D67C /* Pods-digibyte.modulemap */,
+				6C22723B4CB071257E7224AE7AEA2FEC /* Pods-digibyte-acknowledgements.markdown */,
+				B30A104565AD5110A8D3B1F23B050071 /* Pods-digibyte-acknowledgements.plist */,
+				1DF062AD6529AA4910C6CE347055B15A /* Pods-digibyte-dummy.m */,
+				E5736F54EB6F6CC72109802FD003677A /* Pods-digibyte-frameworks.sh */,
+				DBF44AB73BF5A9883E0F71BB6F73C565 /* Pods-digibyte-resources.sh */,
+				A5376754F3C0904920DDCA98B4A6E482 /* Pods-digibyte-umbrella.h */,
+				59535B6999F7FA057ECA7335DAD4B5CA /* Pods-digibyte.debug.xcconfig */,
+				452D9CD9839F6DE1369600CB1E344B20 /* Pods-digibyte.release.xcconfig */,
+				3BC675A3068E16749A7A8A82BE926565 /* Pods-digibyte.screenshots.xcconfig */,
+				AD115DC71CFC792AE5017DF7C95A8DB4 /* Pods-digibyte.testflight.xcconfig */,
+				D730A91F3BD15A93138664128DF25557 /* Pods-digibyte.testnet.xcconfig */,
 			);
-			name = "Pods-breadwalletTests";
-			path = "Target Support Files/Pods-breadwalletTests";
+			name = "Pods-digibyte";
+			path = "Target Support Files/Pods-digibyte";
 			sourceTree = "<group>";
 		};
-		6162D04EBE5F2FB93F0A27C6EAF960FD /* Targets Support Files */ = {
+		605AC0E3143955432DA7241A3D794D32 /* Pods-digibyteUITests */ = {
 			isa = PBXGroup;
 			children = (
-				1768D02F418401A6ACBE9B9BDC04A153 /* Pods-breadwallet */,
-				5B4DE6CA0FB26BB574A599313311C970 /* Pods-breadwalletTests */,
-				A31A99BA29DC35A29EEA430B9DF7D7D2 /* Pods-breadwalletUITests */,
+				CA5AB47CAF491C44502D5637754D48C8 /* Info.plist */,
+				2B3B5B2A13A37ADD5EA9BBFF6828D822 /* Pods-digibyteUITests.modulemap */,
+				8D27549F38286722BA1BF237B2DD89F1 /* Pods-digibyteUITests-acknowledgements.markdown */,
+				F959A44D258CC6ECCDA991C9116B2EAB /* Pods-digibyteUITests-acknowledgements.plist */,
+				59F606E71D000799424D82864237C929 /* Pods-digibyteUITests-dummy.m */,
+				E0C5CB546A9C2FABED77B6F12E99900C /* Pods-digibyteUITests-frameworks.sh */,
+				34B1A06C91B89749A63E0E660754DBF9 /* Pods-digibyteUITests-resources.sh */,
+				0D877CE08A0F270A4C0E01F2641CB03C /* Pods-digibyteUITests-umbrella.h */,
+				DADC7D316C00A322E91B0BCDC8AC17AE /* Pods-digibyteUITests.debug.xcconfig */,
+				AD7D0F2AC9780BBF3AD70487D5EE3BE4 /* Pods-digibyteUITests.release.xcconfig */,
+				CDD3C3EBD849E1E9CEA9202B1B80361D /* Pods-digibyteUITests.screenshots.xcconfig */,
+				D90CAE4A50D4A636A83DD00B3EA34477 /* Pods-digibyteUITests.testflight.xcconfig */,
+				05434B84D8FA2CD4868D1A119F410A40 /* Pods-digibyteUITests.testnet.xcconfig */,
 			);
-			name = "Targets Support Files";
+			name = "Pods-digibyteUITests";
+			path = "Target Support Files/Pods-digibyteUITests";
 			sourceTree = "<group>";
 		};
 		650841B8FE65A97F918B7387C04A793C /* Pods */ = {
@@ -927,30 +949,19 @@
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				650841B8FE65A97F918B7387C04A793C /* Pods */,
-				EFC51504C89B6991EDB65DEEEA7F7843 /* Products */,
-				6162D04EBE5F2FB93F0A27C6EAF960FD /* Targets Support Files */,
+				3BE4FBA20F23DBE5C129CB88A3C71F94 /* Products */,
+				B7998A516D33F4A6E7B6891F63CF8070 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		A31A99BA29DC35A29EEA430B9DF7D7D2 /* Pods-breadwalletUITests */ = {
+		B7998A516D33F4A6E7B6891F63CF8070 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4EEFE70B27BEC98A1BA5BB3F896F52CF /* Info.plist */,
-				5DE158EB046D065D79EE2118E136367F /* Pods-breadwalletUITests.modulemap */,
-				C7DD3FF6021B48BC3193D09FC8FEE791 /* Pods-breadwalletUITests-acknowledgements.markdown */,
-				CFBD3E91DF36AD2ED927DDF7A7011463 /* Pods-breadwalletUITests-acknowledgements.plist */,
-				D7B105E7CEF4A19E0C228E93C2CEC15A /* Pods-breadwalletUITests-dummy.m */,
-				A75E0E9935330F5ED501C42BF7951B29 /* Pods-breadwalletUITests-frameworks.sh */,
-				62F22E2ECB681B58580439DB11E51103 /* Pods-breadwalletUITests-resources.sh */,
-				3B38842AAB4D46F2B79F0B5E33A2BE87 /* Pods-breadwalletUITests-umbrella.h */,
-				907C4E3F3220721B6AC5031E828725D8 /* Pods-breadwalletUITests.debug.xcconfig */,
-				C3441D08A94C632C2F7443D38038778C /* Pods-breadwalletUITests.release.xcconfig */,
-				B8725C9C4F0A505533578C41FC94EED6 /* Pods-breadwalletUITests.screenshots.xcconfig */,
-				94259CE1BFBDFBFBDB76D023971325C2 /* Pods-breadwalletUITests.testflight.xcconfig */,
-				2B832FE5829653A3BDA6B1D7936A8F82 /* Pods-breadwalletUITests.testnet.xcconfig */,
+				54D437BF20C689D172A688962CF55818 /* Pods-digibyte */,
+				08282D984DE6AD9143759DEC2A563176 /* Pods-digibyteTests */,
+				605AC0E3143955432DA7241A3D794D32 /* Pods-digibyteUITests */,
 			);
-			name = "Pods-breadwalletUITests";
-			path = "Target Support Files/Pods-breadwalletUITests";
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		BA3F2E5A43B5EBACE1FC4EB8C3D74EE2 /* Support Files */ = {
@@ -991,25 +1002,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EFC51504C89B6991EDB65DEEEA7F7843 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				36B5367DB910C6421F7FA91174AB15D3 /* Buglife.framework */,
-				507B84D6FFD77EEE863CEFB63C377879 /* Pods_breadwallet.framework */,
-				57287B9B839A2624D301200400C726B2 /* Pods_breadwalletTests.framework */,
-				184075166571D1DADBC9DB592477FF7B /* Pods_breadwalletUITests.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		142AFF74594745BF03266C53EF75B0F4 /* Headers */ = {
+		0168466A098BFA735BA9B3CD39801AB2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C72FC3019AF2FFF5E53F2E1D14935CD7 /* Pods-breadwallet-umbrella.h in Headers */,
+				6C7F4E7057B49E5E96FEECE39565F1FA /* Pods-digibyteTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1146,43 +1146,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		69B60A54B77FF1860838344CACE2438F /* Headers */ = {
+		91C117F728662AD557660B70EF091180 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19E20C87446967012B3887003FE984F4 /* Pods-breadwalletUITests-umbrella.h in Headers */,
+				25BA8F8416E9BF09EE4A95259A3DF0BF /* Pods-digibyte-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C2FE20C3C21AC7FB62535117F3020481 /* Headers */ = {
+		CCE04D11CE8EDAF9979A31E617FB272F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB78C33AB806038953CE2BB2A7B29083 /* Pods-breadwalletTests-umbrella.h in Headers */,
+				BA25EEDD0099D96C9A871C79547F842B /* Pods-digibyteUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2CF9C4F98F715C0779F3B38D327CFF42 /* Pods-breadwallet */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 38916D0F34462B8F9E5B671992DD47C2 /* Build configuration list for PBXNativeTarget "Pods-breadwallet" */;
-			buildPhases = (
-				2BDC4678E0DD6882F394A6BF2DD7564B /* Sources */,
-				CB71AA08595C7E40F1EE1BC0DC571395 /* Frameworks */,
-				142AFF74594745BF03266C53EF75B0F4 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EF338F930331B0F5E8E4C77E163227C7 /* PBXTargetDependency */,
-			);
-			name = "Pods-breadwallet";
-			productName = "Pods-breadwallet";
-			productReference = 507B84D6FFD77EEE863CEFB63C377879 /* Pods_breadwallet.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		627D186CB33F8AAB453AAEE23E6C9DE7 /* Buglife */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6DE2EC4A001AD84D323B3CE7A99176B3 /* Build configuration list for PBXNativeTarget "Buglife" */;
@@ -1197,41 +1179,59 @@
 			);
 			name = Buglife;
 			productName = Buglife;
-			productReference = 36B5367DB910C6421F7FA91174AB15D3 /* Buglife.framework */;
+			productReference = 3BB4B7315B1AF738B2F028466E734689 /* Buglife.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		8AC63DFBB9FF7914D6CC998EE4FC55DC /* Pods-breadwalletUITests */ = {
+		BD65012B10B3D6CA8CED84D0C3ED93DF /* Pods-digibyteTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5CECBA024BCAAD79D64E8633BE8A5389 /* Build configuration list for PBXNativeTarget "Pods-breadwalletUITests" */;
+			buildConfigurationList = 8AC6D04576E222ECD1C45F001F72DC01 /* Build configuration list for PBXNativeTarget "Pods-digibyteTests" */;
 			buildPhases = (
-				2AA60AE92FD7AC8B1ED366F237838379 /* Sources */,
-				BA699B3EAB4F9001A95168B9ED42C969 /* Frameworks */,
-				69B60A54B77FF1860838344CACE2438F /* Headers */,
+				C12DC7F7942B76810E135850086B7390 /* Sources */,
+				C14E440F9026433ED97630FB5D39BEF1 /* Frameworks */,
+				0168466A098BFA735BA9B3CD39801AB2 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-breadwalletUITests";
-			productName = "Pods-breadwalletUITests";
-			productReference = 184075166571D1DADBC9DB592477FF7B /* Pods_breadwalletUITests.framework */;
+			name = "Pods-digibyteTests";
+			productName = "Pods-digibyteTests";
+			productReference = BEF1611335656CC5E71058A386542AD0 /* Pods_digibyteTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D99707B01F6AFCDA6C085910CFA4E22D /* Pods-breadwalletTests */ = {
+		BF5B4CD7909AC7E6EBDD7ACB6546D1B5 /* Pods-digibyte */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0BF8B6D186A3DD848FEB6895A28A9173 /* Build configuration list for PBXNativeTarget "Pods-breadwalletTests" */;
+			buildConfigurationList = 1F18FE4CD799693E79E319A08192D953 /* Build configuration list for PBXNativeTarget "Pods-digibyte" */;
 			buildPhases = (
-				22F0EF56C4A72051473EFEF0848190B1 /* Sources */,
-				0C2DC0CB1DD8AAF8B5A47A5B57F4FD5E /* Frameworks */,
-				C2FE20C3C21AC7FB62535117F3020481 /* Headers */,
+				92975A137E14ACA204E26CD61E835297 /* Sources */,
+				BAE6F26B8C37EBE7B2EF3578AB343405 /* Frameworks */,
+				91C117F728662AD557660B70EF091180 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD220583C0B532A77F8DAA2799453CB8 /* PBXTargetDependency */,
+			);
+			name = "Pods-digibyte";
+			productName = "Pods-digibyte";
+			productReference = 5DC8EB40686948C8E2E055454A28C2D1 /* Pods_digibyte.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C4A7E36C1B0EE17989FCA3F00F58EA38 /* Pods-digibyteUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F45E9F680A62ABA1227B7F593CE87404 /* Build configuration list for PBXNativeTarget "Pods-digibyteUITests" */;
+			buildPhases = (
+				F5036E5CE73D3240656B3C5F0CD8C5A2 /* Sources */,
+				F689894AC3ED82342D8E653987D42FE7 /* Frameworks */,
+				CCE04D11CE8EDAF9979A31E617FB272F /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-breadwalletTests";
-			productName = "Pods-breadwalletTests";
-			productReference = 57287B9B839A2624D301200400C726B2 /* Pods_breadwalletTests.framework */;
+			name = "Pods-digibyteUITests";
+			productName = "Pods-digibyteUITests";
+			productReference = F70FD4BD399F0D9C698BA3EDD9025DC3 /* Pods_digibyteUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1251,43 +1251,19 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = EFC51504C89B6991EDB65DEEEA7F7843 /* Products */;
+			productRefGroup = 3BE4FBA20F23DBE5C129CB88A3C71F94 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				627D186CB33F8AAB453AAEE23E6C9DE7 /* Buglife */,
-				2CF9C4F98F715C0779F3B38D327CFF42 /* Pods-breadwallet */,
-				D99707B01F6AFCDA6C085910CFA4E22D /* Pods-breadwalletTests */,
-				8AC63DFBB9FF7914D6CC998EE4FC55DC /* Pods-breadwalletUITests */,
+				BF5B4CD7909AC7E6EBDD7ACB6546D1B5 /* Pods-digibyte */,
+				BD65012B10B3D6CA8CED84D0C3ED93DF /* Pods-digibyteTests */,
+				C4A7E36C1B0EE17989FCA3F00F58EA38 /* Pods-digibyteUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		22F0EF56C4A72051473EFEF0848190B1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5774039A836D9F027D122292A247A331 /* Pods-breadwalletTests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2AA60AE92FD7AC8B1ED366F237838379 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				95A87246721992AE1548AF34B27167A7 /* Pods-breadwalletUITests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2BDC4678E0DD6882F394A6BF2DD7564B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2AFB4AECC6701076A44C837FF3A0735F /* Pods-breadwallet-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4A20B703DBE3758733ED7294AD85BA26 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1411,21 +1387,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		92975A137E14ACA204E26CD61E835297 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1212E01269DAF75A25753B9226F0B7A /* Pods-digibyte-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C12DC7F7942B76810E135850086B7390 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47E23AA055A22DBEEA5663E60997C06C /* Pods-digibyteTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5036E5CE73D3240656B3C5F0CD8C5A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				424959BDFAAD43869C316E1DC7545FC9 /* Pods-digibyteUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EF338F930331B0F5E8E4C77E163227C7 /* PBXTargetDependency */ = {
+		CD220583C0B532A77F8DAA2799453CB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Buglife;
 			target = 627D186CB33F8AAB453AAEE23E6C9DE7 /* Buglife */;
-			targetProxy = AD0701A24AB6323C2E51678134ED36E4 /* PBXContainerItemProxy */;
+			targetProxy = 29C8E1247FE6F96FAF193D00D69CEFEB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		132985A5E93E3447DC692A3E6BE87996 /* Testflight */ = {
+		024E5B086C76FA15A73D8C874574B89A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94259CE1BFBDFBFBDB76D023971325C2 /* Pods-breadwalletUITests.testflight.xcconfig */;
+			baseConfigurationReference = 59535B6999F7FA057ECA7335DAD4B5CA /* Pods-digibyte.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1436,157 +1436,24 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyte/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyte/Pods-digibyte.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwalletUITests;
+				PRODUCT_NAME = Pods_digibyte;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Testflight;
-		};
-		4032D4E70DD7D20749EDE6E102AE0B9C /* Testnet */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AFDFA028867786A234619B45C8505A77 /* Pods-breadwallet.testnet.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwallet;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Testnet;
-		};
-		433AF72807A7AF1373B39DD5D0DC329C /* Testnet */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B832FE5829653A3BDA6B1D7936A8F82 /* Pods-breadwalletUITests.testnet.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwalletUITests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Testnet;
-		};
-		43AD1F88E33E6CFC8237745C46D2C585 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AF2FE198B546B5C2F9149C8CF5D955B /* Pods-breadwalletTests.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwalletTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		483942437DC9747F3AE89FD457C6B8B8 /* Testnet */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 184CEBB8DB37E5DEF307C04BBBB1CECD /* Pods-breadwalletTests.testnet.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwalletTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Testnet;
+			name = Debug;
 		};
 		5011B865762FC0C0A28ECEC4CB63DC68 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1682,9 +1549,9 @@
 			};
 			name = Testnet;
 		};
-		5D6297AD7DFDB69FCFE8422FCDD3B4AF /* Debug */ = {
+		613C17A500B8A2AEBB8ECA6F5CA47BA4 /* Testflight */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 907C4E3F3220721B6AC5031E828725D8 /* Pods-breadwalletUITests.debug.xcconfig */;
+			baseConfigurationReference = AD115DC71CFC792AE5017DF7C95A8DB4 /* Pods-digibyte.testflight.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1695,81 +1562,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyte/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyte/Pods-digibyte.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwalletUITests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		71652BC93CD560757A90CABE04C7F8A8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E95909EE4C1DC52DE094F75F87FB0920 /* Pods-breadwalletTests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwalletTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		7CE9C36D48730981F9E158B2AB98EEED /* Testflight */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9878DBAE818DED9EBEC21F341D7C4B21 /* Pods-breadwalletTests.testflight.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwalletTests;
+				PRODUCT_NAME = Pods_digibyte;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1778,6 +1581,39 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Testflight;
+		};
+		6C2CC754F25CA3FBD1C067C1E9353AEF /* Testnet */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E60CC02E96AFA1252C052C9043558F71 /* Pods-digibyteTests.testnet.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyteTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyteTests/Pods-digibyteTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_digibyteTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Testnet;
 		};
 		807F3C5819BFF366F7E972650D9CB0A6 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1868,6 +1704,71 @@
 			};
 			name = Release;
 		};
+		85B42A20A48C5D07090F93CE8FA85EFD /* Screenshots */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BC675A3068E16749A7A8A82BE926565 /* Pods-digibyte.screenshots.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyte/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyte/Pods-digibyte.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_digibyte;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Screenshots;
+		};
+		865D062752AC8E12310BD278DEF90186 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D89FDF2B69B1EF5D87BA29D631B7F76F /* Pods-digibyteTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyteTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyteTests/Pods-digibyteTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_digibyteTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		88BEEBE3627B7AF28E19FBA9964FFA1F /* Screenshots */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1926,9 +1827,9 @@
 			};
 			name = Screenshots;
 		};
-		A7B35A32C004C8237F4BD9E79B20269D /* Release */ = {
+		A084C402D8B035B51BFDE5F17EEC429B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA436C528A5950989FDBD84039E17F1B /* Pods-breadwallet.release.xcconfig */;
+			baseConfigurationReference = 452D9CD9839F6DE1369600CB1E344B20 /* Pods-digibyte.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1939,17 +1840,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyte/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyte/Pods-digibyte.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwallet;
+				PRODUCT_NAME = Pods_digibyte;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1958,39 +1859,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		AA81D2A07B353A8B693210B3A08723FB /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FAB45ABB98E92A09517372B36830332 /* Pods-breadwalletTests.screenshots.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwalletTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Screenshots;
 		};
 		B0B0240BEAEA53419BC8D5C28C68D951 /* Screenshots */ = {
 			isa = XCBuildConfiguration;
@@ -2053,9 +1921,9 @@
 			};
 			name = Debug;
 		};
-		B8133299AEAA079E81931AC1E090A205 /* Debug */ = {
+		BA6EA04802519A84C40836A6DBD780CB /* Testnet */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16DC45E32A585097AACBE84676BB1E17 /* Pods-breadwallet.debug.xcconfig */;
+			baseConfigurationReference = 05434B84D8FA2CD4868D1A119F410A40 /* Pods-digibyteUITests.testnet.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2066,28 +1934,29 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyteUITests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwallet;
+				PRODUCT_NAME = Pods_digibyteUITests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Testnet;
 		};
-		BC868F35EBFD44CF3A97BF464EF4DC2C /* Screenshots */ = {
+		C269E3518F7A598A0647701F0CC55B7B /* Screenshots */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7DA08D212862282C018D00D3A865316F /* Pods-breadwallet.screenshots.xcconfig */;
+			baseConfigurationReference = CDD3C3EBD849E1E9CEA9202B1B80361D /* Pods-digibyteUITests.screenshots.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2098,17 +1967,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyteUITests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwallet;
+				PRODUCT_NAME = Pods_digibyteUITests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2176,9 +2045,9 @@
 			};
 			name = Testnet;
 		};
-		CC6D9D15F5912282864D28973F751E6A /* Testflight */ = {
+		C91B31F23E97EC4298077E455F05D3C2 /* Testnet */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C74A74EDC2F832CAE782026C71929A0 /* Pods-breadwallet.testflight.xcconfig */;
+			baseConfigurationReference = D730A91F3BD15A93138664128DF25557 /* Pods-digibyte.testnet.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2189,17 +2058,50 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwallet/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyte/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwallet/Pods-breadwallet.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyte/Pods-digibyte.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwallet;
+				PRODUCT_NAME = Pods_digibyte;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Testnet;
+		};
+		CDB8D6A9D6886F81877D3DDF68DF0E39 /* Testflight */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D90CAE4A50D4A636A83DD00B3EA34477 /* Pods-digibyteUITests.testflight.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyteUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_digibyteUITests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2209,9 +2111,9 @@
 			};
 			name = Testflight;
 		};
-		D3FCC7B4DF267B974DD9B1016ECDBF25 /* Release */ = {
+		DA659AA622481FC426BB62CEC075602A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3441D08A94C632C2F7443D38038778C /* Pods-breadwalletUITests.release.xcconfig */;
+			baseConfigurationReference = DADC7D316C00A322E91B0BCDC8AC17AE /* Pods-digibyteUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2222,17 +2124,49 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyteUITests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwalletUITests;
+				PRODUCT_NAME = Pods_digibyteUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E4BD9E6C15FBD1D270388F2B16A83509 /* Screenshots */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 258F9A3B690C498D92EEA02B1D2115C3 /* Pods-digibyteTests.screenshots.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyteTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyteTests/Pods-digibyteTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_digibyteTests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2240,7 +2174,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Screenshots;
 		};
 		E59C84ED5BECAECF083A53C478E33C9E /* Testflight */ = {
 			isa = XCBuildConfiguration;
@@ -2300,39 +2234,6 @@
 			};
 			name = Testflight;
 		};
-		ECFB04688B5C37A132F445666800C7CD /* Screenshots */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8725C9C4F0A505533578C41FC94EED6 /* Pods-breadwalletUITests.screenshots.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-breadwalletUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_breadwalletUITests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Screenshots;
-		};
 		F3317785DC739474ED9622DD11929FFE /* Testflight */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0324B4C0A3FE7DAA29827FFD18917A85 /* Buglife.xcconfig */;
@@ -2364,17 +2265,116 @@
 			};
 			name = Testflight;
 		};
+		F52F625640E0FCF4DBC4135FF591C7F9 /* Testflight */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD00798BA9DD6BFF607B5EBEAD019FAC /* Pods-digibyteTests.testflight.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyteTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyteTests/Pods-digibyteTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_digibyteTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Testflight;
+		};
+		FA2AB565731D70EB1AB30176A13E63C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1712FB9676BA179B2924F7AA7128D396 /* Pods-digibyteTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyteTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyteTests/Pods-digibyteTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_digibyteTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FB23BE694C9A17A5C380A05B44932261 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD7D0F2AC9780BBF3AD70487D5EE3BE4 /* Pods-digibyteUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-digibyteUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_digibyteUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0BF8B6D186A3DD848FEB6895A28A9173 /* Build configuration list for PBXNativeTarget "Pods-breadwalletTests" */ = {
+		1F18FE4CD799693E79E319A08192D953 /* Build configuration list for PBXNativeTarget "Pods-digibyte" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				71652BC93CD560757A90CABE04C7F8A8 /* Debug */,
-				43AD1F88E33E6CFC8237745C46D2C585 /* Release */,
-				AA81D2A07B353A8B693210B3A08723FB /* Screenshots */,
-				7CE9C36D48730981F9E158B2AB98EEED /* Testflight */,
-				483942437DC9747F3AE89FD457C6B8B8 /* Testnet */,
+				024E5B086C76FA15A73D8C874574B89A /* Debug */,
+				A084C402D8B035B51BFDE5F17EEC429B /* Release */,
+				85B42A20A48C5D07090F93CE8FA85EFD /* Screenshots */,
+				613C17A500B8A2AEBB8ECA6F5CA47BA4 /* Testflight */,
+				C91B31F23E97EC4298077E455F05D3C2 /* Testnet */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2391,30 +2391,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		38916D0F34462B8F9E5B671992DD47C2 /* Build configuration list for PBXNativeTarget "Pods-breadwallet" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B8133299AEAA079E81931AC1E090A205 /* Debug */,
-				A7B35A32C004C8237F4BD9E79B20269D /* Release */,
-				BC868F35EBFD44CF3A97BF464EF4DC2C /* Screenshots */,
-				CC6D9D15F5912282864D28973F751E6A /* Testflight */,
-				4032D4E70DD7D20749EDE6E102AE0B9C /* Testnet */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5CECBA024BCAAD79D64E8633BE8A5389 /* Build configuration list for PBXNativeTarget "Pods-breadwalletUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5D6297AD7DFDB69FCFE8422FCDD3B4AF /* Debug */,
-				D3FCC7B4DF267B974DD9B1016ECDBF25 /* Release */,
-				ECFB04688B5C37A132F445666800C7CD /* Screenshots */,
-				132985A5E93E3447DC692A3E6BE87996 /* Testflight */,
-				433AF72807A7AF1373B39DD5D0DC329C /* Testnet */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		6DE2EC4A001AD84D323B3CE7A99176B3 /* Build configuration list for PBXNativeTarget "Buglife" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2423,6 +2399,30 @@
 				B0B0240BEAEA53419BC8D5C28C68D951 /* Screenshots */,
 				F3317785DC739474ED9622DD11929FFE /* Testflight */,
 				50A454FC2F17EC49D84213DCE54F4836 /* Testnet */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8AC6D04576E222ECD1C45F001F72DC01 /* Build configuration list for PBXNativeTarget "Pods-digibyteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				865D062752AC8E12310BD278DEF90186 /* Debug */,
+				FA2AB565731D70EB1AB30176A13E63C2 /* Release */,
+				E4BD9E6C15FBD1D270388F2B16A83509 /* Screenshots */,
+				F52F625640E0FCF4DBC4135FF591C7F9 /* Testflight */,
+				6C2CC754F25CA3FBD1C067C1E9353AEF /* Testnet */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F45E9F680A62ABA1227B7F593CE87404 /* Build configuration list for PBXNativeTarget "Pods-digibyteUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA659AA622481FC426BB62CEC075602A /* Debug */,
+				FB23BE694C9A17A5C380A05B44932261 /* Release */,
+				C269E3518F7A598A0647701F0CC55B7B /* Screenshots */,
+				CDB8D6A9D6886F81877D3DDF68DF0E39 /* Testflight */,
+				BA6EA04802519A84C40836A6DBD780CB /* Testnet */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

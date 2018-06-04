@@ -57,6 +57,7 @@
 		22C431341DF89DFE0017CAEA /* BRCoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C431331DF89DFE0017CAEA /* BRCoderTests.swift */; };
 		22C431361DF8A6DF0017CAEA /* BRAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C431351DF8A6DF0017CAEA /* BRAPIClientTests.swift */; };
 		22E773041EE7813000397E0E /* Bonjour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E773031EE7813000397E0E /* Bonjour.swift */; };
+		4B12F407819BEE2C20FC72A9 /* Pods_digibyte.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35FACAB4CC40422D8F90369 /* Pods_digibyte.framework */; };
 		7503773D1DF57428005EB8AE /* WalletManager+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503773C1DF57428005EB8AE /* WalletManager+Auth.swift */; };
 		751734B91DAC941E00193C87 /* sec-sub-1.c in Sources */ = {isa = PBXBuildFile; fileRef = 755CD8BE1DAA16820075898E /* sec-sub-1.c */; };
 		752438751DAAC50800844BEC /* alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 755CD6761DAA0E400075898E /* alloc.c */; };
@@ -202,9 +203,9 @@
 		75A2A7941DA5934300A983D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2A7931DA5934300A983D8 /* AppDelegate.swift */; };
 		75A2A79B1DA5934300A983D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75A2A79A1DA5934300A983D8 /* Assets.xcassets */; };
 		75A2A7B41DA5934300A983D8 /* breadwalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2A7B31DA5934300A983D8 /* breadwalletUITests.swift */; };
-		75A2A7B91DA5934300A983D8 /* breadwallet WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 75A2A7B81DA5934300A983D8 /* breadwallet WatchKit App.app */; };
+		75A2A7B91DA5934300A983D8 /* digibyte WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 75A2A7B81DA5934300A983D8 /* digibyte WatchKit App.app */; };
 		75A2A7C11DA5934300A983D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75A2A7C01DA5934300A983D8 /* Assets.xcassets */; };
-		75A2A7C81DA5934300A983D8 /* breadwallet WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75A2A7C71DA5934300A983D8 /* breadwallet WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		75A2A7C81DA5934300A983D8 /* digibyte WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75A2A7C71DA5934300A983D8 /* digibyte WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		75A2A7CF1DA5934300A983D8 /* BalanceInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2A7CE1DA5934300A983D8 /* BalanceInterfaceController.swift */; };
 		75A2A7D11DA5934300A983D8 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2A7D01DA5934300A983D8 /* ExtensionDelegate.swift */; };
 		75A2A7D31DA5934300A983D8 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2A7D21DA5934300A983D8 /* NotificationController.swift */; };
@@ -218,7 +219,6 @@
 		75A2A81F1DA5938500A983D8 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2A81E1DA5938500A983D8 /* NotificationService.swift */; };
 		75A2A8231DA5938500A983D8 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75A2A81C1DA5938500A983D8 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		75C735AA1DAA1B9C00251ECF /* libunbound.c in Sources */ = {isa = PBXBuildFile; fileRef = 755CD4121DAA0E3E0075898E /* libunbound.c */; };
-		783FCF615914C953768FE3B5 /* Pods_breadwalletUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26AC9FA94AE1CA45B7A8ED5 /* Pods_breadwalletUITests.framework */; };
 		785BA39C2087EDE800739B5E /* OldestBlockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BA39B2087EDE700739B5E /* OldestBlockRequest.swift */; };
 		787CA16720B06BBE005C4B92 /* UILabel+CharacterSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787CA16620B06BBE005C4B92 /* UILabel+CharacterSpacing.swift */; };
 		787CA16B20B0840E005C4B92 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787CA16A20B081AC005C4B92 /* Rubik-Bold.ttf */; };
@@ -234,7 +234,6 @@
 		78B6BBF920BAFE05003A2F29 /* Rebrand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B6BBF820BAFE05003A2F29 /* Rebrand.xcassets */; };
 		78B6BBFB20BB3352003A2F29 /* ShowAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6BBFA20BB3352003A2F29 /* ShowAddressViewController.swift */; };
 		9F3EF3712059CA6400E3C837 /* BRBech32.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F3EF36F2059CA6400E3C837 /* BRBech32.c */; };
-		A8E3D5DBCCEC09FCE0CF76FE /* Pods_breadwalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4ED1454C2B4DE0BAFD4D8FE /* Pods_breadwalletTests.framework */; };
 		AA34562A2020CA7C00B2C462 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA3456282020CA7C00B2C462 /* Localizable.strings */; };
 		AA85B80C1FEAF84B008EB914 /* groestl.c in Sources */ = {isa = PBXBuildFile; fileRef = AA85B7ED1FEAF84A008EB914 /* groestl.c */; };
 		AA85B80D1FEAF84B008EB914 /* qubit.c in Sources */ = {isa = PBXBuildFile; fileRef = AA85B7EF1FEAF84A008EB914 /* qubit.c */; };
@@ -255,7 +254,6 @@
 		AA94556D2020DAB500B6ABB1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA94556C2020DAB500B6ABB1 /* MainInterface.storyboard */; };
 		AA94556F2020DAFC00B6ABB1 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA94556E2020DAFC00B6ABB1 /* Interface.storyboard */; };
 		AAF3240D206B307E004D2BED /* BIP39Words.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA94555A2020D40B00B6ABB1 /* BIP39Words.plist */; };
-		C49F0287399E34837D60D3B8 /* Pods_breadwallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C879FCE32446182EABF9F93 /* Pods_breadwallet.framework */; };
 		CE03EC721EF193810038E3A8 /* String+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03EC711EF193800038E3A8 /* String+Keys.swift */; };
 		CE03EC741EF256AC0038E3A8 /* SimpleUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03EC731EF256AC0038E3A8 /* SimpleUTXO.swift */; };
 		CE0CD1591DBFBCF5004023DA /* ModalPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CD1581DBFBCF5004023DA /* ModalPresenter.swift */; };
@@ -447,6 +445,8 @@
 		CEF61B141ED0D10000C7EA6A /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF61B131ED0D10000C7EA6A /* Types.swift */; };
 		CEF61B161ED2056D00C7EA6A /* NumberFormatter+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF61B151ED2056D00C7EA6A /* NumberFormatter+Additions.swift */; };
 		CEFFA2D11EB3BD730085C5D1 /* LoadingIndicator.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFFA2D01EB3BD730085C5D1 /* LoadingIndicator.xcassets */; };
+		F1405EAFC084372D789C72D9 /* Pods_digibyteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 031C5F28CB0D2B0D152B9D2F /* Pods_digibyteTests.framework */; };
+		FE461957D71C2B1E9E6FF757 /* Pods_digibyteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E49ADB6736857C5D63E8053 /* Pods_digibyteUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -580,7 +580,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				75A2A7C81DA5934300A983D8 /* breadwallet WatchKit Extension.appex in Embed App Extensions */,
+				75A2A7C81DA5934300A983D8 /* digibyte WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,7 +591,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				75A2A7B91DA5934300A983D8 /* breadwallet WatchKit App.app in Embed Watch Content */,
+				75A2A7B91DA5934300A983D8 /* digibyte WatchKit App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,17 +630,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		02A389FAB034039F6B28EA61 /* Pods-breadwalletUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.release.xcconfig"; sourceTree = "<group>"; };
-		044B524586F0800207C76AEE /* Pods-breadwallet.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwallet.screenshots.xcconfig"; path = "Pods/Target Support Files/Pods-breadwallet/Pods-breadwallet.screenshots.xcconfig"; sourceTree = "<group>"; };
+		031C5F28CB0D2B0D152B9D2F /* Pods_digibyteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_digibyteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		047876BF20084BB200C422DE /* SupportStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = SupportStoryboard.storyboard; path = src/ViewControllers/SupportStoryboard.storyboard; sourceTree = "<group>"; };
 		047876C12008514500C422DE /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportViewController.swift; path = src/ViewControllers/SupportViewController.swift; sourceTree = "<group>"; };
 		049B9B7E20104B65004EF1A1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		0C6042901B7764F2DCEFDCDE /* Pods-breadwalletTests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletTests.screenshots.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.screenshots.xcconfig"; sourceTree = "<group>"; };
-		0DD25BB443FE55993F13FBCE /* Pods_libbz2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_libbz2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		05F39B6A4B46E1882748F6F8 /* Pods-digibyteTests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.screenshots.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.screenshots.xcconfig"; sourceTree = "<group>"; };
+		16C6A71BAE93053870AB8C11 /* Pods-digibyteTests.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.testnet.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.testnet.xcconfig"; sourceTree = "<group>"; };
 		1B1AFF9E1FB7EF7C00E61908 /* BiometricsSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsSettingsViewController.swift; sourceTree = "<group>"; };
 		1B1AFF9F1FB7EF7C00E61908 /* BiometricsSpendingLimitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsSpendingLimitViewController.swift; sourceTree = "<group>"; };
-		1B5FE5174CB8F1117E6FAAA9 /* Pods-breadwalletUITests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletUITests.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.testflight.xcconfig"; sourceTree = "<group>"; };
-		20655A599D31C1706694DE17 /* Pods-breadwalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.release.xcconfig"; sourceTree = "<group>"; };
+		1E49ADB6736857C5D63E8053 /* Pods_digibyteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_digibyteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22122B711F0B8996000E9AB9 /* BRAPIClient+Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BRAPIClient+Events.swift"; sourceTree = "<group>"; };
 		2218BD761E8F55430091D5E8 /* BRAPIClient+Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BRAPIClient+Assets.swift"; path = "src/Platform/BRAPIClient+Assets.swift"; sourceTree = "<group>"; };
 		2218BD781E8F6CBA0091D5E8 /* AssetBundles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AssetBundles.plist; path = src/AssetBundles.plist; sourceTree = "<group>"; };
@@ -689,13 +687,10 @@
 		22C431331DF89DFE0017CAEA /* BRCoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRCoderTests.swift; sourceTree = "<group>"; };
 		22C431351DF8A6DF0017CAEA /* BRAPIClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRAPIClientTests.swift; sourceTree = "<group>"; };
 		22E773031EE7813000397E0E /* Bonjour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bonjour.swift; sourceTree = "<group>"; };
-		2FF85EE8F0F49B63B06B6CB9 /* Pods-breadwalletTests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletTests.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.testflight.xcconfig"; sourceTree = "<group>"; };
-		3237F3B4FA6E419E0F052CAA /* Pods_NotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		388F13649CB1BB0711D439BD /* Pods-breadwallet.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwallet.testnet.xcconfig"; path = "Pods/Target Support Files/Pods-breadwallet/Pods-breadwallet.testnet.xcconfig"; sourceTree = "<group>"; };
-		473F371D399361F5CF353083 /* Pods-breadwallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-breadwallet/Pods-breadwallet.release.xcconfig"; sourceTree = "<group>"; };
-		4AEDA653D0A03684E9E41161 /* Pods-breadwalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4C0D8D6FDE71C3F09E6F5830 /* Pods_breadwallet_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_breadwallet_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C879FCE32446182EABF9F93 /* Pods_breadwallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_breadwallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D5BD8E0D12DB696F3145E2D /* Pods-digibyteUITests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteUITests.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.testflight.xcconfig"; sourceTree = "<group>"; };
+		3F253E13C3E4A94EE8612B2F /* Pods-digibyteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.release.xcconfig"; sourceTree = "<group>"; };
+		40C6581957990676DAFB3521 /* Pods-digibyteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.debug.xcconfig"; sourceTree = "<group>"; };
+		42BF279CC081DF814253BED5 /* Pods-digibyteUITests.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteUITests.testnet.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.testnet.xcconfig"; sourceTree = "<group>"; };
 		7503773C1DF57428005EB8AE /* WalletManager+Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WalletManager+Auth.swift"; path = "src/WalletManager+Auth.swift"; sourceTree = "<group>"; };
 		7528D2971ECF655500925DBC /* PaymentProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProtocol.swift; path = src/PaymentProtocol.swift; sourceTree = "<group>"; };
 		752FB03B1DF8BE4B009086FB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1309,19 +1304,19 @@
 		755CD9D11DAA197C0075898E /* libBRCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBRCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		759DA09F1DAB838D008CC49B /* view.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = view.c; sourceTree = "<group>"; };
 		759DA0A01DAB838D008CC49B /* view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = view.h; sourceTree = "<group>"; };
-		75A2A7901DA5934300A983D8 /* breadwallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = breadwallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75A2A7901DA5934300A983D8 /* digibyte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = digibyte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75A2A7931DA5934300A983D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75A2A79A1DA5934300A983D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75A2A79F1DA5934300A983D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75A2A7A41DA5934300A983D8 /* breadwalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = breadwalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		75A2A7A41DA5934300A983D8 /* digibyteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = digibyteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75A2A7AA1DA5934300A983D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75A2A7AF1DA5934300A983D8 /* breadwalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = breadwalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		75A2A7AF1DA5934300A983D8 /* digibyteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = digibyteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75A2A7B31DA5934300A983D8 /* breadwalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = breadwalletUITests.swift; sourceTree = "<group>"; };
 		75A2A7B51DA5934300A983D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75A2A7B81DA5934300A983D8 /* breadwallet WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "breadwallet WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75A2A7B81DA5934300A983D8 /* digibyte WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "digibyte WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75A2A7C01DA5934300A983D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75A2A7C21DA5934300A983D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75A2A7C71DA5934300A983D8 /* breadwallet WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "breadwallet WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75A2A7C71DA5934300A983D8 /* digibyte WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "digibyte WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75A2A7CD1DA5934300A983D8 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		75A2A7CE1DA5934300A983D8 /* BalanceInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceInterfaceController.swift; sourceTree = "<group>"; };
 		75A2A7D01DA5934300A983D8 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
@@ -1388,14 +1383,10 @@
 		78B6BBF620B8C625003A2F29 /* UIView+TapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+TapGesture.swift"; path = "src/Extensions/UIView+TapGesture.swift"; sourceTree = "<group>"; };
 		78B6BBF820BAFE05003A2F29 /* Rebrand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Rebrand.xcassets; sourceTree = "<group>"; };
 		78B6BBFA20BB3352003A2F29 /* ShowAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowAddressViewController.swift; path = src/ViewControllers/RootModals/ShowAddressViewController.swift; sourceTree = "<group>"; };
-		83AD48DD756ACA069301ADD3 /* Pods-breadwalletUITests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletUITests.screenshots.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.screenshots.xcconfig"; sourceTree = "<group>"; };
-		8873BEA64A49D1BBA1FA67CD /* Pods-breadwallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-breadwallet/Pods-breadwallet.debug.xcconfig"; sourceTree = "<group>"; };
-		9305BCC5C0E2A5C20ADA8F50 /* Pods_BRCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BRCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D3D68384132C21EAC8DDE34 /* Pods-breadwalletUITests.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletUITests.testnet.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.testnet.xcconfig"; sourceTree = "<group>"; };
+		8C7397EB8A4764D7E851BF4A /* Pods-digibyte.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyte.debug.xcconfig"; path = "Pods/Target Support Files/Pods-digibyte/Pods-digibyte.debug.xcconfig"; sourceTree = "<group>"; };
 		9F3EF36E2059CA6400E3C837 /* BRChainParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRChainParams.h; sourceTree = "<group>"; };
 		9F3EF36F2059CA6400E3C837 /* BRBech32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BRBech32.c; sourceTree = "<group>"; };
 		9F3EF3702059CA6400E3C837 /* BRBech32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRBech32.h; sourceTree = "<group>"; };
-		A26AC9FA94AE1CA45B7A8ED5 /* Pods_breadwalletUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_breadwalletUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA147C022020CD6D005244A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = src/Strings/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA147C032020CE66005244A9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "src/Strings/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AA2DC52A2025602F0067E900 /* ar-001 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-001"; path = "src/Strings/ar-001.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1527,10 +1518,10 @@
 		AAF586132047A532004E530E /* te */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = te; path = src/Strings/te.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AAF8A2102039271D00B47F58 /* bs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bs; path = src/Strings/bs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AAF8A2112039275300B47F58 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = src/Strings/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B969D992D959B5B85A1BDD91 /* Pods-breadwalletUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		C4800D2B9C627933093A52E3 /* Pods-breadwalletTests.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwalletTests.testnet.xcconfig"; path = "Pods/Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests.testnet.xcconfig"; sourceTree = "<group>"; };
-		C4ED1454C2B4DE0BAFD4D8FE /* Pods_breadwalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_breadwalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7E0B4D860447DE594310459 /* Pods_sqlite3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sqlite3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B252788FCCE3166FC621948F /* Pods-digibyte.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyte.release.xcconfig"; path = "Pods/Target Support Files/Pods-digibyte/Pods-digibyte.release.xcconfig"; sourceTree = "<group>"; };
+		B5AE909ECCB7673495A88259 /* Pods-digibyteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C2F327098575E85039FDCAD1 /* Pods-digibyte.testnet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyte.testnet.xcconfig"; path = "Pods/Target Support Files/Pods-digibyte/Pods-digibyte.testnet.xcconfig"; sourceTree = "<group>"; };
+		C959511BF3776EB93B813F2D /* Pods-digibyte.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyte.screenshots.xcconfig"; path = "Pods/Target Support Files/Pods-digibyte/Pods-digibyte.screenshots.xcconfig"; sourceTree = "<group>"; };
 		CE03EC711EF193800038E3A8 /* String+Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Keys.swift"; path = "src/Extensions/String+Keys.swift"; sourceTree = "<group>"; };
 		CE03EC731EF256AC0038E3A8 /* SimpleUTXO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleUTXO.swift; path = src/Models/SimpleUTXO.swift; sourceTree = "<group>"; };
 		CE0CD1581DBFBCF5004023DA /* ModalPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ModalPresenter.swift; path = src/ModalPresenter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1725,9 +1716,11 @@
 		CEF61B131ED0D10000C7EA6A /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Types.swift; path = src/Models/Types.swift; sourceTree = "<group>"; };
 		CEF61B151ED2056D00C7EA6A /* NumberFormatter+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NumberFormatter+Additions.swift"; path = "src/Extensions/NumberFormatter+Additions.swift"; sourceTree = "<group>"; };
 		CEFFA2D01EB3BD730085C5D1 /* LoadingIndicator.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LoadingIndicator.xcassets; sourceTree = "<group>"; };
-		E96064292E2C5E8968FFFD77 /* Pods-breadwallet.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breadwallet.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-breadwallet/Pods-breadwallet.testflight.xcconfig"; sourceTree = "<group>"; };
-		EAACD89E5DFF8EF77E062A7B /* Pods_TodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ECA34BDB9EE3FE7B94E45F90 /* Pods_breadwallet_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_breadwallet_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D92616E2AE3F5C65C5CCF179 /* Pods-digibyteTests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.testflight.xcconfig"; sourceTree = "<group>"; };
+		E35FACAB4CC40422D8F90369 /* Pods_digibyte.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_digibyte.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4078AF369EC83FDAFBF5FEB /* Pods-digibyteUITests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteUITests.screenshots.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.screenshots.xcconfig"; sourceTree = "<group>"; };
+		E9F5A4261B652FEDEE61FD0D /* Pods-digibyteUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FAC4CE2CC69B7B05264463A8 /* Pods-digibyte.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyte.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-digibyte/Pods-digibyte.testflight.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1773,7 +1766,7 @@
 				223DB21B1DF69F0F0076A151 /* libbz2.framework in Frameworks */,
 				752FB04D1DF8BF4B009086FB /* sqlite3.framework in Frameworks */,
 				759DA0BE1DAC36A3008CC49B /* libBRCore.a in Frameworks */,
-				C49F0287399E34837D60D3B8 /* Pods_breadwallet.framework in Frameworks */,
+				4B12F407819BEE2C20FC72A9 /* Pods_digibyte.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1781,7 +1774,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8E3D5DBCCEC09FCE0CF76FE /* Pods_breadwalletTests.framework in Frameworks */,
+				F1405EAFC084372D789C72D9 /* Pods_digibyteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1789,7 +1782,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				783FCF615914C953768FE3B5 /* Pods_breadwalletUITests.framework in Frameworks */,
+				FE461957D71C2B1E9E6FF757 /* Pods_digibyteUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2705,18 +2698,18 @@
 				CEA7E67C1F09A9D2001F8C27 /* Screenshots */,
 				75A2A7F11DA5935F00A983D8 /* Frameworks */,
 				75A2A7911DA5934300A983D8 /* Products */,
-				9F447D28C6A46F37E0DD3D73 /* Pods */,
+				946CE2428AEA9F776033391B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		75A2A7911DA5934300A983D8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				75A2A7901DA5934300A983D8 /* breadwallet.app */,
-				75A2A7A41DA5934300A983D8 /* breadwalletTests.xctest */,
-				75A2A7AF1DA5934300A983D8 /* breadwalletUITests.xctest */,
-				75A2A7B81DA5934300A983D8 /* breadwallet WatchKit App.app */,
-				75A2A7C71DA5934300A983D8 /* breadwallet WatchKit Extension.appex */,
+				75A2A7901DA5934300A983D8 /* digibyte.app */,
+				75A2A7A41DA5934300A983D8 /* digibyteTests.xctest */,
+				75A2A7AF1DA5934300A983D8 /* digibyteUITests.xctest */,
+				75A2A7B81DA5934300A983D8 /* digibyte WatchKit App.app */,
+				75A2A7C71DA5934300A983D8 /* digibyte WatchKit Extension.appex */,
 				75A2A7F01DA5935F00A983D8 /* MessagesExtension.appex */,
 				75A2A8081DA5936F00A983D8 /* TodayExtension.appex */,
 				75A2A81C1DA5938500A983D8 /* NotificationServiceExtension.appex */,
@@ -2854,16 +2847,9 @@
 				75FEFD1B1DAED56E00203D3A /* libsqlite3.tbd */,
 				75A2A7F21DA5935F00A983D8 /* Messages.framework */,
 				75A2A8091DA5936F00A983D8 /* NotificationCenter.framework */,
-				9305BCC5C0E2A5C20ADA8F50 /* Pods_BRCore.framework */,
-				3237F3B4FA6E419E0F052CAA /* Pods_NotificationServiceExtension.framework */,
-				EAACD89E5DFF8EF77E062A7B /* Pods_TodayExtension.framework */,
-				4C879FCE32446182EABF9F93 /* Pods_breadwallet.framework */,
-				ECA34BDB9EE3FE7B94E45F90 /* Pods_breadwallet_WatchKit_App.framework */,
-				4C0D8D6FDE71C3F09E6F5830 /* Pods_breadwallet_WatchKit_Extension.framework */,
-				C4ED1454C2B4DE0BAFD4D8FE /* Pods_breadwalletTests.framework */,
-				A26AC9FA94AE1CA45B7A8ED5 /* Pods_breadwalletUITests.framework */,
-				0DD25BB443FE55993F13FBCE /* Pods_libbz2.framework */,
-				C7E0B4D860447DE594310459 /* Pods_sqlite3.framework */,
+				E35FACAB4CC40422D8F90369 /* Pods_digibyte.framework */,
+				031C5F28CB0D2B0D152B9D2F /* Pods_digibyteTests.framework */,
+				1E49ADB6736857C5D63E8053 /* Pods_digibyteUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2977,24 +2963,24 @@
 			path = Modules/sqlite3;
 			sourceTree = "<group>";
 		};
-		9F447D28C6A46F37E0DD3D73 /* Pods */ = {
+		946CE2428AEA9F776033391B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8873BEA64A49D1BBA1FA67CD /* Pods-breadwallet.debug.xcconfig */,
-				388F13649CB1BB0711D439BD /* Pods-breadwallet.testnet.xcconfig */,
-				044B524586F0800207C76AEE /* Pods-breadwallet.screenshots.xcconfig */,
-				473F371D399361F5CF353083 /* Pods-breadwallet.release.xcconfig */,
-				E96064292E2C5E8968FFFD77 /* Pods-breadwallet.testflight.xcconfig */,
-				4AEDA653D0A03684E9E41161 /* Pods-breadwalletTests.debug.xcconfig */,
-				C4800D2B9C627933093A52E3 /* Pods-breadwalletTests.testnet.xcconfig */,
-				0C6042901B7764F2DCEFDCDE /* Pods-breadwalletTests.screenshots.xcconfig */,
-				20655A599D31C1706694DE17 /* Pods-breadwalletTests.release.xcconfig */,
-				2FF85EE8F0F49B63B06B6CB9 /* Pods-breadwalletTests.testflight.xcconfig */,
-				B969D992D959B5B85A1BDD91 /* Pods-breadwalletUITests.debug.xcconfig */,
-				9D3D68384132C21EAC8DDE34 /* Pods-breadwalletUITests.testnet.xcconfig */,
-				83AD48DD756ACA069301ADD3 /* Pods-breadwalletUITests.screenshots.xcconfig */,
-				02A389FAB034039F6B28EA61 /* Pods-breadwalletUITests.release.xcconfig */,
-				1B5FE5174CB8F1117E6FAAA9 /* Pods-breadwalletUITests.testflight.xcconfig */,
+				8C7397EB8A4764D7E851BF4A /* Pods-digibyte.debug.xcconfig */,
+				C2F327098575E85039FDCAD1 /* Pods-digibyte.testnet.xcconfig */,
+				C959511BF3776EB93B813F2D /* Pods-digibyte.screenshots.xcconfig */,
+				B252788FCCE3166FC621948F /* Pods-digibyte.release.xcconfig */,
+				FAC4CE2CC69B7B05264463A8 /* Pods-digibyte.testflight.xcconfig */,
+				40C6581957990676DAFB3521 /* Pods-digibyteTests.debug.xcconfig */,
+				16C6A71BAE93053870AB8C11 /* Pods-digibyteTests.testnet.xcconfig */,
+				05F39B6A4B46E1882748F6F8 /* Pods-digibyteTests.screenshots.xcconfig */,
+				3F253E13C3E4A94EE8612B2F /* Pods-digibyteTests.release.xcconfig */,
+				D92616E2AE3F5C65C5CCF179 /* Pods-digibyteTests.testflight.xcconfig */,
+				E9F5A4261B652FEDEE61FD0D /* Pods-digibyteUITests.debug.xcconfig */,
+				42BF279CC081DF814253BED5 /* Pods-digibyteUITests.testnet.xcconfig */,
+				E4078AF369EC83FDAFBF5FEB /* Pods-digibyteUITests.screenshots.xcconfig */,
+				B5AE909ECCB7673495A88259 /* Pods-digibyteUITests.release.xcconfig */,
+				2D5BD8E0D12DB696F3145E2D /* Pods-digibyteUITests.testflight.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -3506,11 +3492,11 @@
 			productReference = 755CD9D11DAA197C0075898E /* libBRCore.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		75A2A78F1DA5934300A983D8 /* breadwallet */ = {
+		75A2A78F1DA5934300A983D8 /* digibyte */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75A2A7E31DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwallet" */;
+			buildConfigurationList = 75A2A7E31DA5934400A983D8 /* Build configuration list for PBXNativeTarget "digibyte" */;
 			buildPhases = (
-				EF99C0CC0FFEFA20B09441E8 /* [CP] Check Pods Manifest.lock */,
+				622CA7497DB8E431E1899859 /* [CP] Check Pods Manifest.lock */,
 				75A2A78C1DA5934300A983D8 /* Sources */,
 				75A2A78D1DA5934300A983D8 /* Frameworks */,
 				75A2A78E1DA5934300A983D8 /* Resources */,
@@ -3519,8 +3505,8 @@
 				75A2A8031DA5935F00A983D8 /* Embed App Extensions */,
 				22A9A9831DF63288000F0016 /* Embed Frameworks */,
 				CEE0EF531EBF8C8A0018DB36 /* Icon Versioning */,
-				2E0FC16054D5B375EE79C2DC /* [CP] Embed Pods Frameworks */,
-				2FBD651F34EB6D14A5D865A0 /* [CP] Copy Pods Resources */,
+				756FB167A65ABBE5A0B78821 /* [CP] Embed Pods Frameworks */,
+				F45C3D49B6D2DCDD943F1D0A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3532,56 +3518,56 @@
 				22A9A99C1DF63426000F0016 /* PBXTargetDependency */,
 				752FB04F1DF8BF5C009086FB /* PBXTargetDependency */,
 			);
-			name = breadwallet;
+			name = digibyte;
 			productName = breadwallet;
-			productReference = 75A2A7901DA5934300A983D8 /* breadwallet.app */;
+			productReference = 75A2A7901DA5934300A983D8 /* digibyte.app */;
 			productType = "com.apple.product-type.application";
 		};
-		75A2A7A31DA5934300A983D8 /* breadwalletTests */ = {
+		75A2A7A31DA5934300A983D8 /* digibyteTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75A2A7E61DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwalletTests" */;
+			buildConfigurationList = 75A2A7E61DA5934400A983D8 /* Build configuration list for PBXNativeTarget "digibyteTests" */;
 			buildPhases = (
-				83932E1CF75FE0D3EF6132E1 /* [CP] Check Pods Manifest.lock */,
+				5B40AECB1651708AC93267AB /* [CP] Check Pods Manifest.lock */,
 				75A2A7A01DA5934300A983D8 /* Sources */,
 				75A2A7A11DA5934300A983D8 /* Frameworks */,
 				75A2A7A21DA5934300A983D8 /* Resources */,
-				DF8003FA0FC92C8DE7EC0DC5 /* [CP] Embed Pods Frameworks */,
-				8AE1669540D6222D0021659C /* [CP] Copy Pods Resources */,
+				9322430DC2D983D488E03DB6 /* [CP] Embed Pods Frameworks */,
+				8CA6032E4690A80AA8958A23 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				75A2A7A61DA5934300A983D8 /* PBXTargetDependency */,
 			);
-			name = breadwalletTests;
+			name = digibyteTests;
 			productName = breadwalletTests;
-			productReference = 75A2A7A41DA5934300A983D8 /* breadwalletTests.xctest */;
+			productReference = 75A2A7A41DA5934300A983D8 /* digibyteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		75A2A7AE1DA5934300A983D8 /* breadwalletUITests */ = {
+		75A2A7AE1DA5934300A983D8 /* digibyteUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75A2A7E91DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwalletUITests" */;
+			buildConfigurationList = 75A2A7E91DA5934400A983D8 /* Build configuration list for PBXNativeTarget "digibyteUITests" */;
 			buildPhases = (
-				2DBC09E8B476CE89D7E03939 /* [CP] Check Pods Manifest.lock */,
+				37905F5A49F5EB10788E9E50 /* [CP] Check Pods Manifest.lock */,
 				75A2A7AB1DA5934300A983D8 /* Sources */,
 				75A2A7AC1DA5934300A983D8 /* Frameworks */,
 				75A2A7AD1DA5934300A983D8 /* Resources */,
-				4B6216590B9B3BDD8EB1BDC0 /* [CP] Embed Pods Frameworks */,
-				674322380F7B70A254041549 /* [CP] Copy Pods Resources */,
+				BB7533DD3CB68A4B77DA440D /* [CP] Embed Pods Frameworks */,
+				7A6D390B336BCE5F9D24D68F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				75A2A7B11DA5934300A983D8 /* PBXTargetDependency */,
 			);
-			name = breadwalletUITests;
+			name = digibyteUITests;
 			productName = breadwalletUITests;
-			productReference = 75A2A7AF1DA5934300A983D8 /* breadwalletUITests.xctest */;
+			productReference = 75A2A7AF1DA5934300A983D8 /* digibyteUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		75A2A7B71DA5934300A983D8 /* breadwallet WatchKit App */ = {
+		75A2A7B71DA5934300A983D8 /* digibyte WatchKit App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75A2A7DF1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwallet WatchKit App" */;
+			buildConfigurationList = 75A2A7DF1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "digibyte WatchKit App" */;
 			buildPhases = (
 				75A2A7B61DA5934300A983D8 /* Resources */,
 				75A2A7DE1DA5934400A983D8 /* Embed App Extensions */,
@@ -3593,14 +3579,14 @@
 			dependencies = (
 				75A2A7CA1DA5934300A983D8 /* PBXTargetDependency */,
 			);
-			name = "breadwallet WatchKit App";
+			name = "digibyte WatchKit App";
 			productName = "breadwallet WatchKit App";
-			productReference = 75A2A7B81DA5934300A983D8 /* breadwallet WatchKit App.app */;
+			productReference = 75A2A7B81DA5934300A983D8 /* digibyte WatchKit App.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
-		75A2A7C61DA5934300A983D8 /* breadwallet WatchKit Extension */ = {
+		75A2A7C61DA5934300A983D8 /* digibyte WatchKit Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75A2A7DB1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwallet WatchKit Extension" */;
+			buildConfigurationList = 75A2A7DB1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "digibyte WatchKit Extension" */;
 			buildPhases = (
 				75A2A7C31DA5934300A983D8 /* Sources */,
 				75A2A7C41DA5934300A983D8 /* Frameworks */,
@@ -3612,9 +3598,9 @@
 			);
 			dependencies = (
 			);
-			name = "breadwallet WatchKit Extension";
+			name = "digibyte WatchKit Extension";
 			productName = "breadwallet WatchKit Extension";
-			productReference = 75A2A7C71DA5934300A983D8 /* breadwallet WatchKit Extension.appex */;
+			productReference = 75A2A7C71DA5934300A983D8 /* digibyte WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		75A2A7EF1DA5935F00A983D8 /* MessagesExtension */ = {
@@ -3870,11 +3856,11 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				75A2A78F1DA5934300A983D8 /* breadwallet */,
-				75A2A7A31DA5934300A983D8 /* breadwalletTests */,
-				75A2A7AE1DA5934300A983D8 /* breadwalletUITests */,
-				75A2A7B71DA5934300A983D8 /* breadwallet WatchKit App */,
-				75A2A7C61DA5934300A983D8 /* breadwallet WatchKit Extension */,
+				75A2A78F1DA5934300A983D8 /* digibyte */,
+				75A2A7A31DA5934300A983D8 /* digibyteTests */,
+				75A2A7AE1DA5934300A983D8 /* digibyteUITests */,
+				75A2A7B71DA5934300A983D8 /* digibyte WatchKit App */,
+				75A2A7C61DA5934300A983D8 /* digibyte WatchKit Extension */,
 				75A2A7EF1DA5935F00A983D8 /* MessagesExtension */,
 				75A2A8071DA5936F00A983D8 /* TodayExtension */,
 				75A2A81B1DA5938500A983D8 /* NotificationServiceExtension */,
@@ -4010,7 +3996,7 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'master'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi";
 		};
-		2DBC09E8B476CE89D7E03939 /* [CP] Check Pods Manifest.lock */ = {
+		37905F5A49F5EB10788E9E50 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4021,20 +4007,56 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-breadwalletUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-digibyteUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2E0FC16054D5B375EE79C2DC /* [CP] Embed Pods Frameworks */ = {
+		5B40AECB1651708AC93267AB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-breadwallet/Pods-breadwallet-frameworks.sh",
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-digibyteTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		622CA7497DB8E431E1899859 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-digibyte-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		756FB167A65ABBE5A0B78821 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-digibyte/Pods-digibyte-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Buglife/Buglife.framework",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-15/iOS/RevealServer.framework",
 			);
@@ -4045,10 +4067,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-breadwallet/Pods-breadwallet-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-digibyte/Pods-digibyte-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2FBD651F34EB6D14A5D865A0 /* [CP] Copy Pods Resources */ = {
+		7A6D390B336BCE5F9D24D68F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4060,10 +4082,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-breadwallet/Pods-breadwallet-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4B6216590B9B3BDD8EB1BDC0 /* [CP] Embed Pods Frameworks */ = {
+		8CA6032E4690A80AA8958A23 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9322430DC2D983D488E03DB6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4075,55 +4112,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		674322380F7B70A254041549 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-breadwalletUITests/Pods-breadwalletUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		83932E1CF75FE0D3EF6132E1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-breadwalletTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8AE1669540D6222D0021659C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AA532F2B1FEB11CD00CFF3F9 /* Build Versioning */ = {
@@ -4196,6 +4185,21 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'master'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi";
 		};
+		BB7533DD3CB68A4B77DA440D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CEE0EF531EBF8C8A0018DB36 /* Icon Versioning */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4210,37 +4214,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/scripts/icon_versioning.sh\"";
 		};
-		DF8003FA0FC92C8DE7EC0DC5 /* [CP] Embed Pods Frameworks */ = {
+		F45C3D49B6D2DCDD943F1D0A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-breadwalletTests/Pods-breadwalletTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EF99C0CC0FFEFA20B09441E8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-breadwallet-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-digibyte/Pods-digibyte-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -4765,22 +4751,22 @@
 		};
 		75A2A7A61DA5934300A983D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75A2A78F1DA5934300A983D8 /* breadwallet */;
+			target = 75A2A78F1DA5934300A983D8 /* digibyte */;
 			targetProxy = 75A2A7A51DA5934300A983D8 /* PBXContainerItemProxy */;
 		};
 		75A2A7B11DA5934300A983D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75A2A78F1DA5934300A983D8 /* breadwallet */;
+			target = 75A2A78F1DA5934300A983D8 /* digibyte */;
 			targetProxy = 75A2A7B01DA5934300A983D8 /* PBXContainerItemProxy */;
 		};
 		75A2A7BB1DA5934300A983D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75A2A7B71DA5934300A983D8 /* breadwallet WatchKit App */;
+			target = 75A2A7B71DA5934300A983D8 /* digibyte WatchKit App */;
 			targetProxy = 75A2A7BA1DA5934300A983D8 /* PBXContainerItemProxy */;
 		};
 		75A2A7CA1DA5934300A983D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75A2A7C61DA5934300A983D8 /* breadwallet WatchKit Extension */;
+			target = 75A2A7C61DA5934300A983D8 /* digibyte WatchKit Extension */;
 			targetProxy = 75A2A7C91DA5934300A983D8 /* PBXContainerItemProxy */;
 		};
 		75A2A8131DA5936F00A983D8 /* PBXTargetDependency */ = {
@@ -4795,7 +4781,7 @@
 		};
 		CEA7E6811F09A9D2001F8C27 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75A2A78F1DA5934300A983D8 /* breadwallet */;
+			target = 75A2A78F1DA5934300A983D8 /* digibyte */;
 			targetProxy = CEA7E6801F09A9D2001F8C27 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -5250,7 +5236,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				IBSC_MODULE = breadwallet_WatchKit_Extension;
+				IBSC_MODULE = digibyte_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5267,7 +5253,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				IBSC_MODULE = breadwallet_WatchKit_Extension;
+				IBSC_MODULE = digibyte_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5280,7 +5266,7 @@
 		};
 		75A2A7E41DA5934400A983D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8873BEA64A49D1BBA1FA67CD /* Pods-breadwallet.debug.xcconfig */;
+			baseConfigurationReference = 8C7397EB8A4764D7E851BF4A /* Pods-digibyte.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -5309,7 +5295,7 @@
 		};
 		75A2A7E51DA5934400A983D8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 473F371D399361F5CF353083 /* Pods-breadwallet.release.xcconfig */;
+			baseConfigurationReference = B252788FCCE3166FC621948F /* Pods-digibyte.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -5337,7 +5323,7 @@
 		};
 		75A2A7E71DA5934400A983D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AEDA653D0A03684E9E41161 /* Pods-breadwalletTests.debug.xcconfig */;
+			baseConfigurationReference = 40C6581957990676DAFB3521 /* Pods-digibyteTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -5353,7 +5339,7 @@
 		};
 		75A2A7E81DA5934400A983D8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20655A599D31C1706694DE17 /* Pods-breadwalletTests.release.xcconfig */;
+			baseConfigurationReference = 3F253E13C3E4A94EE8612B2F /* Pods-digibyteTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -5369,7 +5355,7 @@
 		};
 		75A2A7EA1DA5934400A983D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B969D992D959B5B85A1BDD91 /* Pods-breadwalletUITests.debug.xcconfig */;
+			baseConfigurationReference = E9F5A4261B652FEDEE61FD0D /* Pods-digibyteUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
@@ -5384,7 +5370,7 @@
 		};
 		75A2A7EB1DA5934400A983D8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02A389FAB034039F6B28EA61 /* Pods-breadwalletUITests.release.xcconfig */;
+			baseConfigurationReference = B5AE909ECCB7673495A88259 /* Pods-digibyteUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
@@ -5615,7 +5601,7 @@
 		};
 		CEA7E6891F09AC6A001F8C27 /* Screenshots */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 044B524586F0800207C76AEE /* Pods-breadwallet.screenshots.xcconfig */;
+			baseConfigurationReference = C959511BF3776EB93B813F2D /* Pods-digibyte.screenshots.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -5644,7 +5630,7 @@
 		};
 		CEA7E68A1F09AC6A001F8C27 /* Screenshots */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C6042901B7764F2DCEFDCDE /* Pods-breadwalletTests.screenshots.xcconfig */;
+			baseConfigurationReference = 05F39B6A4B46E1882748F6F8 /* Pods-digibyteTests.screenshots.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -5660,7 +5646,7 @@
 		};
 		CEA7E68B1F09AC6A001F8C27 /* Screenshots */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83AD48DD756ACA069301ADD3 /* Pods-breadwalletUITests.screenshots.xcconfig */;
+			baseConfigurationReference = E4078AF369EC83FDAFBF5FEB /* Pods-digibyteUITests.screenshots.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
@@ -5679,7 +5665,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				IBSC_MODULE = breadwallet_WatchKit_Extension;
+				IBSC_MODULE = digibyte_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5932,7 +5918,7 @@
 		};
 		CEA7E69C1F0AAA84001F8C27 /* Testnet */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 388F13649CB1BB0711D439BD /* Pods-breadwallet.testnet.xcconfig */;
+			baseConfigurationReference = C2F327098575E85039FDCAD1 /* Pods-digibyte.testnet.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -5961,7 +5947,7 @@
 		};
 		CEA7E69D1F0AAA84001F8C27 /* Testnet */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4800D2B9C627933093A52E3 /* Pods-breadwalletTests.testnet.xcconfig */;
+			baseConfigurationReference = 16C6A71BAE93053870AB8C11 /* Pods-digibyteTests.testnet.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -5977,7 +5963,7 @@
 		};
 		CEA7E69E1F0AAA84001F8C27 /* Testnet */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D3D68384132C21EAC8DDE34 /* Pods-breadwalletUITests.testnet.xcconfig */;
+			baseConfigurationReference = 42BF279CC081DF814253BED5 /* Pods-digibyteUITests.testnet.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
@@ -5996,7 +5982,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				IBSC_MODULE = breadwallet_WatchKit_Extension;
+				IBSC_MODULE = digibyte_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6242,7 +6228,7 @@
 		};
 		CEE0EF551EBF8D7F0018DB36 /* Testflight */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E96064292E2C5E8968FFFD77 /* Pods-breadwallet.testflight.xcconfig */;
+			baseConfigurationReference = FAC4CE2CC69B7B05264463A8 /* Pods-digibyte.testflight.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -6270,7 +6256,7 @@
 		};
 		CEE0EF561EBF8D7F0018DB36 /* Testflight */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2FF85EE8F0F49B63B06B6CB9 /* Pods-breadwalletTests.testflight.xcconfig */;
+			baseConfigurationReference = D92616E2AE3F5C65C5CCF179 /* Pods-digibyteTests.testflight.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -6286,7 +6272,7 @@
 		};
 		CEE0EF571EBF8D7F0018DB36 /* Testflight */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B5FE5174CB8F1117E6FAAA9 /* Pods-breadwalletUITests.testflight.xcconfig */;
+			baseConfigurationReference = 2D5BD8E0D12DB696F3145E2D /* Pods-digibyteUITests.testflight.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
@@ -6305,7 +6291,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				IBSC_MODULE = breadwallet_WatchKit_Extension;
+				IBSC_MODULE = digibyte_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6548,7 +6534,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75A2A7DB1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwallet WatchKit Extension" */ = {
+		75A2A7DB1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "digibyte WatchKit Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75A2A7DC1DA5934400A983D8 /* Debug */,
@@ -6560,7 +6546,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75A2A7DF1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwallet WatchKit App" */ = {
+		75A2A7DF1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "digibyte WatchKit App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75A2A7E01DA5934400A983D8 /* Debug */,
@@ -6572,7 +6558,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75A2A7E31DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwallet" */ = {
+		75A2A7E31DA5934400A983D8 /* Build configuration list for PBXNativeTarget "digibyte" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75A2A7E41DA5934400A983D8 /* Debug */,
@@ -6584,7 +6570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75A2A7E61DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwalletTests" */ = {
+		75A2A7E61DA5934400A983D8 /* Build configuration list for PBXNativeTarget "digibyteTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75A2A7E71DA5934400A983D8 /* Debug */,
@@ -6596,7 +6582,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75A2A7E91DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwalletUITests" */ = {
+		75A2A7E91DA5934400A983D8 /* Build configuration list for PBXNativeTarget "digibyteUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75A2A7EA1DA5934400A983D8 /* Debug */,
