@@ -13,7 +13,422 @@ import MachO
 let accountHeaderHeight: CGFloat = 136.0
 private let transactionsLoadingViewHeightConstant: CGFloat = 48.0
 
-class AccountViewController : UIViewController, Subscriber {
+fileprivate class BalanceView: UIView, Subscriber {
+    private let balanceHeaderLabel = UILabel(font: .customMedium(size: 12))
+    private var balanceLabel: UpdatingLabel //(font: .customMedium(size: 32), color: C.Colors.text) // DGB
+    private var currencyLabel: UpdatingLabel //(font: .customMedium(size: 16)) // USD
+    
+    private let store: Store
+    private var isBtcSwapped: Bool {
+        didSet { updateBalances() }
+    }
+    private var exchangeRate: Rate? {
+        didSet { updateBalances() }
+    }
+    private var balance: UInt64 = 0 {
+        didSet { updateBalances() }
+    }
+    
+    init(store: Store) {
+        self.store = store
+        isBtcSwapped = store.state.isBtcSwapped
+        exchangeRate = store.state.currentRate
+        if let rate = exchangeRate {
+            let placeholderAmount = Amount(amount: 0, rate: rate, maxDigits: store.state.maxDigits)
+            balanceLabel = UpdatingLabel(formatter: placeholderAmount.btcFormat)
+            currencyLabel = UpdatingLabel(formatter: placeholderAmount.localFormat)
+        } else {
+            balanceLabel = UpdatingLabel(formatter: NumberFormatter())
+            currencyLabel = UpdatingLabel(formatter: NumberFormatter())
+        }
+        
+        super.init(frame: CGRect())
+        
+        addSubviews()
+        addConstraints()
+        addStyles()
+        
+        addSubscriptions()
+    }
+    
+    private func addSubscriptions() {
+        store.lazySubscribe(self,
+                            selector: { $0.isBtcSwapped != $1.isBtcSwapped },
+                            callback: { self.isBtcSwapped = $0.isBtcSwapped })
+        store.lazySubscribe(self,
+                            selector: { $0.currentRate != $1.currentRate},
+                            callback: {
+                                if let rate = $0.currentRate {
+                                    let placeholderAmount = Amount(amount: 0, rate: rate, maxDigits: $0.maxDigits)
+                                    self.currencyLabel.formatter = placeholderAmount.localFormat
+                                    self.balanceLabel.formatter = placeholderAmount.btcFormat
+                                }
+                                self.exchangeRate = $0.currentRate
+        })
+        
+        store.lazySubscribe(self,
+                            selector: { $0.maxDigits != $1.maxDigits},
+                            callback: {
+                                if let rate = $0.currentRate {
+                                    let placeholderAmount = Amount(amount: 0, rate: rate, maxDigits: $0.maxDigits)
+                                    self.currencyLabel.formatter = placeholderAmount.localFormat
+                                    self.balanceLabel.formatter = placeholderAmount.btcFormat
+                                    self.updateBalances()
+                                }
+        })
+        store.subscribe(self,
+                        selector: {$0.walletState.balance != $1.walletState.balance },
+                        callback: { state in
+                            if let balance = state.walletState.balance {
+                                self.balance = balance
+                            } })
+    }
+
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Not implemented")
+    }
+    
+    private func addSubviews() {
+        addSubview(balanceHeaderLabel)
+        addSubview(balanceLabel)
+        addSubview(currencyLabel)
+    }
+    
+    private func addConstraints() {
+        balanceHeaderLabel.constrain([
+            balanceHeaderLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            balanceHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+        ])
+        
+        balanceLabel.constrain([
+            balanceLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            balanceLabel.topAnchor.constraint(equalTo: balanceHeaderLabel.bottomAnchor, constant: 12),
+        ])
+        
+        currencyLabel.constrain([
+            currencyLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            currencyLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor, constant: 12),
+            currencyLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40)
+        ])
+    }
+    
+    private func addStyles() {
+        balanceLabel.font = .customMedium(size: 32)
+        balanceLabel.textColor = C.Colors.text
+        balanceLabel.textAlignment = .center
+        
+        currencyLabel.font = .customMedium(size: 16)
+        currencyLabel.textColor = .gray
+        currencyLabel.textAlignment = .center
+        
+        balanceHeaderLabel.numberOfLines = 2
+        balanceHeaderLabel.textColor = .gray
+        balanceHeaderLabel.text = "TOTAL\nBALANCE"
+        balanceHeaderLabel.textAlignment = .center
+        
+        //balanceLabel.text = "D 132 293.787"
+        //currencyLabel.text = "$USD 3988.33"
+        backgroundColor = .clear
+    }
+    
+    func updateBalances() {
+        guard let rate = exchangeRate else { return }
+        let amount = Amount(amount: balance, rate: rate, maxDigits: store.state.maxDigits)
+        
+        /*
+        let s = formatter.string(from: NSNumber(value: value))
+        let balanceText = NSMutableAttributedString()
+        let attributedText = NSAttributedString(string: s ?? "0.0")
+        let currency = NSAttributedString(string: "∂ ")
+        
+        balanceText.append(currency)
+        balanceText.append(attributedText)
+        
+        balanceLabel.attributedText = balanceText
+ 
+        */
+
+        balanceLabel.setValueAnimated(amount.amountForBtcFormat) {
+            
+        }
+        
+        currencyLabel.setValueAnimated(amount.localAmount) {
+            
+        }
+    }
+}
+
+fileprivate class CustomSegmentedControl: UIControl {
+    
+    private var padding: CGFloat = 7.0
+    
+    var buttons = [UIButton]()
+    
+    var buttonTemplates: [String] = []
+    
+    var backgroundRect: UIView!
+    
+    var selectedSegmentIdx = 0 {
+        didSet {
+            //updateSegmentedControlSegs(index: selectedSegmentIdx)
+        }
+    }
+    
+    var numberOfSegments: Int = 0
+    
+    var callback: ((Int, Int) -> Void)? = nil
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        styleView()
+        update()
+    }
+    
+    func update() {
+        updateView()
+    }
+    
+    private func styleView() {
+        backgroundColor = C.Colors.background
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func updateView() {
+        buttons.removeAll()
+        
+        subviews.forEach { (v) in
+            v.removeFromSuperview()
+        }
+        
+        guard buttonTemplates.count > 0 else { return }
+        numberOfSegments = buttonTemplates.count
+        
+        let selectorWidth = (frame.width - 2 * padding) / CGFloat(numberOfSegments)
+
+        backgroundRect = UIView()
+        backgroundRect.backgroundColor = UIColor(white: 1.0, alpha: 0.2)
+        backgroundRect.layer.cornerRadius = 4
+        
+        let buttonTitles = buttonTemplates
+        for buttonTitle in buttonTitles {
+            let button = UIButton(type: .system)
+            button.setTitle(buttonTitle, for: .normal)
+            button.titleLabel?.font = UIFont.customBody(size: 14)
+            button.setTitleColor(C.Colors.text, for: .normal)
+            button.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
+            button.backgroundColor = .clear
+            buttons.append(button)
+        }
+        
+        let stackView = UIStackView(arrangedSubviews: buttons)
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 0.0
+        stackView.backgroundColor = .clear
+        addSubview(stackView)
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        stackView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        stackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        
+        // background Rect
+        addSubview(backgroundRect)
+        
+        backgroundRect.constrain([
+            backgroundRect.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            backgroundRect.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
+            backgroundRect.widthAnchor.constraint(equalToConstant: selectorWidth),
+            backgroundRect.leftAnchor.constraint(equalTo: leftAnchor, constant: padding)
+        ])
+        
+        backgroundColor = UIColor(red: 0x23 / 255, green: 0x24 / 255, blue: 0x37 / 255, alpha: 1.0)
+        layer.cornerRadius = 4
+    }
+    
+    @objc func buttonTapped(button: UIButton) {
+        var selectorStartPosition: CGFloat!
+        for (buttonIndex, btn) in buttons.enumerated() {
+            btn.setTitleColor(C.Colors.text, for: .normal)
+            
+            if (btn == button) {
+                guard selectedSegmentIdx != buttonIndex else { return }
+                callback?(selectedSegmentIdx, buttonIndex)
+                selectedSegmentIdx = buttonIndex
+                selectorStartPosition = padding + (frame.width - 2*padding) / CGFloat(buttons.count) * CGFloat(buttonIndex)
+                UIView.spring(0.2, animations: {
+                    self.backgroundRect.frame.origin.x = selectorStartPosition
+                }) { (done) in
+                    //
+                }
+            }
+        }
+    }
+    
+    func updateSegmentedControlSegs(index: Int) {
+        var selectorStartPosition: CGFloat!
+        selectorStartPosition = padding + (frame.width - 2*padding) / CGFloat(buttons.count) * CGFloat(index)
+        UIView.spring(0.2, animations: {
+            self.backgroundRect.frame.origin.x = selectorStartPosition
+        }) { (done) in
+            self.selectedSegmentIdx = index
+        }
+    }
+}
+
+fileprivate class HamburgerViewMenu: UIView {
+    private let bgImage = UIImageView(image: #imageLiteral(resourceName: "hamburgerBg"))
+    private var digibyteLogo = UIImageView(image: #imageLiteral(resourceName: "DigiByteSymbol"))
+    private let walletLabel = UILabel(font: .customMedium(size: 18), color: C.Colors.text)
+    private let walletVersionLabel = UILabel(font: .customMedium(size: 11), color: .gray)
+    private var y: CGFloat = 0
+    private var supervc: HamburgerViewMenuProtocol? = nil
+    private var scrollView = UIScrollView()
+    private var scrollInner = UIStackView()
+    
+    private let buttonHeight: CGFloat = 78.0
+    
+    private var buttons: [UIButton] = []
+    
+    init(walletTitle: String, version: String) {
+        super.init(frame: CGRect())
+        
+        walletLabel.text = walletTitle
+        walletVersionLabel.text = version
+        
+        addSubviews()
+        addConstraints()
+        setStyles()
+    }
+    
+    func animationStep(progress: CGFloat) {
+        let progress = progress < 0 ? 0 : (progress > 1 ? 1 : progress)
+        
+        if progress < 0.3 {
+            digibyteLogo.transform = CGAffineTransform.init(scaleX: 0.3, y: 0.3)
+        } else {
+            digibyteLogo.transform = CGAffineTransform.init(scaleX: progress, y: progress)
+        }
+    }
+    
+    private func addSubviews() {
+        bgImage.contentMode = .scaleAspectFit
+        
+        addSubview(bgImage)
+        addSubview(digibyteLogo)
+        addSubview(walletLabel)
+        addSubview(walletVersionLabel)
+        addSubview(scrollView)
+        
+        scrollView.addSubview(scrollInner)
+    }
+    
+    private func addConstraints() {
+        bgImage.constrain([
+            bgImage.topAnchor.constraint(equalTo: self.topAnchor),
+            bgImage.leftAnchor.constraint(equalTo: self.leftAnchor),
+            bgImage.rightAnchor.constraint(equalTo: self.rightAnchor),
+        ])
+        
+        digibyteLogo.constrain([
+            digibyteLogo.topAnchor.constraint(equalTo: self.topAnchor, constant: 78),
+            digibyteLogo.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            digibyteLogo.widthAnchor.constraint(equalToConstant: 90),
+            digibyteLogo.heightAnchor.constraint(equalToConstant: 90),
+        ])
+        
+        walletLabel.constrain([
+            walletLabel.topAnchor.constraint(equalTo: digibyteLogo.bottomAnchor, constant: 16),
+            walletLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
+            walletLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
+        ])
+        
+        walletVersionLabel.constrain([
+            walletVersionLabel.topAnchor.constraint(equalTo: walletLabel.bottomAnchor, constant: 6),
+            walletVersionLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
+            walletVersionLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
+            walletVersionLabel.heightAnchor.constraint(equalToConstant: 20),
+        ])
+        
+        scrollView.constrain([
+            scrollView.topAnchor.constraint(equalTo: walletVersionLabel.bottomAnchor, constant: 30),
+            scrollView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            scrollView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
+        
+        scrollInner.constrain([
+            scrollInner.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            scrollInner.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+            scrollInner.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
+            scrollInner.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            scrollInner.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+        ])
+    }
+    
+    private func setStyles() {
+        backgroundColor = C.Colors.background
+        
+        walletLabel.textAlignment = .center
+        walletVersionLabel.textAlignment = .center
+        
+        scrollInner.axis = .vertical
+        scrollInner.alignment = .top
+        scrollInner.distribution = .equalSpacing
+        scrollInner.spacing = 0
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("HamburgerViewMenu aDecoder has not been implemented")
+    }
+    
+    func setCloser(supervc: HamburgerViewMenuProtocol?) {
+        self.supervc = supervc
+    }
+    
+    func addButton(title: String, icon: UIImage, callback: @escaping (() -> Void)) {
+        let button = UIButton(type: .system)
+        button.setImage(icon, for: .normal)
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.font = UIFont.customBody(size: 18)
+        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(C.Colors.text, for: .highlighted)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: E.is320wDevice ? 35 : 50, bottom: 0, right: 0)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: E.is320wDevice ? 55 : 80, bottom: 0, right: 0)
+        button.tintColor = .gray
+        button.contentHorizontalAlignment = .left
+        
+        scrollInner.addArrangedSubview(button)
+        
+        button.constrain([
+//            button.topAnchor.constraint(equalTo: scrollInner.topAnchor, constant: y),
+//            button.leftAnchor.constraint(equalTo: scrollInner.leftAnchor),
+            button.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1),
+            button.heightAnchor.constraint(equalToConstant: buttonHeight)
+        ])
+        
+        button.tap = { () -> Void in
+            self.supervc?.closeHamburgerMenu()
+            callback()
+        }
+        
+        buttons.append(button)
+        y += buttonHeight
+    }
+}
+
+fileprivate protocol HamburgerViewMenuProtocol {
+    func closeHamburgerMenu()
+}
+
+class AccountViewController: UIViewController, Subscriber, UIPageViewControllerDataSource, UIPageViewControllerDelegate, HamburgerViewMenuProtocol {
 
     //MARK: - Public
     var sendCallback: (() -> Void)? {
@@ -27,8 +442,17 @@ class AccountViewController : UIViewController, Subscriber {
     }
     
     var digiIDCallback: (() -> Void)? {
-        didSet { footerView.digiIDCallback = digiIDCallback }
+        didSet {
+            footerView.digiIDCallback = digiIDCallback
+            footerView.qrScanCallback = digiIDCallback
+        }
     }
+    
+    var showAddressCallback: (() -> Void)? {
+        didSet { footerView.showAddressCallback = showAddressCallback }
+    }
+    
+    
 
     var walletManager: WalletManager? {
         didSet {
@@ -44,27 +468,63 @@ class AccountViewController : UIViewController, Subscriber {
                     self.tempLoginView.remove()
                     self.attemptShowWelcomeView()
                 })
+                
+            
+                let pin = UpdatePinViewController(store: store, walletManager: walletManager, type: .update, showsBackButton: false, phrase: "Enter your PIN")
+                pin.transitioningDelegate = loginTransitionDelegate
+                pin.modalPresentationStyle = .overFullScreen
+                pin.modalPresentationCapturesStatusBarAppearance = true
+                self.present(pin, animated: false, completion: {
+                    self.tempLoginView.remove()
+                })
+                
             }
             transactionsTableView.walletManager = walletManager
-            headerView.isWatchOnly = walletManager.isWatchOnly
+            transactionsTableViewForSentTransactions.walletManager = walletManager
+            transactionsTableViewForReceivedTransactions.walletManager = walletManager
         }
     }
 
     init(store: Store, didSelectTransaction: @escaping ([Transaction], Int) -> Void) {
         self.store = store
+        self.syncViewController = SyncViewController(store: store)
+        
         self.transactionsTableView = TransactionsTableViewController(store: store, didSelectTransaction: didSelectTransaction)
-        self.headerView = AccountHeaderView(store: store)
+        self.transactionsTableViewForSentTransactions = TransactionsTableViewController(store: store, didSelectTransaction: didSelectTransaction, filterMode: .showOutgoing)
+        self.transactionsTableViewForReceivedTransactions = TransactionsTableViewController(store: store, didSelectTransaction: didSelectTransaction, filterMode: .showIncoming)
+        
         self.loginView = LoginViewController(store: store, isPresentedForLock: false)
         self.tempLoginView = LoginViewController(store: store, isPresentedForLock: false)
+        self.balanceView = BalanceView(store: store)
+        
+        self.edgeGesture = UIScreenEdgePanGestureRecognizer()
         super.init(nibName: nil, bundle: nil)
     }
 
     //MARK: - Private
     private let store: Store
-    private let headerView: AccountHeaderView
     private let footerView = AccountFooterView()
+    private let syncViewController: SyncViewController
     private let transactionsLoadingView = LoadingProgressView()
     private let transactionsTableView: TransactionsTableViewController
+    private let transactionsTableViewForSentTransactions: TransactionsTableViewController
+    private let transactionsTableViewForReceivedTransactions: TransactionsTableViewController
+    
+    private let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    private var pages = [UIViewController]()
+    
+    private let hamburgerMenuView = HamburgerViewMenu(walletTitle: C.applicationTitle, version: C.version)
+    private let fadeView: UIImageView = {
+        let view = UIImageView(image: #imageLiteral(resourceName: "alertViewBg"))
+        view.contentMode = .scaleToFill
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+    private var hamburgerMenuViewIsAnimating = false
+    private let edgeGesture: UIScreenEdgePanGestureRecognizer
+    private var menuLeftConstraint: NSLayoutConstraint?
+    private var menuWidthConstraint: NSLayoutConstraint?
+    
     private let footerHeight: CGFloat = 56.0
     private var transactionsLoadingViewTop: NSLayoutConstraint?
     private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
@@ -73,6 +533,9 @@ class AccountViewController : UIViewController, Subscriber {
     private let tempLoginView: LoginViewController
     private let loginTransitionDelegate = LoginTransitionDelegate()
     private let welcomeTransitingDelegate = PinTransitioningDelegate()
+    
+    private var balanceView: BalanceView
+    private let menu = CustomSegmentedControl(frame: .zero)
 
     private let searchHeaderview: SearchHeaderView = {
         let view = SearchHeaderView()
@@ -110,59 +573,328 @@ class AccountViewController : UIViewController, Subscriber {
             showJailbreakWarnings(isJailbroken: isJailbroken)
         }
 
+        view.backgroundColor = UIColor(red: 0x19 / 255, green: 0x1b / 255, blue: 0x2a / 255, alpha: 1)
+        
+        addBalanceView()
+        addSegmentedView()
         addTransactionsView()
         addSubviews()
+        addHamburgerMenu()
         addConstraints()
         addSubscriptions()
         addAppLifecycleNotificationEvents()
         addTemporaryStartupViews()
         setInitialData()
     }
+    
+    @objc private func gestureScreenEdgePan(_ sender: UIScreenEdgePanGestureRecognizer) {
+        guard let menuLeftConstraint = menuLeftConstraint else { return }
+        let width = hamburgerMenuView.frame.width
+        
+        if sender.state == .began {
+            fadeView.isHidden = false
+            fadeView.alpha = 0
+        } else if (sender.state == .changed) {
+            let translationX = sender.translation(in: sender.view).x
+            
+            if -width + translationX > 0 {
+                menuLeftConstraint.constant = -15
+                fadeView.alpha = 1
+            } else if translationX < 0 {
+                // fully dragged in
+                menuLeftConstraint.constant = -width
+                fadeView.alpha = 0
+            } else {
+                // viewMenu is being dragged somewhere between min and max amount
+                menuLeftConstraint.constant = -width + translationX - 15
+                
+                let ratio = translationX / width
+                let alphaValue = ratio * 1
+                fadeView.alpha = alphaValue
+            }
+        } else {
+            // if the menu was dragged less than half of it's width, close it. Otherwise, open it.
+            if menuLeftConstraint.constant < -width / 2 {
+                self.closeHamburgerMenu()
+            } else {
+                self.openHamburgerMenu()
+            }
+        }
+    }
+    
+    @objc private func gesturePan(_ sender: UIPanGestureRecognizer) {
+        guard let menuLeftConstraint = menuLeftConstraint else { return }
+
+        let width = hamburgerMenuView.frame.width
+        
+        if sender.state == UIGestureRecognizerState.began {
+            // do nothing
+        } else if sender.state == UIGestureRecognizerState.changed {
+            let translationX = sender.translation(in: sender.view).x
+            if translationX > 0 {
+                menuLeftConstraint.constant = -15 + sqrt(translationX)
+                hamburgerMenuView.animationStep(progress: 1)
+                fadeView.alpha = 1
+            } else if translationX < -width - 15 {
+                menuLeftConstraint.constant = -width
+                hamburgerMenuView.animationStep(progress: 0)
+                fadeView.alpha = 0
+            } else {
+                menuLeftConstraint.constant = translationX - 15
+                
+                let ratio = (width + translationX - 15) / width
+                let alphaValue = ratio
+                fadeView.alpha = alphaValue
+                print("RATIO", ratio)
+                hamburgerMenuView.animationStep(progress: ratio)
+            }
+            view.layoutIfNeeded()
+        } else {
+            if menuLeftConstraint.constant < -width / 2 {
+                self.closeHamburgerMenu()
+            } else {
+                self.openHamburgerMenu()
+            }
+        }
+    }
+
+    
+    private func addHamburgerMenu() {
+        // set closer delegate
+        hamburgerMenuView.setCloser(supervc: self)
+        
+        hamburgerMenuView.addButton(title: S.MenuButton.security, icon: #imageLiteral(resourceName: "hamburger_001Info")) {
+            self.store.perform(action: HamburgerActions.Present(modal: .securityCenter))
+        }
+        hamburgerMenuView.addButton(title: S.MenuButton.support, icon: #imageLiteral(resourceName: "hamburger_002Shield")) {
+            self.store.perform(action: HamburgerActions.Present(modal: .support))
+        }
+        hamburgerMenuView.addButton(title: S.MenuButton.settings, icon: #imageLiteral(resourceName: "hamburger_003Settings")) {
+            self.store.perform(action: HamburgerActions.Present(modal: .settings))
+        }
+        hamburgerMenuView.addButton(title: S.MenuButton.lock, icon: #imageLiteral(resourceName: "hamburger_004Locked")) {
+            self.store.perform(action: HamburgerActions.Present(modal: .lockWallet))
+        }
+        
+        view.addSubview(fadeView)
+        view.addSubview(hamburgerMenuView)
+        
+        menuLeftConstraint = hamburgerMenuView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0)
+        menuWidthConstraint = hamburgerMenuView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9)
+        
+        hamburgerMenuView.constrain([
+            menuLeftConstraint,
+            menuWidthConstraint,
+            hamburgerMenuView.topAnchor.constraint(equalTo: view.topAnchor),
+            hamburgerMenuView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+
+        hamburgerMenuView.backgroundColor = .black
+        
+        let tapper = UITapGestureRecognizer()
+        tapper.numberOfTapsRequired = 1
+        tapper.numberOfTouchesRequired = 1
+        tapper.addTarget(self, action: #selector(fadeViewTap))
+        fadeView.addGestureRecognizer(tapper)
+        
+        let panner = UIPanGestureRecognizer()
+        panner.addTarget(self, action: #selector(gesturePan(_:)))
+        fadeView.addGestureRecognizer(panner)
+        
+        edgeGesture.addTarget(self, action: #selector(gestureScreenEdgePan))
+        edgeGesture.edges = .left
+        view.addGestureRecognizer(edgeGesture)
+        
+        fadeView.constrain(toSuperviewEdges: nil)
+        footerView.menuCallback = { () -> Void in
+            self.openHamburgerMenu()
+        }
+    }
+    
+    @objc private func fadeViewTap() {
+        closeHamburgerMenu()
+    }
+    
+    func openHamburgerMenu() {
+        guard !hamburgerMenuViewIsAnimating else { return }
+        hamburgerMenuViewIsAnimating = true
+        
+        menuLeftConstraint?.constant = -15
+        // fadeView.alpha = 0
+        fadeView.isHidden = false
+        
+        UIView.spring(0.3, animations: {
+        //UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+            self.fadeView.alpha = 1.0
+            self.hamburgerMenuView.animationStep(progress: 1.0)
+        }, completion: { (finished) in
+            self.edgeGesture.isEnabled = false
+            self.hamburgerMenuViewIsAnimating = false
+        })
+    }
+    
+    func closeHamburgerMenu() {
+        guard !hamburgerMenuViewIsAnimating else { return }
+        hamburgerMenuViewIsAnimating = true
+        menuLeftConstraint?.constant = -hamburgerMenuView.frame.width
+        
+        UIView.spring(0.3, animations: {
+        // UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+            self.fadeView.alpha = 0.0
+            self.hamburgerMenuView.animationStep(progress: 0)
+        }) { (finished) in
+            self.edgeGesture.isEnabled = true
+            self.fadeView.isHidden = true
+            self.hamburgerMenuViewIsAnimating = false
+        }
+    }
+    
+    private func addBalanceView() {
+        view.addSubview(balanceView)
+    }
+    
+    private func addSegmentedView() {
+        view.addSubview(menu)
+        menu.buttonTemplates = ["ALL", "SENT", "RECEIVED"]
+        menu.callback = { (oldIdx, idx) -> () in
+            let forward = (idx > oldIdx)
+            self.pageController.setViewControllers([self.pages[idx]], direction: forward ? .forward : .reverse, animated: true, completion: nil)
+        }
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         shouldShowStatusBar = true
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        menu.update()
+        
+        menuLeftConstraint?.constant = -hamburgerMenuView.frame.width
+        hamburgerMenuView.layoutIfNeeded()
+        fadeView.alpha = 0
+        fadeView.isHidden = true
     }
 
     private func addSubviews() {
+#if REBRAND
+        
+        /* just display a Digi-ID logo that, when pressed, launches camera */
+        let digiIDImage = UIImageView(image: #imageLiteral(resourceName: "DigiID-Logo"))
+        digiIDImage.contentMode = UIViewContentMode.scaleAspectFit
+        
+        let descriptionLabel = UILabel()
+        descriptionLabel.text = "Click the Digi-ID logo to launch the scanner"
+        descriptionLabel.textColor = UIColor.gray
+        
+        view.backgroundColor = .white
+        view.addSubview(digiIDImage)
+        view.addSubview(descriptionLabel)
+        
+        digiIDImage.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let scale: CGFloat = 0.7
+        let image = #imageLiteral(resourceName: "DigiID-Logo")
+        let imageViewHeight = scale * view.frame.width / image.size.width * image.size.height
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(digiID_clicked))
+        tap.numberOfTapsRequired = 1
+        digiIDImage.isUserInteractionEnabled = true
+        digiIDImage.addGestureRecognizer(tap)
+        
+        // add constraints
+        NSLayoutConstraint.activate([
+            digiIDImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -30),
+            digiIDImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            digiIDImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: scale),
+            digiIDImage.heightAnchor.constraint(equalToConstant: imageViewHeight)
+        ])
+        
+        descriptionLabel.lineBreakMode = .byWordWrapping
+        //descriptionLabel.layer.borderColor = UIColor.red.cgColor
+        //descriptionLabel.layer.borderWidth = 1.0
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.textAlignment = .center
+        
+        NSLayoutConstraint.activate([
+            descriptionLabel.bottomAnchor.constraint(equalTo: digiIDImage.bottomAnchor, constant: 60),
+            descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            descriptionLabel.heightAnchor.constraint(equalToConstant: 70.0)
+        ])
+#else
+        view.addSubview(balanceView)
         view.addSubview(headerContainer)
-        headerContainer.addSubview(headerView)
+#endif
+        
+        addChildViewController(syncViewController)
+        view.addSubview(syncViewController.view)
+
         view.addSubview(footerView)
         headerContainer.addSubview(searchHeaderview)
     }
 
     private func addConstraints() {
-        headerContainer.constrainTopCorners(sidePadding: 0, topPadding: 0)
-        headerContainer.constrain([ headerContainer.constraint(.height, constant: E.isIPhoneX ? accountHeaderHeight + 14.0 : accountHeaderHeight) ])
-        headerView.constrain(toSuperviewEdges: nil)
+#if REBRAND
+        
+#else
+        //headerContainer.constrainTopCorners(sidePadding: 0, topPadding: 0)
+        //headerContainer.constrain([ headerContainer.constraint(.height, constant: E.isIPhoneX ? accountHeaderHeight + 14.0 : accountHeaderHeight) ])
+        balanceView.constrain([
+            balanceView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+            balanceView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            balanceView.rightAnchor.constraint(equalTo: view.rightAnchor),
+        ])
+        menu.constrain([
+            menu.topAnchor.constraint(equalTo: balanceView.bottomAnchor),
+            menu.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8),
+            menu.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
+            menu.heightAnchor.constraint(equalToConstant: 60)
+        ])
+#endif
 
         footerView.constrainBottomCorners(sidePadding: 0, bottomPadding: 0)
         footerView.constrain([
             footerView.constraint(.height, constant: E.isIPhoneX ? footerHeight + 19.0 : footerHeight) ])
         searchHeaderview.constrain(toSuperviewEdges: nil)
+        
+        syncViewController.view.constrain(toSuperviewEdges: nil)
     }
 
     private func addSubscriptions() {
-        store.subscribe(self, selector: { $0.walletState.syncProgress != $1.walletState.syncProgress },
-                        callback: { state in
-                            self.transactionsTableView.syncingView.progress = CGFloat(state.walletState.syncProgress)
-                            self.transactionsTableView.syncingView.timestamp = state.walletState.lastBlockTimestamp
+        
+        store.subscribe(self, selector: { $0.walletState.syncProgress != $1.walletState.syncProgress }, callback: { state in
+            self.syncViewController.updateSyncState(
+                state: nil,
+                percentage: state.walletState.syncProgress * 100.0,
+                blockHeight: state.walletState.blockHeight,
+                date: Date(timeIntervalSince1970: TimeInterval(state.walletState.lastBlockTimestamp))
+            )
         })
-
-        store.lazySubscribe(self, selector: { $0.walletState.syncState != $1.walletState.syncState },
-                            callback: { state in
-                                guard let peerManager = self.walletManager?.peerManager else { return }
-                                if state.walletState.syncState == .success {
-                                    self.transactionsTableView.isSyncingViewVisible = false
-                                } else if peerManager.shouldShowSyncingView {
-                                    self.transactionsTableView.isSyncingViewVisible = true
-                                } else {
-                                    self.transactionsTableView.isSyncingViewVisible = false
-                                }
+        
+        store.lazySubscribe(self, selector: { $0.walletState.syncState != $1.walletState.syncState }, callback: { state in
+            guard let peerManager = self.walletManager?.peerManager else { return }
+            
+            self.syncViewController.updateSyncState(
+                state: state.walletState.syncState,
+                percentage: state.walletState.syncProgress * 100.0,
+                blockHeight: state.walletState.blockHeight,
+                date: Date(timeIntervalSince1970: TimeInterval(exactly: state.walletState.lastBlockTimestamp)!)
+            )
+            
+            if state.walletState.syncState == .success {
+                self.syncViewController.view.isHidden = true
+            } else if peerManager.shouldShowSyncingView {
+                self.syncViewController.view.isHidden = false
+            } else {
+                self.syncViewController.view.isHidden = true
+            }
         })
 
         store.subscribe(self, selector: { $0.isLoadingTransactions != $1.isLoadingTransactions }, callback: {
@@ -182,33 +914,9 @@ class AccountViewController : UIViewController, Subscriber {
     }
 
     private func setInitialData() {
-        headerView.search.tap = { [weak self] in
-            guard let myself = self else { return }
-            UIView.transition(from: myself.headerView,
-                              to: myself.searchHeaderview,
-                              duration: C.animationDuration,
-                              options: [.transitionFlipFromBottom, .showHideTransitionViews, .curveEaseOut],
-                              completion: { _ in
-                                myself.searchHeaderview.triggerUpdate()
-                                myself.setNeedsStatusBarAppearanceUpdate()
-            })
-        }
-
-        searchHeaderview.didCancel = { [weak self] in
-            guard let myself = self else { return }
-            UIView.transition(from: myself.searchHeaderview,
-                              to: myself.headerView,
-                              duration: C.animationDuration,
-                              options: [.transitionFlipFromTop, .showHideTransitionViews, .curveEaseOut],
-                              completion: { _ in
-                                myself.setNeedsStatusBarAppearanceUpdate()
-            })
-        }
-
-
-        searchHeaderview.didChangeFilters = { [weak self] filters in
-            self?.transactionsTableView.filters = filters
-        }
+//        searchHeaderview.didChangeFilters = { [weak self] filters in
+//            self?.transactionsTableView.filters = filters
+//        }
     }
 
     private func loadingDidStart() {
@@ -230,7 +938,7 @@ class AccountViewController : UIViewController, Subscriber {
         transactionsLoadingView.progress = 0.01
         view.layoutIfNeeded()
         UIView.animate(withDuration: C.animationDuration, animations: {
-        self.transactionsTableView.tableView.verticallyOffsetContent(transactionsLoadingViewHeightConstant)
+            self.transactionsTableView.tableView.verticallyOffsetContent(transactionsLoadingViewHeightConstant)
             self.transactionsLoadingViewTop?.constant = 0.0
             self.view.layoutIfNeeded()
         }) { completed in
@@ -239,7 +947,7 @@ class AccountViewController : UIViewController, Subscriber {
         }
         loadingTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateLoadingProgress), userInfo: nil, repeats: true)
     }
-
+    
     private func hideLoadingView() {
         didEndLoading = true
         guard self.transactionsLoadingViewTop?.constant == 0.0 else { return } //Should skip hide if it's not shown
@@ -269,7 +977,11 @@ class AccountViewController : UIViewController, Subscriber {
                     self.tempLoginView.view.constrain(toSuperviewEdges: nil)
                 })
             } else {
-                let startView = StartViewController(store: self.store, didTapCreate: {}, didTapRecover: {})
+                let startView = StartViewController(
+                    store: self.store,
+                    didTapCreate: {},
+                    didTapRecover: {}
+                )
                 self.addChildViewController(startView, layout: {
                     startView.view.constrain(toSuperviewEdges: nil)
                     startView.view.isUserInteractionEnabled = false
@@ -281,28 +993,65 @@ class AccountViewController : UIViewController, Subscriber {
         }
     }
 
-    private func addTransactionsView() {
-        addChildViewController(transactionsTableView, layout: {
-            transactionsTableView.view.constrain(toSuperviewEdges: nil)
-            if #available(iOS 11, *) {
-                transactionsTableView.tableView.contentInset =
-                    UIEdgeInsets(top: E.isIPhoneX ? accountHeaderHeight + 14 : accountHeaderHeight + C.padding[2],
-                                 left: 0,
-                                 bottom: E.isIPhoneX ? footerHeight + C.padding[2] + 19 : footerHeight + C.padding[2],
-                                 right: 0)
-            } else {
-                transactionsTableView.tableView.contentInset =
-                    UIEdgeInsets(top: E.isIPhoneX ? accountHeaderHeight + C.padding[2] + 14 : accountHeaderHeight + C.padding[2],
-                                 left: 0,
-                                 bottom: E.isIPhoneX ? footerHeight + C.padding[2] + 19 : footerHeight + C.padding[2],
-                                 right: 0)
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        if let viewControllerIndex = self.pages.index(of: viewController) {
+            if viewControllerIndex != 0 {
+                // go to previous page in array
+                return self.pages[viewControllerIndex - 1]
             }
-            transactionsTableView.tableView.scrollIndicatorInsets =
-                UIEdgeInsets(top: E.isIPhoneX ? accountHeaderHeight + 14 : accountHeaderHeight,
-                             left: 0,
-                             bottom: E.isIPhoneX ? footerHeight + 19 : footerHeight,
-                             right: 0)
+        }
+        return nil
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        if let viewControllerIndex = self.pages.index(of: viewController) {
+            if viewControllerIndex < self.pages.count - 1 {
+                // go to next page in array
+                return self.pages[viewControllerIndex + 1]
+            }
+        }
+        return nil
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if let viewControllers = pageViewController.viewControllers {
+            if let viewControllerIndex = self.pages.index(of: viewControllers[0]) {
+                menu.updateSegmentedControlSegs(index: viewControllerIndex)
+            }
+        }
+    }
+    
+    private func addTransactionsView() {
+#if REBRAND
+        
+#else
+        addChildViewController(pageController, layout: {
+            pageController.view.constrain([
+                pageController.view.topAnchor.constraint(equalTo: menu.bottomAnchor),
+                pageController.view.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+                pageController.view.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                pageController.view.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
+            ])
         })
+        
+        let insets = UIEdgeInsets(
+            top: 15,
+            left: 0,
+            bottom: E.isIPhoneX ? footerHeight + C.padding[2] + 19 : footerHeight + C.padding[2],
+            right: 0
+        )
+        
+        transactionsTableView.tableView.contentInset = insets
+        transactionsTableViewForSentTransactions.tableView.contentInset = insets
+        transactionsTableViewForReceivedTransactions.tableView.contentInset = insets
+        
+        pageController.dataSource = self
+        pageController.delegate = self
+        pages.append(transactionsTableView)
+        pages.append(transactionsTableViewForSentTransactions)
+        pages.append(transactionsTableViewForReceivedTransactions)
+        pageController.setViewControllers([pages[0]], direction: .forward, animated: true, completion: nil)
+#endif
     }
 
     private func addAppLifecycleNotificationEvents() {

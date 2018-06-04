@@ -12,6 +12,7 @@ struct State {
     let isStartFlowVisible: Bool
     let isLoginRequired: Bool
     let rootModal: RootModal
+    let hamburgerModal: HamburgerMenuModal
     let walletState: WalletState
     let isBtcSwapped: Bool
     let currentRate: Rate?
@@ -33,6 +34,7 @@ extension State {
         return State(   isStartFlowVisible: false,
                         isLoginRequired: true,
                         rootModal: .none,
+                        hamburgerModal: .none,
                         walletState: WalletState.initial,
                         isBtcSwapped: UserDefaults.isBtcSwapped,
                         currentRate: UserDefaults.currentRate,
@@ -53,12 +55,21 @@ extension State {
 enum RootModal {
     case none
     case send
+    case showAddress
     case receive
-    case menu
+    
     case loginAddress
     case loginScan
     case manageWallet
     case requestAmount
+}
+
+enum HamburgerMenuModal {
+    case none
+    case securityCenter
+    case support
+    case settings
+    case lockWallet
 }
 
 enum SyncState {
@@ -77,8 +88,10 @@ struct WalletState {
     let name: String
     let creationDate: Date
     let isRescanning: Bool
+    let blockHeight: UInt32
+    
     static var initial: WalletState {
-        return WalletState(isConnected: false, syncProgress: 0.0, syncState: .success, balance: nil, transactions: [], lastBlockTimestamp: 0, name: S.AccountHeader.defaultWalletName, creationDate: Date.zeroValue(), isRescanning: false)
+        return WalletState(isConnected: false, syncProgress: 0.0, syncState: .success, balance: nil, transactions: [], lastBlockTimestamp: 0, name: S.AccountHeader.defaultWalletName, creationDate: Date.zeroValue(), isRescanning: false, blockHeight: 0)
     }
 }
 

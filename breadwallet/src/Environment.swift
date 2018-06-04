@@ -44,6 +44,9 @@ struct E {
             return false
         #endif
     }()
+    static var is320wDevice: Bool {
+        return UIScreen.main.bounds.width == 320.0
+    }
     static var isIPhone4: Bool {
         return UIApplication.shared.keyWindow?.bounds.height == 480.0
     }

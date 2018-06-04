@@ -9,12 +9,15 @@
 import UIKit
 import LocalAuthentication
 
+/*
 private let biometricsSize: CGFloat = 32.0
 private let topControlHeight: CGFloat = 32.0
+
 
 class LoginViewController : UIViewController, Subscriber, Trackable {
 
     //MARK: - Public
+    var w: WalletManager?
     var walletManager: WalletManager? {
         didSet {
             guard walletManager != nil else { return }
@@ -81,6 +84,8 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         view.layer.cornerRadius = 5.0
         view.layer.masksToBounds = true
         let separator = UIView()
+        
+        #if !REBRAND
         view.addSubview(separator)
         separator.backgroundColor = .white
         separator.constrain([
@@ -88,6 +93,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
             separator.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             separator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             separator.widthAnchor.constraint(equalToConstant: 1.0) ])
+        #endif
         return view
     }()
     private var hasAttemptedToShowBiometrics = false
@@ -119,7 +125,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
             }))
             recover.addCloseNavigationItem()
             nc.viewControllers = [recover]
-            nc.navigationBar.tintColor = .darkText
+            nc.navigationBar.tintColor = .whiteTint
             nc.navigationBar.titleTextAttributes = [
                 NSAttributedStringKey.foregroundColor: UIColor.darkText,
                 NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
@@ -176,6 +182,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         view.addSubview(topControlContainer)
         topControlContainer.addSubview(addressButton)
         topControlContainer.addSubview(scanButton)
+
         view.addSubview(logo)
         if walletManager != nil {
             view.addSubview(pinPadBackground)
@@ -204,11 +211,19 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
             topControlContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
             topControlContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]),
             topControlContainer.heightAnchor.constraint(equalToConstant: topControlHeight) ])
+#if REBRAND
+        addressButton.constrain([
+            addressButton.leadingAnchor.constraint(equalTo: topControlContainer.leadingAnchor),
+            addressButton.topAnchor.constraint(equalTo: topControlContainer.topAnchor),
+            addressButton.trailingAnchor.constraint(equalTo: topControlContainer.trailingAnchor),
+            addressButton.bottomAnchor.constraint(equalTo: topControlContainer.bottomAnchor) ])
+#else
         addressButton.constrain([
             addressButton.leadingAnchor.constraint(equalTo: topControlContainer.leadingAnchor),
             addressButton.topAnchor.constraint(equalTo: topControlContainer.topAnchor),
             addressButton.trailingAnchor.constraint(equalTo: topControlContainer.centerXAnchor),
             addressButton.bottomAnchor.constraint(equalTo: topControlContainer.bottomAnchor) ])
+#endif
         scanButton.constrain([
             scanButton.leadingAnchor.constraint(equalTo: topControlContainer.centerXAnchor),
             scanButton.topAnchor.constraint(equalTo: topControlContainer.topAnchor),
@@ -236,6 +251,10 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
 
         addressButton.addTarget(self, action: #selector(addressTapped), for: .touchUpInside)
         scanButton.addTarget(self, action: #selector(scanTapped), for: .touchUpInside)
+        
+        #if REBRAND
+            scanButton.isHidden = true
+        #endif
     }
 
     private func addBiometricsButton() {
@@ -395,14 +414,15 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if disabledView.superview == nil {
+        //if disabledView.superview == nil {
             return .lightContent
-        } else {
-            return .default
-        }
+        //} else {
+        //    return .default
+        //}
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
+*/

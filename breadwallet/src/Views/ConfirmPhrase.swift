@@ -30,13 +30,14 @@ class ConfirmPhrase: UIView {
 
     private func setupSubviews() {
         label.font = UIFont.customBody(size: 14.0)
-        label.textColor = UIColor(white: 170.0/255.0, alpha: 1.0)
-        separator.backgroundColor = .separatorGray
+        label.textColor = C.Colors.greyBlue
+        separator.backgroundColor = C.Colors.greyBlue
 
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
         textField.font = UIFont.customBody(size: 16.0)
-        textField.textColor = .darkText
+        textField.tintColor = .white
+        textField.textColor = .white
         textField.delegate = self
 
         addSubview(label)
@@ -74,7 +75,7 @@ class ConfirmPhrase: UIView {
     }
 
     @objc private func textFieldChanged() {
-        textField.textColor = .darkText
+        textField.textColor = C.Colors.text
         guard textField.markedTextRange == nil else { return }
         if textField.text == word {
             circle.show()
@@ -96,7 +97,7 @@ extension ConfirmPhrase : UITextFieldDelegate {
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.textColor = .darkText
+        textField.textColor = C.Colors.text
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

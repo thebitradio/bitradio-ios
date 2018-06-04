@@ -26,7 +26,7 @@ class ConfirmPaperPhraseViewController : UIViewController {
     lazy private var confirmFirstPhrase: ConfirmPhrase = { ConfirmPhrase(text: String(format:S.ConfirmPaperPhrase.word, "\(self.indices.0 + 1)"), word: self.words[self.indices.0]) }()
     lazy private var confirmSecondPhrase: ConfirmPhrase = { ConfirmPhrase(text: String(format:S.ConfirmPaperPhrase.word, "\(self.indices.1 + 1)"), word: self.words[self.indices.1]) }()
     private let submit = ShadowButton(title: S.Button.submit, type: .primary)
-    private let header = RadialGradientView(backgroundColor: .pink)
+    private let header = RadialGradientView(backgroundColor: C.Colors.background)
     private let store: Store
     private let pin: String
     private let walletManager: WalletManager
@@ -53,7 +53,7 @@ class ConfirmPaperPhraseViewController : UIViewController {
     }
 
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = C.Colors.background
         label.text = S.ConfirmPaperPhrase.label
         label.textColor = .white
         
@@ -62,7 +62,8 @@ class ConfirmPaperPhraseViewController : UIViewController {
         addButtonActions()
 
         confirmFirstPhrase.textField.becomeFirstResponder()
-
+    
+        
         NotificationCenter.default.addObserver(forName: .UIApplicationWillResignActive, object: nil, queue: nil) { [weak self] note in
             self?.dismiss(animated: true, completion: nil)
         }

@@ -10,43 +10,36 @@ import UIKit
 
 private let promptDelay: TimeInterval = 0.6
 
+enum TransactionFilterMode {
+    case showAll
+    case showOutgoing
+    case showIncoming
+}
+
+// global
+// only show table row animation once!
+var firstLoad: Bool = true
+
 class TransactionsTableViewController : UITableViewController, Subscriber, Trackable {
 
     //MARK: - Public
-    init(store: Store, didSelectTransaction: @escaping ([Transaction], Int) -> Void) {
+    init(store: Store, didSelectTransaction: @escaping ([Transaction], Int) -> Void, filterMode: TransactionFilterMode = .showAll) {
         self.store = store
         self.didSelectTransaction = didSelectTransaction
         self.isBtcSwapped = store.state.isBtcSwapped
+        self.filterMode = filterMode
         super.init(nibName: nil, bundle: nil)
     }
 
+    let filterMode: TransactionFilterMode
     let didSelectTransaction: ([Transaction], Int) -> Void
-    let syncingView = SyncingView()
-    
-    var isSyncingViewVisible = false {
-        didSet {
-            guard oldValue != isSyncingViewVisible else { return } //We only care about changes
-            if isSyncingViewVisible {
-                tableView.beginUpdates()
-                if currentPrompt != nil {
-                    currentPrompt = nil
-                    tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-                } else {
-                    tableView.insertSections(IndexSet(integer: 0), with: .automatic)
-                }
-                tableView.endUpdates()
-            } else {
-                tableView.beginUpdates()
-                tableView.deleteSections(IndexSet(integer: 0), with: .automatic)
-                tableView.endUpdates()
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + promptDelay , execute: {
-                    self.attemptShowPrompt()
-                })
-            }
+    private var hideRows = true {
+        didSet {
+            tableView.reloadData()
         }
     }
-
+    
     var filters: [TransactionFilter] = [] {
         didSet {
             transactions = filters.reduce(allTransactions, { $0.filter($1) })
@@ -63,7 +56,19 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
     private var transactions: [Transaction] = []
     private var allTransactions: [Transaction] = [] {
         didSet {
-            transactions = allTransactions
+            switch filterMode {
+            case .showAll:
+                transactions = allTransactions
+            case .showIncoming:
+                transactions = allTransactions.filter({ (t) -> Bool in
+                    t.direction == .received
+                })
+            case .showOutgoing:
+                transactions = allTransactions.filter({ (t) -> Bool in
+                    t.direction == .sent
+                })
+            }
+            
         }
     }
     private var isBtcSwapped: Bool {
@@ -83,7 +88,7 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
                 tableView.beginUpdates()
                 tableView.insertSections(IndexSet(integer: 0), with: .automatic)
                 tableView.endUpdates()
-            } else if currentPrompt == nil && oldValue != nil && !isSyncingViewVisible {
+            } else if currentPrompt == nil && oldValue != nil {
                 tableView.beginUpdates()
                 tableView.deleteSections(IndexSet(integer: 0), with: .automatic)
                 tableView.endUpdates()
@@ -91,9 +96,20 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
         }
     }
     private var hasExtraSection: Bool {
-        return isSyncingViewVisible || (currentPrompt != nil)
+        return (currentPrompt != nil)
     }
 
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if firstLoad {
+            cell.transform = CGAffineTransform(translationX: 0, y: 800)
+            UIView.spring(0.5 + (Double(indexPath.row) * 0.2), animations: {
+                cell.transform = CGAffineTransform.identity
+            }) { (completed) in
+                firstLoad = false
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -102,14 +118,26 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = .whiteTint
+        //tableView.backgroundColor = C.Colors.background
+        tableView.backgroundColor = UIColor(red: 0x19 / 255, green: 0x1b / 255, blue: 0x2a / 255, alpha: 1)
         
+        // subscriptions
         store.subscribe(self, selector: { $0.walletState.transactions != $1.walletState.transactions },
                         callback: { state in
                             self.allTransactions = state.walletState.transactions
                             self.reload()
         })
 
+        // create animation
+        store.subscribe(self, selector: { $0.walletState.syncState != $1.walletState.syncState || $0.isLoginRequired != $1.isLoginRequired },
+                        callback: { state in
+                            if !state.isLoginRequired && state.walletState.syncState == .success {
+                                DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                                    self.hideRows = false
+                                })
+                            }
+        })
+        
         store.subscribe(self,
                         selector: { $0.isBtcSwapped != $1.isBtcSwapped },
                         callback: { self.isBtcSwapped = $0.isBtcSwapped })
@@ -118,15 +146,6 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
                         callback: { self.rate = $0.currentRate })
         store.subscribe(self, selector: { $0.maxDigits != $1.maxDigits }, callback: {_ in 
             self.reload()
-        })
-
-        store.subscribe(self, selector: { $0.walletState.syncState != $1.walletState.syncState
-        }, callback: {
-            if $0.walletState.syncState == .syncing {
-                self.syncingView.reset()
-            } else if $0.walletState.syncState == .connecting {
-                self.syncingView.setIsConnecting()
-            }
         })
 
         store.subscribe(self, selector: { $0.recommendRescan != $1.recommendRescan }, callback: { _ in
@@ -165,12 +184,6 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + promptDelay, execute: { [weak self] in
-            guard let myself = self else { return }
-            if !myself.isSyncingViewVisible {
-                myself.attemptShowPrompt()
-            }
-        })
     }
 
     private func reload(txHash: String) {
@@ -194,7 +207,7 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
         if hasExtraSection && section == 0 {
             return 1
         } else {
-            return transactions.count
+            return hideRows ? 0 : transactions.count
         }
     }
 
@@ -212,12 +225,6 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
                     prompt.constrain([
                         prompt.heightAnchor.constraint(equalToConstant: 88.0) ])
                     transactionCell.selectionStyle = .default
-                } else {
-                    transactionCell.container.addSubview(syncingView)
-                    syncingView.constrain(toSuperviewEdges: nil)
-                    syncingView.constrain([
-                        syncingView.heightAnchor.constraint(equalToConstant: 88.0) ])
-                    transactionCell.selectionStyle = .none
                 }
             }
             return cell
@@ -246,11 +253,7 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if hasExtraSection && section == 1 {
-            return C.padding[2]
-        } else {
-            return 0
-        }
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -262,15 +265,6 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isSyncingViewVisible && indexPath.section == 0 { return }
-        if let currentPrompt = currentPrompt, indexPath.section == 0 {
-            if let trigger = currentPrompt.type.trigger {
-                store.trigger(name: trigger)
-            }
-            //saveEvent("prompt.\(currentPrompt.type.name).trigger")
-            self.currentPrompt = nil
-            return
-        }
         didSelectTransaction(transactions, indexPath.row)
     }
 
@@ -291,7 +285,6 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
 
     private func attemptShowPrompt() {
         guard let walletManager = walletManager else { return }
-        guard !isSyncingViewVisible else { return }
         let types = PromptType.defaultOrder
         if let type = types.first(where: { $0.shouldPrompt(walletManager: walletManager, state: store.state) }) {
             //self.saveEvent("prompt.\(type.name).displayed")

@@ -14,6 +14,7 @@ typealias VerifyPinCallback = (String, UIViewController) -> Bool
 protocol ContentBoxPresenter {
     var contentBox : UIView { get }
     var blurView: UIVisualEffectView { get }
+    var background: UIImageView { get }
     var effect: UIBlurEffect { get }
 }
 
@@ -30,13 +31,18 @@ class VerifyPinViewController : UIViewController, ContentBoxPresenter {
     var didCancel: (()->Void)?
     let blurView = UIVisualEffectView()
     let effect = UIBlurEffect(style: .dark)
+    let background: UIImageView = {
+        let img = UIImageView(image: #imageLiteral(resourceName: "alertViewBg"))
+        img.contentMode = .scaleToFill
+        return img
+    }()
     let contentBox = UIView()
     private let callback: VerifyPinCallback
     private let pinPad = PinPadViewController(style: .white, keyboardType: .pinPad, maxDigits: 0)
-    private let titleLabel = UILabel(font: .customBold(size: 17.0), color: .darkText)
-    private let body = UILabel(font: .customBody(size: 14.0), color: .darkText)
+    private let titleLabel = UILabel(font: .customMedium(size: 17.0), color: .white)
+    private let body = UILabel(font: .customBody(size: 14.0), color: .white)
     private let pinView: PinView
-    private let toolbar = UIView(color: .whiteTint)
+    private let toolbar = UIView()
     private let cancel = UIButton(type: .system)
     private let bodyText: String
     private let pinLength: Int
@@ -66,9 +72,12 @@ class VerifyPinViewController : UIViewController, ContentBoxPresenter {
 
     private func addConstraints() {
         contentBox.constrain([
-            contentBox.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            contentBox.bottomAnchor.constraint(equalTo: pinPad.view.topAnchor, constant: -C.padding[12]),
-            contentBox.widthAnchor.constraint(equalToConstant: 256.0) ])
+            contentBox.heightAnchor.constraint(equalToConstant: 150),
+            contentBox.leadingAnchor.constraint(equalTo: pinPad.view.leadingAnchor, constant: 20),
+            contentBox.trailingAnchor.constraint(equalTo: pinPad.view.trailingAnchor, constant: -20),
+            //contentBox.bottomAnchor.constraint(equalTo: pinPad.view.topAnchor, constant: -120)
+            contentBox.topAnchor.constraint(equalTo: view.topAnchor, constant: 100)
+        ])
         titleLabel.constrainTopCorners(sidePadding: C.padding[2], topPadding: C.padding[2])
         body.constrain([
             body.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -91,15 +100,16 @@ class VerifyPinViewController : UIViewController, ContentBoxPresenter {
     }
 
     private func setupSubviews() {
-        contentBox.backgroundColor = .white
+        contentBox.backgroundColor = C.Colors.dark2
         contentBox.layer.cornerRadius = 8.0
-        contentBox.layer.borderWidth = 1.0
-        contentBox.layer.borderColor = UIColor.secondaryShadow.cgColor
         contentBox.layer.shadowColor = UIColor.black.cgColor
         contentBox.layer.shadowOpacity = 0.15
         contentBox.layer.shadowRadius = 4.0
         contentBox.layer.shadowOffset = .zero
-
+        
+        toolbar.backgroundColor = C.Colors.background
+        cancel.setTitleColor(UIColor.orange, for: .normal)
+        
         titleLabel.text = S.VerifyPin.title
         body.text = bodyText
         body.numberOfLines = 0

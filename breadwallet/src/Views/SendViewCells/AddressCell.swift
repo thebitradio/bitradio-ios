@@ -34,13 +34,13 @@ class AddressCell : UIView {
     }
 
     let textField = UITextField()
-    let paste = ShadowButton(title: S.Send.pasteLabel, type: .tertiary)
-    let scan = ShadowButton(title: S.Send.scanLabel, type: .tertiary)
-    fileprivate let contentLabel = UILabel(font: .customBody(size: 14.0), color: .darkText)
+    let paste = ShadowButton(title: S.Send.pasteLabel, type: .primary)
+    let scan = ShadowButton(title: S.Send.scanLabel, type: .primary)
+    fileprivate let contentLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
     private let label = UILabel(font: .customBody(size: 16.0))
     fileprivate let gr = UITapGestureRecognizer()
     fileprivate let tapView = UIView()
-    private let border = UIView(color: .secondaryShadow)
+    private let border = UIView(color: .clear)
 
     private func setupViews() {
         addSubviews()
@@ -89,14 +89,15 @@ class AddressCell : UIView {
     }
 
     private func setInitialData() {
+        backgroundColor = .clear
         label.text = S.Send.toLabel
         textField.font = contentLabel.font
-        textField.textColor = contentLabel.textColor
+        textField.textColor = C.Colors.text
         textField.isHidden = true
         textField.returnKeyType = .done
         textField.delegate = self
         textField.clearButtonMode = .whileEditing
-        label.textColor = .grayTextTint
+        label.textColor = C.Colors.lightText
         contentLabel.lineBreakMode = .byTruncatingMiddle
 
         textField.editingChanged = strongify(self) { myself in

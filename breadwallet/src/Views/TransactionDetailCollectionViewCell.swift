@@ -62,17 +62,17 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
 
     //MARK: - Private
     private let header = ModalHeaderView(title: S.TransactionDetails.title, style: .dark)
-    private let timestamp = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
-    private let amount = UILabel(font: .customBold(size: 26.0), color: .darkText)
-    private let address = UILabel(font: .customBold(size: 14.0), color: .darkText)
-    private let separators = (0...4).map { _ in UIView(color: .secondaryShadow) }
-    private let statusHeader = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
-    private let status = UILabel.wrapping(font: .customBody(size: 13.0), color: .darkText)
-    private let commentsHeader = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
+    private let timestamp = UILabel(font: .customMedium(size: 14.0), color: C.Colors.text)
+    private let amount = UILabel(font: .customMedium(size: 26.0), color: C.Colors.text)
+    private let address = UILabel(font: .customMedium(size: 14.0), color: C.Colors.text)
+    private let separators = (0...4).map { _ in UIView(color: C.Colors.text) }
+    private let statusHeader = UILabel(font: .customMedium(size: 14.0), color: C.Colors.lightText)
+    private let status = UILabel.wrapping(font: .customBody(size: 13.0), color: C.Colors.text)
+    private let commentsHeader = UILabel(font: .customMedium(size: 14.0), color: C.Colors.lightText)
     private let comment = UITextView()
-    private let amountHeader = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
-    private let amountDetails = UILabel.wrapping(font: .customBody(size: 13.0), color: .darkText)
-    private let addressHeader = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
+    private let amountHeader = UILabel(font: .customMedium(size: 14.0), color: C.Colors.lightText)
+    private let amountDetails = UILabel.wrapping(font: .customBody(size: 13.0), color: C.Colors.text)
+    private let addressHeader = UILabel(font: .customMedium(size: 14.0), color: C.Colors.lightText)
     private let fullAddress = UIButton(type: .system)
     private let headerHeight: CGFloat = 48.0
     private let scrollViewContent = UIView()
@@ -80,9 +80,9 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     private let moreButton = UIButton(type: .system)
     private let moreContentView = UIView()
     private let txHash = UIButton(type: .system)
-    private let txHashHeader = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
+    private let txHashHeader = UILabel(font: .customBold(size: 14.0), color: C.Colors.lightText)
     private let availability = UILabel(font: .customBold(size: 13.0), color: .txListGreen)
-    private let blockHeight = UILabel(font: .customBody(size: 13.0), color: .darkText)
+    private let blockHeight = UILabel(font: .customBody(size: 13.0), color: C.Colors.text)
     private var scrollViewHeight: NSLayoutConstraint?
 
     private func setup() {
@@ -113,7 +113,14 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     }
 
     private func addConstraints() {
-        header.constrainTopCorners(height: headerHeight)
+        //header.constrainTopCorners(height: headerHeight)
+        header.constrain([
+            header.topAnchor.constraint(equalTo: contentView.topAnchor, constant: E.isIPhoneX ? 50 : 0),
+            header.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            header.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+        ])
+        
+        //header.constraint(toTop: contentView, constant: E.isIPhoneX ? 20 : 0)?.isActive = true
         scrollViewHeight = scrollView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -headerHeight)
         scrollView.constrain([
             scrollView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: headerHeight),
@@ -210,7 +217,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     }
 
     private func setData() {
-        backgroundColor = .white
+        backgroundColor = .clear
 
         statusHeader.text = S.TransactionDetails.statusHeader
         commentsHeader.text = S.TransactionDetails.commentsHeader
@@ -218,13 +225,14 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         availability.text = S.Transaction.available
 
         comment.font = .customBody(size: 13.0)
-        comment.textColor = .darkText
+        comment.textColor = C.Colors.text
         comment.isScrollEnabled = false
         comment.returnKeyType = .done
         comment.delegate = self
+        comment.backgroundColor = .clear
 
         moreButton.setTitle(S.TransactionDetails.more, for: .normal)
-        moreButton.tintColor = .grayTextTint
+        moreButton.tintColor = C.Colors.text
         moreButton.titleLabel?.font = .customBold(size: 14.0)
 
         moreButton.tap = { [weak self] in
@@ -237,7 +245,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         fullAddress.titleLabel?.font = .customBody(size: 13.0)
         fullAddress.titleLabel?.numberOfLines = 0
         fullAddress.titleLabel?.lineBreakMode = .byCharWrapping
-        fullAddress.tintColor = .darkText
+        fullAddress.tintColor = C.Colors.text
         fullAddress.tap = strongify(self) { myself in
             myself.fullAddress.tempDisable()
             myself.store?.trigger(name: .lightWeightAlert(S.Receive.copied))
@@ -248,7 +256,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         txHash.titleLabel?.font = .customBody(size: 13.0)
         txHash.titleLabel?.numberOfLines = 0
         txHash.titleLabel?.lineBreakMode = .byCharWrapping
-        txHash.tintColor = .darkText
+        txHash.tintColor = C.Colors.text
         txHash.contentHorizontalAlignment = .left
         txHash.tap = strongify(self) { myself in
             myself.txHash.tempDisable()
@@ -259,7 +267,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
 
     private func addMoreView() {
         moreButton.removeFromSuperview()
-        let newSeparator = UIView(color: .secondaryShadow)
+        let newSeparator = UIView(color: C.Colors.greyBlue)
         moreContentView.addSubview(newSeparator)
         moreContentView.addSubview(txHashHeader)
         moreContentView.addSubview(txHash)

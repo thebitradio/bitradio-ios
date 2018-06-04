@@ -77,9 +77,9 @@ class ShadowButton: UIControl {
             guard isToggleable else { return }
             if type == .tertiary || type == .search {
                 if isSelected {
-                    container.layer.borderColor = UIColor.primaryButton.cgColor
-                    imageView?.tintColor = .primaryButton
-                    label.textColor = .primaryButton
+                    container.layer.borderColor = UIColor(white: 1, alpha: 0.1).cgColor
+                    imageView?.tintColor = UIColor(white: 1, alpha: 0.1)
+                    label.textColor = UIColor(white: 1, alpha: 0.1)
                 } else {
                     setColors()
                 }
@@ -88,7 +88,7 @@ class ShadowButton: UIControl {
     }
 
     private func setupViews() {
-        addShadowView()
+        // addShadowView()
         addContent()
         setColors()
         addTarget(self, action: #selector(ShadowButton.touchUpInside), for: .touchUpInside)
@@ -113,7 +113,8 @@ class ShadowButton: UIControl {
 
     private func addContent() {
         addSubview(container)
-        container.backgroundColor = .primaryButton
+        //container.backgroundColor = .primaryButton
+        container.backgroundColor = UIColor(white: 1, alpha: 0.1)
         container.layer.cornerRadius = cornerRadius
         container.isUserInteractionEnabled = false
         container.constrain(toSuperviewEdges: nil)
@@ -121,7 +122,7 @@ class ShadowButton: UIControl {
         label.textColor = .white
         label.textAlignment = .center
         label.isUserInteractionEnabled = false
-        label.font = UIFont.customMedium(size: 16.0)
+        label.font = UIFont.customBody(size: 16.0)
         configureContentType()
     }
 
@@ -156,8 +157,8 @@ class ShadowButton: UIControl {
     private func setColors() {
         switch type {
         case .primary:
-            container.backgroundColor = .primaryButton
-            label.textColor = .primaryText
+            container.backgroundColor = UIColor(white: 1, alpha: 0.1)
+            label.textColor = C.Colors.text
             container.layer.borderColor = nil
             container.layer.borderWidth = 0.0
             shadowView.layer.shadowColor = UIColor.black.cgColor

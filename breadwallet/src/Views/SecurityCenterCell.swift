@@ -15,7 +15,7 @@ class SecurityCenterCell : UIControl {
     //MARK: - Public
     var isCheckHighlighted: Bool = false {
         didSet {
-            check.tintColor = isCheckHighlighted ? .primaryButton : .grayTextTint
+            check.tintColor = isCheckHighlighted ? C.Colors.weirdGreen : .grayTextTint
         }
     }
 
@@ -52,6 +52,8 @@ class SecurityCenterCell : UIControl {
             separator.heightAnchor.constraint(equalToConstant: 1.0),
             separator.bottomAnchor.constraint(equalTo: bottomAnchor) ])
 
+        separator.backgroundColor = C.Colors.greyBlue
+        
         descriptionLabel.numberOfLines = 0
         descriptionLabel.lineBreakMode = .byWordWrapping
         check.setImage(#imageLiteral(resourceName: "CircleCheck"), for: .normal)
@@ -63,13 +65,13 @@ class SecurityCenterCell : UIControl {
             if isHighlighted {
                 backgroundColor = .secondaryButton
             } else {
-                backgroundColor = .white
+                backgroundColor = .clear
             }
         }
     }
 
-    private let title = UILabel(font: .customBold(size: 13.0))
-    private let descriptionLabel = UILabel(font: .customBody(size: 13.0))
+    private let title = UILabel(font: .customBold(size: 13.0), color: C.Colors.text)
+    private let descriptionLabel = UILabel(font: .customBody(size: 13.0), color: C.Colors.lightText)
     private let separator = UIView(color: .secondaryShadow)
     private let check = UIButton(type: .system)
 

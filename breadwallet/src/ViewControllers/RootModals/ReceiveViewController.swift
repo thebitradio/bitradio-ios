@@ -25,18 +25,27 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     init(wallet: BRWallet, store: Store, isRequestAmountVisible: Bool) {
         self.wallet = wallet
         self.isRequestAmountVisible = isRequestAmountVisible
+        self.amountView = AmountViewController(store: store, isPinPadExpandedAtLaunch: true, isRequesting: true)
         self.store = store
         super.init(nibName: nil, bundle: nil)
     }
 
     //MARK - Private
+    private let amountView: AmountViewController
     private let qrCode = UIImageView()
     private let address = UILabel(font: .customBody(size: 14.0))
     private let addressPopout = InViewAlert(type: .primary)
-    private let share = ShadowButton(title: S.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"))
+    //private let share = ShadowButton(title: S.Receive.share, type: .primary, image: #imageLiteral(resourceName: "Share"))
+    private let share: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.backgroundColor = .clear
+        btn.setBackgroundImage(#imageLiteral(resourceName: "shareButton"), for: .normal)
+        
+        return btn
+    }()
     private let sharePopout = InViewAlert(type: .secondary)
     private let border = UIView()
-    private let request = ShadowButton(title: S.Receive.request, type: .secondary)
+    private let request = ShadowButton(title: S.Receive.request, type: .primary)
     private let addressButton = UIButton(type: .system)
     private var topSharePopoutConstraint: NSLayoutConstraint?
     private let wallet: BRWallet
@@ -53,6 +62,12 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     fileprivate let isRequestAmountVisible: Bool
     private var requestTop: NSLayoutConstraint?
     private var requestBottom: NSLayoutConstraint?
+    
+    private var amount: Satoshis? {
+        didSet {
+            setQrCode()
+        }
+    }
 
     override func viewDidLoad() {
         addSubviews()
@@ -68,8 +83,8 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     private func addSubviews() {
         view.addSubview(qrCode)
         view.addSubview(address)
-        view.addSubview(addressPopout)
         view.addSubview(share)
+        view.addSubview(addressPopout)
         view.addSubview(sharePopout)
         view.addSubview(border)
         view.addSubview(request)
@@ -92,10 +107,10 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             addressPopout.constraint(.width, toView: view),
             addressPopout.heightConstraint ])
         share.constrain([
-            share.constraint(toBottom: addressPopout, constant: C.padding[2]),
-            share.constraint(.centerX, toView: view),
-            share.constraint(.width, constant: qrSize),
-            share.constraint(.height, constant: smallButtonHeight) ])
+            share.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 25),
+            share.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -76),
+            share.constraint(.width, constant: 58),
+            share.constraint(.height, constant: 58) ])
         sharePopout.heightConstraint = sharePopout.constraint(.height, constant: 0.0)
         topSharePopoutConstraint = sharePopout.constraint(toBottom: share, constant: largeSharePadding)
         sharePopout.constrain([
@@ -108,28 +123,37 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             border.constraint(toBottom: sharePopout, constant: 0.0),
             border.constraint(.centerX, toView: view),
             border.constraint(.height, constant: 1.0) ])
-        requestTop = request.constraint(toBottom: border, constant: C.padding[3])
+
+        addChildViewController(amountView, layout: {
+            amountView.view.constrain([
+                amountView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                amountView.view.topAnchor.constraint(equalTo: border.bottomAnchor, constant: 20),
+                amountView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
+        })
+ 
+        requestTop = request.constraint(toBottom: amountView.view, constant: C.padding[3])
         requestBottom = request.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: E.isIPhoneX ? -C.padding[5] : -C.padding[2])
         request.constrain([
             requestTop,
             request.constraint(.leading, toView: view, constant: C.padding[2]),
             request.constraint(.trailing, toView: view, constant: -C.padding[2]),
             request.constraint(.height, constant: C.Sizes.buttonHeight),
-            requestBottom ])
+            requestBottom
+        ])
+        
         addressButton.constrain([
             addressButton.leadingAnchor.constraint(equalTo: address.leadingAnchor, constant: -C.padding[1]),
             addressButton.topAnchor.constraint(equalTo: qrCode.topAnchor),
             addressButton.trailingAnchor.constraint(equalTo: address.trailingAnchor, constant: C.padding[1]),
             addressButton.bottomAnchor.constraint(equalTo: address.bottomAnchor, constant: C.padding[1]) ])
+        
+
     }
 
     private func setStyle() {
-        view.backgroundColor = .white
-        address.textColor = .grayTextTint
-        border.backgroundColor = .secondaryBorder
-        share.isToggleable = true
+        view.backgroundColor = .clear
+        address.textColor = C.Colors.text
         if !isRequestAmountVisible {
-            border.isHidden = true
             request.isHidden = true
             request.constrain([
                 request.heightAnchor.constraint(equalToConstant: 0.0) ])
@@ -142,10 +166,18 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         addressButton.layer.masksToBounds = true
         setReceiveAddress()
     }
+    
+    private func setQrCode(){
+        guard let amount = amount else { return }
+        let request = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
+        qrCode.image = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .white))?
+            .resize(CGSize(width: qrSize, height: qrSize))!
+    }
 
     private func setReceiveAddress() {
         address.text = wallet.receiveAddress
-        qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?
+        
+        qrCode.image = UIImage.qrCode(data: "\(wallet.receiveAddress)".data(using: .utf8)!, color: CIColor(color: .white))?
             .resize(CGSize(width: qrSize, height: qrSize))!
     }
 
@@ -161,7 +193,28 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             })
         }
         share.addTarget(self, action: #selector(ReceiveViewController.shareTapped), for: .touchUpInside)
+        
+        amountView.didUpdateAmount = { [weak self] amount in
+            self?.amount = amount
+        }
     }
+    
+    @objc private func shareTapped() {
+        
+        guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
+        let address = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
+        
+        if
+            let qrImage = qrCode.image,
+            let imgData = UIImageJPEGRepresentation(qrImage, 1.0),
+            let jpegRep = UIImage(data: imgData) {
+            let activityViewController = UIActivityViewController(activityItems: [address, jpegRep], applicationActivities: nil)
+            activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
+            present(activityViewController, animated: true, completion: {})
+        }
+        
+    }
+
 
     private func setupCopiedMessage() {
         let copiedMessage = UILabel(font: .customMedium(size: 14.0))
@@ -169,19 +222,6 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         copiedMessage.text = S.Receive.copied
         copiedMessage.textAlignment = .center
         addressPopout.contentView = copiedMessage
-    }
-
-    @objc private func shareTapped() {
-        if
-            let qrImage = qrCode.image,
-            let imgData = UIImageJPEGRepresentation(qrImage, 1.0),
-            let jpegRep = UIImage(data: imgData),
-            let address = address.text {
-                let paymentURI = PaymentRequest.requestString(withAddress: address)
-                let activityViewController = UIActivityViewController(activityItems: [paymentURI, jpegRep], applicationActivities: nil)
-                activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
-                present(activityViewController, animated: true, completion: {})
-        }
     }
 
     @objc private func addressTapped() {
@@ -244,6 +284,10 @@ extension ReceiveViewController : ModalDisplayable {
     }
 
     var modalTitle: String {
+#if REBRAND
+        return "Login Key"
+#else
         return S.Receive.title
+#endif
     }
 }

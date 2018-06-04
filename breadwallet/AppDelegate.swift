@@ -35,11 +35,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return applicationController.window
     }
     let applicationController = ApplicationController()
-
+    
+#if Debug
+    func resetKeychain() {
+        deleteAllKeysForSecClass(kSecClassGenericPassword)
+        deleteAllKeysForSecClass(kSecClassInternetPassword)
+        deleteAllKeysForSecClass(kSecClassCertificate)
+        deleteAllKeysForSecClass(kSecClassKey)
+        deleteAllKeysForSecClass(kSecClassIdentity)
+    }
+    
+    func deleteAllKeysForSecClass(_ secClass: CFTypeRef) {
+        let dict: [NSString : Any] = [kSecClass : secClass]
+        let result = SecItemDelete(dict as CFDictionary)
+        assert(result == noErr || result == errSecItemNotFound, "Error deleting keychain data (\(result))")
+    }
+#endif
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		
+
+#if Debug
+        if false {
+            resetKeychain()
+        }
+#endif
+        
 		Buglife.shared().start(withAPIKey: "") // TODO: Replace me with the BugLife API Key
-		
+        
         let appearance = Buglife.shared().appearance
         appearance.tintColor = .white
         appearance.barTintColor = .blueGradientEnd
@@ -56,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         senderApp = ""
+        
         applicationController.willEnterForeground()
     }
 

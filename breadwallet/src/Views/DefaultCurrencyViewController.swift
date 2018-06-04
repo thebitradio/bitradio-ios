@@ -38,9 +38,9 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
         }
     }
 
-    private let bitcoinLabel = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
+    private let bitcoinLabel = UILabel(font: .customMedium(size: 14.0), color: C.Colors.text)
     private let bitcoinSwitch = UISegmentedControl(items: ["mDGB (\(S.Symbols.bits))", "DGB (\(S.Symbols.btc))"])
-    private let rateLabel = UILabel(font: .customBody(size: 16.0), color: .darkText)
+    private let rateLabel = UILabel(font: .customMedium(size: 16.0), color: UIColor.orange)
     private var header: UIView?
 
     deinit {
@@ -48,6 +48,8 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
     }
 
     override func viewDidLoad() {
+        view.backgroundColor = C.Colors.background
+        
         tableView.register(SeparatorCell.self, forCellReuseIdentifier: cellIdentifier)
         store.subscribe(self, selector: { $0.defaultCurrencyCode != $1.defaultCurrencyCode }, callback: {
             self.defaultCurrencyCode = $0.defaultCurrencyCode
@@ -58,10 +60,10 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
 
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         tableView.estimatedSectionHeaderHeight = 140.0
-        tableView.backgroundColor = .whiteTint
+        tableView.backgroundColor = C.Colors.background
         tableView.separatorStyle = .none
 
-        let titleLabel = UILabel(font: .customBold(size: 17.0), color: .darkText)
+        let titleLabel = UILabel(font: .customMedium(size: 17.0), color: C.Colors.text)
         titleLabel.text = S.Settings.currency
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
@@ -76,7 +78,7 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
         if let currentRate = rates.filter({ $0.code == defaultCurrencyCode }).first {
             let amount = Amount(amount: C.satoshis, rate: currentRate, maxDigits: store.state.maxDigits)
             let bitsAmount = Amount(amount: C.satoshis, rate: currentRate, maxDigits: store.state.maxDigits)
-            rateLabel.textColor = .darkText
+            rateLabel.textColor = .orange
             rateLabel.text = "\(bitsAmount.bits) = \(amount.string(forLocal: currentRate.locale))"
         }
     }
@@ -93,10 +95,13 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let rate = rates[indexPath.row]
         cell.textLabel?.text = "\(rate.code) (\(rate.currencySymbol))"
+        cell.backgroundColor = C.Colors.background
+        cell.tintColor = C.Colors.text
+        cell.textLabel?.textColor = C.Colors.text
 
         if rate.code == defaultCurrencyCode {
             let check = UIImageView(image: #imageLiteral(resourceName: "CircleCheck").withRenderingMode(.alwaysTemplate))
-            check.tintColor = C.defaultTintColor
+            check.tintColor = UIColor.orange
             cell.accessoryView = check
         } else {
             cell.accessoryView = nil
@@ -108,13 +113,15 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let header = self.header { return header }
 
-        let header = UIView(color: .whiteTint)
-        let rateLabelTitle = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
+        let header = UIView(color: C.Colors.background)
+        let rateLabelTitle = UILabel(font: .customMedium(size: 14.0), color: C.Colors.text)
 
         header.addSubview(rateLabelTitle)
         header.addSubview(rateLabel)
         header.addSubview(bitcoinLabel)
         header.addSubview(bitcoinSwitch)
+        
+        bitcoinSwitch.tintColor = .orange
 
         rateLabelTitle.constrain([
             rateLabelTitle.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: C.padding[2]),

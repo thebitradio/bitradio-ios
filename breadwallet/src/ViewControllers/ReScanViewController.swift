@@ -16,10 +16,10 @@ class ReScanViewController : UIViewController, Subscriber {
         super.init(nibName: nil, bundle: nil)
     }
 
-    private let header = UILabel(font: .customBold(size: 26.0), color: .darkText)
-    private let body = UILabel.wrapping(font: .systemFont(ofSize: 15.0))
+    private let header = UILabel(font: .customMedium(size: 26.0), color: C.Colors.text)
+    private let body = UILabel.wrapping(font: .customBody(size: 15.0), color: C.Colors.text)
     private let button = ShadowButton(title: S.ReScan.buttonTitle, type: .primary)
-    private let footer = UILabel.wrapping(font: .customBody(size: 16.0), color: .secondaryGrayText)
+    private let footer = UILabel.wrapping(font: .customBody(size: 16.0), color: C.Colors.greyBlue)
     private let store: Store
     private let faq: UIButton
 
@@ -67,7 +67,7 @@ class ReScanViewController : UIViewController, Subscriber {
     }
 
     private func setInitialData() {
-        view.backgroundColor = .whiteTint
+        view.backgroundColor = C.Colors.background
         header.text = S.ReScan.header
         body.attributedText = bodyText
         footer.text = S.ReScan.footer
@@ -100,8 +100,8 @@ class ReScanViewController : UIViewController, Subscriber {
 
         store.subscribe(self, selector: { $0.walletState.syncProgress != $1.walletState.syncProgress },
                         callback: { state in
-                            syncView.timestamp = state.walletState.lastBlockTimestamp
-                            syncView.progress = CGFloat(state.walletState.syncProgress)
+            syncView.timestamp = state.walletState.lastBlockTimestamp
+            syncView.progress = CGFloat(state.walletState.syncProgress)
         })
         mask.addSubview(syncView)
         syncView.constrain([
@@ -110,11 +110,13 @@ class ReScanViewController : UIViewController, Subscriber {
             syncView.trailingAnchor.constraint(equalTo: window.trailingAnchor, constant: -C.padding[2]),
             syncView.heightAnchor.constraint(equalToConstant: 88.0) ])
 
+        /*
         UIView.animate(withDuration: C.animationDuration, animations: {
             mask.alpha = 1.0
         })
+         */
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
             mask.removeFromSuperview()
             self.dismiss(animated: true, completion: nil)
         })
@@ -122,10 +124,16 @@ class ReScanViewController : UIViewController, Subscriber {
 
     private var bodyText: NSAttributedString {
         let body = NSMutableAttributedString()
-        let headerAttributes = [ NSAttributedStringKey.font: UIFont.customBold(size: 16.0),
-                                 NSAttributedStringKey.foregroundColor: UIColor.darkText ]
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10.0
+        
+        let headerAttributes = [ NSAttributedStringKey.font: UIFont.customMedium(size: 17.0),
+                                 NSAttributedStringKey.foregroundColor: C.Colors.text,
+                                 NSAttributedStringKey.paragraphStyle: paragraphStyle,
+                               ]
         let bodyAttributes = [ NSAttributedStringKey.font: UIFont.customBody(size: 16.0),
-                               NSAttributedStringKey.foregroundColor: UIColor.darkText ]
+                               NSAttributedStringKey.foregroundColor: C.Colors.text ]
 
         body.append(NSAttributedString(string: "\(S.ReScan.subheader1)\n", attributes: headerAttributes))
         body.append(NSAttributedString(string: "\(S.ReScan.body1)\n\n", attributes: bodyAttributes))

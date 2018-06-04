@@ -12,15 +12,14 @@ class SupportViewController: UIViewController {
     
     // MARK: - Properties
     
-    @IBOutlet var closeButton: UIButton?
+    @IBOutlet weak var closeButton: UIButton!
     
     // MARK: - Actions
     
-    @IBAction func closeButtonTapped () {
+    @IBAction func closeButtonTapped(_ sender: Any) {
         self.presentingViewController?.viewWillAppear(false)
         self.dismiss(animated: true, completion: nil)
     }
-    
     
     // MARK: - View Lifecycle
 
@@ -29,7 +28,11 @@ class SupportViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        closeButton?.setImage(#imageLiteral(resourceName: "Close").withRenderingMode(.alwaysTemplate), for: .normal)
+        if let c = closeButton {
+            c.setImage(#imageLiteral(resourceName: "Close").withRenderingMode(.alwaysTemplate), for: .normal)
+            c.tintColor = .white
+            c.setTitle("", for: .normal)
+        }
     }
     
     

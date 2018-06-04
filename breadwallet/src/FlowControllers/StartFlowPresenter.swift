@@ -68,18 +68,26 @@ class StartFlowPresenter : Subscriber {
     }
 
     private func presentStartFlow() {
-        let startViewController = StartViewController(store: store,
-                                                      didTapCreate: { [weak self] in
-                                                        self?.pushPinCreationViewControllerForNewWallet()
-        },
-                                                      didTapRecover: { [weak self] in
-            guard let myself = self else { return }
-            let recoverIntro = RecoverWalletIntroViewController(didTapNext: myself.pushRecoverWalletView)
-            myself.navigationController?.setTintableBackArrow()
-            myself.navigationController?.setClearNavbar()
-            myself.navigationController?.setNavigationBarHidden(false, animated: false)
-            myself.navigationController?.pushViewController(recoverIntro, animated: true)
-        })
+        let startViewController = StartViewController(
+            store: store,
+            didTapCreate: { [weak self] in
+                self?.pushPinCreationViewControllerForNewWallet()
+            },
+            didTapRecover: { [weak self] in
+                guard let myself = self else { return }
+                
+                // ToDo: redesign recover intro
+                // let recoverIntro = RecoverWalletIntroViewController(didTapNext: myself.pushRecoverWalletView)
+                // myself.navigationController?.setTintableBackArrow()
+                // myself.navigationController?.setClearNavbar()
+                // myself.navigationController?.setNavigationBarHidden(false, animated: false)
+                // myself.navigationController?.pushViewController(recoverIntro, animated: true)
+                myself.navigationController?.setNavigationBarHidden(false, animated: false)
+                myself.navigationController?.setTintableBackArrow()
+                myself.navigationController?.setClearNavbar()
+                myself.pushRecoverWalletView()
+            }
+        )
 
         navigationController = ModalNavigationController(rootViewController: startViewController)
         navigationController?.delegate = navigationControllerDelegate
@@ -92,7 +100,11 @@ class StartFlowPresenter : Subscriber {
     private var pushRecoverWalletView: () -> Void {
         return { [weak self] in
             guard let myself = self else { return }
-            let recoverWalletViewController = EnterPhraseViewController(store: myself.store, walletManager: myself.walletManager, reason: .setSeed(myself.pushPinCreationViewForRecoveredWallet))
+            let recoverWalletViewController = EnterPhraseViewController(
+                store: myself.store,
+                walletManager: myself.walletManager,
+                reason: .setSeed(myself.pushPinCreationViewForRecoveredWallet)
+            )
             myself.navigationController?.pushViewController(recoverWalletViewController, animated: true)
         }
     }
@@ -210,6 +222,15 @@ class StartFlowPresenter : Subscriber {
         loginView.modalPresentationCapturesStatusBarAppearance = true
         loginViewController = loginView
         rootViewController.present(loginView, animated: false, completion: nil)
+        
+        /*
+        let pin = UpdatePinViewController(store: store, walletManager: walletManager, type: .update, showsBackButton: false, phrase: "Enter your PIN")
+        pin.transitioningDelegate = loginTransitionDelegate
+        pin.modalPresentationStyle = .overFullScreen
+        pin.modalPresentationCapturesStatusBarAppearance = true
+        loginViewController = pin
+        rootViewController.present(pin, animated: false, completion: nil)
+         */
     }
 
     private func dismissLoginFlow() {

@@ -91,7 +91,7 @@ extension ModalTransitionDelegate : UIViewControllerTransitioningDelegate {
         return PresentModalAnimator(shouldCoverBottomGap: type == .regular, completion: {
             let panGr = UIPanGestureRecognizer(target: self, action: #selector(ModalTransitionDelegate.didUpdate(gr:)))
             UIApplication.shared.keyWindow?.addGestureRecognizer(panGr)
-            self.panGestureRecognizer = panGr
+            // self.panGestureRecognizer = panGr
         })
     }
 

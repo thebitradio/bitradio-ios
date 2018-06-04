@@ -46,7 +46,7 @@ enum AlertType {
     }
 
     var icon: UIView {
-        return CheckView()
+        return CheckView(120)
     }
 }
 
@@ -69,54 +69,74 @@ func ==(lhs: AlertType, rhs: AlertType) -> Bool {
     }
 }
 
-class AlertView : UIView, GradientDrawable {
+class AlertView : UIView {
 
     private let type: AlertType
     private let header = UILabel()
     private let subheader = UILabel()
-    private let separator = UIView()
     private let icon: UIView
-    private let iconSize: CGFloat = 96.0
-    private let separatorYOffset: CGFloat = 48.0
+    private var confettiLeft: UIImageView
+    private var confettiRight: UIImageView
+    private let iconSize: CGFloat = 120
 
     init(type: AlertType) {
         self.type = type
         self.icon = type.icon
-
+        confettiLeft = UIImageView(image: #imageLiteral(resourceName: "confetti_left"))
+        confettiRight = UIImageView(image: #imageLiteral(resourceName: "confetti_left"))
+        
+        icon.transform = CGAffineTransform(scaleX: 0, y: 0)
+        
         super.init(frame: .zero)
-        layer.cornerRadius = 6.0
+        layer.cornerRadius = 10.0
         layer.masksToBounds = true
         setupSubviews()
     }
 
     func animate() {
-        guard let animatableIcon = icon as? AnimatableIcon else { return }
-        animatableIcon.animate()
+        UIView.animate(withDuration: 0.3, delay: 0.1, usingSpringWithDamping: 0.6, initialSpringVelocity: 15, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            self.icon.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        }, completion: { _ in
+            guard let animatableIcon = self.icon as? AnimatableIcon else { return }
+            animatableIcon.animate()
+        })
+        
+//        (0.4, animations: {
+//            self.icon.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+//        }, completion: { _ in
+//            guard let animatableIcon = self.icon as? AnimatableIcon else { return }
+//            animatableIcon.animate()
+//        })
     }
 
     private func setupSubviews() {
+        confettiLeft.transform = CGAffineTransform(scaleX: -1, y: 1)
+        
         addSubview(header)
         addSubview(subheader)
         addSubview(icon)
-        addSubview(separator)
-
+        
+        addSubview(confettiLeft)
+        addSubview(confettiRight)
+        
         setData()
         addConstraints()
     }
 
     private func setData() {
+        self.backgroundColor = C.Colors.dark2
+        
         header.text = type.header
         header.textAlignment = .center
         header.font = UIFont.customBold(size: 14.0)
         header.textColor = .white
 
         icon.backgroundColor = .clear
-        separator.backgroundColor = .transparentWhite
 
         subheader.text = type.subheader
         subheader.textAlignment = .center
-        subheader.font = UIFont.customBody(size: 14.0)
-        subheader.textColor = .white
+        subheader.font = UIFont.customBody(size: 12.0)
+        subheader.textColor = C.Colors.greyBlue
     }
 
     private func addConstraints() {
@@ -124,28 +144,38 @@ class AlertView : UIView, GradientDrawable {
         //NB - In this alert view, constraints shouldn't be pinned to the bottom
         //of the view because the bottom actually extends off the bottom of the screen a bit.
         //It extends so that it still covers up the underlying view when it bounces on screen.
-
-        header.constrainTopCorners(sidePadding: C.padding[2], topPadding: C.padding[2])
-        separator.constrain([
-            separator.constraint(.height, constant: 1.0),
-            separator.constraint(.width, toView: self, constant: 0.0),
-            separator.constraint(.top, toView: self, constant: separatorYOffset),
-            separator.constraint(.leading, toView: self, constant: nil) ])
+        
         icon.constrain([
             icon.constraint(.centerX, toView: self, constant: nil),
-            icon.constraint(.centerY, toView: self, constant: nil),
+            icon.topAnchor.constraint(equalTo: self.topAnchor, constant: 80),
             icon.constraint(.width, constant: iconSize),
             icon.constraint(.height, constant: iconSize) ])
+        
+        confettiLeft.constrain([
+            confettiLeft.trailingAnchor.constraint(equalTo: icon.leadingAnchor, constant: -20),
+            confettiLeft.heightAnchor.constraint(equalTo: icon.heightAnchor, multiplier: 0.8),
+            confettiLeft.centerYAnchor.constraint(equalTo: icon.centerYAnchor),
+        ])
+        
+        confettiRight.constrain([
+            confettiRight.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 20),
+            confettiRight.heightAnchor.constraint(equalTo: icon.heightAnchor, multiplier: 0.8),
+            confettiRight.centerYAnchor.constraint(equalTo: icon.centerYAnchor),
+        ])
+        
+        header.constrain([
+            header.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: 60),
+            header.constraint(.leading, toView: self, constant: C.padding[2]),
+            header.constraint(.trailing, toView: self, constant: -C.padding[2]),
+        ])
+        
         subheader.constrain([
             subheader.constraint(.leading, toView: self, constant: C.padding[2]),
             subheader.constraint(.trailing, toView: self, constant: -C.padding[2]),
-            subheader.constraint(toBottom: icon, constant: C.padding[3]) ])
+            subheader.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 12),
+        ])
     }
-
-    override func draw(_ rect: CGRect) {
-        drawGradient(rect)
-    }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

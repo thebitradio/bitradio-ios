@@ -15,16 +15,29 @@ class WritePaperPhraseViewController: UIViewController {
     private let pin: String
     private let label = UILabel.wrapping(font: UIFont.customBody(size: 16.0))
     private let stepLabel = UILabel.wrapping(font: UIFont.customMedium(size: 13.0))
-    private let header = RadialGradientView(backgroundColor: .pink)
+    private let header = RadialGradientView(backgroundColor: C.Colors.background)
     
     private lazy var phraseViews: [PhraseView] = {
         guard let phraseString = self.walletManager.seedPhrase(pin: self.pin) else { return [] }
         let words = phraseString.components(separatedBy: " ")
         return words.map { PhraseView(phrase: $0) }
     }()
+    
     //This is awkwardly named because nextResponder is now named next is swift 3 :(,
-    private let proceed = ShadowButton(title: S.WritePaperPhrase.next, type: .secondary)
-    private let previous = ShadowButton(title: S.WritePaperPhrase.previous, type: .secondary)
+    private let proceed: UIButton = {
+        let btn = UIButton()
+        btn.backgroundColor = UIColor(white: 1.0, alpha: 0.1)
+        btn.setTitle(S.WritePaperPhrase.next, for: .normal)
+        return btn
+    }()
+    
+    private let previous: UIButton = {
+        let btn = UIButton()
+        btn.backgroundColor = UIColor(white: 1.0, alpha: 0.1)
+        btn.setTitle(S.WritePaperPhrase.previous, for: .normal)
+        return btn
+    }()
+    
     private var proceedWidth: NSLayoutConstraint?
     private var previousWidth: NSLayoutConstraint?
 
@@ -54,7 +67,7 @@ class WritePaperPhraseViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = C.Colors.background
         
         label.text = S.WritePaperPhrase.instruction
         label.textAlignment = .center
@@ -95,7 +108,7 @@ class WritePaperPhraseViewController: UIViewController {
 
         header.constrainTopCorners(sidePadding: 0, topPadding: 0)
         header.constrain([
-            header.constraint(.height, constant: 152.0) ])
+            header.constraint(.height, constant: 220.0) ])
         label.constrainBottomCorners(sidePadding: C.padding[3], bottomPadding: C.padding[2])
 
         phraseViews.enumerated().forEach { index, phraseView in

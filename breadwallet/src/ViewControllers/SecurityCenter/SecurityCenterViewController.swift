@@ -9,9 +9,38 @@
 import UIKit
 import LocalAuthentication
 
-class SecurityCenterHeader : UIView, GradientDrawable {
-    override func draw(_ rect: CGRect) {
-        drawGradient(rect)
+class DigiRadialGradientView: RadialGradientView {
+    init(backgroundColor: UIColor, offset: CGFloat, hideDigi: Bool = false) {
+        super.init(backgroundColor: backgroundColor, offset: offset)
+        if (!hideDigi) {
+            addBackgroundImage()
+        }
+        
+        configure()
+    }
+    
+    private func addBackgroundImage() {
+        let image = UIImageView(image: #imageLiteral(resourceName: "fill6").withRenderingMode(.alwaysTemplate))
+        image.contentMode = .scaleAspectFit
+        // 383a59
+        image.tintColor = .black
+        
+        addSubview(image)
+        
+        image.constrain([
+            image.topAnchor.constraint(equalTo: self.topAnchor, constant: -40),
+            image.rightAnchor.constraint(equalTo: self.rightAnchor),
+            image.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
+        ])
+    }
+    
+    private func configure() {
+        self.backgroundColor = C.Colors.background // UIColor(red: 0x38 / 255, green: 0x3a / 255, blue: 0x59 / 255, alpha: 1.0)
+        self.layer.masksToBounds = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -20,7 +49,6 @@ private let fadeStart: CGFloat = 185.0
 private let fadeEnd: CGFloat = 160.0
 
 class SecurityCenterViewController : UIViewController, Subscriber {
-
     var didTapPin: (() -> Void)? {
         didSet { pinCell.tap = didTapPin }
     }
@@ -39,11 +67,11 @@ class SecurityCenterViewController : UIViewController, Subscriber {
     }
 
     fileprivate var headerBackgroundHeight: NSLayoutConstraint?
-    private let headerBackground = SecurityCenterHeader()
+    private let headerBackground = DigiRadialGradientView(backgroundColor: C.Colors.background, offset: 64.0)
     private let header: ModalHeaderView
     fileprivate let shield = UIImageView(image: #imageLiteral(resourceName: "shield"))
     private let scrollView = UIScrollView()
-    private let info = UILabel(font: .customBody(size: 16.0))
+    private let info = UILabel(font: .customBody(size: 16.0), color: C.Colors.text)
     private let pinCell = SecurityCenterCell(title: S.SecurityCenter.Cells.pinTitle, descriptionText: S.SecurityCenter.Cells.pinDescription)
     private let biometricsCell = SecurityCenterCell(title: LAContext.biometricType() == .face ? S.SecurityCenter.Cells.faceIdTitle : S.SecurityCenter.Cells.touchIdTitle, descriptionText: S.SecurityCenter.Cells.touchIdDescription)
     private let paperKeyCell = SecurityCenterCell(title: S.SecurityCenter.Cells.paperKeyTitle, descriptionText: S.SecurityCenter.Cells.paperKeyDescription)
@@ -90,11 +118,13 @@ class SecurityCenterViewController : UIViewController, Subscriber {
         scrollView.alwaysBounceVertical = true
         scrollView.panGestureRecognizer.delaysTouchesBegan = false
         scrollView.delegate = self
+        scrollView.backgroundColor = C.Colors.background
         info.text = S.SecurityCenter.info
         info.numberOfLines = 0
         info.lineBreakMode = .byWordWrapping
         header.backgroundColor = .clear
-
+        separator.backgroundColor = C.Colors.greyBlue
+        
         setPinAndPhraseChecks()
         store.subscribe(self, selector: { $0.isBiometricsEnabled != $1.isBiometricsEnabled }, callback: {
             self.biometricsCell.isCheckHighlighted = $0.isBiometricsEnabled
@@ -189,6 +219,5 @@ extension SecurityCenterViewController : UIScrollViewDelegate {
         } else {
             shield.alpha = 1.0
         }
-
     }
 }
