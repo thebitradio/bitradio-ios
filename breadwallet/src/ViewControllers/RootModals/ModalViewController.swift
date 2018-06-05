@@ -37,7 +37,7 @@ class ModalViewController : UIViewController, Subscriber {
     
     private let modalHeaderImage: UIImageView = {
         let img = UIImageView(image: #imageLiteral(resourceName: "modalHeader"))
-        img.contentMode = .scaleAspectFit
+        img.contentMode = .scaleAspectFill
         return img
     }()
 

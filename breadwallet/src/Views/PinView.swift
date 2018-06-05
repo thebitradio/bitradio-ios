@@ -19,13 +19,14 @@ class PinView : UIView {
     var itemSize: CGFloat {
         switch style {
         case .create:
-            return 44.0
+            return E.is320wDevice ? 40.0 : 44.0
         case .login:
             return 16.0
         }
     }
     var width: CGFloat {
-        return (itemSize + C.padding[1]) * CGFloat(length)
+        let padding: CGFloat = E.is320wDevice ? 4 : 8
+        return (itemSize + padding) * CGFloat(length)
     }
     let shakeDuration: CFTimeInterval = 0.6
     fileprivate var shakeCompletion: (() -> Void)?

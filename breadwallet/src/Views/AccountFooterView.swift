@@ -8,6 +8,8 @@
 
 import UIKit
 
+fileprivate let buttonSize: CGFloat = 44
+
 fileprivate class RadialGradientViewButton: UIView {
     var highlightOnTouch = false
     var isHighlighted: Bool = false
@@ -130,7 +132,7 @@ fileprivate class RadialGradientCircleBackgroundView: UIView {
 
 fileprivate class RadialGradientMenu: UIView {
     private var hasSetup: Bool = false
-    private var size: CGSize = CGSize(width: 41, height: 41) {
+    private var size: CGSize = CGSize(width: buttonSize, height: buttonSize) {
         didSet {
             guard let superview = superview else { return }
             superview.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
@@ -204,7 +206,7 @@ fileprivate class RadialGradientMenu: UIView {
         }
         let screenWidth = UIScreen.main.bounds.width
         let widthScale = screenWidth / size.width * 1.1
-        let heightScale = 2*(currentOffset + 20) / size.height
+        let heightScale = 2*(currentOffset + 40) / size.height
         var scale = max(widthScale, heightScale) * progress
         scale = (scale < 1 ? 1 : scale)
         
@@ -488,7 +490,6 @@ class AccountFooterView: UIView {
         backgroundHelper.backgroundColor = UIColor(red: 0x0F / 255, green: 0x0F / 255, blue: 0x1A / 255, alpha: 1)
         
         // calculate offsets
-        let buttonSize: CGFloat = 44
         let menuOffset = CGFloat(E.isIPhoneX ? 0 : self.menuOffset)
         
         // center button

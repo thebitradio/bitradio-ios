@@ -22,12 +22,12 @@ class StartViewController : UIViewController {
     //MARK: - Private
     private let designAdditionalImage1: UIImageView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "LoginBackground1"))
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         return image
     }()
     private let designAdditionalImage2: UIImageView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "LoginBackground2"))
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         return image
     }()
     private let logo: UIImageView = {
@@ -122,9 +122,12 @@ class StartViewController : UIViewController {
     private func addConstraints() {
         background.constrain(toSuperviewEdges: nil)
         
+        let centerConstraint = logo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50)
+        centerConstraint.priority = .init(600)
+        
         logo.constrain([
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            logo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            centerConstraint,
             logo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: C.Sizes.logoWidthPercentage)
         ])
         
@@ -142,8 +145,11 @@ class StartViewController : UIViewController {
         
         message.constrain([
             message.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            message.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: C.padding[3]),
+            message.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 32),
+            message.bottomAnchor.constraint(equalTo: create.topAnchor, constant: -32),
+            message.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
             message.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
+        
         recover.constrain([
             recover.constraint(.leading, toView: view, constant: 40.0),
             recover.constraint(.bottom, toView: view, constant: -48.0),

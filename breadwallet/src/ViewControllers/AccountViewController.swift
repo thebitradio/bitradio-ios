@@ -319,7 +319,7 @@ fileprivate class HamburgerViewMenu: UIView {
     }
     
     private func addSubviews() {
-        bgImage.contentMode = .scaleAspectFit
+        bgImage.contentMode = .scaleAspectFill
         
         addSubview(bgImage)
         addSubview(digibyteLogo)
@@ -339,21 +339,23 @@ fileprivate class HamburgerViewMenu: UIView {
         
         digibyteLogo.constrain([
             digibyteLogo.topAnchor.constraint(equalTo: self.topAnchor, constant: 78),
-            digibyteLogo.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            digibyteLogo.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 10),
             digibyteLogo.widthAnchor.constraint(equalToConstant: 90),
             digibyteLogo.heightAnchor.constraint(equalToConstant: 90),
         ])
         
         walletLabel.constrain([
             walletLabel.topAnchor.constraint(equalTo: digibyteLogo.bottomAnchor, constant: 16),
-            walletLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
-            walletLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
+            walletLabel.centerXAnchor.constraint(equalTo: digibyteLogo.centerXAnchor),
+            //walletLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
+            //walletLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
         ])
         
         walletVersionLabel.constrain([
             walletVersionLabel.topAnchor.constraint(equalTo: walletLabel.bottomAnchor, constant: 6),
-            walletVersionLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
-            walletVersionLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
+            walletVersionLabel.centerXAnchor.constraint(equalTo: digibyteLogo.centerXAnchor),
+            //walletVersionLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
+            //walletVersionLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
             walletVersionLabel.heightAnchor.constraint(equalToConstant: 20),
         ])
         
@@ -398,11 +400,11 @@ fileprivate class HamburgerViewMenu: UIView {
         button.setImage(icon, for: .normal)
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = UIFont.customBody(size: 18)
-        button.setTitleColor(.gray, for: .normal)
-        button.setTitleColor(C.Colors.text, for: .highlighted)
+        button.setTitleColor(C.Colors.text, for: .normal)
+        button.setTitleColor(.gray, for: .highlighted)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: E.is320wDevice ? 35 : 50, bottom: 0, right: 0)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: E.is320wDevice ? 55 : 80, bottom: 0, right: 0)
-        button.tintColor = .gray
+        button.tintColor = C.Colors.text
         button.contentHorizontalAlignment = .left
         
         scrollInner.addArrangedSubview(button)

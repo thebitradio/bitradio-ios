@@ -14,13 +14,14 @@
         <!--Support View Controller-->
         <scene sceneID="5Xm-MZ-6gj">
             <objects>
-                <viewController id="7cv-vf-SfC" customClass="SupportViewController" customModule="breadwallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7cv-vf-SfC" customClass="SupportViewController" customModule="digibyte" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="s8m-0e-Zpq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fill6" translatesAutoresizingMaskIntoConstraints="NO" id="9n7-Yw-NQI" userLabel="DigiByte Logo">
                                 <rect key="frame" x="40" y="141" width="335" height="435"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="0.77030714897260277" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9n7-Yw-NQI" secondAttribute="height" multiplier="67:87" id="bcj-lY-ike"/>
                                 </constraints>
@@ -71,7 +72,7 @@
                                 <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" red="0.098039215686274508" green="0.10196078431372549" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.062294104562402974" green="0.065537068805950588" blue="0.12009466889546005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="CrW-wC-PXF" firstAttribute="leading" secondItem="00N-yO-gzK" secondAttribute="leading" id="2KM-z6-8dn"/>
                             <constraint firstItem="eh0-bH-NBv" firstAttribute="leading" secondItem="00N-yO-gzK" secondAttribute="leading" constant="10" id="3TD-ra-JwA"/>
