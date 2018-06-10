@@ -128,7 +128,9 @@ extension UserDefaults {
     }
 
     static var hasShownWelcome: Bool {
-        get { return defaults.bool(forKey: hasShownWelcomeKey) }
+        get {
+            return defaults.bool(forKey: hasShownWelcomeKey)
+        }
         set { defaults.set(newValue, forKey: hasShownWelcomeKey) }
     }
 }

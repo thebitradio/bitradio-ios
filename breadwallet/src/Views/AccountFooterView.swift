@@ -175,8 +175,10 @@ fileprivate class RadialGradientMenu: UIView {
 
         } else if sender.state == .changed {
             // changed
-            let translationY = -sender.translation(in: sender.view).y
-            guard translationY > 0 else { return }
+            var translationY = -sender.translation(in: sender.view).y
+            if translationY < 0 {
+                translationY = 0
+            }
             
             let progress = translationY / (currentOffset+20) * 1.5
             menuAnimationStep(progress)
@@ -485,7 +487,6 @@ class AccountFooterView: UIView {
         // menu background images
         let bgImage = #imageLiteral(resourceName: "tabBg")
         let backgroundImage = UIImageView(image: bgImage)
-        // backgroundImage.contentMode = .scaleAspectFit
         let backgroundHelper = UIView()
         backgroundHelper.backgroundColor = UIColor(red: 0x0F / 255, green: 0x0F / 255, blue: 0x1A / 255, alpha: 1)
         

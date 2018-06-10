@@ -55,7 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
 #if Debug
+        
         if false {
+            UserDefaults.hasShownWelcome = false
             resetKeychain()
         }
 #endif
@@ -65,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let appearance = Buglife.shared().appearance
         appearance.tintColor = .white
         appearance.barTintColor = .blueGradientEnd
-        appearance.statusBarStyle = .lightContent
+        appearance.statusBarStyle = .default
         
         UIView.swizzleSetFrame()
         applicationController.launch(application: application, options: launchOptions)

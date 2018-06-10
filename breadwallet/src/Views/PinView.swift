@@ -25,7 +25,7 @@ class PinView : UIView {
         }
     }
     var width: CGFloat {
-        let padding: CGFloat = E.is320wDevice ? 4 : 8
+        let padding: CGFloat = E.is320wDevice ? 7 : 12
         return (itemSize + padding) * CGFloat(length)
     }
     let shakeDuration: CFTimeInterval = 0.6
@@ -91,7 +91,7 @@ class PinView : UIView {
         circles.enumerated().forEach { index, circle in
             addSubview(circle)
             let leadingConstraint: NSLayoutConstraint?
-            let padding = (width - itemSize * CGFloat(length)) / CGFloat(length - 1) + 2
+            let padding = (width - itemSize * CGFloat(length)) / CGFloat(length - 1)
             
             if index == 0 {
                 leadingConstraint = circle.constraint(.leading, toView: self, constant: 0.0)

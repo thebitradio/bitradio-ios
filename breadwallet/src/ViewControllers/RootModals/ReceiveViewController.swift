@@ -33,19 +33,16 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     //MARK - Private
     private let amountView: AmountViewController
     private let qrCode = UIImageView()
-    private let address = UILabel(font: .customBody(size: 14.0))
+    private let requestString = UILabel(font: .customBody(size: 14.0))
     private let addressPopout = InViewAlert(type: .primary)
-    //private let share = ShadowButton(title: S.Receive.share, type: .primary, image: #imageLiteral(resourceName: "Share"))
     private let share: UIButton = {
         let btn = UIButton(type: .system)
         btn.backgroundColor = .clear
         btn.setBackgroundImage(#imageLiteral(resourceName: "shareButton"), for: .normal)
-        
         return btn
     }()
     private let sharePopout = InViewAlert(type: .secondary)
     private let border = UIView()
-    private let request = ShadowButton(title: S.Receive.request, type: .primary)
     private let addressButton = UIButton(type: .system)
     private var topSharePopoutConstraint: NSLayoutConstraint?
     private let wallet: BRWallet
@@ -62,9 +59,25 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     fileprivate let isRequestAmountVisible: Bool
     private var requestTop: NSLayoutConstraint?
     private var requestBottom: NSLayoutConstraint?
+    private var address: String?
     
     private var amount: Satoshis? {
         didSet {
+            if let amount = amount, let address = address {
+                addressButton.isUserInteractionEnabled = true
+                qrCode.layer.opacity = 1
+                requestString.layer.opacity = 1
+                share.isUserInteractionEnabled = true
+                share.layer.opacity = 1
+                let amountStr: CGFloat = CGFloat(amount.rawValue) / 100000000.0
+                requestString.text = "\(amountStr) DGB to\n\(address)"
+            } else {
+                addressButton.isUserInteractionEnabled = false
+                qrCode.layer.opacity = 0.1
+                share.layer.opacity = 0.1
+                requestString.layer.opacity = 0.0
+                share.isUserInteractionEnabled = false
+            }
             setQrCode()
         }
     }
@@ -82,12 +95,11 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     private func addSubviews() {
         view.addSubview(qrCode)
-        view.addSubview(address)
+        view.addSubview(requestString)
         view.addSubview(share)
         view.addSubview(addressPopout)
         view.addSubview(sharePopout)
         view.addSubview(border)
-        view.addSubview(request)
         view.addSubview(addressButton)
     }
 
@@ -97,17 +109,17 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             qrCode.constraint(.height, constant: qrSize),
             qrCode.constraint(.top, toView: view, constant: C.padding[4]),
             qrCode.constraint(.centerX, toView: view) ])
-        address.constrain([
-            address.constraint(toBottom: qrCode, constant: C.padding[1]),
-            address.constraint(.centerX, toView: view) ])
+        requestString.constrain([
+            requestString.constraint(toBottom: qrCode, constant: C.padding[1]),
+            requestString.constraint(.centerX, toView: view) ])
         addressPopout.heightConstraint = addressPopout.constraint(.height, constant: 0.0)
         addressPopout.constrain([
-            addressPopout.constraint(toBottom: address, constant: 0.0),
+            addressPopout.constraint(toBottom: requestString, constant: 0.0),
             addressPopout.constraint(.centerX, toView: view),
             addressPopout.constraint(.width, toView: view),
             addressPopout.heightConstraint ])
         share.constrain([
-            share.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 25),
+            share.topAnchor.constraint(equalTo: requestString.bottomAnchor, constant: 25),
             share.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -76),
             share.constraint(.width, constant: 58),
             share.constraint(.height, constant: 58) ])
@@ -128,42 +140,36 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             amountView.view.constrain([
                 amountView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 amountView.view.topAnchor.constraint(equalTo: border.bottomAnchor, constant: 20),
-                amountView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
+                amountView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                amountView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: E.isIPhoneX ? -C.padding[5] : -C.padding[2])
+                ])
+            
+            amountView.closePinPad()
         })
- 
-        requestTop = request.constraint(toBottom: amountView.view, constant: C.padding[3])
-        requestBottom = request.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: E.isIPhoneX ? -C.padding[5] : -C.padding[2])
-        request.constrain([
-            requestTop,
-            request.constraint(.leading, toView: view, constant: C.padding[2]),
-            request.constraint(.trailing, toView: view, constant: -C.padding[2]),
-            request.constraint(.height, constant: C.Sizes.buttonHeight),
-            requestBottom
-        ])
         
         addressButton.constrain([
-            addressButton.leadingAnchor.constraint(equalTo: address.leadingAnchor, constant: -C.padding[1]),
+            addressButton.leadingAnchor.constraint(equalTo: requestString.leadingAnchor, constant: -C.padding[1]),
             addressButton.topAnchor.constraint(equalTo: qrCode.topAnchor),
-            addressButton.trailingAnchor.constraint(equalTo: address.trailingAnchor, constant: C.padding[1]),
-            addressButton.bottomAnchor.constraint(equalTo: address.bottomAnchor, constant: C.padding[1]) ])
-        
-
+            addressButton.trailingAnchor.constraint(equalTo: requestString.trailingAnchor, constant: C.padding[1]),
+            addressButton.bottomAnchor.constraint(equalTo: requestString.bottomAnchor, constant: C.padding[1]) ])
     }
 
     private func setStyle() {
         view.backgroundColor = .clear
-        address.textColor = C.Colors.text
-        if !isRequestAmountVisible {
-            request.isHidden = true
-            request.constrain([
-                request.heightAnchor.constraint(equalToConstant: 0.0) ])
-            requestTop?.constant = 0.0
-            requestBottom?.constant = 0.0
-        }
+        requestString.textColor = C.Colors.text
+        requestString.numberOfLines = 2
+        requestString.text = "\n"
+        requestString.textAlignment = .center
+        share.isUserInteractionEnabled = false
+        share.layer.opacity = 0.1
         sharePopout.clipsToBounds = true
         addressButton.setBackgroundImage(UIImage.imageForColor(.secondaryShadow), for: .highlighted)
         addressButton.layer.cornerRadius = 4.0
         addressButton.layer.masksToBounds = true
+        
+        qrCode.layer.opacity = 0.1
+        addressButton.isUserInteractionEnabled = false
+        
         setReceiveAddress()
     }
     
@@ -175,7 +181,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     }
 
     private func setReceiveAddress() {
-        address.text = wallet.receiveAddress
+        address = wallet.receiveAddress
         
         qrCode.image = UIImage.qrCode(data: "\(wallet.receiveAddress)".data(using: .utf8)!, color: CIColor(color: .white))?
             .resize(CGSize(width: qrSize, height: qrSize))!
@@ -185,13 +191,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         addressButton.tap = { [weak self] in
             self?.addressTapped()
         }
-        request.tap = { [weak self] in
-            guard let modalTransitionDelegate = self?.parent?.transitioningDelegate as? ModalTransitionDelegate else { return }
-            modalTransitionDelegate.reset()
-            self?.dismiss(animated: true, completion: {
-                self?.store.perform(action: RootModalActions.Present(modal: .requestAmount))
-            })
-        }
+        
         share.addTarget(self, action: #selector(ReceiveViewController.shareTapped), for: .touchUpInside)
         
         amountView.didUpdateAmount = { [weak self] amount in
@@ -225,9 +225,10 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     }
 
     @objc private func addressTapped() {
-        guard let text = address.text else { return }
+        guard let amount = amount else { return }
+        let req = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
         //saveEvent("receive.copiedAddress")
-        UIPasteboard.general.string = text
+        UIPasteboard.general.string = req
         toggle(alertView: addressPopout, shouldAdjustPadding: false, shouldShrinkAfter: true)
         if sharePopout.isExpanded {
             toggle(alertView: sharePopout, shouldAdjustPadding: true)
@@ -236,7 +237,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     private func toggle(alertView: InViewAlert, shouldAdjustPadding: Bool, shouldShrinkAfter: Bool = false) {
         share.isEnabled = false
-        address.isUserInteractionEnabled = false
+        requestString.isUserInteractionEnabled = false
 
         var deltaY = alertView.isExpanded ? -alertView.height : alertView.height
         if shouldAdjustPadding {
@@ -261,7 +262,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         }, completion: { _ in
             alertView.isExpanded = !alertView.isExpanded
             self.share.isEnabled = true
-            self.address.isUserInteractionEnabled = true
+            self.requestString.isUserInteractionEnabled = true
             alertView.contentView?.isHidden = false
             if shouldShrinkAfter {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {

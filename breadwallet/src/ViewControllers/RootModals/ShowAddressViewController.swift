@@ -69,11 +69,11 @@ class ShowAddressViewController : UIViewController, Subscriber, Trackable {
     private func addSubviews() {
         view.addSubview(qrCode)
         view.addSubview(address)
-        view.addSubview(addressPopout)
         view.addSubview(share)
-        view.addSubview(sharePopout)
         view.addSubview(border)
         view.addSubview(addressButton)
+        view.addSubview(sharePopout)
+        view.addSubview(addressPopout)
     }
 
     private func addConstraints() {

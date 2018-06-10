@@ -18,7 +18,7 @@ class AmountViewController : UIViewController, Trackable {
         self.isPinPadExpandedAtLaunch = isPinPadExpandedAtLaunch
         self.isRequesting = isRequesting
         if let rate = store.state.currentRate, store.state.isBtcSwapped {
-            self.currencyToggle = ShadowButton(title: "\(rate.code) (\(rate.currencySymbol))", type: .primary)
+            self.currencyToggle = ShadowButton(title: "\(rate.code)  (\(rate.currencySymbol))", type: .primary)
         } else {
             self.currencyToggle = ShadowButton(title: S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits), type: .primary)
         }
@@ -356,7 +356,7 @@ class AmountViewController : UIViewController, Trackable {
 
     private func updateCurrencyToggleTitle() {
         if let rate = selectedRate {
-            self.currencyToggle.title = "\(rate.code) (\(rate.currencySymbol))"
+            self.currencyToggle.title = "\(rate.code)  (\(rate.currencySymbol))"
         } else {
             self.currencyToggle.title = S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits)
         }

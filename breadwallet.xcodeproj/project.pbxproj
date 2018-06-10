@@ -334,12 +334,11 @@
 		CE6DCC301E6666470044257B /* NonScrollingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCC2F1E6666470044257B /* NonScrollingCollectionView.swift */; };
 		CE74F58D1E3BA85600ED5FA9 /* ExchangeUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74F58C1E3BA85600ED5FA9 /* ExchangeUpdater.swift */; };
 		CE760EDC1E561DF900EFAC2B /* SecurityCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE760EDA1E561DF900EFAC2B /* SecurityCenterViewController.swift */; };
-		CE760EDD1E561DF900EFAC2B /* UpdatePinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE760EDB1E561DF900EFAC2B /* UpdatePinViewController.swift */; };
+		CE760EDD1E561DF900EFAC2B /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE760EDB1E561DF900EFAC2B /* PinViewController.swift */; };
 		CE83DE2A1E9EB7F600D07636 /* SendAmountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83DE291E9EB7F600D07636 /* SendAmountCell.swift */; };
 		CE8644251F2C160200033129 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8644241F2C160200033129 /* ConfirmationViewController.swift */; };
 		CE8CD8DD1E2D9EF200785E02 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CD8DC1E2D9EF200785E02 /* Sender.swift */; };
 		CE8CD8DF1E2E825100785E02 /* VerifyPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CD8DE1E2E825000785E02 /* VerifyPinViewController.swift */; };
-		CE8CD8E11E31976800785E02 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CD8E01E31976800785E02 /* LoginViewController.swift */; };
 		CE8CD8E31E31978100785E02 /* LoginBackgroundTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CD8E21E31978100785E02 /* LoginBackgroundTriangle.swift */; };
 		CE8F0AE31EB91BB500AA7642 /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F0AE21EB91BB500AA7642 /* SearchHeaderView.swift */; };
 		CE9057181DFF0FA8006BA848 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9057171DFF0FA8006BA848 /* String+Additions.swift */; };
@@ -1565,12 +1564,11 @@
 		CE6DCC2F1E6666470044257B /* NonScrollingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NonScrollingCollectionView.swift; path = src/Views/NonScrollingCollectionView.swift; sourceTree = "<group>"; };
 		CE74F58C1E3BA85600ED5FA9 /* ExchangeUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExchangeUpdater.swift; path = src/Wallet/ExchangeUpdater.swift; sourceTree = "<group>"; };
 		CE760EDA1E561DF900EFAC2B /* SecurityCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecurityCenterViewController.swift; path = src/ViewControllers/SecurityCenter/SecurityCenterViewController.swift; sourceTree = "<group>"; };
-		CE760EDB1E561DF900EFAC2B /* UpdatePinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdatePinViewController.swift; path = src/ViewControllers/SecurityCenter/UpdatePinViewController.swift; sourceTree = "<group>"; };
+		CE760EDB1E561DF900EFAC2B /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinViewController.swift; path = src/ViewControllers/SecurityCenter/PinViewController.swift; sourceTree = "<group>"; };
 		CE83DE291E9EB7F600D07636 /* SendAmountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SendAmountCell.swift; path = src/Views/SendAmountCell.swift; sourceTree = "<group>"; };
 		CE8644241F2C160200033129 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfirmationViewController.swift; path = src/ViewControllers/ConfirmationViewController.swift; sourceTree = "<group>"; };
 		CE8CD8DC1E2D9EF200785E02 /* Sender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sender.swift; path = src/Sender.swift; sourceTree = "<group>"; };
 		CE8CD8DE1E2E825000785E02 /* VerifyPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyPinViewController.swift; path = src/ViewControllers/VerifyPinViewController.swift; sourceTree = "<group>"; };
-		CE8CD8E01E31976800785E02 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = src/ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
 		CE8CD8E21E31978100785E02 /* LoginBackgroundTriangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginBackgroundTriangle.swift; path = src/Views/LoginBackgroundTriangle.swift; sourceTree = "<group>"; };
 		CE8F0AE21EB91BB500AA7642 /* SearchHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchHeaderView.swift; path = src/Views/SearchHeaderView.swift; sourceTree = "<group>"; };
 		CE9057171DFF0FA8006BA848 /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Additions.swift"; path = "src/Extensions/String+Additions.swift"; sourceTree = "<group>"; };
@@ -3032,7 +3030,6 @@
 				CE9057191DFF18B2006BA848 /* ScanViewController.swift */,
 				CECCE5A81E0378FB00D99448 /* PinPadViewController.swift */,
 				CE8CD8DE1E2E825000785E02 /* VerifyPinViewController.swift */,
-				CE8CD8E01E31976800785E02 /* LoginViewController.swift */,
 				CE14E4081E4D506000AEA83A /* TransactionDetailsViewController.swift */,
 				CE45C1F81E74B400002C3847 /* ManageWalletViewController.swift */,
 				CEEC708B1E95461A00EF788E /* AboutViewController.swift */,
@@ -3238,7 +3235,7 @@
 			isa = PBXGroup;
 			children = (
 				CE760EDA1E561DF900EFAC2B /* SecurityCenterViewController.swift */,
-				CE760EDB1E561DF900EFAC2B /* UpdatePinViewController.swift */,
+				CE760EDB1E561DF900EFAC2B /* PinViewController.swift */,
 			);
 			name = SecurityCenter;
 			sourceTree = "<group>";
@@ -4361,7 +4358,6 @@
 				CEE20C381EA5B4680086F724 /* Strings.swift in Sources */,
 				CE25BF8D1DF3B8A500BC67B6 /* InViewAlert.swift in Sources */,
 				22A9A9511DF61945000F0016 /* TxMetaData.swift in Sources */,
-				CE8CD8E11E31976800785E02 /* LoginViewController.swift in Sources */,
 				CEC6AA391DEE10BA00EE5AFD /* UINavigationController+BRAdditions.swift in Sources */,
 				CECCE5AB1E038C9900D99448 /* GenericPinPadCell.swift in Sources */,
 				789FAE0620828447003AF958 /* BRDigiID.swift in Sources */,
@@ -4506,7 +4502,7 @@
 				CECCE5A51E02408300D99448 /* UIView+FrameChangeBlocking.swift in Sources */,
 				22A9A94F1DF61945000F0016 /* BRHTTPRouter.swift in Sources */,
 				CE6DCC271E6108D50044257B /* EnterPhraseCell.swift in Sources */,
-				CE760EDD1E561DF900EFAC2B /* UpdatePinViewController.swift in Sources */,
+				CE760EDD1E561DF900EFAC2B /* PinViewController.swift in Sources */,
 				CEBF32F41DDCE12900348FC6 /* AccountFooterView.swift in Sources */,
 				CE9057181DFF0FA8006BA848 /* String+Additions.swift in Sources */,
 				CED341331EF5A5C00014912A /* InAppAlert.swift in Sources */,

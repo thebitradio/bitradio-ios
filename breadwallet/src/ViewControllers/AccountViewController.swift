@@ -453,8 +453,6 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     var showAddressCallback: (() -> Void)? {
         didSet { footerView.showAddressCallback = showAddressCallback }
     }
-    
-    
 
     var walletManager: WalletManager? {
         didSet {
@@ -468,10 +466,9 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
                 
                 self.present(self.loginView, animated: false, completion: {
                     self.tempLoginView.remove()
-                    self.attemptShowWelcomeView()
+                    //self.attemptShowWelcomeView()
                 })
                 
-            
                 let pin = UpdatePinViewController(store: store, walletManager: walletManager, type: .update, showsBackButton: false, phrase: "Enter your PIN")
                 pin.transitioningDelegate = loginTransitionDelegate
                 pin.modalPresentationStyle = .overFullScreen
@@ -774,6 +771,9 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        //self.attemptShowWelcomeView()
+        
         menu.update()
         
         menuLeftConstraint?.constant = -hamburgerMenuView.frame.width
@@ -781,7 +781,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         fadeView.alpha = 0
         fadeView.isHidden = true
     }
-
+    
     private func addSubviews() {
 #if REBRAND
         
@@ -1087,20 +1087,6 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
             }))
         }
         present(alert, animated: true, completion: nil)
-    }
-
-    private func attemptShowWelcomeView() {
-        if !UserDefaults.hasShownWelcome {
-            let welcome = WelcomeViewController()
-            welcome.transitioningDelegate = welcomeTransitingDelegate
-            welcome.modalPresentationStyle = .overFullScreen
-            welcome.modalPresentationCapturesStatusBarAppearance = true
-            welcomeTransitingDelegate.shouldShowMaskView = false
-            
-            loginView.present(welcome, animated: true, completion: nil)
-            
-            UserDefaults.hasShownWelcome = true
-        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

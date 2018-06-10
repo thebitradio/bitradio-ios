@@ -8,6 +8,49 @@
 
 import UIKit
 
+class DigiBackgroundView: UIView {
+    private let designAdditionalImage1: UIImageView = {
+        let image = UIImageView(image: #imageLiteral(resourceName: "LoginBackground1"))
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    
+    private let designAdditionalImage2: UIImageView = {
+        let image = UIImageView(image: #imageLiteral(resourceName: "LoginBackground2"))
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    
+    init() {
+        super.init(frame: CGRect())
+        addSubviews()
+        addConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func addSubviews() {
+        addSubview(designAdditionalImage1)
+        addSubview(designAdditionalImage2)
+    }
+    
+    private func addConstraints() {
+        designAdditionalImage1.constrain([
+            designAdditionalImage1.leftAnchor.constraint(equalTo: leftAnchor, constant: 0.0),
+            designAdditionalImage1.topAnchor.constraint(equalTo: topAnchor, constant: 6.0),
+            designAdditionalImage1.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.38),
+        ])
+        
+        designAdditionalImage2.constrain([
+            designAdditionalImage2.rightAnchor.constraint(equalTo: rightAnchor, constant: 0.0),
+            designAdditionalImage2.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0.0),
+            designAdditionalImage2.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.72),
+        ])
+    }
+}
+
 class StartViewController : UIViewController {
 
     //MARK: - Public
@@ -20,16 +63,7 @@ class StartViewController : UIViewController {
     }
 
     //MARK: - Private
-    private let designAdditionalImage1: UIImageView = {
-        let image = UIImageView(image: #imageLiteral(resourceName: "LoginBackground1"))
-        image.contentMode = .scaleAspectFill
-        return image
-    }()
-    private let designAdditionalImage2: UIImageView = {
-        let image = UIImageView(image: #imageLiteral(resourceName: "LoginBackground2"))
-        image.contentMode = .scaleAspectFill
-        return image
-    }()
+
     private let logo: UIImageView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "DigiLogo"))
         image.contentMode = .scaleAspectFit
@@ -77,19 +111,28 @@ class StartViewController : UIViewController {
     private let didTapCreate: () -> Void
     // private let background = LoginBackgroundView()
     private let background: UIView = {
-        let view = UIView()
+        let view = DigiBackgroundView()
         view.backgroundColor = C.Colors.background
         return view
     }()
     
     private var faq: UIButton
-
+    
     override func viewDidLoad() {
         view.backgroundColor = C.Colors.background
         setData()
         addSubviews()
         addConstraints()
         addButtonActions()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 20, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+            self.logo.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+        }) { (_) in
+            
+        }
+        super.viewDidAppear(animated)
     }
 
     private func setData() {
@@ -102,14 +145,14 @@ class StartViewController : UIViewController {
 
     private func addSubviews() {
         view.addSubview(background)
-        view.addSubview(designAdditionalImage1)
-        view.addSubview(designAdditionalImage2)
         view.addSubview(logo)
         view.addSubview(message)
         view.addSubview(create)
         view.addSubview(recover)
         view.addSubview(faq)
+        
         faq.isHidden = true // TODO: Writeup support/FAQ documentation for digibyte wallet
+        logo.transform = CGAffineTransform.init(scaleX: 0.7, y: 0.7)
     }
     
     override func viewDidLayoutSubviews() {
@@ -129,18 +172,6 @@ class StartViewController : UIViewController {
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             centerConstraint,
             logo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: C.Sizes.logoWidthPercentage)
-        ])
-        
-        designAdditionalImage1.constrain([
-            designAdditionalImage1.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0.0),
-            designAdditionalImage1.topAnchor.constraint(equalTo: view.topAnchor, constant: 6.0),
-            designAdditionalImage1.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.38),
-        ])
-        
-        designAdditionalImage2.constrain([
-            designAdditionalImage2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0),
-            designAdditionalImage2.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0),
-            designAdditionalImage2.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
         ])
         
         message.constrain([

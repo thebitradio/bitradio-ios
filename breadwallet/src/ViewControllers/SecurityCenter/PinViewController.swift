@@ -504,11 +504,12 @@ class LoginViewController: PINViewController, Trackable {
     private func authenticationSucceded() {
         authenticated = true
         //saveEvent("login.success")
-        let label = UILabel(font: .customMedium(size: 14))
+        let label = UILabel(font: .customBody(size: 14))
         label.textColor = .white
         label.text = S.UnlockScreen.unlocked
         label.alpha = 0.0
-        let lock = UIImageView(image: #imageLiteral(resourceName: "unlock"))
+        let lock = UIImageView(image: #imageLiteral(resourceName: "hamburger_004Locked").withRenderingMode(.alwaysTemplate))
+        lock.tintColor = UIColor.white
         lock.alpha = 0.0
         
         view.addSubview(label)

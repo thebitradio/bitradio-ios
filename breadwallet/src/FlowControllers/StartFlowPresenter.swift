@@ -88,9 +88,21 @@ class StartFlowPresenter : Subscriber {
                 myself.pushRecoverWalletView()
             }
         )
-
-        navigationController = ModalNavigationController(rootViewController: startViewController)
+        
+        navigationController = ModalNavigationController()
         navigationController?.delegate = navigationControllerDelegate
+        
+        if !UserDefaults.hasShownWelcome {
+            let welcome = WelcomeViewController {
+                self.navigationController?.setViewControllers([startViewController], animated: true)
+                UserDefaults.hasShownWelcome = true
+            }
+            navigationController?.setViewControllers([welcome], animated: false)
+
+        } else {
+            navigationController?.setViewControllers([startViewController], animated: false)
+        }
+
         if let startFlow = navigationController {
             startFlow.setNavigationBarHidden(true, animated: false)
             rootViewController.present(startFlow, animated: false, completion: nil)
