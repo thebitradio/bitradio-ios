@@ -1343,13 +1343,9 @@
 		78B6BBF820BAFE05003A2F29 /* Rebrand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Rebrand.xcassets; sourceTree = "<group>"; };
 		78B6BBFA20BB3352003A2F29 /* ShowAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowAddressViewController.swift; path = src/ViewControllers/RootModals/ShowAddressViewController.swift; sourceTree = "<group>"; };
 		78D04F1520C7106000AD1403 /* TodayExtensions.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayExtensions.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		78D04F1620C7106100AD1403 /* TodayExtension Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TodayExtension Info.plist"; path = "/Users/jaeger/Desktop/test5/b/TodayExtension Info.plist"; sourceTree = "<absolute>"; };
 		78D04F2320C710DB00AD1403 /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		78D04F2420C710DC00AD1403 /* NotificationServiceExtension Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NotificationServiceExtension Info.plist"; path = "/Users/jaeger/Desktop/test5/b/NotificationServiceExtension Info.plist"; sourceTree = "<absolute>"; };
 		78D04F3920C710E700AD1403 /* digibyte WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "digibyte WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		78D04F3A20C710E800AD1403 /* digibyte WatchKit App Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "digibyte WatchKit App Info.plist"; path = "/Users/jaeger/Desktop/test5/b/digibyte WatchKit App Info.plist"; sourceTree = "<absolute>"; };
 		78D04F5320C710F100AD1403 /* digibyte WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "digibyte WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		78D04F5420C710F200AD1403 /* digibyte WatchKit Extension Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "digibyte WatchKit Extension Info.plist"; path = "/Users/jaeger/Desktop/test5/b/digibyte WatchKit Extension Info.plist"; sourceTree = "<absolute>"; };
 		8C7397EB8A4764D7E851BF4A /* Pods-digibyte.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyte.debug.xcconfig"; path = "Pods/Target Support Files/Pods-digibyte/Pods-digibyte.debug.xcconfig"; sourceTree = "<group>"; };
 		9F3EF36E2059CA6400E3C837 /* BRChainParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRChainParams.h; sourceTree = "<group>"; };
 		9F3EF36F2059CA6400E3C837 /* BRBech32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BRBech32.c; sourceTree = "<group>"; };
@@ -2767,7 +2763,6 @@
 		75A2A7BC1DA5934300A983D8 /* breadwallet WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
-				78D04F3A20C710E800AD1403 /* digibyte WatchKit App Info.plist */,
 				AA94556E2020DAFC00B6ABB1 /* Interface.storyboard */,
 				75A2A7C01DA5934300A983D8 /* Assets.xcassets */,
 				75A2A7C21DA5934300A983D8 /* Info.plist */,
@@ -2779,7 +2774,6 @@
 		75A2A7CB1DA5934300A983D8 /* breadwallet WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				78D04F5420C710F200AD1403 /* digibyte WatchKit Extension Info.plist */,
 				75A2A7D01DA5934300A983D8 /* ExtensionDelegate.swift */,
 				75A2A7CE1DA5934300A983D8 /* BalanceInterfaceController.swift */,
 				75A2A7D21DA5934300A983D8 /* NotificationController.swift */,
@@ -2836,7 +2830,6 @@
 		75A2A80B1DA5936F00A983D8 /* TodayExtension */ = {
 			isa = PBXGroup;
 			children = (
-				78D04F1620C7106100AD1403 /* TodayExtension Info.plist */,
 				AA94556A2020DA9600B6ABB1 /* MainInterface.storyboard */,
 				CE916E341EDA848B00D641D6 /* TodayExtension.entitlements */,
 				CE916E2C1EDA7ED000D641D6 /* BRBubbleView.h */,
@@ -2855,7 +2848,6 @@
 		75A2A81D1DA5938500A983D8 /* NotificationServiceExtension */ = {
 			isa = PBXGroup;
 			children = (
-				78D04F2420C710DC00AD1403 /* NotificationServiceExtension Info.plist */,
 				75A2A81E1DA5938500A983D8 /* NotificationService.swift */,
 				75A2A8201DA5938500A983D8 /* Info.plist */,
 			);
@@ -5186,7 +5178,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.digibyte.digibytewalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digibyte.app/digibyte";
 			};
 			name = Debug;
 		};
@@ -5202,7 +5194,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.digibyte.digibytewalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digibyte.app/digibyte";
 			};
 			name = Release;
 		};
@@ -5295,7 +5287,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "TodayExtension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TodayExtension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtensions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5308,7 +5300,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "TodayExtension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TodayExtension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtensions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5321,7 +5313,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "TodayExtension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TodayExtension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtensions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5334,7 +5326,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "TodayExtension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TodayExtension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtensions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5347,7 +5339,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "TodayExtension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TodayExtension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.TodayExtensions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5359,7 +5351,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "NotificationServiceExtension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NotificationServiceExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.NotificationServiceExtension;
@@ -5373,7 +5365,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "NotificationServiceExtension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NotificationServiceExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.NotificationServiceExtension;
@@ -5387,7 +5379,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "NotificationServiceExtension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NotificationServiceExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.NotificationServiceExtension;
@@ -5401,7 +5393,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "NotificationServiceExtension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NotificationServiceExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.NotificationServiceExtension;
@@ -5415,7 +5407,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "NotificationServiceExtension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NotificationServiceExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.NotificationServiceExtension;
@@ -5432,7 +5424,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
 				IBSC_MODULE = digibyte_WatchKit_Extension;
-				INFOPLIST_FILE = "digibyte WatchKit App copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -5449,7 +5441,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
 				IBSC_MODULE = digibyte_WatchKit_Extension;
-				INFOPLIST_FILE = "digibyte WatchKit App copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -5466,7 +5458,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
 				IBSC_MODULE = digibyte_WatchKit_Extension;
-				INFOPLIST_FILE = "digibyte WatchKit App copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -5483,7 +5475,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
 				IBSC_MODULE = digibyte_WatchKit_Extension;
-				INFOPLIST_FILE = "digibyte WatchKit App copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -5500,7 +5492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
 				IBSC_MODULE = digibyte_WatchKit_Extension;
-				INFOPLIST_FILE = "digibyte WatchKit App copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/breadwallet WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -5515,7 +5507,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "digibyte WatchKit Extension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5532,7 +5524,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "digibyte WatchKit Extension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5549,7 +5541,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "digibyte WatchKit Extension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5566,7 +5558,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "digibyte WatchKit Extension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5583,7 +5575,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				DEVELOPMENT_TEAM = G49J8N7X2F;
-				INFOPLIST_FILE = "digibyte WatchKit Extension copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.digibytefoundation.DigiByte.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5744,7 +5736,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.digibyte.digibytewalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digibyte.app/digibyte";
 			};
 			name = Screenshots;
 		};
@@ -6000,7 +5992,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.digibyte.digibytewalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digibyte.app/digibyte";
 			};
 			name = Testnet;
 		};
@@ -6248,7 +6240,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.digibyte.digibytewalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digibyte.app/digibyte";
 			};
 			name = Testflight;
 		};
