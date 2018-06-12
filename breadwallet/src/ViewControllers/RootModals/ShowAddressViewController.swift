@@ -153,7 +153,7 @@ class ShowAddressViewController : UIViewController, Subscriber, Trackable {
 
     @objc private func shareTapped() {
         if
-            let qrImage = qrCode.image,
+            let qrImage = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?.resize(CGSize(width: 512, height: 512)),
             let imgData = UIImageJPEGRepresentation(qrImage, 1.0),
             let jpegRep = UIImage(data: imgData),
             let address = address.text {

@@ -446,7 +446,12 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     var digiIDCallback: (() -> Void)? {
         didSet {
             footerView.digiIDCallback = digiIDCallback
-            footerView.qrScanCallback = digiIDCallback
+        }
+    }
+    
+    var scanCallback: (() -> Void)? {
+        didSet {
+            footerView.qrScanCallback = scanCallback
         }
     }
     
@@ -662,10 +667,10 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         // set closer delegate
         hamburgerMenuView.setCloser(supervc: self)
         
-        hamburgerMenuView.addButton(title: S.MenuButton.security, icon: #imageLiteral(resourceName: "hamburger_001Info")) {
+        hamburgerMenuView.addButton(title: S.MenuButton.security, icon: #imageLiteral(resourceName: "hamburger_002Shield")) {
             self.store.perform(action: HamburgerActions.Present(modal: .securityCenter))
         }
-        hamburgerMenuView.addButton(title: S.MenuButton.support, icon: #imageLiteral(resourceName: "hamburger_002Shield")) {
+        hamburgerMenuView.addButton(title: S.MenuButton.support, icon: #imageLiteral(resourceName: "hamburger_001Info")) {
             self.store.perform(action: HamburgerActions.Present(modal: .support))
         }
         hamburgerMenuView.addButton(title: S.MenuButton.settings, icon: #imageLiteral(resourceName: "hamburger_003Settings")) {

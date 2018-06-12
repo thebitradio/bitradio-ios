@@ -312,6 +312,7 @@ class ModalPresenter : Subscriber, Trackable {
         sendVC.onPublishSuccess = { [weak self] in
             self?.presentAlert(.sendSuccess, completion: {})
         }
+        
         return root
     }
 
@@ -358,7 +359,7 @@ class ModalPresenter : Subscriber, Trackable {
         })
     }
 
-    private func presentLoginScan() {
+    func presentLoginScan() {
         guard let top = topViewController else { return }
         let present = presentScan(parent: top)
         store.perform(action: RootModalActions.Present(modal: .none))
@@ -585,7 +586,7 @@ class ModalPresenter : Subscriber, Trackable {
     }
 
 
-    private func presentScan(parent: UIViewController) -> PresentScan {
+    func presentScan(parent: UIViewController) -> PresentScan {
         return { [weak parent] scanCompletion in
             guard ScanViewController.isCameraAllowed else {
                 //self.saveEvent("scan.cameraDenied")

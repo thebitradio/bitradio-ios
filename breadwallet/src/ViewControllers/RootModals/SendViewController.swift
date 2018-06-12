@@ -22,9 +22,17 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     var presentVerifyPin: ((String, @escaping VerifyPinCallback)->Void)?
     var onPublishSuccess: (()->Void)?
     var parentView: UIView? //ModalPresentable
-    var initialAddress: String?
+    var initialAddress: String? {
+        didSet {
+            if initialAddress != nil {
+                addressCell.showButtons()
+            } else {
+                addressCell.hideButtons()
+            }
+        }
+    }
     var isPresentedFromLock = false
-
+    
     init(store: Store, sender: Sender, walletManager: WalletManager, initialAddress: String? = nil, initialRequest: PaymentRequest? = nil) {
         self.store = store
         self.sender = sender
@@ -37,6 +45,10 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         super.init(nibName: nil, bundle: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
+        
+        defer {
+            self.initialAddress = initialAddress
+        }
     }
 
     //MARK - Private
@@ -103,7 +115,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         })
         walletManager.wallet?.feePerKb = store.state.fees.regular
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if initialAddress != nil {

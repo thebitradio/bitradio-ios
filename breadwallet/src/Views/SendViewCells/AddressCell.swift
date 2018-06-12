@@ -41,7 +41,21 @@ class AddressCell : UIView {
     fileprivate let gr = UITapGestureRecognizer()
     fileprivate let tapView = UIView()
     private let border = UIView(color: .clear)
-
+    private var pasteWidthAnchor: NSLayoutConstraint?
+    private var scanWidthAnchor: NSLayoutConstraint?
+    
+    func hideButtons() {
+        pasteWidthAnchor?.isActive = true
+        scanWidthAnchor?.isActive = true
+        self.setNeedsLayout()
+    }
+    
+    func showButtons() {
+        pasteWidthAnchor?.isActive = false
+        scanWidthAnchor?.isActive = false
+        self.setNeedsLayout()
+    }
+    
     private func setupViews() {
         addSubviews()
         addConstraints()
@@ -78,6 +92,13 @@ class AddressCell : UIView {
         scan.constrain([
             scan.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
             scan.centerYAnchor.constraint(equalTo: centerYAnchor) ])
+        
+        pasteWidthAnchor = paste.widthAnchor.constraint(equalToConstant: 0)
+        pasteWidthAnchor?.isActive = false
+        
+        scanWidthAnchor = scan.widthAnchor.constraint(equalToConstant: 0)
+        scanWidthAnchor?.isActive = false
+        
         paste.constrain([
             paste.centerYAnchor.constraint(equalTo: centerYAnchor),
             paste.trailingAnchor.constraint(equalTo: scan.leadingAnchor, constant: -C.padding[1]) ])

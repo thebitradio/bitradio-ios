@@ -310,14 +310,12 @@ class ApplicationController : Subscriber, Trackable {
             self.store.perform(action: RootModalActions.Present(modal: .showAddress))
         }
         
-        /*
-        accountViewController?.menuCallback = {
-            self.store.perform(action: RootModalActions.Present(modal: .menu))
-        }
- */
-        
         accountViewController?.digiIDCallback = {
             self.store.trigger(name: .scanDigiId)
+        }
+        
+        accountViewController?.scanCallback = {
+            self.modalPresenter?.presentLoginScan()
         }
         
         window.rootViewController = accountViewController

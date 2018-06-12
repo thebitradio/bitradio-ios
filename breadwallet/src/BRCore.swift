@@ -623,12 +623,14 @@ class BRPeerManager {
     // rescans blocks and transactions after earliestKeyTime (a new random download peer is also selected due to the
     // possibility that a malicious node might lie by omitting transactions that match the bloom filter)
     func rescan(block: Any? = nil) {
-        let block_r = block as! BRMerkleBlock
-
-        startSyncFrom = UnsafeMutablePointer<BRMerkleBlock>.allocate(capacity: 1)
-        startSyncFrom?.initialize(to: block_r)
-        BRPeerManagerSetStartBlock(self.cPtr, startSyncFrom)
-        BRPeerManagerRescan(cPtr)
+        if let block_r = block as? BRMerkleBlock {
+            startSyncFrom = UnsafeMutablePointer<BRMerkleBlock>.allocate(capacity: 1)
+            startSyncFrom?.initialize(to: block_r)
+            BRPeerManagerSetStartBlock(self.cPtr, startSyncFrom)
+            BRPeerManagerRescan(cPtr)
+        } else {
+            BRPeerManagerRescan(cPtr)
+        }
     }
     
     // current proof-of-work verified best block height

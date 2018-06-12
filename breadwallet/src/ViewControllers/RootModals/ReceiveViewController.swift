@@ -202,17 +202,17 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     @objc private func shareTapped() {
         
         guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
-        let address = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
+
+        let request = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
         
         if
-            let qrImage = qrCode.image,
+            let qrImage = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .black))?.resize(CGSize(width: 512, height: 512)),
             let imgData = UIImageJPEGRepresentation(qrImage, 1.0),
             let jpegRep = UIImage(data: imgData) {
-            let activityViewController = UIActivityViewController(activityItems: [address, jpegRep], applicationActivities: nil)
+            let activityViewController = UIActivityViewController(activityItems: [request, jpegRep], applicationActivities: nil)
             activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
             present(activityViewController, animated: true, completion: {})
         }
-        
     }
 
 

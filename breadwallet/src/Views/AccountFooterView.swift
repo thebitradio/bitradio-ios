@@ -509,15 +509,19 @@ class AccountFooterView: UIView {
         
         // left button (trigger hamburger menu)
         let hamburgerButton = UIButton()
-        hamburgerButton.setBackgroundImage(#imageLiteral(resourceName: "hamburgerButton"), for: .normal)
-        hamburgerButton.contentMode = .scaleAspectFit
+        hamburgerButton.setImage(#imageLiteral(resourceName: "hamburgerButton").withRenderingMode(.alwaysTemplate), for: .normal)
+        hamburgerButton.tintColor = .white
+        hamburgerButton.contentMode = .center
         hamburgerButton.showsTouchWhenHighlighted = true
+        
+//        hamburgerButton.layer.borderWidth = 1
+//        hamburgerButton.layer.borderColor = UIColor.red.cgColor
         
         // right button (qr code scanner)
         let qrButton = UIButton()
-        qrButton.setBackgroundImage(#imageLiteral(resourceName: "qrButtonImage"), for: .normal)
-        qrButton.contentMode = .scaleAspectFit
-        qrButton.adjustsImageWhenHighlighted = true
+        qrButton.setImage( #imageLiteral(resourceName: "qrButtonImage").withRenderingMode(.alwaysTemplate), for: .normal)
+        qrButton.tintColor = .white
+        qrButton.contentMode = .center
         qrButton.showsTouchWhenHighlighted = true
         
         // DigiID
@@ -545,10 +549,6 @@ class AccountFooterView: UIView {
         backgroundImage.constrain([
             backgroundImage.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: menuOffset),
             backgroundImage.centerXAnchor.constraint(equalTo: backgroundHelper.centerXAnchor, constant: 0),
-            //backgroundImage.leftAnchor.constraint(equalTo: backgroundView.leftAnchor),
-            //backgroundImage.rightAnchor.constraint(equalTo: backgroundView.rightAnchor),
-            // backgroundImage.topAnchor.constraint(equalTo: backgroundView.topAnchor),
-            //backgroundImage.heightAnchor.constraint(equalToConstant: height),
             ])
         
         digiIDButton.constrain([
@@ -566,40 +566,23 @@ class AccountFooterView: UIView {
             ])
         
         hamburgerButton.constrain([
-            hamburgerButton.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: 40),
+            hamburgerButton.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: 20),
             hamburgerButton.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: 20),
-            hamburgerButton.widthAnchor.constraint(equalToConstant: 30),
-            ])
+            hamburgerButton.widthAnchor.constraint(equalToConstant: 55),
+            hamburgerButton.heightAnchor.constraint(equalToConstant: 32)
+        ])
         
         qrButton.constrain([
-            qrButton.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -40),
+            qrButton.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -25),
             qrButton.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: 20),
-            qrButton.widthAnchor.constraint(equalToConstant: 25),
-            qrButton.heightAnchor.constraint(equalToConstant: 25),
+            qrButton.widthAnchor.constraint(equalToConstant: 40),
+            qrButton.heightAnchor.constraint(equalToConstant: 40),
         ])
         
         digiIDButton.tap = digiid
         qrButton.tap = qrscan
         
-        //        if (E.isIPhoneX) {
-        //            let safeArea = UIView()
-        //            safeArea.backgroundColor = UIColor(red: 0x0F / 255, green: 0x0F / 255, blue: 0x1A / 255, alpha: 1)
-        //            safeArea.layer.borderWidth = 1
-        //            safeArea.layer.borderColor = UIColor.red.cgColor
-        //
-        //            addSubview(safeArea)
-        //            addSubview(backgroundView)
-        //
-        //            safeArea.constrain([
-        //                //safeArea.topAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: 0),
-        //                safeArea.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
-        //                safeArea.leftAnchor.constraint(equalTo: self.leftAnchor),
-        //                safeArea.rightAnchor.constraint(equalTo: self.rightAnchor),
-        //                safeArea.heightAnchor.constraint(equalToConstant: 50)
-        //            ])
-        //        } else {
         addSubview(backgroundView)
-        //        }
         
         backgroundView.constrain([
             backgroundView.heightAnchor.constraint(equalToConstant: height),
@@ -614,15 +597,6 @@ class AccountFooterView: UIView {
         
         // events
         hamburgerButton.tap = menuCallback
-        
-        /*
-         circleButton.constrain([
-         circleButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-         circleButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -35),
-         circleButton.widthAnchor.constraint(equalToConstant: 41),
-         circleButton.heightAnchor.constraint(equalToConstant: 41)
-         ])
-         */
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
