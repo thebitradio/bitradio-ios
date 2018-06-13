@@ -70,7 +70,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
                 share.isUserInteractionEnabled = true
                 share.layer.opacity = 1
                 let amountStr: CGFloat = CGFloat(amount.rawValue) / 100000000.0
-                requestString.text = "\(amountStr) \(S.Confirmation.to)\n\(address)"
+                requestString.text = "\(amountStr) \(C.btcCurrencyCode) \(S.Confirmation.to.lowercased())\n\(address)"
             } else {
                 addressButton.isUserInteractionEnabled = false
                 qrCode.layer.opacity = 0.1
