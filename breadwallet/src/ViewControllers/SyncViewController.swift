@@ -147,10 +147,10 @@ class SyncViewController: UIViewController, Subscriber {
     //private func
     
     private func sampleData() {
-        syncStateLabel.text = "Connecting..."
+        syncStateLabel.text = "\(S.SyncingView.connecting)..."
         syncPercentageLabel.text = "0"
-        blockHeightCaptionLabel.text = "BLOCK HEIGHT"
-        progressCaptionLabel.text = "PROGRESS"
+        blockHeightCaptionLabel.text = S.SyncingView.blockHeightLabel.uppercased()
+        progressCaptionLabel.text = S.SyncingView.progressLabel.uppercased()
         
         blockHeightLabel.text = "--"
         

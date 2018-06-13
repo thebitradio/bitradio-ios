@@ -227,7 +227,7 @@ extension ShowAddressViewController : ModalDisplayable {
 #if REBRAND
         return "Login Key"
 #else
-        return "My address"
+        return S.UnlockScreen.myAddress
 #endif
     }
 }

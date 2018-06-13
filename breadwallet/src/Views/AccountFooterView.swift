@@ -497,13 +497,13 @@ class AccountFooterView: UIView {
         backgroundImage.isUserInteractionEnabled = true
         backgroundHelper.isUserInteractionEnabled = true
         
-        circleButton.addMenuItem(img: #imageLiteral(resourceName: "receiveArrow"), text: "Receive") {
+        circleButton.addMenuItem(img: #imageLiteral(resourceName: "receiveArrow"), text: S.Receive.title) {
             self.receiveCallback?()
         }
-        circleButton.addMenuItem(img: #imageLiteral(resourceName: "sendArrow"), text: "Send") {
+        circleButton.addMenuItem(img: #imageLiteral(resourceName: "sendArrow"), text: S.Send.title) {
             self.sendCallback?()
         }
-        circleButton.addMenuItem(img: #imageLiteral(resourceName: "wallet"), text: "Show Address") {
+        circleButton.addMenuItem(img: #imageLiteral(resourceName: "wallet"), text: S.UnlockScreen.myAddress) {
             self.showAddressCallback?()
         }
         

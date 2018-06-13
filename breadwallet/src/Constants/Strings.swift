@@ -9,7 +9,6 @@
 import Foundation
 
 enum S {
-
     enum Symbols {
         static let bits = "\u{018A}"
 		static let btc = "\u{018A}"
@@ -176,6 +175,12 @@ enum S {
             static let faceIdTitle = NSLocalizedString("SecurityCenter.faceIdTitle", value:"Face ID", comment: "Face ID button title")
         }
     }
+    
+    enum TransactionView {
+        static let all = NSLocalizedString("TransactionView.all", value:"all", comment: "TransactionFilter all")
+        static let sent = NSLocalizedString("TransactionView.sent", value:"sent", comment: "TransactionFilter sent")
+        static let received = NSLocalizedString("TransactionView.received", value:"received", comment: "TransactionFilter received")
+    }
 
     enum UpdatePin {
         static let updateTitle = NSLocalizedString("UpdatePin.updateTitle", value:"Update PIN", comment: "Update PIN title")
@@ -217,6 +222,10 @@ enum S {
         static let defaultWalletName = NSLocalizedString("AccountHeader.defaultWalletName", value:"My DigiByte", comment: "Default wallet name")
         static let manageButtonName = NSLocalizedString("AccountHeader.manageButtonName", value:"MANAGE", comment: "Manage wallet button title")
         static let equals = NSLocalizedString("AccountHeader.equals", value:"=", comment: "Equals symbol")
+    }
+    
+    enum Balance {
+        static let header = NSLocalizedString("Balance.header", value: "TOTAL\nBALANCE", comment: "Balance Header")
     }
 
     enum VerifyPin {
@@ -301,6 +310,8 @@ enum S {
     enum SyncingView {
         static let syncing = NSLocalizedString("SyncingView.syncing", value:"Syncing", comment: "Syncing view syncing state header text")
         static let connecting = NSLocalizedString("SyncingView.connecting", value:"Connecting", comment: "Syncing view connectiong state header text")
+        static let blockHeightLabel = NSLocalizedString("SyncingView.blockHeightLabel", value:"BLOCK HEIGHT", comment: "'BLOCK HEIGHT' caption title")
+        static let progressLabel = NSLocalizedString("SyncingView.progressLabel", value:"PROGRESS", comment: "'PROGRESS' caption title (PROGRESS: May 18 / June 18)")
     }
 
     enum ReScan {
@@ -401,6 +412,9 @@ enum S {
     }
 
     enum Prompts {
+        enum SecurityCheck {
+            static let header = NSLocalizedString("Prompts.SecurityCheck.header", value: "SECURITY\nCHECK", comment: "Header of security check when entering PIN / biometrics")
+        }
         enum TouchId {
             static let title = NSLocalizedString("Prompts.TouchId.title", value: "Enable Touch ID", comment: "Enable touch ID prompt title")
             static let body = NSLocalizedString("Prompts.TouchId.body", value: "Tap here to enable Touch ID", comment: "Enable touch ID prompt body")

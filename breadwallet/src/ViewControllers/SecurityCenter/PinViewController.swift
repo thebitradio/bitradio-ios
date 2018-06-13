@@ -350,7 +350,7 @@ class LoginViewController: PINViewController, Trackable {
     }
     
     private func setData() {
-        securityCheckLabel.text = "SECURITY\nCHECK"
+        securityCheckLabel.text = S.Prompts.SecurityCheck.header;
         securityCheckLabel.numberOfLines = 2
         securityCheckLabel.textAlignment = .center
         securityCheckLabel.lineBreakMode = .byWordWrapping

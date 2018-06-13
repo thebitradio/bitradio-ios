@@ -124,7 +124,7 @@ fileprivate class BalanceView: UIView, Subscriber {
         
         balanceHeaderLabel.numberOfLines = 2
         balanceHeaderLabel.textColor = .gray
-        balanceHeaderLabel.text = "TOTAL\nBALANCE"
+        balanceHeaderLabel.text = S.Balance.header
         balanceHeaderLabel.textAlignment = .center
         
         //balanceLabel.text = "D 132 293.787"
@@ -761,7 +761,11 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     
     private func addSegmentedView() {
         view.addSubview(menu)
-        menu.buttonTemplates = ["ALL", "SENT", "RECEIVED"]
+        menu.buttonTemplates = [
+            S.TransactionView.all.uppercased(),
+            S.TransactionView.sent.uppercased(),
+            S.TransactionView.received.uppercased()
+        ]
         menu.callback = { (oldIdx, idx) -> () in
             let forward = (idx > oldIdx)
             self.pageController.setViewControllers([self.pages[idx]], direction: forward ? .forward : .reverse, animated: true, completion: nil)
