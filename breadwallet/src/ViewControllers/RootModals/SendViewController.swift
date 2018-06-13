@@ -427,11 +427,14 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
 
     //TODO - maybe put this in ModalPresentable?
     private func copyKeyboardChangeAnimation(notification: Notification) {
+        return;
+        /*
         guard let info = KeyboardNotificationInfo(notification.userInfo) else { return }
         UIView.animate(withDuration: info.animationDuration, delay: 0, options: info.animationOptions, animations: {
             guard let parentView = self.parentView else { return }
             parentView.frame = parentView.frame.offsetBy(dx: 0, dy: info.deltaY)
         }, completion: nil)
+         */
     }
 
     required init?(coder aDecoder: NSCoder) {
