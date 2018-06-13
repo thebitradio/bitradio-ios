@@ -16,7 +16,7 @@ class DescriptionSendCell : SendCell {
         textView.textColor = C.Colors.text
         textView.font = .customBody(size: 20.0)
         textView.returnKeyType = .done
-        self.placeholder.textColor = C.Colors.lightText
+        self.placeholder.textColor = C.Colors.blueGrey
         self.placeholder.text = placeholder
         backgroundColor = .clear
         setupViews()

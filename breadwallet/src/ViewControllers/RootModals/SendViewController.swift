@@ -25,9 +25,9 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     var initialAddress: String? {
         didSet {
             if initialAddress != nil {
-                addressCell.showButtons()
-            } else {
                 addressCell.hideButtons()
+            } else {
+                addressCell.showButtons()
             }
         }
     }
@@ -65,7 +65,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     private let descriptionCell = DescriptionSendCell(placeholder: S.Send.descriptionLabel)
     private let sendButton = ShadowButton(title: S.Send.sendLabel, type: .primary)
     private let currency: ShadowButton
-    private let currencyBorder = UIView(color: .secondaryShadow)
+    private let currencyBorder = UIView(color: C.Colors.blueGrey)
     private var currencySwitcherHeightConstraint: NSLayoutConstraint?
     private var pinPadHeightConstraint: NSLayoutConstraint?
     private var balance: UInt64 = 0
@@ -99,7 +99,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
 
         descriptionCell.accessoryView.constrain([
                 descriptionCell.accessoryView.constraint(.width, constant: 0.0) ])
-
+        
         sendButton.constrain([
             sendButton.constraint(.leading, toView: view, constant: C.padding[2]),
             sendButton.constraint(.trailing, toView: view, constant: -C.padding[2]),
