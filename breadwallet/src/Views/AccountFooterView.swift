@@ -161,6 +161,43 @@ fileprivate class RadialGradientMenu: UIView {
         gesture.maximumNumberOfTouches = 1
         gesture.addTarget(self, action: #selector(handlePan(_:)))
         buttonText.addGestureRecognizer(gesture)
+        
+        let gestureCircle = UIPanGestureRecognizer()
+        gestureCircle.maximumNumberOfTouches = 1
+        gestureCircle.addTarget(self, action: #selector(handlePanCircle(_:)))
+        circleView.addGestureRecognizer(gestureCircle)
+        
+        circleView.isUserInteractionEnabled = false
+    }
+    
+    @objc private func handlePanCircle(_ sender: UIPanGestureRecognizer) {
+        if sender.state == .began {
+            // started
+            guard currentProgress == 1 && !animating else {
+                // cancel
+                sender.isEnabled = false
+                sender.isEnabled = true
+                return
+            }
+            
+        } else if sender.state == .changed {
+            // changed
+            var translationY = -sender.translation(in: sender.view).y
+            if translationY > 0 {
+                translationY = translationY * 2
+            } else {
+                translationY *= pow(2, -translationY / 5)
+            }
+            
+            let progress = 1 + translationY / (currentOffset+20) * 1.5
+            menuAnimationStep(progress)
+        } else {
+            // ended
+            let translationY = -sender.translation(in: sender.view).y
+            
+            let progress = 1 + translationY / (currentOffset+20) * 1.5
+            decideToOpenOrNot(progress)
+        }
     }
     
     @objc private func handlePan(_ sender: UIPanGestureRecognizer) {
@@ -172,7 +209,7 @@ fileprivate class RadialGradientMenu: UIView {
                 sender.isEnabled = true
                 return
             }
-
+            
         } else if sender.state == .changed {
             // changed
             var translationY = -sender.translation(in: sender.view).y
@@ -250,7 +287,7 @@ fileprivate class RadialGradientMenu: UIView {
     
     private func closeMenu(_ callback: (() -> Void)? = nil) -> Bool {
         guard !animating else { return false }
-        guard opened else { return false }
+        // guard opened else { return false }
         animating = true
         
         UIView.spring(0.3, animations: {
@@ -259,6 +296,7 @@ fileprivate class RadialGradientMenu: UIView {
             self.animating = false
             self.opened = false
             self.currentProgress = 0
+            self.circleView.isUserInteractionEnabled = false
             callback?()
         }
         
@@ -267,7 +305,7 @@ fileprivate class RadialGradientMenu: UIView {
     
     private func openMenu(_ callback: (() -> Void)? = nil) -> Bool {
         guard !animating else { return false }
-        guard !opened else { return false }
+        // guard !opened else { return false }
         animating = true
         
         UIView.spring(0.3, animations: {
@@ -276,6 +314,7 @@ fileprivate class RadialGradientMenu: UIView {
             self.animating = false
             self.opened = true
             self.currentProgress = 1
+            self.circleView.isUserInteractionEnabled = true
             callback?()
         }
         
@@ -399,9 +438,15 @@ fileprivate class RadialGradientMenu: UIView {
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if (!self.clipsToBounds && !self.isHidden && self.alpha > 0) {
             for subview in self.subviews.reversed() {
-                let subPoint = subview.convert(point, from: self)
-                let view = subview.hitTest(subPoint, with: event)
-                guard view == nil else { return view }
+                if subview == circleView {
+                    if opened {
+                        return circleView
+                    }
+                } else {
+                    let subPoint = subview.convert(point, from: self)
+                    let view = subview.hitTest(subPoint, with: event)
+                    guard view == nil else { return view }
+                }
             }
         }
         return nil
@@ -437,6 +482,7 @@ fileprivate class FooterBackgroundView: UIView {
                         let pt = subview.convert(point, from: self)
                         let view = subview.hitTest(pt, with: event)
                         guard view == nil else { return view }
+                        return subview
                     } else {
                         let view = subview.hitTest(subPoint, with: event)
                         guard view == nil else { return view }

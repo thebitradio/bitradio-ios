@@ -18,7 +18,8 @@ enum TransactionFilterMode {
 
 // global
 // only show table row animation once!
-var firstLoad: Bool = true
+var hideRows: Bool = true
+var firstLogin: Bool = true
 
 class TransactionsTableViewController : UITableViewController, Subscriber, Trackable {
 
@@ -33,12 +34,6 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
 
     let filterMode: TransactionFilterMode
     let didSelectTransaction: ([Transaction], Int) -> Void
-
-    private var hideRows = true {
-        didSet {
-            tableView.reloadData()
-        }
-    }
     
     var filters: [TransactionFilter] = [] {
         didSet {
@@ -100,12 +95,13 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if firstLoad {
+        // this will only be called once after login (create a fancy animation)
+        if firstLogin {
             cell.transform = CGAffineTransform(translationX: 0, y: 800)
             UIView.spring(0.5 + (Double(indexPath.row) * 0.2), animations: {
                 cell.transform = CGAffineTransform.identity
             }) { (completed) in
-                firstLoad = false
+                firstLogin = false
             }
         }
     }
@@ -127,13 +123,20 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
                             self.allTransactions = state.walletState.transactions
                             self.reload()
         })
+        
+        store.subscribe(self, selector: { $0.isLoginRequired != $1.isLoginRequired },
+            callback: { state in
+                guard !state.isLoginRequired else { return }
+                hideRows = false
+                self.tableView.reloadData()
+        })
 
         // create animation
         store.subscribe(self, selector: { $0.walletState.syncState != $1.walletState.syncState || $0.isLoginRequired != $1.isLoginRequired },
                         callback: { state in
                             if !state.isLoginRequired && state.walletState.syncState == .success {
                                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                                    self.hideRows = false
+                                    hideRows = false
                                 })
                             }
         })

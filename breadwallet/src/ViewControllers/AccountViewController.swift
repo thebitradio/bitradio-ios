@@ -179,6 +179,8 @@ fileprivate class CustomSegmentedControl: UIControl {
     
     var callback: ((Int, Int) -> Void)? = nil
     
+    var animating = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         styleView()
@@ -259,17 +261,39 @@ fileprivate class CustomSegmentedControl: UIControl {
             btn.setTitleColor(C.Colors.text, for: .normal)
             
             if (btn == button) {
+                guard !animating else { return }
+                animating = true
                 guard selectedSegmentIdx != buttonIndex else { return }
                 callback?(selectedSegmentIdx, buttonIndex)
                 selectedSegmentIdx = buttonIndex
                 selectorStartPosition = padding + (frame.width - 2*padding) / CGFloat(buttons.count) * CGFloat(buttonIndex)
+                print("PROGRESS2 START", selectorStartPosition)
+                
                 UIView.spring(0.2, animations: {
                     self.backgroundRect.frame.origin.x = selectorStartPosition
                 }) { (done) in
-                    //
+                    DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1, execute: {
+                        self.animating = false
+                    })
                 }
             }
         }
+    }
+    
+    func animationStep(progress: CGFloat) {
+        guard !animating else { return }
+        let progress = (progress > 1 ? 1 : (progress < -1 ? -1 : progress))
+        let singleWidth = (frame.width - 2*padding) / CGFloat(buttons.count)
+        let maxIndex = CGFloat(buttons.count) - 1
+        var index = CGFloat(selectedSegmentIdx) + progress
+        index = (index > maxIndex ? maxIndex : index)
+        index = (index < 0 ? 0 : index)
+        
+        // calculate new position
+        let posX = padding + singleWidth * CGFloat(index)
+        let newPos: CGFloat = posX
+        
+        backgroundRect.frame.origin.x = newPos
     }
     
     func updateSegmentedControlSegs(index: Int) {
@@ -430,7 +454,7 @@ fileprivate protocol HamburgerViewMenuProtocol {
     func closeHamburgerMenu()
 }
 
-class AccountViewController: UIViewController, Subscriber, UIPageViewControllerDataSource, UIPageViewControllerDelegate, HamburgerViewMenuProtocol {
+class AccountViewController: UIViewController, Subscriber, UIPageViewControllerDataSource, UIPageViewControllerDelegate, HamburgerViewMenuProtocol, UIScrollViewDelegate {
 
     //MARK: - Public
     var sendCallback: (() -> Void)? {
@@ -560,6 +584,8 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     private var didEndLoading = false
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         // detect jailbreak so we can throw up an idiot warning, in viewDidLoad so it can't easily be swizzled out
         if !E.isSimulator {
             var s = stat()
@@ -589,6 +615,21 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         addAppLifecycleNotificationEvents()
         addTemporaryStartupViews()
         setInitialData()
+        
+        for subview in pageController.view.subviews {
+            if let scrollView = subview as? UIScrollView {
+                scrollView.delegate = self
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let point = scrollView.contentOffset
+        var percentageComplete: CGFloat = (point.x - view.frame.size.width) / view.frame.size.width
+        
+        if percentageComplete != 0 {
+            menu.animationStep(progress: percentageComplete)
+        }
     }
     
     @objc private func gestureScreenEdgePan(_ sender: UIScreenEdgePanGestureRecognizer) {
@@ -1113,4 +1154,8 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
 }
+
+
