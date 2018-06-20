@@ -942,10 +942,13 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
             
             if state.walletState.syncState == .success {
                 self.syncViewController.view.isHidden = true
+				self.syncViewController.hideProgress()
             } else if peerManager.shouldShowSyncingView {
                 self.syncViewController.view.isHidden = false
+				self.syncViewController.showUpProgress()
             } else {
                 self.syncViewController.view.isHidden = true
+				self.syncViewController.hideProgress()
             }
         })
 

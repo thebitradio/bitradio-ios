@@ -243,6 +243,8 @@
 		78D04F4620C710F100AD1403 /* BalanceInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2A7CE1DA5934300A983D8 /* BalanceInterfaceController.swift */; };
 		78D04F4720C710F100AD1403 /* WatchTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED811A51EB29692003A8D1E /* WatchTransaction.swift */; };
 		78D04F4A20C710F100AD1403 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75A2A7D61DA5934300A983D8 /* Assets.xcassets */; };
+		9F2E8CBE20DA4CC000F16465 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E8CBC20DA4CBF00F16465 /* CircleProgressView.swift */; };
+		9F2E8CBF20DA4CC000F16465 /* DGBAnimatedWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E8CBD20DA4CBF00F16465 /* DGBAnimatedWaveView.swift */; };
 		9F3EF3712059CA6400E3C837 /* BRBech32.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F3EF36F2059CA6400E3C837 /* BRBech32.c */; };
 		AA34562A2020CA7C00B2C462 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA3456282020CA7C00B2C462 /* Localizable.strings */; };
 		AA85B80C1FEAF84B008EB914 /* groestl.c in Sources */ = {isa = PBXBuildFile; fileRef = AA85B7ED1FEAF84A008EB914 /* groestl.c */; };
@@ -1347,6 +1349,8 @@
 		78D04F3920C710E700AD1403 /* digibyte WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "digibyte WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78D04F5320C710F100AD1403 /* digibyte WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "digibyte WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C7397EB8A4764D7E851BF4A /* Pods-digibyte.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyte.debug.xcconfig"; path = "Pods/Target Support Files/Pods-digibyte/Pods-digibyte.debug.xcconfig"; sourceTree = "<group>"; };
+		9F2E8CBC20DA4CBF00F16465 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleProgressView.swift; path = src/Views/CircleProgressView.swift; sourceTree = "<group>"; };
+		9F2E8CBD20DA4CBF00F16465 /* DGBAnimatedWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DGBAnimatedWaveView.swift; path = src/Views/DGBAnimatedWaveView.swift; sourceTree = "<group>"; };
 		9F3EF36E2059CA6400E3C837 /* BRChainParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRChainParams.h; sourceTree = "<group>"; };
 		9F3EF36F2059CA6400E3C837 /* BRBech32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BRBech32.c; sourceTree = "<group>"; };
 		9F3EF3702059CA6400E3C837 /* BRBech32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRBech32.h; sourceTree = "<group>"; };
@@ -3107,6 +3111,8 @@
 		CE20C90F1DBE5B5100C8397A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9F2E8CBC20DA4CBF00F16465 /* CircleProgressView.swift */,
+				9F2E8CBD20DA4CBF00F16465 /* DGBAnimatedWaveView.swift */,
 				CE6BCF5C1EE9E89A0029849C /* CustomTitleView.swift */,
 				CED341321EF5A5C00014912A /* InAppAlert.swift */,
 				CE3645461E7B40280079D0CF /* PinPadCells */,
@@ -4414,6 +4420,7 @@
 				CEC6AA4B1DEFD24C00EE5AFD /* MenuButtonType.swift in Sources */,
 				CE4CA7BC1EE3649100373F11 /* BRActivityView.swift in Sources */,
 				CEC6AA421DEFC88F00EE5AFD /* ReceiveViewController.swift in Sources */,
+				9F2E8CBF20DA4CC000F16465 /* DGBAnimatedWaveView.swift in Sources */,
 				CEE20C2D1EA288FA0086F724 /* UpdatingLabel.swift in Sources */,
 				CE3D4C591EF743EF0016B1C8 /* Functions.swift in Sources */,
 				CEE20C341EA5B4550086F724 /* ArticleIds.swift in Sources */,
@@ -4473,6 +4480,7 @@
 				CE20C8FE1DBB133A00C8397A /* SimpleRedux.swift in Sources */,
 				22122B721F0B8996000E9AB9 /* BRAPIClient+Events.swift in Sources */,
 				CE4B6C201E233C2C00CF935B /* UITableView+Additions.swift in Sources */,
+				9F2E8CBE20DA4CC000F16465 /* CircleProgressView.swift in Sources */,
 				CE760EDC1E561DF900EFAC2B /* SecurityCenterViewController.swift in Sources */,
 				787CA16720B06BBE005C4B92 /* UILabel+CharacterSpacing.swift in Sources */,
 				CEEC70861E94397D00EF788E /* UserDefaults+Additions.swift in Sources */,
