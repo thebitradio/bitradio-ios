@@ -46,7 +46,7 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
 
     private let header = ModalHeaderView(title: S.Confirmation.title, style: .dark)
     private let cancel = ShadowButton(title: S.Button.cancel, type: .secondary)
-    private let sendButton = ShadowButton(title: S.Confirmation.send, type: .primary, image: (LAContext.biometricType() == .face ? #imageLiteral(resourceName: "FaceId") : #imageLiteral(resourceName: "TouchId")))
+    private let sendButton = ShadowButton(title: S.Confirmation.send, type: .secondary)
 
     private let payLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
     private let toLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
@@ -180,9 +180,16 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
         contentBox.layer.cornerRadius = 6.0
         contentBox.layer.masksToBounds = true
 
-        if !isUsingBiometrics {
-            sendButton.image = nil
-        }
+		if isUsingBiometrics {
+			switch LAContext.biometricType() {
+			case .face:
+				sendButton.image = #imageLiteral(resourceName: "FaceId")
+			case .touch:
+				sendButton.image = #imageLiteral(resourceName: "TouchId")
+			case .none:
+				sendButton.image = nil
+			}
+		}
     }
 
     required init?(coder aDecoder: NSCoder) {

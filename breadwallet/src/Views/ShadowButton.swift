@@ -45,12 +45,22 @@ class ShadowButton: UIControl {
     }
     var image: UIImage? {
         didSet {
-            imageView?.image = image
+
+			if let imageView = imageView {
+				imageView.image = image
+				imageView.removeFromSuperview()
+			}
+			// prepare for rebuild view hierachie
+			label.removeFromSuperview()
+			content.removeFromSuperview()
+			container.removeFromSuperview()
+			setupViews()
         }
     }
     private let type: ButtonType
     private let container = UIView()
     private let shadowView = UIView()
+	private let content = UIView()
     private let label = UILabel()
     private let shadowYOffset: CGFloat = 4.0
     private let cornerRadius: CGFloat = 4.0
@@ -135,15 +145,14 @@ class ShadowButton: UIControl {
     }
 
     private func setupImageOption(icon: UIImage) {
-        let content = UIView()
         let iconImageView = UIImageView(image: icon.withRenderingMode(.alwaysTemplate))
         iconImageView.contentMode = .scaleAspectFit
         container.addSubview(content)
         content.addSubview(label)
         content.addSubview(iconImageView)
-        content.constrainToCenter()
+		content.constrain(toSuperviewEdges: nil)
         iconImageView.constrainLeadingCorners()
-        label.constrainTrailingCorners()
+		label.constrainTrailingCorners(padding: 5.0)
         iconImageView.constrain([
             iconImageView.constraint(toLeading: label, constant: -C.padding[1]) ])
         imageView = iconImageView
