@@ -167,10 +167,8 @@ class ModalPresenter : Subscriber, Trackable {
         let window = UIApplication.shared.keyWindow!
         let size = window.bounds.size
         
-        let backgroundView = UIImageView(image: #imageLiteral(resourceName: "alertViewBg"))
-        backgroundView.contentMode = .scaleToFill
+        let backgroundView = BlurView()
         backgroundView.alpha = 0.0
-        backgroundView.backgroundColor = UIColor.clear
         
         window.addSubview(backgroundView)
         window.addSubview(alertView)

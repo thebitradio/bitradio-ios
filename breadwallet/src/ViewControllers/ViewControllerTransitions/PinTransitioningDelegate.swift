@@ -71,7 +71,6 @@ class PresentPinAnimator : NSObject, UIViewControllerAnimatedTransitioning {
 
         UIView.spring(duration, animations: {
             maskView.frame = CGRect(x: 0, y: fromFrame.height - 100.0, width: fromFrame.width, height: 120.0)
-            blurView.effect = toVc.effect
             toView.frame = finalToViewFrame
             toVc.contentBox.transform = .identity
             toVc.background.alpha = 1.0
@@ -93,7 +92,6 @@ class DismissPinAnimator : NSObject, UIViewControllerAnimatedTransitioning {
         guard let fromVc = transitionContext.viewController(forKey: .from) as? ContentBoxPresenter else { return }
 
         UIView.animate(withDuration: duration, animations: {
-            fromVc.blurView.effect = nil
             fromView.frame = fromView.frame.offsetBy(dx: 0, dy: fromView.frame.height)
             fromVc.background.alpha = 0
             

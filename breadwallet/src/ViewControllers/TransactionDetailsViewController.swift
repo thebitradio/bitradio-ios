@@ -8,15 +8,20 @@
 
 import UIKit
 
-class TransactionDetailsViewController : UICollectionViewController, Subscriber {
+class TransactionDetailsViewController: UICollectionViewController, Subscriber {
+
+    private let header = ModalHeaderView(title: S.TransactionDetails.title, style: .dark)
+    private let onDismiss: ((UIViewController) -> Void)
 
     //MARK: - Public
-    init(store: Store, transactions: [Transaction], selectedIndex: Int, kvStore: BRReplicatedKVStore) {
+    init(store: Store, transactions: [Transaction], selectedIndex: Int, kvStore: BRReplicatedKVStore, onDismiss: @escaping (UIViewController) -> Void) {
         self.store = store
         self.transactions = transactions
         self.selectedIndex = selectedIndex
         self.kvStore = kvStore
         self.isBtcSwapped = store.state.isBtcSwapped
+        self.onDismiss = onDismiss
+        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: UIScreen.main.safeWidth-C.padding[4], height: UIScreen.main.bounds.height - C.padding[1])
         layout.sectionInset = UIEdgeInsetsMake(C.padding[1], 0, 0, 0)
@@ -47,12 +52,28 @@ class TransactionDetailsViewController : UICollectionViewController, Subscriber 
     }
 
     override func viewDidLoad() {
+        
+        view.addSubview(header)
+        header.closeCallback = { [weak self] in
+            guard let s = self else { return }
+            self?.onDismiss(s)
+        }
+        
+        header.constrain([
+            header.topAnchor.constraint(equalTo: view.topAnchor, constant: E.isIPhoneX ? 70 : 20),
+            header.leftAnchor.constraint(equalTo: view.leftAnchor),
+            header.rightAnchor.constraint(equalTo: view.rightAnchor),
+            header.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
         collectionView?.register(TransactionDetailCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView?.delegate = self
         collectionView?.dataSource = self
-        collectionView?.backgroundColor = .clear
         collectionView?.contentInset = UIEdgeInsetsMake(C.padding[2], C.padding[2], C.padding[2], C.padding[2])
         setupScrolling()
+        
+        collectionView?.backgroundColor = .clear
+        
         store.subscribe(self, selector: { $0.isBtcSwapped != $1.isBtcSwapped }, callback: { self.isBtcSwapped = $0.isBtcSwapped })
         store.subscribe(self, selector: { $0.currentRate != $1.currentRate }, callback: { self.rate = $0.currentRate })
         store.lazySubscribe(self, selector: { $0.walletState.transactions != $1.walletState.transactions }, callback: {
@@ -78,10 +99,14 @@ class TransactionDetailsViewController : UICollectionViewController, Subscriber 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !hasShownInitialIndex {
-            guard let contentSize = collectionView?.contentSize else { return }
+            // collectionView.contentSize returns invalid sizes, so we have to use the flow layout contentSize
+            guard let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize else { return }
             guard let collectionView = collectionView else { return }
             secretScrollView.contentSize = CGSize(width: contentSize.width + C.padding[1], height: contentSize.height)
             var contentOffset = collectionView.contentOffset
+            
+            
+            
             contentOffset.x = contentOffset.x + collectionView.contentInset.left
             contentOffset.y = contentOffset.y + collectionView.contentInset.top
             secretScrollView.contentOffset = contentOffset
@@ -133,15 +158,23 @@ extension TransactionDetailsViewController {
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
         guard let transactionDetailCell = item as? TransactionDetailCollectionViewCell else { return item }
         guard let rate = rate else { return item }
-        transactionDetailCell.set(transaction: transactions[indexPath.row], isBtcSwapped: isBtcSwapped, rate: rate, rates: store.state.rates, maxDigits: store.state.maxDigits)
+        
+        let transaction = transactions[indexPath.row]
+        transaction.kvStore = kvStore
+        
+        transactionDetailCell.kvStore = kvStore
+        
+        transactionDetailCell.set(transaction: transaction, isBtcSwapped: isBtcSwapped, rate: rate, rates: store.state.rates, maxDigits: store.state.maxDigits)
+        
         transactionDetailCell.closeCallback = { [weak self] in
             if let delegate = self?.transitioningDelegate as? ModalTransitionDelegate {
                 delegate.reset()
             }
             self?.dismiss(animated: true, completion: nil)
         }
-        transactionDetailCell.kvStore = kvStore
+        
         transactionDetailCell.store = store
+        transactionDetailCell.resetView()
 
         if transactionDetailCell.didBeginEditing == nil {
             transactionDetailCell.didBeginEditing = { [weak self] in

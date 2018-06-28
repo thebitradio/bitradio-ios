@@ -114,10 +114,15 @@ extension UserDefaults {
         set { defaults.set(newValue, forKey: customNodeIPKey) }
     }
 
-    static var customNodePort: Int? {
+    static var customNodePort: UInt16? {
         get {
             guard defaults.object(forKey: customNodePortKey) != nil else { return nil }
-            return defaults.integer(forKey: customNodePortKey)
+            let port = defaults.integer(forKey: customNodePortKey)
+            if port < UINT16_MAX {
+                // yes, smaller than, not smaller-equal than
+                return UInt16(port)
+            }
+            return 0
         }
         set { defaults.set(newValue, forKey: customNodePortKey) }
     }

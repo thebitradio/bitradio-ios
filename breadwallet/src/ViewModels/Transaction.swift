@@ -13,6 +13,13 @@ import BRCore
 //for lazy variables
 class Transaction {
 
+    enum TransactionStatus {
+        case unknown
+        case invalid
+        case pending
+        case success
+    }
+    
     //MARK: - Public
     init?(_ tx: BRTxRef, walletManager: WalletManager, kvStore: BRReplicatedKVStore?, rate: Rate?) {
         guard let wallet = walletManager.wallet else { return nil }
@@ -47,7 +54,7 @@ class Transaction {
         let blockHeight = peerManager.lastBlockHeight
         confirms = transactionBlockHeight > blockHeight ? 0 : Int(blockHeight - transactionBlockHeight) + 1
         self.status = makeStatus(tx, wallet: wallet, peerManager: peerManager, confirms: confirms, direction: self.direction)
-
+        self.statusCode = makeStatusCode(tx, wallet: wallet, peerManager: peerManager, confirms: confirms, direction: self.direction)
         self.hash = tx.pointee.txHash.description
         self.metaDataKey = tx.pointee.txHash.txKey
 
@@ -100,24 +107,33 @@ class Transaction {
             }
         }
 
-        return "\(amountString)\n\n\(startingString)\n\(endingString)\n\n\(exchangeRateInfo)"
+        let appendStr: String = {
+            if exchangeRateInfo != "" {
+                return "\n\n\(exchangeRateInfo)"
+            } else {
+                return ""
+            }
+        }()
+        
+        return "\(amountString)\n\n\(startingString)\n\(endingString)\(appendStr)"
     }
 
     let direction: TransactionDirection
     let status: String
+    let statusCode: TransactionStatus
     let timestamp: Int
     let fee: UInt64
     let hash: String
     let isValid: Bool
     let blockHeight: String
-    private let confirms: Int
+    let confirms: Int
     private let metaDataKey: String
 
     //MARK: - Private
     private let tx: BRTxRef
     private let wallet: BRWallet
     fileprivate let satoshis: UInt64
-    private var kvStore: BRReplicatedKVStore?
+    var kvStore: BRReplicatedKVStore?
     
     lazy var toAddress: String? = {
         switch self.direction {
@@ -244,6 +260,22 @@ class Transaction {
         let date = Date(timeIntervalSince1970: Double(timestamp))
         return Transaction.longDateFormatter.string(from: date)
     }
+    
+    var dayTimestamp: String {
+        guard timestamp > 0 else { return wallet.transactionIsValid(tx) ? S.Transaction.justNow : "" }
+        let date = Date(timeIntervalSince1970: Double(timestamp))
+        let df = DateFormatter()
+        df.setLocalizedDateFormatFromTemplate("MMMM d, yyy")
+        return df.string(from: date)
+    }
+    
+    var timeTimestamp: String {
+        guard timestamp > 0 else { return wallet.transactionIsValid(tx) ? S.Transaction.justNow : "" }
+        let date = Date(timeIntervalSince1970: Double(timestamp))
+        let df = DateFormatter()
+        df.setLocalizedDateFormatFromTemplate("h:mm a")
+        return df.string(from: date)
+    }
 
     var rawTransaction: BRTransaction {
         return tx.pointee
@@ -290,6 +322,37 @@ private extension String {
         let end = String(self[index(endIndex, offsetBy: -10)...])
         return start + "..." + end
     }
+}
+
+private func makeStatusCode(_ txRef: BRTxRef, wallet: BRWallet, peerManager: BRPeerManager, confirms: Int, direction: TransactionDirection) -> Transaction.TransactionStatus {
+    let tx = txRef.pointee
+    guard wallet.transactionIsValid(txRef) else {
+        return .invalid
+    }
+    
+    if confirms < 6 {
+        var percentageString = ""
+        if confirms == 0 {
+            let relayCount = peerManager.relayCount(tx.txHash)
+            if relayCount == 0 {
+                return .unknown
+            } else if relayCount == 1 {
+                return .pending
+            } else if relayCount > 1 {
+                return .pending
+            }
+        } else if confirms == 1 {
+            return .pending
+        } else if confirms == 2 {
+            return .pending
+        } else if confirms > 2 {
+            return .success
+        }
+    } else {
+        return .success
+    }
+    
+    return .unknown
 }
 
 private func makeStatus(_ txRef: BRTxRef, wallet: BRWallet, peerManager: BRPeerManager, confirms: Int, direction: TransactionDirection) -> String {

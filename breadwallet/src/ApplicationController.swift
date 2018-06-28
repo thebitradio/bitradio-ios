@@ -73,8 +73,6 @@ class ApplicationController : Subscriber, Trackable {
     private func initWallet() {
         self.walletManager = try? WalletManager(store: self.store, dbPath: nil)
         
-        // let _ = self.walletManager?.wipeWallet(pin: "forceWipe") // REMOVE
-        
         var firstInit = false
         var wallet: BRWallet?
         
@@ -290,12 +288,45 @@ class ApplicationController : Subscriber, Trackable {
     private func setupRootViewController() {
         let didSelectTransaction: ([Transaction], Int) -> Void = { transactions, selectedIndex in
             guard let kvStore = self.walletManager?.apiClient?.kv else { return }
-            let transactionDetails = TransactionDetailsViewController(store: self.store, transactions: transactions, selectedIndex: selectedIndex, kvStore: kvStore)
-            transactionDetails.modalPresentationStyle = .overFullScreen
-            transactionDetails.transitioningDelegate = self.transitionDelegate
-            transactionDetails.modalPresentationCapturesStatusBarAppearance = true
-            self.window.rootViewController?.present(transactionDetails, animated: true, completion: nil)
+            guard let wnd = self.window.rootViewController else { return }
+            
+            //let backgroundView = UIImageView(image: #imageLiteral(resourceName: "alertViewBg"))
+            let backgroundView = BlurView()
+            backgroundView.alpha = 0.0
+            
+            let transactionDetails = TransactionDetailsViewController(
+                store: self.store,
+                transactions: transactions,
+                selectedIndex: selectedIndex,
+                kvStore: kvStore,
+                onDismiss: { vc in
+                    UIView.spring(0.5, animations: {
+                        backgroundView.alpha = 0.0
+                        vc.view.frame.origin.y = UIScreen.main.bounds.height
+                        
+                    }, completion: { (b) in
+                        backgroundView.removeFromSuperview()
+                        vc.willMove(toParentViewController: nil)
+                        vc.view.removeFromSuperview()
+                        vc.removeFromParentViewController()
+                    })
+                }
+            )
+        
+            wnd.view.addSubview(backgroundView)
+            backgroundView.constrain(toSuperviewEdges: nil)
+            wnd.addChildViewController(transactionDetails)
+            wnd.view.addSubview(transactionDetails.view)
+            transactionDetails.view.frame.origin.y = UIScreen.main.bounds.height
+        
+            UIView.spring(0.5, animations: {
+                backgroundView.alpha = 1.0
+                transactionDetails.view.frame.origin.y = 0
+            }, completion: { (b) in
+                
+            })
         }
+        
         accountViewController = AccountViewController(store: store, didSelectTransaction: didSelectTransaction)
         
         accountViewController?.sendCallback = {

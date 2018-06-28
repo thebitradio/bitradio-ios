@@ -13,9 +13,9 @@ typealias VerifyPinCallback = (String, UIViewController) -> Bool
 
 protocol ContentBoxPresenter {
     var contentBox : UIView { get }
-    var blurView: UIVisualEffectView { get }
-    var background: UIImageView { get }
-    var effect: UIBlurEffect { get }
+    // var blurView: UIVisualEffectView { get }
+    var background: UIView { get }
+    // var effect: UIBlurEffect { get }
 }
 
 class VerifyPinViewController : UIViewController, ContentBoxPresenter {
@@ -24,16 +24,15 @@ class VerifyPinViewController : UIViewController, ContentBoxPresenter {
         self.bodyText = bodyText
         self.callback = callback
         self.pinLength = pinLength
-        self.pinView = PinView(style: .create, length: pinLength)
+        self.pinView = PinView(style: .modal, length: pinLength)
         super.init(nibName: nil, bundle: nil)
     }
 
     var didCancel: (()->Void)?
     let blurView = UIVisualEffectView()
     let effect = UIBlurEffect(style: .dark)
-    let background: UIImageView = {
-        let img = UIImageView(image: #imageLiteral(resourceName: "alertViewBg"))
-        img.contentMode = .scaleToFill
+    let background: UIView = {
+        let img = BlurView()
         return img
     }()
     let contentBox = UIView()
@@ -111,9 +110,12 @@ class VerifyPinViewController : UIViewController, ContentBoxPresenter {
         cancel.setTitleColor(UIColor.orange, for: .normal)
         
         titleLabel.text = S.VerifyPin.title
+        titleLabel.textAlignment = .center
+        
         body.text = bodyText
         body.numberOfLines = 0
         body.lineBreakMode = .byWordWrapping
+        body.textAlignment = .center
 
         pinPad.ouputDidUpdate = { [weak self] output in
             guard let myself = self else { return }

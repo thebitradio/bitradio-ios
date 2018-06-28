@@ -567,6 +567,9 @@ class BRPeerManager {
         },
         { (info) in // txStatusUpdate
             guard let info = info else { return }
+            // ToDo: After WipeWallet sometimes we get EXC_BAD_ACCESS (swift_unknownRetain)
+            // That probably happens if memory was released before we access the takeUnretainedValue()
+            // Is there a way to fix that?
             Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.txStatusUpdate()
         },
         { (info, replace, blocks, blocksCount) in // saveBlocks
@@ -690,7 +693,7 @@ class BRPeerManager {
         return BRPeerManagerRelayCount(cPtr, forTxHash)
     }
 
-    func setFixedPeer(address: Int, port: Int) {
+    func setFixedPeer(address: Int, port: UInt16) {
         if address != 0 {
             var newAddress = UInt128()
             newAddress.u16.5 = 0xffff

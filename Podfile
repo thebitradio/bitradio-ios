@@ -7,6 +7,9 @@ target 'digibyte' do
 
   # Pods for breadwallet
   pod 'Buglife'
+
+  # colored blur effects
+  pod "VisualEffectView"
   
   # View Debugging
   pod 'Reveal-SDK', :configurations => ['Debug']

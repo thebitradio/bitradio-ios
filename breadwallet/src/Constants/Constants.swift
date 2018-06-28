@@ -57,7 +57,7 @@ struct C {
 	//FIXME: We need a valid feedback email address.
     static let feedbackEmail = "info@digibyte.io"
 	static let reviewLink = "https://itunes.apple.com/us/app/digibyte-wallet/id1328006562?action=write-review"
-    static var standardPort: Int {
+    static var standardPort: UInt16 {
 		return E.isTestnet ? 12024 : 12024
     }
 	//FIXME: Before shipping to production, change this to DigiByte.sqlite

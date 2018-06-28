@@ -114,7 +114,6 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        //tableView.backgroundColor = C.Colors.background
         tableView.backgroundColor = UIColor(red: 0x19 / 255, green: 0x1b / 255, blue: 0x2a / 255, alpha: 1)
         
         // subscriptions

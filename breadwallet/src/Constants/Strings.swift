@@ -181,6 +181,12 @@ enum S {
         static let sent = NSLocalizedString("TransactionView.sent", value:"sent", comment: "TransactionFilter sent")
         static let received = NSLocalizedString("TransactionView.received", value:"received", comment: "TransactionFilter received")
     }
+    
+    enum TransactionDetailView {
+        static let date = NSLocalizedString("TransactionDetailView.date", value:"date", comment: "DATE: ...")
+        static let processed = NSLocalizedString("TransactionDetailView.processed", value:"processed", comment: "PROCESSED: ...")
+        static let status = NSLocalizedString("TransactionDetailView.status", value:"status", comment: "STATUS: ...")
+    }
 
     enum UpdatePin {
         static let updateTitle = NSLocalizedString("UpdatePin.updateTitle", value:"Update PIN", comment: "Update PIN title")
@@ -283,6 +289,8 @@ enum S {
         static let wipe = NSLocalizedString("Settings.wipe", value: "Start/Recover Another Wallet", comment: "Start or recover another wallet menu label.")
         static let advancedTitle = NSLocalizedString("Settings.advancedTitle", value: "Advanced Settings", comment: "Advanced Settings title")
         static let faceIdLimit = NSLocalizedString("Settings.faceIdLimit", value:"Face ID Spending Limit", comment: "Face ID spending limit label")
+        
+        static let invalidPort = NSLocalizedString("Settings.invalidPortHeader", value:"Invalid port", comment: "Port must be greater than 0 and less than 65535")
     }
 
     enum About {

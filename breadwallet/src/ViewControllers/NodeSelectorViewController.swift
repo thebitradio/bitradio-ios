@@ -107,12 +107,26 @@ class NodeSelectorViewController : UIViewController, Trackable {
             guard let ip = alert.textFields?.first, let port = alert.textFields?.last else { return }
             if let addressText = ip.text {
                 //self.saveEvent("nodeSelector.switchToManual")
+            
+                if let portText = port.text {
+                    if let i = Int(portText) {
+                        if i > UINT16_MAX {
+                            let v = UIAlertController(title: nil, message: S.Settings.invalidPort, preferredStyle: .alert)
+                            self.present(v, animated: true, completion: {() in
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                                    v.dismiss(animated: true, completion: nil)
+                                })
+                            })
+                            return
+                        }
+                    }
+                    UserDefaults.customNodePort = UInt16(portText)
+                }
+                
                 var address = in_addr()
                 ascii2addr(AF_INET, addressText, &address)
                 UserDefaults.customNodeIP = Int(address.s_addr)
-                if let portText = port.text {
-                    UserDefaults.customNodePort = Int(portText)
-                }
+                
                 DispatchQueue.walletQueue.async {
                     self.walletManager.peerManager?.connect()
                 }

@@ -74,6 +74,8 @@ class ShowAddressViewController : UIViewController, Subscriber, Trackable {
         view.addSubview(addressButton)
         view.addSubview(sharePopout)
         view.addSubview(addressPopout)
+        
+        qrCode.backgroundColor = .white
     }
 
     private func addConstraints() {
@@ -132,7 +134,7 @@ class ShowAddressViewController : UIViewController, Subscriber, Trackable {
 
     private func setReceiveAddress() {
         address.text = wallet.receiveAddress
-        qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .white))?
+        qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(CGSize(width: qrSize, height: qrSize))!
     }
 

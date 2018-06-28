@@ -13,20 +13,39 @@ import MachO
 let accountHeaderHeight: CGFloat = 136.0
 private let transactionsLoadingViewHeightConstant: CGFloat = 48.0
 
+fileprivate let balanceHeaderLabelTopVisible: CGFloat = 12
+fileprivate let currencyLabelTopVisible: CGFloat = 12
+fileprivate let balanceHeaderLabelTopHidden: CGFloat = -20
+fileprivate let currencyLabelTopHidden: CGFloat = -20
+
+fileprivate enum ViewMode {
+    case normal
+    case small
+}
+
 fileprivate class BalanceView: UIView, Subscriber {
     private let balanceHeaderLabel = UILabel(font: .customMedium(size: 12))
-    private var balanceLabel: UpdatingLabel //(font: .customMedium(size: 32), color: C.Colors.text) // DGB
-    private var currencyLabel: UpdatingLabel //(font: .customMedium(size: 16)) // USD
+    private var balanceLabel: UpdatingLabel
+    private var currencyLabel: UpdatingLabel
+    
+    private var currencyLabelTop: NSLayoutConstraint? = nil
+    private var balanceHeaderLabelTop: NSLayoutConstraint? = nil
     
     private let store: Store
     private var isBtcSwapped: Bool {
-        didSet { updateBalances() }
+        didSet { updateBalancesAnimated() }
     }
     private var exchangeRate: Rate? {
         didSet { updateBalances() }
     }
     private var balance: UInt64 = 0 {
         didSet { updateBalances() }
+    }
+    
+    private var viewMode: ViewMode = .normal {
+        didSet {
+            self.resizeView(viewMode)
+        }
     }
     
     init(store: Store) {
@@ -48,7 +67,102 @@ fileprivate class BalanceView: UIView, Subscriber {
         addConstraints()
         addStyles()
         
+        addGestureRecognizers()
+        
         addSubscriptions()
+    }
+    
+    private func resizeView(_ viewMode: ViewMode) {
+        switch (viewMode) {
+            case .normal:
+                openView()
+            case .small:
+                closeView()
+        }
+    }
+    
+    private var viewOpen: Bool = true
+    private var animating: Bool = false
+    
+    private func openView() {
+        guard !viewOpen else { return }
+        guard !animating else { return }
+        animating = true
+        
+        UIView.spring(0.4, animations: {
+            self.balanceHeaderLabelTop?.constant = balanceHeaderLabelTopVisible
+            self.currencyLabelTop?.constant = currencyLabelTopVisible
+            
+            self.balanceHeaderLabel.alpha = 1
+            self.currencyLabel.alpha = 1
+            
+            self.currencyLabel.layoutIfNeeded()
+            self.balanceHeaderLabel.layoutIfNeeded()
+            self.balanceLabel.layoutIfNeeded()
+            self.layoutIfNeeded()
+            
+            self.superview?.layoutIfNeeded()
+        }) { (c) in
+            self.animating = false
+            self.viewOpen = true
+        }
+    }
+    
+    private func closeView() {
+        guard viewOpen else { return }
+        guard !animating else { return }
+        animating = true
+        
+        UIView.spring(0.4, animations: {
+            self.balanceHeaderLabelTop?.constant = balanceHeaderLabelTopHidden
+            self.currencyLabelTop?.constant = currencyLabelTopHidden
+            
+            self.balanceHeaderLabel.alpha = 0
+            self.currencyLabel.alpha = 0
+            
+            self.currencyLabel.layoutIfNeeded()
+            self.balanceHeaderLabel.layoutIfNeeded()
+            self.balanceLabel.layoutIfNeeded()
+            self.layoutIfNeeded()
+            
+            self.superview?.layoutIfNeeded()
+        }) { (c) in
+            self.animating = false
+            self.viewOpen = false
+        }
+    }
+    
+    @objc private func balanceViewTapped() {
+        guard !animating else { return }
+        animating = true
+        
+        self.store.perform(action: CurrencyChange.toggle())
+    }
+    
+    @objc private func balanceViewSwipeUp() {
+        viewMode = .small
+    }
+    
+    @objc private func balanceViewSwipeDown() {
+        viewMode = .normal
+    }
+    
+    private func addGestureRecognizers() {
+        let grUp = UISwipeGestureRecognizer()
+        grUp.direction = .up
+        grUp.addTarget(self, action: #selector(balanceViewSwipeUp))
+       
+        let grDown = UISwipeGestureRecognizer()
+        grDown.direction = .down
+        grDown.addTarget(self, action: #selector(balanceViewSwipeDown))
+        
+        let gr = UITapGestureRecognizer()
+        gr.addTarget(self, action: #selector(balanceViewTapped))
+    
+        self.isUserInteractionEnabled = true
+        self.addGestureRecognizer(grUp)
+        self.addGestureRecognizer(grDown)
+        self.addGestureRecognizer(gr)
     }
     
     private func addSubscriptions() {
@@ -96,9 +210,10 @@ fileprivate class BalanceView: UIView, Subscriber {
     }
     
     private func addConstraints() {
+        balanceHeaderLabelTop = balanceHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: balanceHeaderLabelTopVisible)
         balanceHeaderLabel.constrain([
             balanceHeaderLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            balanceHeaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            balanceHeaderLabelTop
         ])
         
         balanceLabel.constrain([
@@ -106,10 +221,11 @@ fileprivate class BalanceView: UIView, Subscriber {
             balanceLabel.topAnchor.constraint(equalTo: balanceHeaderLabel.bottomAnchor, constant: 12),
         ])
         
+        currencyLabelTop = currencyLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor, constant: currencyLabelTopVisible)
         currencyLabel.constrain([
+            currencyLabelTop,
             currencyLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            currencyLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor, constant: 12),
-            currencyLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40)
+            currencyLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25)
         ])
     }
     
@@ -132,29 +248,49 @@ fileprivate class BalanceView: UIView, Subscriber {
         backgroundColor = .clear
     }
     
-    func updateBalances() {
+    private func updateBalances(animatedValue: Bool = true) {
         guard let rate = exchangeRate else { return }
         let amount = Amount(amount: balance, rate: rate, maxDigits: store.state.maxDigits)
         
-        /*
-        let s = formatter.string(from: NSNumber(value: value))
-        let balanceText = NSMutableAttributedString()
-        let attributedText = NSAttributedString(string: s ?? "0.0")
-        let currency = NSAttributedString(string: "∂ ")
+        var balanceValue: Double = 0
+        var currencyValue: Double = 0
         
-        balanceText.append(currency)
-        balanceText.append(attributedText)
-        
-        balanceLabel.attributedText = balanceText
- 
-        */
-
-        balanceLabel.setValueAnimated(amount.amountForBtcFormat) {
-            
+        if isBtcSwapped {
+            self.currencyLabel.formatter = amount.btcFormat
+            self.balanceLabel.formatter = amount.localFormat
+            balanceValue = amount.localAmount
+            currencyValue = amount.amountForBtcFormat
+        } else {
+            self.currencyLabel.formatter = amount.localFormat
+            self.balanceLabel.formatter = amount.btcFormat
+            balanceValue = amount.amountForBtcFormat
+            currencyValue = amount.localAmount
         }
         
-        currencyLabel.setValueAnimated(amount.localAmount) {
-            
+        if animatedValue {
+            balanceLabel.setValueAnimated(balanceValue) {}
+            currencyLabel.setValueAnimated(currencyValue) {}
+        } else {
+            balanceLabel.setValue(balanceValue)
+            currencyLabel.setValue(currencyValue)
+        }
+    }
+    
+    private func updateBalancesAnimated() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.balanceLabel.alpha = 0
+            self.currencyLabel.alpha = 0
+        }) { (c) in
+            self.updateBalances(animatedValue: false)
+            UIView.animate(withDuration: 0.2, animations: {
+                self.balanceLabel.alpha = 1
+                
+                if self.viewMode == .normal {
+                    self.currencyLabel.alpha = 1
+                }
+            }, completion: { (c) in
+                self.animating = false
+            })
         }
     }
 }
@@ -266,8 +402,7 @@ fileprivate class CustomSegmentedControl: UIControl {
                 guard selectedSegmentIdx != buttonIndex else { return }
                 callback?(selectedSegmentIdx, buttonIndex)
                 selectedSegmentIdx = buttonIndex
-                selectorStartPosition = padding + (frame.width - 2*padding) / CGFloat(buttons.count) * CGFloat(buttonIndex)
-                print("PROGRESS2 START", selectorStartPosition)
+                selectorStartPosition = padding + (frame.width - 2 * padding) / CGFloat(buttons.count) * CGFloat(buttonIndex)
                 
                 UIView.spring(0.2, animations: {
                     self.backgroundRect.frame.origin.x = selectorStartPosition
@@ -542,9 +677,8 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     private var pages = [UIViewController]()
     
     private let hamburgerMenuView = HamburgerViewMenu(walletTitle: C.applicationTitle, version: C.version)
-    private let fadeView: UIImageView = {
-        let view = UIImageView(image: #imageLiteral(resourceName: "alertViewBg"))
-        view.contentMode = .scaleToFill
+    private let fadeView: UIView = {
+        let view = BlurView()
         view.isUserInteractionEnabled = true
         return view
     }()
@@ -623,6 +757,8 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         }
     }
     
+    private let MENUBACKGROUND_OPACITY_END: CGFloat = 0.8
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let point = scrollView.contentOffset
         var percentageComplete: CGFloat = (point.x - view.frame.size.width) / view.frame.size.width
@@ -644,7 +780,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
             
             if -width + translationX > 0 {
                 menuLeftConstraint.constant = -15
-                fadeView.alpha = 1
+                fadeView.alpha = MENUBACKGROUND_OPACITY_END
             } else if translationX < 0 {
                 // fully dragged in
                 menuLeftConstraint.constant = -width
@@ -654,7 +790,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
                 menuLeftConstraint.constant = -width + translationX - 15
                 
                 let ratio = translationX / width
-                let alphaValue = ratio * 1
+                let alphaValue = ratio * MENUBACKGROUND_OPACITY_END
                 fadeView.alpha = alphaValue
             }
         } else {
@@ -679,7 +815,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
             if translationX > 0 {
                 menuLeftConstraint.constant = -15 + sqrt(translationX)
                 hamburgerMenuView.animationStep(progress: 1)
-                fadeView.alpha = 1
+                fadeView.alpha = MENUBACKGROUND_OPACITY_END
             } else if translationX < -width - 15 {
                 menuLeftConstraint.constant = -width
                 hamburgerMenuView.animationStep(progress: 0)
@@ -689,8 +825,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
                 
                 let ratio = (width + translationX - 15) / width
                 let alphaValue = ratio
-                fadeView.alpha = alphaValue
-                print("RATIO", ratio)
+                fadeView.alpha = alphaValue * MENUBACKGROUND_OPACITY_END
                 hamburgerMenuView.animationStep(progress: ratio)
             }
             view.layoutIfNeeded()
@@ -769,9 +904,8 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         fadeView.isHidden = false
         
         UIView.spring(0.3, animations: {
-        //UIView.animate(withDuration: 0.3, animations: {
             self.view.layoutIfNeeded()
-            self.fadeView.alpha = 1.0
+            self.fadeView.alpha = self.MENUBACKGROUND_OPACITY_END
             self.hamburgerMenuView.animationStep(progress: 1.0)
         }, completion: { (finished) in
             self.edgeGesture.isEnabled = false
@@ -821,8 +955,6 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        //self.attemptShowWelcomeView()
         
         menu.update()
         

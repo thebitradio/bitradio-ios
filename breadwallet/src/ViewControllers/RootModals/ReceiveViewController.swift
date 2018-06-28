@@ -167,7 +167,8 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         addressButton.layer.cornerRadius = 4.0
         addressButton.layer.masksToBounds = true
         
-        qrCode.layer.opacity = 0.1
+        qrCode.layer.opacity = 0.0
+        qrCode.backgroundColor = .white
         addressButton.isUserInteractionEnabled = false
         
         setReceiveAddress()
@@ -176,7 +177,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     private func setQrCode(){
         guard let amount = amount else { return }
         let request = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
-        qrCode.image = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .white))?
+        qrCode.image = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(CGSize(width: qrSize, height: qrSize))!
     }
 

@@ -189,6 +189,7 @@ class AmountViewController : UIViewController, Trackable {
             myself.toggleCurrency()
         }
         let gr = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        gr.cancelsTouchesInView = false
         tapView.addGestureRecognizer(gr)
         tapView.isUserInteractionEnabled = true
 
@@ -306,7 +307,10 @@ class AmountViewController : UIViewController, Trackable {
         UIView.spring(C.animationDuration, animations: {
             self.togglePinPad()
             self.parent?.parent?.view.layoutIfNeeded()
-        }, completion: { completed in })
+        }, completion: { completed in
+            let nc = NotificationCenter.default
+            nc.post(name: NSNotification.Name(rawValue: "scrollDown"), object: nil)
+        })
     }
 
     func closePinPad() {

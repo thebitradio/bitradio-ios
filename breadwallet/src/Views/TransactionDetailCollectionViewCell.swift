@@ -8,6 +8,234 @@
 
 import UIKit
 
+class UITransactionCardView: UIView {
+    private let circleWidth: CGFloat = 16
+    private let dots: UIImageView
+    private let circleLeft: UIView
+    private let circleRight: UIView
+    private var dotLineTopConstrain: NSLayoutConstraint? = nil
+    
+    var foldLineTop: CGFloat = -100 {
+        didSet {
+            dotLineTopConstrain?.constant = foldLineTop
+            dots.setNeedsLayout()
+            updateMask()
+        }
+    }
+    
+    private func updateMask() {
+    
+        let f = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height)
+        
+        let shape = CAShapeLayer()
+        shape.frame = f
+        
+        let outerPath = UIBezierPath(roundedRect: f, cornerRadius: 12)
+        
+        /* debugging
+        let view = UIView(frame: f)
+        view.backgroundColor = .red
+        view.layer.opacity = 0.1
+        addSubview(view)
+        */
+        
+        let circlePath1 = UIBezierPath(ovalIn: circleLeft.frame)
+        let circlePath2 = UIBezierPath(ovalIn: circleRight.frame)
+        outerPath.usesEvenOddFillRule = true
+        outerPath.append(circlePath1)
+        outerPath.append(circlePath2)
+        
+        shape.fillColor = UIColor.white.cgColor
+        shape.fillRule = kCAFillRuleEvenOdd
+        shape.path = outerPath.cgPath
+        
+        layer.mask = shape
+    }
+    
+    override init(frame: CGRect) {
+        dots = UIImageView(image: #imageLiteral(resourceName: "dots"))
+        dots.contentMode = .scaleToFill
+        circleLeft = UIView()
+        circleRight = UIView()
+        super.init(frame: frame)
+    
+        addSubview(circleLeft)
+        addSubview(circleRight)
+        
+        addSubview(dots)
+        dotLineTopConstrain = dots.topAnchor.constraint(equalTo: topAnchor, constant: -circleWidth)
+        dots.constrain([
+            dotLineTopConstrain,
+            dots.leftAnchor.constraint(equalTo: leftAnchor),
+            dots.rightAnchor.constraint(equalTo: rightAnchor),
+            dots.heightAnchor.constraint(equalToConstant: 1.0)
+        ])
+        
+        circleLeft.constrain([
+            circleLeft.rightAnchor.constraint(equalTo: dots.leftAnchor, constant: circleWidth / 2),
+            circleLeft.topAnchor.constraint(equalTo: dots.topAnchor, constant: -circleWidth / 2),
+            circleLeft.widthAnchor.constraint(equalToConstant: circleWidth),
+            circleLeft.heightAnchor.constraint(equalToConstant: circleWidth),
+        ])
+        
+        circleRight.constrain([
+            circleRight.leftAnchor.constraint(equalTo: dots.rightAnchor, constant: -circleWidth / 2),
+            circleRight.topAnchor.constraint(equalTo: dots.topAnchor, constant: -circleWidth / 2),
+            circleRight.widthAnchor.constraint(equalToConstant: circleWidth),
+            circleRight.heightAnchor.constraint(equalToConstant: circleWidth),
+        ])
+        
+        circleLeft.backgroundColor = .clear
+        
+        style()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func style() {
+        // layer.cornerRadius = 12
+        backgroundColor = UIColor(red: 0x1D / 255, green: 0x1C / 255, blue: 0x2B / 255, alpha: 1) // #1D1C2B
+        // layer.masksToBounds = true
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateMask()
+    }
+}
+
+class WalletOverlay: UIView {
+    private let shape: CAShapeLayer
+    
+    override init(frame: CGRect) {
+        shape = CAShapeLayer()
+        super.init(frame: frame)
+        layer.addSublayer(shape)
+        style()
+    }
+    
+    private func style() {
+        shape.lineWidth = 1
+        // #191A29
+        shape.fillColor = UIColor(red: 0x19 / 255, green: 0x1A / 255, blue: 0x29 / 255, alpha: 1).cgColor
+        shape.strokeColor = UIColor.clear.cgColor
+
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.2;
+        layer.shadowOffset = CGSize(width: 0, height: -7.0);
+        layer.shadowRadius = 5.0;
+        layer.masksToBounds = false;
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func recalc() {
+        let cutStart: CGFloat = shape.frame.height * 1 / 3
+        let curveStart: CGFloat = shape.frame.width * 1 / 6
+        let middle: CGFloat = shape.frame.width / 2
+        let curveStrengthBottom: CGFloat = 0.6
+        let curveStrength: CGFloat = 0.2
+        
+        let curveEnd: CGFloat = shape.frame.width - curveStart
+        
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: shape.frame.height))
+        path.addLine(to: CGPoint(x: 0, y: cutStart))
+        path.addLine(to: CGPoint(x: curveStart, y: cutStart))
+        
+        path.addCurve(
+            to: CGPoint(x: middle, y: 0),
+            controlPoint1: CGPoint(x: middle * (1 - curveStrength), y: cutStart),
+            controlPoint2: CGPoint(x: curveStart * (1 + curveStrengthBottom), y: 0)
+        )
+        
+        path.addCurve(
+            to: CGPoint(x: curveEnd, y: cutStart),
+            controlPoint1: CGPoint(x: shape.frame.width - curveStart * (1 + curveStrengthBottom), y: 0),
+            controlPoint2: CGPoint(x: shape.frame.width - middle * (1 - curveStrength), y: cutStart)
+        )
+        
+        path.addLine(to: CGPoint(x: shape.frame.width, y: cutStart))
+        path.addLine(to: CGPoint(x: shape.frame.width, y: shape.frame.height))
+        path.close()
+        path.fill()
+        
+        shape.path = path.cgPath
+        shape.shadowPath = path.cgPath
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        shape.frame = self.layer.bounds
+        recalc()
+    }
+}
+
+class StatusView: UILabel {
+    enum Status {
+        case unknown
+        case invalid
+        case progress
+        case complete
+    }
+    
+    override var text: String? {
+        didSet {
+            super.text = text?.uppercased()
+        }
+    }
+    
+    var status: Status {
+        didSet {
+            setBackgroundColor(status: status)
+        }
+    }
+    
+    init(font: UIFont, color: UIColor, status: Status) {
+        self.status = status
+        super.init(frame: CGRect())
+        
+        self.font = font
+        self.textColor = color
+        
+        setBackgroundColor(status: status)
+        setStyle()
+    }
+    
+    private func setStyle() {
+        layer.cornerRadius = 3
+        textColor = C.Colors.text
+        layer.masksToBounds = true
+        textAlignment = .center
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setBackgroundColor(status: Status) {
+        switch status {
+        case .unknown:
+            backgroundColor = UIColor.gray
+        case .progress:
+            backgroundColor = UIColor.orange
+        case .invalid:
+            backgroundColor = C.Colors.weirdRed
+        case .complete:
+            backgroundColor = C.Colors.weirdGreen
+        }
+    }
+    
+    override func drawText(in rect: CGRect) {
+        let insets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
+        super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
+    }
+}
+
 class TransactionDetailCollectionViewCell : UICollectionViewCell {
 
     //MARK: - Public
@@ -23,10 +251,32 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     }
 
     func set(transaction: Transaction, isBtcSwapped: Bool, rate: Rate, rates: [Rate], maxDigits: Int) {
-        timestamp.text = transaction.longTimestamp
-        amount.text = String(format: transaction.direction.amountFormat, "\(transaction.amountDescription(isBtcSwapped: isBtcSwapped, rate: rate, maxDigits: maxDigits))")
-        address.text = transaction.detailsAddressText
+        timestamp1.text = transaction.dayTimestamp
+        timestamp2.text = transaction.timeTimestamp
+        timeSinceTransactionLabel.text = transaction.timeSince.0
+        
+        amount.text = transaction.amountDescription(isBtcSwapped: isBtcSwapped, rate: rate, maxDigits: maxDigits)
+        amountDGB.text = transaction.amountDescription(isBtcSwapped: false, rate: rate, maxDigits: maxDigits)
+        
+        directionLabel.text = String(format: transaction.direction.amountFormat, "")
+        //amount.text = String(format: transaction.direction.amountFormat, "\(transaction.amountDescription(isBtcSwapped: isBtcSwapped, rate: rate, maxDigits: maxDigits))")
+        //address.text = transaction.detailsAddressText
+        address.text = transaction.toAddress ?? "unknown"
         status.text = transaction.status
+        status.status = {
+            switch transaction.statusCode {
+            case .invalid:
+                return .invalid
+            case .unknown:
+                return .unknown
+            case .pending:
+                return .progress
+            case .success:
+                return .complete
+            }
+        }()
+        let confirmations = "Confirmations"
+        confirmationsLabel.text = "\(confirmations): \(transaction.confirms)".uppercased()
         comment.text = transaction.comment
         amountDetails.text = transaction.amountDetails(isBtcSwapped: isBtcSwapped, rate: rate, rates: rates, maxDigits: maxDigits)
         addressHeader.text = transaction.direction.addressHeader.capitalized
@@ -36,6 +286,19 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         blockHeight.text = transaction.blockHeight
         self.transaction = transaction
         self.rate = rate
+        
+        let directionSymbolImage: UIImage = {
+            switch transaction.direction {
+            case .sent:
+                return #imageLiteral(resourceName: "sentTransaction")
+            case .received:
+                return #imageLiteral(resourceName: "receivedTransaction")
+            case .moved:
+                return #imageLiteral(resourceName: "hamburger_001Info")
+            }
+        }()
+        
+        directionSymbolImageView.image = directionSymbolImage
     }
 
     var closeCallback: (() -> Void)? {
@@ -61,169 +324,453 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     }
 
     //MARK: - Private
+    private let cardOffset: CGFloat = 45
+    
     private let header = ModalHeaderView(title: S.TransactionDetails.title, style: .dark)
-    private let timestamp = UILabel(font: .customMedium(size: 14.0), color: C.Colors.text)
+    private let timestamp1 = UILabel(font: .customBody(size: 18.0), color: C.Colors.text)
+    private let timestamp2 = UILabel(font: .customBody(size: 18.0), color: C.Colors.text)
+    private let confirmationsLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
     private let amount = UILabel(font: .customMedium(size: 26.0), color: C.Colors.text)
-    private let address = UILabel(font: .customMedium(size: 14.0), color: C.Colors.text)
+    private let amountDGB = UILabel(font: .customMedium(size: 18.0), color: C.Colors.text)
+    private let directionLabel = UILabel(font: .customBody(size: 16.0), color: C.Colors.greyBlue)
     private let separators = (0...4).map { _ in UIView(color: C.Colors.text) }
     private let statusHeader = UILabel(font: .customMedium(size: 14.0), color: C.Colors.lightText)
-    private let status = UILabel.wrapping(font: .customBody(size: 13.0), color: C.Colors.text)
-    private let commentsHeader = UILabel(font: .customMedium(size: 14.0), color: C.Colors.lightText)
+    private let status = StatusView(font: .customBody(size: 14.0), color: C.Colors.text, status: .unknown)
+    private let commentsHeader = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
     private let comment = UITextView()
     private let amountHeader = UILabel(font: .customMedium(size: 14.0), color: C.Colors.lightText)
+    private let amountDetailsHeader = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
+    private let timeSinceTransactionLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
     private let amountDetails = UILabel.wrapping(font: .customBody(size: 13.0), color: C.Colors.text)
-    private let addressHeader = UILabel(font: .customMedium(size: 14.0), color: C.Colors.lightText)
+    private let addressHeader = UILabel(font: .customBody(size: 14.0), color: C.Colors.lightText)
     private let fullAddress = UIButton(type: .system)
     private let headerHeight: CGFloat = 48.0
+    private let transactionDetailCardView = UITransactionCardView()
     private let scrollViewContent = UIView()
-    private let scrollView = UIScrollView()
+    let scrollView = UIScrollView()
+    
+    private let dateLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
+    private let processedLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
+    private let statusLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
+    
+    private let address: UILabel = {
+        let lbl = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
+        lbl.lineBreakMode = .byCharWrapping
+        lbl.numberOfLines = 0
+        lbl.textAlignment = .center
+        return lbl
+    }()
+    private let card: UIView = {
+        let c = UIView()
+        // #2E3046
+        c.backgroundColor = UIColor(red: 0x2E / 255, green: 0x30 / 255, blue: 0x46 / 255, alpha: 1.0)
+        c.layer.masksToBounds = true
+        c.layer.cornerRadius = 15
+        
+        return c
+    }()
+    private let digiLogo: UIImageView = {
+        let img = UIImageView(image: #imageLiteral(resourceName: "DigiByteSymbol"))
+        img.contentMode = .scaleAspectFit
+        return img
+    }()
+    
+    // ToDo: Remove
     private let moreButton = UIButton(type: .system)
     private let moreContentView = UIView()
+    
     private let txHash = UIButton(type: .system)
-    private let txHashHeader = UILabel(font: .customBold(size: 14.0), color: C.Colors.lightText)
+    private let txHashHeader = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
     private let availability = UILabel(font: .customBold(size: 13.0), color: .txListGreen)
+    private let blockHeightHeader = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
     private let blockHeight = UILabel(font: .customBody(size: 13.0), color: C.Colors.text)
     private var scrollViewHeight: NSLayoutConstraint?
+    
+    private let directionSymbolImageView = UIImageView(image: #imageLiteral(resourceName: "hamburger_001Info"))
+    private let blurView = UIView()
+    
+    private var contentOffsetTop: NSLayoutConstraint? = nil
 
     private func setup() {
         addSubviews()
         addConstraints()
         setData()
+        
+        setGestures()
+    }
+    
+    private var cardExpanded: Bool = false
+    private var cardAnimating: Bool = false
+    private var cardOriginalOffset: CGFloat? = nil
+    private var cardInitialized: Bool = false
+    private var cardStart: CGFloat? = nil
+    
+    private func setGestures() {
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.addTarget(self, action: #selector(cardTap))
+        card.addGestureRecognizer(tapGesture)
+        
+        let swipeGesture = UIPanGestureRecognizer()
+        swipeGesture.addTarget(self, action: #selector(cardPan))
+        card.addGestureRecognizer(swipeGesture)
+    }
+    
+    private func initCard() {
+        guard !cardInitialized else { return }
+        cardOriginalOffset = card.frame.origin.y
+        
+        blurView.backgroundColor = .black
+        blurView.alpha = 0.0
+        
+        scrollViewContent.insertSubview(blurView, belowSubview: card)
+        blurView.constrain(toSuperviewEdges: nil)
+        
+        var top: CGFloat = 0
+        top = UIScreen.main.bounds.height - self.scrollView.contentSize.height + 40
+        if top > 0 {
+            contentOffsetTop?.constant = top
+            transactionDetailCardView.layoutIfNeeded()
+        }
+        
+        cardInitialized = true
+    }
+    
+    @objc private func cardPan(recognizer: UIPanGestureRecognizer) {
+        guard !cardAnimating else { return }
+        guard let cOffset = cardOriginalOffset else { return }
+        
+        let translation = recognizer.translation(in: scrollViewContent).y
+        let scale: CGFloat = (self.card.frame.origin.y + translation) / cOffset
+        
+        let maxValue = cOffset - (self.card.frame.height - 80)
+        let minValue = cOffset
+
+        if recognizer.state == .began {
+            cardStart = self.card.frame.origin.y
+            
+        } else if recognizer.state == .changed {
+            guard let cardStart = cardStart else { return }
+            
+            if cardStart + translation < maxValue {
+                if translation > 0 {
+                    self.card.frame.origin.y = maxValue + sqrt(translation)
+                } else {
+                    self.card.frame.origin.y = maxValue - sqrt(-translation)
+                }
+            } else if cardStart + translation > minValue {
+                if translation > 0 {
+                    self.card.frame.origin.y = minValue + sqrt(translation)
+                } else {
+                    self.card.frame.origin.y = minValue - sqrt(-translation)
+                }
+            } else {
+                self.card.frame.origin.y = cardStart + translation
+            }
+            
+            let satScale = scale > 1 ? 1 : (scale < 0 ? 0 : scale);
+            blurView.alpha = (1 - satScale) * 0.8
+            
+        } else {
+            cardStart = nil
+            
+            if scale > 0.5 {
+                cardExpanded = true
+                hideCard()
+            } else {
+                cardExpanded = false
+                showCard()
+            }
+        }
+    }
+    
+    @objc private func cardTap() {
+        if cardExpanded {
+            // hideCard()
+        } else {
+            showCard()
+        }
+    }
+    
+    private func showCard() {
+        guard !cardAnimating else { return }
+        guard !cardExpanded else { return }
+        guard let cOffset = cardOriginalOffset else { return }
+        
+        cardAnimating = true
+        
+        UIView.spring(0.3, animations: {
+            self.card.frame.origin.y = cOffset - (self.card.frame.height - 80)
+            self.blurView.alpha = 0.6
+        }) { (c) in
+            self.cardAnimating = false
+            self.cardExpanded = true
+        }
     }
 
+    private func hideCard() {
+        guard !cardAnimating else { return }
+        guard cardExpanded else { return }
+        guard let cOffset = cardOriginalOffset else { return }
+        
+        cardAnimating = true
+        
+        UIView.spring(0.3, animations: {
+            self.card.frame.origin.y = cOffset
+            self.blurView.alpha = 0.0
+        }) { (c) in
+            self.cardAnimating = false
+            self.cardExpanded = false
+        }
+    }
+    
     private func addSubviews() {
-        contentView.addSubview(scrollView)
-        contentView.addSubview(header)
-        scrollView.addSubview(scrollViewContent)
-        scrollViewContent.addSubview(timestamp)
+        scrollView.addSubview(transactionDetailCardView)
+            
+        transactionDetailCardView.addSubview(scrollViewContent)
+        scrollViewContent.layer.masksToBounds = true
+        
+        directionSymbolImageView.contentMode = .scaleAspectFit
+        scrollView.addSubview(directionSymbolImageView)
         scrollViewContent.addSubview(amount)
+        scrollViewContent.addSubview(directionLabel)
         scrollViewContent.addSubview(address)
-        separators.forEach { scrollViewContent.addSubview($0) }
-        scrollViewContent.addSubview(statusHeader)
+        
+        scrollViewContent.addSubview(dateLabel)
+        scrollViewContent.addSubview(processedLabel)
+        scrollViewContent.addSubview(statusLabel)
+        
+        scrollViewContent.addSubview(timestamp1)
+        scrollViewContent.addSubview(timestamp2)
         scrollViewContent.addSubview(status)
-        scrollViewContent.addSubview(availability)
-        scrollViewContent.addSubview(commentsHeader)
-        scrollViewContent.addSubview(comment)
-        scrollViewContent.addSubview(amountHeader)
-        scrollViewContent.addSubview(amountDetails)
-        scrollViewContent.addSubview(addressHeader)
-        scrollViewContent.addSubview(fullAddress)
-        scrollViewContent.addSubview(moreContentView)
-        moreContentView.addSubview(moreButton)
+        
+        scrollViewContent.addSubview(confirmationsLabel)
+        
+        // CARD
+        scrollViewContent.addSubview(card)
+        card.addSubview(digiLogo)
+        card.addSubview(amountDGB)
+        card.addSubview(timeSinceTransactionLabel)
+        
+        card.addSubview(amountDetailsHeader)
+        card.addSubview(amountDetails)
+        card.addSubview(blockHeightHeader)
+        card.addSubview(blockHeight)
+        card.addSubview(txHashHeader)
+        card.addSubview(txHash)
+        card.addSubview(commentsHeader)
+        card.addSubview(comment)
+        
+        contentView.addSubview(scrollView)
     }
 
     private func addConstraints() {
-        //header.constrainTopCorners(height: headerHeight)
-        header.constrain([
-            header.topAnchor.constraint(equalTo: contentView.topAnchor, constant: E.isIPhoneX ? 50 : 0),
-            header.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            header.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-        ])
-        
-        //header.constraint(toTop: contentView, constant: E.isIPhoneX ? 20 : 0)?.isActive = true
-        scrollViewHeight = scrollView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -headerHeight)
+        scrollViewHeight = scrollView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: 20)
         scrollView.constrain([
-            scrollView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: headerHeight),
+            scrollView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -20),
             scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            scrollViewHeight ])
-        scrollViewContent.constrain([
-            scrollViewContent.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            scrollViewContent.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            scrollViewContent.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            scrollViewContent.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            scrollViewContent.widthAnchor.constraint(equalTo: scrollView.widthAnchor) ])
-        timestamp.constrain([
-            timestamp.leadingAnchor.constraint(equalTo: scrollViewContent.leadingAnchor, constant: C.padding[2]),
-            timestamp.topAnchor.constraint(equalTo: scrollViewContent.topAnchor, constant: C.padding[3]),
-            timestamp.trailingAnchor.constraint(equalTo: scrollViewContent.trailingAnchor, constant: -C.padding[2]) ])
+            scrollViewHeight
+        ])
+        
+        scrollView.contentInset.bottom = 30
+        
+        contentOffsetTop = transactionDetailCardView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 120)
+        transactionDetailCardView.constrain([
+            contentOffsetTop,
+            transactionDetailCardView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            transactionDetailCardView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            transactionDetailCardView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            transactionDetailCardView.widthAnchor.constraint(equalTo: scrollView.widthAnchor) ])
+ 
+        scrollViewContent.constrain(toSuperviewEdges: nil)
+        
+        scrollView.alwaysBounceVertical = true
+        
+        directionSymbolImageView.constrain([
+            directionSymbolImageView.topAnchor.constraint(equalTo: transactionDetailCardView.topAnchor, constant: -30),
+            directionSymbolImageView.centerXAnchor.constraint(equalTo: transactionDetailCardView.centerXAnchor),
+            directionSymbolImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.scale * 30),
+            directionSymbolImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.scale * 30),
+        ])
+        
         amount.constrain([
-            amount.leadingAnchor.constraint(equalTo: timestamp.leadingAnchor),
-            amount.trailingAnchor.constraint(equalTo: timestamp.trailingAnchor),
-            amount.topAnchor.constraint(equalTo: timestamp.bottomAnchor, constant: C.padding[1]) ])
+            amount.centerXAnchor.constraint(equalTo: directionSymbolImageView.centerXAnchor, constant: 0),
+            amount.topAnchor.constraint(equalTo: directionSymbolImageView.bottomAnchor, constant: 24),
+        ])
+        
+        directionLabel.constrain([
+            directionLabel.centerXAnchor.constraint(equalTo: directionSymbolImageView.centerXAnchor, constant: 0),
+            directionLabel.topAnchor.constraint(equalTo: amount.bottomAnchor, constant: 16),
+        ])
+        
         address.constrain([
-            address.leadingAnchor.constraint(equalTo: amount.leadingAnchor),
-            address.trailingAnchor.constraint(equalTo: amount.trailingAnchor),
-            address.topAnchor.constraint(equalTo: amount.bottomAnchor) ])
-        separators[0].constrain([
-            separators[0].topAnchor.constraint(equalTo: address.bottomAnchor, constant: C.padding[2]),
-            separators[0].leadingAnchor.constraint(equalTo: address.leadingAnchor),
-            separators[0].trailingAnchor.constraint(equalTo: address.trailingAnchor),
-            separators[0].heightAnchor.constraint(equalToConstant: 1.0)])
-        statusHeader.constrain([
-            statusHeader.topAnchor.constraint(equalTo: separators[0].bottomAnchor, constant: C.padding[2]),
-            statusHeader.leadingAnchor.constraint(equalTo: separators[0].leadingAnchor),
-            statusHeader.trailingAnchor.constraint(equalTo: separators[0].trailingAnchor) ])
+            address.centerXAnchor.constraint(equalTo: directionSymbolImageView.centerXAnchor, constant: 0),
+            address.topAnchor.constraint(equalTo: directionLabel.bottomAnchor, constant: 5),
+            address.widthAnchor.constraint(equalTo: scrollViewContent.widthAnchor, multiplier: 0.85),
+        ])
+        
+        dateLabel.constrain([
+            dateLabel.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 50 + 28),
+            dateLabel.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: 32),
+        ])
+        timestamp1.constrain([
+            timestamp1.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
+            timestamp1.leftAnchor.constraint(equalTo: dateLabel.leftAnchor, constant: 0),
+            timestamp1.rightAnchor.constraint(equalTo: timestamp2.leftAnchor, constant: -15),
+        ])
+        
+        processedLabel.constrain([
+            processedLabel.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 50 + 28),
+            processedLabel.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor, constant: 32),
+            processedLabel.widthAnchor.constraint(equalTo: scrollViewContent.widthAnchor, multiplier: 0.5, constant: 0),
+        ])
+        timestamp2.constrain([
+            timestamp2.topAnchor.constraint(equalTo: processedLabel.bottomAnchor, constant: 10),
+            timestamp2.leftAnchor.constraint(equalTo: processedLabel.leftAnchor, constant: 0),
+        ])
+        
+        statusLabel.constrain([
+            statusLabel.topAnchor.constraint(equalTo: timestamp1.bottomAnchor, constant: 30),
+            statusLabel.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: 32),
+        ])
         status.constrain([
-            status.topAnchor.constraint(equalTo: statusHeader.bottomAnchor),
-            status.leadingAnchor.constraint(equalTo: statusHeader.leadingAnchor),
-            status.trailingAnchor.constraint(equalTo: statusHeader.trailingAnchor) ])
-        availability.constrain([
-            availability.topAnchor.constraint(equalTo: status.bottomAnchor),
-            availability.leadingAnchor.constraint(equalTo: status.leadingAnchor)])
-        separators[1].constrain([
-            separators[1].topAnchor.constraint(equalTo: availability.bottomAnchor, constant: C.padding[2]),
-            separators[1].leadingAnchor.constraint(equalTo: status.leadingAnchor),
-            separators[1].trailingAnchor.constraint(equalTo: status.trailingAnchor),
-            separators[1].heightAnchor.constraint(equalToConstant: 1.0) ])
-        commentsHeader.constrain([
-            commentsHeader.topAnchor.constraint(equalTo: separators[1].bottomAnchor, constant: C.padding[2]),
-            commentsHeader.leadingAnchor.constraint(equalTo: separators[1].leadingAnchor),
-            commentsHeader.trailingAnchor.constraint(equalTo: separators[1].trailingAnchor) ])
-        comment.constrain([
-            comment.topAnchor.constraint(equalTo: commentsHeader.bottomAnchor),
-            comment.leadingAnchor.constraint(equalTo: commentsHeader.leadingAnchor),
-            comment.trailingAnchor.constraint(equalTo: commentsHeader.trailingAnchor) ])
-        separators[2].constrain([
-            separators[2].topAnchor.constraint(equalTo: comment.bottomAnchor, constant: C.padding[2]),
-            separators[2].leadingAnchor.constraint(equalTo: comment.leadingAnchor),
-            separators[2].trailingAnchor.constraint(equalTo: comment.trailingAnchor),
-            separators[2].heightAnchor.constraint(equalToConstant: 1.0) ])
-        amountHeader.constrain([
-            amountHeader.topAnchor.constraint(equalTo: separators[2].bottomAnchor, constant: C.padding[2]),
-            amountHeader.leadingAnchor.constraint(equalTo: separators[2].leadingAnchor),
-            amountHeader.trailingAnchor.constraint(equalTo: separators[2].trailingAnchor) ])
+            status.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 10),
+            status.leftAnchor.constraint(equalTo: statusLabel.leftAnchor, constant: 0),
+            status.widthAnchor.constraint(equalToConstant: 120),
+            status.heightAnchor.constraint(equalToConstant: 28),
+        ])
+        
+        confirmationsLabel.constrain([
+            confirmationsLabel.topAnchor.constraint(equalTo: status.bottomAnchor, constant: 30),
+            confirmationsLabel.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: 32),
+        ])
+        
+        let cardTopAnchor = card.topAnchor.constraint(equalTo: confirmationsLabel.bottomAnchor, constant: 30)
+        card.constrain([
+            cardTopAnchor,
+            card.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: 15),
+            card.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor, constant: -15),
+        ])
+        
+        let walletOverlay = WalletOverlay()
+        scrollViewContent.addSubview(walletOverlay)
+        walletOverlay.constrain([
+            walletOverlay.topAnchor.constraint(equalTo: confirmationsLabel.bottomAnchor, constant: 30 + cardOffset),
+            walletOverlay.bottomAnchor.constraint(equalTo: scrollViewContent.bottomAnchor, constant: 0),
+            walletOverlay.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: 0),
+            walletOverlay.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor, constant: 0),
+            walletOverlay.heightAnchor.constraint(equalToConstant: 50),
+        ])
+        
+        /* CARD specific content */
+        
+        // header line
+        digiLogo.constrain([
+            digiLogo.topAnchor.constraint(equalTo: card.topAnchor, constant: 15),
+            digiLogo.leftAnchor.constraint(equalTo: card.leftAnchor, constant: 15),
+            digiLogo.widthAnchor.constraint(equalToConstant: 31),
+            digiLogo.heightAnchor.constraint(equalToConstant: 31),
+        ])
+        
+        amountDGB.constrain([
+            amountDGB.centerYAnchor.constraint(equalTo: digiLogo.centerYAnchor, constant: 0),
+            amountDGB.leftAnchor.constraint(equalTo: digiLogo.rightAnchor, constant: 10),
+            amountDGB.heightAnchor.constraint(equalToConstant: 31),
+        ])
+        
+        timeSinceTransactionLabel.constrain([
+            timeSinceTransactionLabel.centerYAnchor.constraint(equalTo: digiLogo.centerYAnchor, constant: 0),
+            timeSinceTransactionLabel.leftAnchor.constraint(equalTo: amountDGB.rightAnchor, constant: 10),
+            timeSinceTransactionLabel.rightAnchor.constraint(equalTo: card.rightAnchor, constant: -20)
+        ])
+        
+        // elements beneath card's header line
+        let margin: CGFloat = 20
+        amountDetailsHeader.constrain([
+            amountDetailsHeader.topAnchor.constraint(equalTo: timeSinceTransactionLabel.bottomAnchor, constant: margin),
+            amountDetailsHeader.leftAnchor.constraint(equalTo: digiLogo.leftAnchor, constant: 0),
+            amountDetailsHeader.rightAnchor.constraint(equalTo: timeSinceTransactionLabel.rightAnchor, constant: 0),
+        ])
         amountDetails.constrain([
-            amountDetails.topAnchor.constraint(equalTo: amountHeader.bottomAnchor),
-            amountDetails.leadingAnchor.constraint(equalTo: amountHeader.leadingAnchor),
-            amountDetails.trailingAnchor.constraint(equalTo: amountHeader.trailingAnchor) ])
-        separators[3].constrain([
-            separators[3].topAnchor.constraint(equalTo: amountDetails.bottomAnchor, constant: C.padding[2]),
-            separators[3].leadingAnchor.constraint(equalTo: amountDetails.leadingAnchor),
-            separators[3].trailingAnchor.constraint(equalTo: amountDetails.trailingAnchor),
-            separators[3].heightAnchor.constraint(equalToConstant: 1.0) ])
-        addressHeader.constrain([
-            addressHeader.topAnchor.constraint(equalTo: separators[3].bottomAnchor, constant: C.padding[2]),
-            addressHeader.leadingAnchor.constraint(equalTo: separators[3].leadingAnchor),
-            addressHeader.trailingAnchor.constraint(equalTo: separators[3].trailingAnchor) ])
-        fullAddress.constrain([
-            fullAddress.topAnchor.constraint(equalTo: addressHeader.bottomAnchor),
-            fullAddress.leadingAnchor.constraint(equalTo: addressHeader.leadingAnchor),
-            fullAddress.trailingAnchor.constraint(lessThanOrEqualTo: addressHeader.trailingAnchor) ])
-        separators[4].constrain([
-            separators[4].topAnchor.constraint(equalTo: fullAddress.bottomAnchor, constant: C.padding[2]),
-            separators[4].leadingAnchor.constraint(equalTo: fullAddress.leadingAnchor),
-            separators[4].trailingAnchor.constraint(equalTo: fullAddress.trailingAnchor),
-            separators[4].heightAnchor.constraint(equalToConstant: 1.0) ])
-        moreContentView.constrain([
-            moreContentView.leadingAnchor.constraint(equalTo: separators[4].leadingAnchor),
-            moreContentView.topAnchor.constraint(equalTo: separators[4].bottomAnchor, constant: C.padding[2]),
-            moreContentView.trailingAnchor.constraint(equalTo: separators[4].trailingAnchor),
-            moreContentView.bottomAnchor.constraint(equalTo: scrollViewContent.bottomAnchor, constant: -C.padding[2]) ])
-        moreButton.constrain([
-            moreButton.leadingAnchor.constraint(equalTo: moreContentView.leadingAnchor),
-            moreButton.topAnchor.constraint(equalTo: moreContentView.topAnchor),
-            moreButton.bottomAnchor.constraint(equalTo: moreContentView.bottomAnchor) ])
+            amountDetails.topAnchor.constraint(equalTo: amountDetailsHeader.bottomAnchor, constant: 10),
+            amountDetails.leftAnchor.constraint(equalTo: amountDetailsHeader.leftAnchor, constant: 0),
+            amountDetails.rightAnchor.constraint(equalTo: timeSinceTransactionLabel.rightAnchor, constant: 0),
+        ])
+        
+        blockHeightHeader.constrain([
+            blockHeightHeader.topAnchor.constraint(equalTo: amountDetails.bottomAnchor, constant: margin),
+            blockHeightHeader.leftAnchor.constraint(equalTo: digiLogo.leftAnchor, constant: 0),
+            blockHeightHeader.rightAnchor.constraint(equalTo: timeSinceTransactionLabel.rightAnchor, constant: 0),
+        ])
+        blockHeight.constrain([
+            blockHeight.topAnchor.constraint(equalTo: blockHeightHeader.bottomAnchor, constant: 10),
+            blockHeight.leftAnchor.constraint(equalTo: blockHeightHeader.leftAnchor, constant: 0),
+            blockHeight.rightAnchor.constraint(equalTo: timeSinceTransactionLabel.rightAnchor, constant: 0),
+        ])
+        
+        txHashHeader.constrain([
+            txHashHeader.topAnchor.constraint(equalTo: blockHeight.bottomAnchor, constant: margin),
+            txHashHeader.leftAnchor.constraint(equalTo: digiLogo.leftAnchor, constant: 0),
+            txHashHeader.rightAnchor.constraint(equalTo: timeSinceTransactionLabel.rightAnchor, constant: 0),
+        ])
+        txHash.constrain([
+            txHash.topAnchor.constraint(equalTo: txHashHeader.bottomAnchor, constant: 10),
+            txHash.leftAnchor.constraint(equalTo: txHashHeader.leftAnchor, constant: 0),
+            txHash.rightAnchor.constraint(equalTo: timeSinceTransactionLabel.rightAnchor, constant: 0),
+        ])
+        
+        commentsHeader.constrain([
+            commentsHeader.topAnchor.constraint(equalTo: txHash.bottomAnchor, constant: margin),
+            commentsHeader.leftAnchor.constraint(equalTo: digiLogo.leftAnchor, constant: 0),
+            commentsHeader.rightAnchor.constraint(equalTo: timeSinceTransactionLabel.rightAnchor, constant: 0),
+        ])
+        comment.constrain([
+            comment.topAnchor.constraint(equalTo: commentsHeader.bottomAnchor, constant: 0),
+            comment.leftAnchor.constraint(equalTo: commentsHeader.leftAnchor, constant: 0),
+            comment.rightAnchor.constraint(equalTo: timeSinceTransactionLabel.rightAnchor, constant: 0),
+        ])
+        
+        let commentBottomBorder = UIView(color: C.Colors.greyBlue)
+        card.addSubview(commentBottomBorder)
+        commentBottomBorder.constrain([
+            commentBottomBorder.heightAnchor.constraint(equalToConstant: 1),
+            commentBottomBorder.bottomAnchor.constraint(equalTo: comment.bottomAnchor, constant: 0),
+            commentBottomBorder.leftAnchor.constraint(equalTo: comment.leftAnchor, constant: 0),
+            commentBottomBorder.rightAnchor.constraint(equalTo: comment.rightAnchor, constant: 0),
+        ])
+        
+        // card height
+        comment.constrain([
+            comment.bottomAnchor.constraint(equalTo: card.bottomAnchor, constant: -80),
+        ])
+
+        layoutIfNeeded()
     }
 
     private func setData() {
+        scrollView.showsVerticalScrollIndicator = false
+        
+        timeSinceTransactionLabel.textAlignment = .right
+        timeSinceTransactionLabel.lineBreakMode = .byWordWrapping
+        timeSinceTransactionLabel.numberOfLines = 0
+        
+        amountDGB.lineBreakMode = .byCharWrapping
+        
         backgroundColor = .clear
 
         statusHeader.text = S.TransactionDetails.statusHeader
         commentsHeader.text = S.TransactionDetails.commentsHeader
         amountHeader.text = S.TransactionDetails.amountHeader
         availability.text = S.Transaction.available
-
+    
+        blockHeightHeader.text = S.TransactionDetails.blockHeightLabel
+        txHashHeader.text = S.TransactionDetails.txHashHeader
+        amountDetailsHeader.text = S.TransactionDetails.amountHeader
+        
+        processedLabel.text = S.TransactionDetailView.processed.uppercased()
+        dateLabel.text = S.TransactionDetailView.date.uppercased()
+        statusLabel.text = S.TransactionDetailView.status.uppercased()
+        
         comment.font = .customBody(size: 13.0)
         comment.textColor = C.Colors.text
         comment.isScrollEnabled = false
@@ -231,6 +778,9 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         comment.delegate = self
         comment.backgroundColor = .clear
 
+        timestamp1.numberOfLines = 0
+        timestamp1.lineBreakMode = .byWordWrapping
+        
         moreButton.setTitle(S.TransactionDetails.more, for: .normal)
         moreButton.tintColor = C.Colors.text
         moreButton.titleLabel?.font = .customBold(size: 14.0)
@@ -305,14 +855,26 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
             self.scrollView.setContentOffset(point, animated: true)
         }
     }
+    
+    
 
     override func layoutSubviews() {
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 6.0, height: 6.0)).cgPath
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = path
-        layer.mask = maskLayer
+        super.layoutSubviews()
+        
+        DispatchQueue.main.async {
+            // save important properties of views
+            self.transactionDetailCardView.foldLineTop = self.address.frame.origin.y + self.address.frame.height + 35
+            self.initCard()
+        }
     }
-
+    
+    func resetView() {
+        cardExpanded = true
+        hideCard()
+        scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        cardExpanded = false
+    }
+    
     fileprivate func saveComment(comment: String) {
         guard let kvStore = self.kvStore else { return }
         if let metaData = transaction?.metaData {
@@ -341,11 +903,13 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     //MARK: - Keyboard Notifications
     @objc private func keyboardWillShow(notification: Notification) {
         modalTransitioningDelegate?.shouldDismissInteractively = false
+        card.gestureRecognizers?.first?.isEnabled = false
         respondToKeyboardAnimation(notification: notification)
     }
 
     @objc private func keyboardWillHide(notification: Notification) {
         modalTransitioningDelegate?.shouldDismissInteractively = true
+        card.gestureRecognizers?.first?.isEnabled = true
         respondToKeyboardAnimation(notification: notification)
     }
 

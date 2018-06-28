@@ -44,7 +44,7 @@ class ScanViewController : UIViewController, Trackable {
     fileprivate let session = AVCaptureSession()
     private let toolbar = UIView()
     private let close = UIButton.close
-    private let flash = UIButton.icon(image: #imageLiteral(resourceName: "Flash"), accessibilityLabel: S.Scanner.flashButtonLabel)
+    private let flash = UIButton.icon(image: #imageLiteral(resourceName: "Flash").withRenderingMode(.alwaysTemplate), accessibilityLabel: S.Scanner.flashButtonLabel)
     fileprivate var currentUri = ""
     private let scanViewType: ScanViewType
 
@@ -80,6 +80,7 @@ class ScanViewController : UIViewController, Trackable {
 
     override func viewDidLoad() {
         view.backgroundColor = .black
+        flash.tintColor = C.Colors.blueGrey
         toolbar.backgroundColor = C.Colors.background
 
         view.addSubview(toolbar)
@@ -175,13 +176,17 @@ class ScanViewController : UIViewController, Trackable {
                     device.unlockForConfiguration()
                     if device.torchMode == .on {
                         //self?.saveEvent("scan.torchOn")
+                        self?.flash.tintColor = C.Colors.weirdRed
                     } else {
                         //self?.saveEvent("scan.torchOn")
+                        self?.flash.tintColor = C.Colors.blueGrey
                     }
                 } catch let error {
                     print("Camera Torch error: \(error)")
                 }
             }
+        } else {
+            flash.isHidden = true
         }
     }
 

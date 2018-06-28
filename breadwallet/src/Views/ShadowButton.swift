@@ -46,15 +46,25 @@ class ShadowButton: UIControl {
     var image: UIImage? {
         didSet {
             imageView?.image = image
+            if let m = imageMargin {
+                if image != nil {
+                    m.constant = -C.padding[1]
+                } else {
+                    m.constant = 0
+                }
+            }
+            imageView?.setNeedsLayout()
         }
     }
+    var imageView: UIImageView?
+    
     private let type: ButtonType
     private let container = UIView()
     private let shadowView = UIView()
     private let label = UILabel()
     private let shadowYOffset: CGFloat = 4.0
     private let cornerRadius: CGFloat = 4.0
-    private var imageView: UIImageView?
+    private var imageMargin: NSLayoutConstraint? = nil
 
     override var isHighlighted: Bool {
         didSet {
@@ -144,8 +154,11 @@ class ShadowButton: UIControl {
         content.constrainToCenter()
         iconImageView.constrainLeadingCorners()
         label.constrainTrailingCorners()
+        
+        imageMargin = iconImageView.constraint(toLeading: label, constant: -C.padding[1])
         iconImageView.constrain([
-            iconImageView.constraint(toLeading: label, constant: -C.padding[1]) ])
+            imageMargin,
+        ])
         imageView = iconImageView
     }
 

@@ -144,6 +144,8 @@ fileprivate class RadialGradientMenu: UIView {
     private var currentProgress: CGFloat = 0
     private var buttonModels: [RadialGradientViewButtonModel] = []
     
+    private let blurView = UIVisualEffectView()
+    
     override func layoutSubviews() {
         guard !hasSetup else { return }
         addSubviews()
@@ -257,6 +259,8 @@ fileprivate class RadialGradientMenu: UIView {
             view.frame.origin.y = -element.targetOffset * progress
             view.alpha = 1 * progress
         }
+        
+        blurView.alpha = 1 * progress
     }
     
     private func centerButtonImageAndTitle(button: UIButton) {
@@ -269,6 +273,7 @@ fileprivate class RadialGradientMenu: UIView {
     }
     
     private func addSubviews() {
+        addSubview(blurView)
         addSubview(circleView)
         addSubview(buttonText)
     }
@@ -335,6 +340,17 @@ fileprivate class RadialGradientMenu: UIView {
             circleView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
             circleView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             ])
+        
+        if let v = window?.rootViewController?.view {
+            blurView.constrain([
+                blurView.topAnchor.constraint(equalTo: v.topAnchor),
+                blurView.leftAnchor.constraint(equalTo: v.leftAnchor),
+                blurView.bottomAnchor.constraint(equalTo: v.bottomAnchor),
+                blurView.rightAnchor.constraint(equalTo: v.rightAnchor),
+            ])
+        } else {
+            blurView.frame = CGRect.zero
+        }
     }
     
     private func bringButtonsToFront() {
@@ -345,7 +361,20 @@ fileprivate class RadialGradientMenu: UIView {
         bringSubview(toFront: buttonText)
     }
     
+    @objc private func blurViewTap() {
+        let _ = closeMenu()
+    }
+    
     private func configure() {
+        // blur view
+        blurView.effect = UIBlurEffect(style: .dark)
+        blurView.alpha = 0.0
+        blurView.isUserInteractionEnabled = true
+        let gr = UITapGestureRecognizer()
+        gr.addTarget(self, action: #selector(blurViewTap))
+        blurView.addGestureRecognizer(gr)
+        
+        // circleView
         circleView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         circleView.backgroundColor = UIColor(red: 0x02 / 255, green: 0x52 / 255, blue: 0xAA / 255, alpha: 1)
         circleView.layer.cornerRadius = size.width / 2
@@ -440,7 +469,16 @@ fileprivate class RadialGradientMenu: UIView {
             for subview in self.subviews.reversed() {
                 if subview == circleView {
                     if opened {
-                        return circleView
+                        // ToDo: use real circle size to determine hitTest,
+                        // that is, determining scale factor, calculate circle frame, make a hittest.
+                        // If that is fixed, blurView tap can be handled
+                        let subPoint = circleView.layer.convert(point, from: self.layer)
+                        let view = circleView.layer.hitTest(subPoint)
+                        guard view == nil else { return circleView }
+                    }
+                } else if (subview == blurView) {
+                    if opened {
+                        return blurView
                     }
                 } else {
                     let subPoint = subview.convert(point, from: self)
@@ -582,6 +620,7 @@ class AccountFooterView: UIView {
         backgroundView.addSubview(hamburgerButton)
         backgroundView.addSubview(qrButton)
         backgroundView.addSubview(digiIDButton)
+        backgroundView.addSubview(blurView)
         backgroundView.addSubview(circleButton)
         
         // add constraints

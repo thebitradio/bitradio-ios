@@ -11,8 +11,9 @@ import LocalAuthentication
 
 class ConfirmationViewController : UIViewController, ContentBoxPresenter {
 
-    let background: UIImageView = {
-        return UIImageView()
+    let background: UIView = {
+        let backgroundView = BlurView()
+        return backgroundView
     }()
     
     init(amount: Satoshis, fee: Satoshis, feeType: Fee, state: State, selectedRate: Rate?, minimumFractionDigits: Int?, address: String, isUsingBiometrics: Bool) {
@@ -37,9 +38,7 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
     private let isUsingBiometrics: Bool
 
     //ContentBoxPresenter
-    let contentBox = UIView(color: .white)
-    let blurView = UIVisualEffectView()
-    let effect = UIBlurEffect(style: .dark)
+    let contentBox = UIView(color: C.Colors.background)
 
     var successCallback: (() -> Void)?
     var cancelCallback: (() -> Void)?
@@ -48,19 +47,19 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
     private let cancel = ShadowButton(title: S.Button.cancel, type: .secondary)
     private let sendButton = ShadowButton(title: S.Confirmation.send, type: .primary, image: (LAContext.biometricType() == .face ? #imageLiteral(resourceName: "FaceId") : #imageLiteral(resourceName: "TouchId")))
 
-    private let payLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let toLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let amountLabel = UILabel(font: .customBody(size: 16.0), color: .darkText)
-    private let address = UILabel(font: .customBody(size: 16.0), color: .darkText)
+    private let payLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
+    private let toLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.text) 
+    private let amountLabel = UILabel(font: .customBody(size: 16.0), color: C.Colors.text)
+    private let address = UILabel(font: .customBody(size: 16.0), color: C.Colors.text)
 
-    private let processingTime = UILabel.wrapping(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let sendLabel = UILabel(font: .customBody(size: 14.0), color: .darkText)
-    private let feeLabel = UILabel(font: .customBody(size: 14.0), color: .darkText)
-    private let totalLabel = UILabel(font: .customMedium(size: 14.0), color: .darkText)
+    private let processingTime = UILabel.wrapping(font: .customBody(size: 14.0), color: C.Colors.text)
+    private let sendLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
+    private let feeLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
+    private let totalLabel = UILabel(font: .customMedium(size: 14.0), color: C.Colors.text)
 
-    private let send = UILabel(font: .customBody(size: 14.0), color: .darkText)
-    private let fee = UILabel(font: .customBody(size: 14.0), color: .darkText)
-    private let total = UILabel(font: .customMedium(size: 14.0), color: .darkText)
+    private let send = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
+    private let fee = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
+    private let total = UILabel(font: .customMedium(size: 14.0), color: C.Colors.text)
 
     override func viewDidLoad() {
         addSubviews()
@@ -151,7 +150,9 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
 
         toLabel.text = S.Confirmation.to
         address.text = addressText
-        address.lineBreakMode = .byTruncatingMiddle
+        address.lineBreakMode = .byCharWrapping
+        address.numberOfLines = 0
+        
         switch feeType {
         case .regular:
             processingTime.text = String(format: S.Confirmation.processingTime, S.FeeSelector.regularTime)
@@ -180,6 +181,7 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
         contentBox.layer.cornerRadius = 6.0
         contentBox.layer.masksToBounds = true
 
+        sendButton.imageView?.tintColor = C.Colors.blue
         if !isUsingBiometrics {
             sendButton.image = nil
         }

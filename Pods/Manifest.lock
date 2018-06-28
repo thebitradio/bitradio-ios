@@ -1,15 +1,24 @@
 PODS:
   - Buglife (2.8.0)
   - Reveal-SDK (15)
+  - VisualEffectView (3.0.2)
 
 DEPENDENCIES:
   - Buglife
   - Reveal-SDK
+  - VisualEffectView
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Buglife
+    - Reveal-SDK
+    - VisualEffectView
 
 SPEC CHECKSUMS:
   Buglife: fed8594db4b440bc85d44629b90f2575713e8825
   Reveal-SDK: 25e21896c478b60b948f876043f91570d368d23d
+  VisualEffectView: 42c25f5a3c643d7c3021a3e50dac9946642225d7
 
-PODFILE CHECKSUM: e249d18221d26ca07eea8579a21598f47b75b565
+PODFILE CHECKSUM: c1d3907509faa7f064164fe066deadd123868b82
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

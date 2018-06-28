@@ -310,7 +310,10 @@ class LoginViewController: PINViewController, Trackable {
         
         let biometricsImage = { () -> UIImageView in
             if LAContext.biometricType() == .face {
-                return UIImageView(image: #imageLiteral(resourceName: "faceId"))
+                let img = #imageLiteral(resourceName: "faceId").withRenderingMode(.alwaysTemplate)
+                let v = UIImageView(image: img)
+                v.tintColor = C.Colors.blue
+                return v
             } else {
                 return UIImageView(image: #imageLiteral(resourceName: "touchId"))
             }
@@ -329,10 +332,7 @@ class LoginViewController: PINViewController, Trackable {
         ])
         
         biometricsImage.constrain([
-            //biometricsImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
             biometricsImage.topAnchor.constraint(equalTo: view.topAnchor),
-            //biometricsImage.leftAnchor.constraint(equalTo: view.leftAnchor),
-            //biometricsImage.rightAnchor.constraint(equalTo: view.rightAnchor),
             biometricsImage.widthAnchor.constraint(equalToConstant: biometricsSize),
             biometricsImage.heightAnchor.constraint(equalToConstant: biometricsSize),
             biometricsImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -416,12 +416,13 @@ class LoginViewController: PINViewController, Trackable {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard UIApplication.shared.applicationState != .background else { return }
-        if shouldUseBiometrics && !hasAttemptedToShowBiometrics && !isPresentedForLock && UserDefaults.hasShownWelcome {
+        print("BIO", shouldUseBiometrics && !hasAttemptedToShowBiometrics && !isPresentedForLock && UserDefaults.hasShownWelcome)
+        if shouldUseBiometrics && !hasAttemptedToShowBiometrics && !isPresentedForLock {
             hasAttemptedToShowBiometrics = true
             
             // do not ask for fingerprint / faceid, if app was opened using an application url
             if senderApp == "" {
-                biometricsTapped()
+                self.biometricsTapped()
             }
         }
         if !isResetting {

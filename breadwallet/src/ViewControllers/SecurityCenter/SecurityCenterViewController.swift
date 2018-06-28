@@ -69,7 +69,7 @@ class SecurityCenterViewController : UIViewController, Subscriber {
     fileprivate var headerBackgroundHeight: NSLayoutConstraint?
     private let headerBackground = DigiRadialGradientView(backgroundColor: C.Colors.background, offset: 64.0)
     private let header: ModalHeaderView
-    fileprivate let shield = UIImageView(image: #imageLiteral(resourceName: "shield"))
+    fileprivate let shield = UIImageView(image: #imageLiteral(resourceName: "shield").withRenderingMode(.alwaysTemplate))
     private let scrollView = UIScrollView()
     private let info = UILabel(font: .customBody(size: 16.0), color: C.Colors.text)
     private let pinCell = SecurityCenterCell(title: S.SecurityCenter.Cells.pinTitle, descriptionText: S.SecurityCenter.Cells.pinDescription)
@@ -93,6 +93,7 @@ class SecurityCenterViewController : UIViewController, Subscriber {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setPinAndPhraseChecks()
+        colorShield()
         didViewAppear = false
     }
 
@@ -198,6 +199,20 @@ class SecurityCenterViewController : UIViewController, Subscriber {
     private func setPinAndPhraseChecks() {
         pinCell.isCheckHighlighted = store.state.pinLength == 6
         paperKeyCell.isCheckHighlighted = !UserDefaults.walletRequiresBackup
+    }
+    
+    private func colorShield() {
+        shield.tintColor = .white
+        
+        guard store.state.pinLength == 6 &&
+            !UserDefaults.walletRequiresBackup &&
+            biometricsCell.isCheckHighlighted else {
+                return
+        }
+        
+        UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseInOut, animations: {
+            self.shield.tintColor = C.Colors.weirdGreen
+        })
     }
 
     required init?(coder aDecoder: NSCoder) {

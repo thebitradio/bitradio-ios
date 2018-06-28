@@ -10,6 +10,7 @@ import UIKit
 
 enum PinViewStyle {
     case create
+    case modal
     case login
 }
 
@@ -20,8 +21,12 @@ class PinView : UIView {
         switch style {
         case .create:
             return E.is320wDevice ? 40.0 : 44.0
+            
         case .login:
             return 16.0
+            
+        case .modal:
+            return E.is320wDevice ? 35.0 : 40.0
         }
     }
     var width: CGFloat {
@@ -36,6 +41,9 @@ class PinView : UIView {
         self.length = length
         switch style {
         case .create:
+            unFilled = (0...(length-1)).map { _ in Circle(color: C.Colors.dark3) }
+            filled = (0...(length-1)).map { _ in return Circle(color: .black).filled() }
+        case .modal:
             unFilled = (0...(length-1)).map { _ in Circle(color: C.Colors.dark3) }
             filled = (0...(length-1)).map { _ in return Circle(color: .black).filled() }
         case .login:

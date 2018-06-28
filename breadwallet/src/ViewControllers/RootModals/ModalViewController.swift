@@ -55,6 +55,17 @@ class ModalViewController : UIViewController, Subscriber {
         addSubviews()
         addConstraints()
         setInitialData()
+        setScrollListener()
+    }
+    
+    private func setScrollListener() {
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(scrollDown), name: NSNotification.Name(rawValue: "scrollDown"), object: nil)
+    }
+    
+    @objc func scrollDown() {
+        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height + scrollView.contentInset.bottom)
+        scrollView.setContentOffset(bottomOffset, animated: true)
     }
 
     private func addSubviews() {
