@@ -189,6 +189,9 @@ class Transaction {
     private lazy var startingBalance: UInt64 = {
         switch self.direction {
         case .received:
+            // ToDo: There is an overflow happening using the following seed:
+            // fix wife bullet unusual museum mention correct snap mandate bulb bleak category,
+            // somehow the fees are just causing it to overflow.
             return
                 self.balanceAfter.subtractingReportingOverflow(self.satoshis).0.subtractingReportingOverflow(self.fee).0
         case .sent:

@@ -65,9 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		Buglife.shared().start(withAPIKey: "") // TODO: Replace me with the BugLife API Key
         
         let appearance = Buglife.shared().appearance
-        appearance.tintColor = .white
+        appearance.tintColor = .black
         appearance.barTintColor = .blueGradientEnd
-        appearance.statusBarStyle = .default
+        appearance.statusBarStyle = .lightContent
         
         UIView.swizzleSetFrame()
         applicationController.launch(application: application, options: launchOptions)

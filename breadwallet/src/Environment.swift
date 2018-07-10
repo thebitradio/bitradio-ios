@@ -59,4 +59,15 @@ struct E {
     static let is32Bit: Bool = {
         return MemoryLayout<Int>.size == MemoryLayout<UInt32>.size
     }()
+    
+    static let scaleFactor: CGFloat = {
+        switch UIScreen.main.scale {
+            case 2:
+                return 1.35
+            case 3:
+                return 1.5
+            default:
+                return 1
+        }
+    }()
 }

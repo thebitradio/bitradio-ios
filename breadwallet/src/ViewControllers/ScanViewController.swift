@@ -44,7 +44,7 @@ class ScanViewController : UIViewController, Trackable {
     fileprivate let session = AVCaptureSession()
     private let toolbar = UIView()
     private let close = UIButton.close
-    private let flash = UIButton.icon(image: #imageLiteral(resourceName: "Flash").withRenderingMode(.alwaysTemplate), accessibilityLabel: S.Scanner.flashButtonLabel)
+    private let flash = UIButton.icon(image: #imageLiteral(resourceName: "flash-off").withRenderingMode(.alwaysTemplate), accessibilityLabel: S.Scanner.flashButtonLabel)
     fileprivate var currentUri = ""
     private let scanViewType: ScanViewType
 
@@ -57,6 +57,7 @@ class ScanViewController : UIViewController, Trackable {
         self.scanKeyCompletion = nil
         self.isValidURI = isValidURI
         self.completion = nil
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -80,7 +81,7 @@ class ScanViewController : UIViewController, Trackable {
 
     override func viewDidLoad() {
         view.backgroundColor = .black
-        flash.tintColor = C.Colors.blueGrey
+        flash.tintColor = C.Colors.text
         toolbar.backgroundColor = C.Colors.background
 
         view.addSubview(toolbar)
@@ -133,6 +134,20 @@ class ScanViewController : UIViewController, Trackable {
                 self?.completion?(nil)
             })
         }
+        
+        if scanViewType == .digiid {
+            let logo = UIImageView(image: #imageLiteral(resourceName: "Digi-id-icon").withRenderingMode(.alwaysTemplate))
+            logo.contentMode = .scaleAspectFit
+            logo.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
+            view.addSubview(logo)
+            
+            logo.constrain([
+                logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+                logo.bottomAnchor.constraint(equalTo: guide.topAnchor, constant: -20),
+                logo.centerXAnchor.constraint(equalTo: guide.centerXAnchor),
+                logo.widthAnchor.constraint(equalToConstant: 80)
+            ])
+        }
 
         addCameraPreview()
     }
@@ -177,9 +192,11 @@ class ScanViewController : UIViewController, Trackable {
                     if device.torchMode == .on {
                         //self?.saveEvent("scan.torchOn")
                         self?.flash.tintColor = C.Colors.weirdRed
+                        self?.flash.setImage(#imageLiteral(resourceName: "flash-on").withRenderingMode(.alwaysTemplate), for: .normal)
                     } else {
                         //self?.saveEvent("scan.torchOn")
-                        self?.flash.tintColor = C.Colors.blueGrey
+                        self?.flash.tintColor = C.Colors.text
+                        self?.flash.setImage(#imageLiteral(resourceName: "flash-off").withRenderingMode(.alwaysTemplate), for: .normal)
                     }
                 } catch let error {
                     print("Camera Torch error: \(error)")

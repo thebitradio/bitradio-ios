@@ -102,13 +102,12 @@ class TransactionDetailsViewController: UICollectionViewController, Subscriber {
             // collectionView.contentSize returns invalid sizes, so we have to use the flow layout contentSize
             guard let contentSize = collectionView?.collectionViewLayout.collectionViewContentSize else { return }
             guard let collectionView = collectionView else { return }
+            
             secretScrollView.contentSize = CGSize(width: contentSize.width + C.padding[1], height: contentSize.height)
+            
             var contentOffset = collectionView.contentOffset
-            
-            
-            
-            contentOffset.x = contentOffset.x + collectionView.contentInset.left
-            contentOffset.y = contentOffset.y + collectionView.contentInset.top
+            contentOffset.x += collectionView.contentInset.left
+            contentOffset.y += collectionView.contentInset.top
             secretScrollView.contentOffset = contentOffset
 
             //The scrollview's delegate has to be set late here so we can set the initial position

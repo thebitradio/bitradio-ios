@@ -284,9 +284,14 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         txHash.setTitle(transaction.hash, for: .normal)
         availability.isHidden = !transaction.shouldDisplayAvailableToSpend
         blockHeight.text = transaction.blockHeight
+        
+        if self.transaction?.hash != transaction.hash {
+            scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        }
+        
         self.transaction = transaction
         self.rate = rate
-        
+                
         let directionSymbolImage: UIImage = {
             switch transaction.direction {
             case .sent:
@@ -426,7 +431,8 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         blurView.constrain(toSuperviewEdges: nil)
         
         var top: CGFloat = 0
-        top = UIScreen.main.bounds.height - self.scrollView.contentSize.height + 40
+        // top = UIScreen.main.bounds.height - self.scrollView.contentSize.height + 40
+        top = 100 + (E.isIPhoneX ? 60 : 0)
         if top > 0 {
             contentOffsetTop?.constant = top
             transactionDetailCardView.layoutIfNeeded()
@@ -871,7 +877,6 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     func resetView() {
         cardExpanded = true
         hideCard()
-        scrollView.contentOffset = CGPoint(x: 0, y: 0)
         cardExpanded = false
     }
     

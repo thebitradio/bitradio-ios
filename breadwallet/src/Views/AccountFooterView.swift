@@ -8,7 +8,8 @@
 
 import UIKit
 
-fileprivate let buttonSize: CGFloat = 44
+fileprivate let buttonSize: CGFloat = CGFloat(E.scaleFactor * 40)
+fileprivate let buttonBorderWidth: CGFloat = E.scaleFactor * 4.0
 
 fileprivate class RadialGradientViewButton: UIView {
     var highlightOnTouch = false
@@ -184,18 +185,20 @@ fileprivate class RadialGradientMenu: UIView {
             
         } else if sender.state == .changed {
             // changed
-            var translationY = -sender.translation(in: sender.view).y
+            var translationY = -sender.translation(in: sender.view?.superview).y
             if translationY > 0 {
-                translationY = translationY * 2
+                // move up
+                // translationY = translationY
             } else {
-                translationY *= pow(2, -translationY / 5)
+                // move down
+                // translationY *= pow(2, -translationY / 5)
             }
             
             let progress = 1 + translationY / (currentOffset+20) * 1.5
             menuAnimationStep(progress)
         } else {
             // ended
-            let translationY = -sender.translation(in: sender.view).y
+            let translationY = -sender.translation(in: sender.view?.superview).y
             
             let progress = 1 + translationY / (currentOffset+20) * 1.5
             decideToOpenOrNot(progress)
@@ -251,13 +254,16 @@ fileprivate class RadialGradientMenu: UIView {
         var scale = max(widthScale, heightScale) * progress
         scale = (scale < 1 ? 1 : scale)
         
+        var buttonAlpha = (progress - 0.3) * (1 / (1 - 0.3))
+        buttonAlpha = buttonAlpha < 0 ? 0 : (buttonAlpha > 1 ? 1 : buttonAlpha)
+        
         self.circleView.transform = CGAffineTransform(scaleX: scale, y: scale)
         self.buttonText.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4 * progress)
         for i in 0..<self.buttonModels.count {
             let element = self.buttonModels[i]
             let view = element.view
             view.frame.origin.y = -element.targetOffset * progress
-            view.alpha = 1 * progress
+            view.alpha = buttonAlpha
         }
         
         blurView.alpha = 1 * progress
@@ -499,6 +505,8 @@ fileprivate class RadialGradientMenu: UIView {
 fileprivate class FooterBackgroundView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        backgroundColor = UIColor(red: 0x0F / 255, green: 0x0F / 255, blue: 0x1A / 255, alpha: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -514,13 +522,14 @@ fileprivate class FooterBackgroundView: UIView {
                 let subPoint = subview.convert(point, from: self)
                 
                 // check whether we are checking circle button
-                if let subview = subview as? RadialGradientMenu {
+                if let subview = subview as? CircleButtonContainer {
                     // if the menu is opened, we should accept events
-                    if subview.opened {
-                        let pt = subview.convert(point, from: self)
-                        let view = subview.hitTest(pt, with: event)
+                    let circleButton = subview.circleButton
+                    if circleButton.opened {
+                        let pt = circleButton.convert(point, from: self)
+                        let view = circleButton.hitTest(pt, with: event)
                         guard view == nil else { return view }
-                        return subview
+                        return circleButton
                     } else {
                         let view = subview.hitTest(subPoint, with: event)
                         guard view == nil else { return view }
@@ -536,6 +545,18 @@ fileprivate class FooterBackgroundView: UIView {
     }
 }
 
+fileprivate class CircleButtonContainer: UIView {
+    fileprivate let circleButton: RadialGradientMenu
+    init(circleButton: RadialGradientMenu) {
+        self.circleButton = circleButton
+        super.init(frame: CGRect.zero)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class AccountFooterView: UIView {
     
     var sendCallback: (() -> Void)?
@@ -545,8 +566,8 @@ class AccountFooterView: UIView {
     var showAddressCallback: (() -> Void)?
     var qrScanCallback: (() -> Void)?
     
-    var height: CGFloat = 0
-    let menuOffset = 0
+    let height: CGFloat = 73
+    let menuHeightOffset = CGFloat(E.isIPhoneX ? 15 : 0)
     
     private let circleButton: RadialGradientMenu
     private let startColor = UIColor(red: 0x02 / 255, green: 0x5C / 255, blue: 0xBA / 255, alpha: 1)
@@ -568,19 +589,7 @@ class AccountFooterView: UIView {
     func setupSubViews(){
         let backgroundView = FooterBackgroundView()
         
-        // menu background images
-        let bgImage = #imageLiteral(resourceName: "tabBg")
-        let backgroundImage = UIImageView(image: bgImage)
-        let backgroundHelper = UIView()
-        backgroundHelper.backgroundColor = UIColor(red: 0x0F / 255, green: 0x0F / 255, blue: 0x1A / 255, alpha: 1)
-        
-        // calculate offsets
-        let menuOffset = CGFloat(E.isIPhoneX ? 0 : self.menuOffset)
-        
-        // center button
-        backgroundImage.isUserInteractionEnabled = true
-        backgroundHelper.isUserInteractionEnabled = true
-        
+        // add menu items
         circleButton.addMenuItem(img: #imageLiteral(resourceName: "receiveArrow"), text: S.Receive.title) {
             self.receiveCallback?()
         }
@@ -592,74 +601,69 @@ class AccountFooterView: UIView {
         }
         
         // left button (trigger hamburger menu)
-        let hamburgerButton = UIButton()
+        let hamburgerButton = UIButton(type: .system)
         hamburgerButton.setImage(#imageLiteral(resourceName: "hamburgerButton").withRenderingMode(.alwaysTemplate), for: .normal)
         hamburgerButton.tintColor = .white
         hamburgerButton.contentMode = .center
-        hamburgerButton.showsTouchWhenHighlighted = true
-        
-//        hamburgerButton.layer.borderWidth = 1
-//        hamburgerButton.layer.borderColor = UIColor.red.cgColor
         
         // right button (qr code scanner)
-        let qrButton = UIButton()
+        let qrButton = UIButton(type: .system)
         qrButton.setImage( #imageLiteral(resourceName: "qrButtonImage").withRenderingMode(.alwaysTemplate), for: .normal)
         qrButton.tintColor = .white
         qrButton.contentMode = .center
-        qrButton.showsTouchWhenHighlighted = true
         
         // DigiID
-        let digiIDButton = UIButton()
+        let digiIDButton = UIButton(type: .system)
         digiIDButton.setBackgroundImage(#imageLiteral(resourceName: "digiIDButton"), for: .normal)
         digiIDButton.contentMode = .scaleAspectFit
-        digiIDButton.showsTouchWhenHighlighted = true
+        
+        // black border around circleButton
+        let circleButtonContainer = CircleButtonContainer(circleButton: circleButton)
+        circleButtonContainer.addSubview(circleButton)
+        circleButtonContainer.isUserInteractionEnabled = true
+        circleButtonContainer.backgroundColor = UIColor(red: 0x0F / 255, green: 0x0F / 255, blue: 0x1A / 255, alpha: 1)
+        circleButtonContainer.layer.cornerRadius = (buttonSize + buttonBorderWidth * 2) / 2
         
         // add all to view
-        backgroundView.addSubview(backgroundHelper)
-        backgroundView.addSubview(backgroundImage)
         backgroundView.addSubview(hamburgerButton)
         backgroundView.addSubview(qrButton)
         backgroundView.addSubview(digiIDButton)
         backgroundView.addSubview(blurView)
-        backgroundView.addSubview(circleButton)
+        backgroundView.addSubview(circleButtonContainer)
         
         // add constraints
-        backgroundHelper.constrain([
-            backgroundHelper.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
-            backgroundHelper.leftAnchor.constraint(equalTo: backgroundView.leftAnchor),
-            backgroundHelper.rightAnchor.constraint(equalTo: backgroundView.rightAnchor),
-            backgroundHelper.heightAnchor.constraint(equalToConstant: 40),
-            ])
-        
-        backgroundImage.constrain([
-            backgroundImage.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: menuOffset),
-            backgroundImage.centerXAnchor.constraint(equalTo: backgroundHelper.centerXAnchor, constant: 0),
-            ])
-        
         digiIDButton.constrain([
             digiIDButton.leftAnchor.constraint(equalTo: circleButton.rightAnchor, constant: 10),
             digiIDButton.topAnchor.constraint(equalTo: circleButton.topAnchor, constant: 1.5),
-            digiIDButton.widthAnchor.constraint(equalToConstant: 35),
-            digiIDButton.heightAnchor.constraint(equalToConstant: 35),
-            ])
+            digiIDButton.widthAnchor.constraint(equalToConstant: 32 * E.scaleFactor),
+            digiIDButton.heightAnchor.constraint(equalToConstant: 32 * E.scaleFactor),
+        ])
         
         circleButton.constrain([
-            circleButton.bottomAnchor.constraint(equalTo: backgroundImage.bottomAnchor, constant: -42),
-            circleButton.centerXAnchor.constraint(equalTo: backgroundImage.centerXAnchor, constant: -2.5),
+            circleButton.centerYAnchor.constraint(equalTo: circleButtonContainer.centerYAnchor),
+            circleButton.centerXAnchor.constraint(equalTo: circleButtonContainer.centerXAnchor),
             circleButton.widthAnchor.constraint(equalToConstant: buttonSize),
             circleButton.heightAnchor.constraint(equalToConstant: buttonSize),
-            ])
+        ])
+        
+        circleButtonContainer.constrain([
+            circleButtonContainer.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: -15),
+            circleButtonContainer.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor, constant: -2.5),
+            circleButtonContainer.widthAnchor.constraint(equalToConstant: buttonSize + buttonBorderWidth * 2),
+            circleButtonContainer.heightAnchor.constraint(equalToConstant: buttonSize + buttonBorderWidth * 2),
+        ])
         
         hamburgerButton.constrain([
-            hamburgerButton.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: 20),
-            hamburgerButton.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: 20),
+            hamburgerButton.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: 15),
+            hamburgerButton.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 20),
             hamburgerButton.widthAnchor.constraint(equalToConstant: 55),
             hamburgerButton.heightAnchor.constraint(equalToConstant: 32)
         ])
         
         qrButton.constrain([
-            qrButton.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -25),
-            qrButton.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: 20),
+            qrButton.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -20),
+            //qrButton.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor, constant: 20),
+            qrButton.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 15),
             qrButton.widthAnchor.constraint(equalToConstant: 40),
             qrButton.heightAnchor.constraint(equalToConstant: 40),
         ])
@@ -670,15 +674,11 @@ class AccountFooterView: UIView {
         addSubview(backgroundView)
         
         backgroundView.constrain([
-            backgroundView.heightAnchor.constraint(equalToConstant: height),
+            backgroundView.heightAnchor.constraint(equalToConstant: height + menuHeightOffset),
             backgroundView.leftAnchor.constraint(equalTo: self.leftAnchor),
             backgroundView.rightAnchor.constraint(equalTo: self.rightAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-        
-        self.constrain([
-            self.heightAnchor.constraint(equalToConstant: height)
-            ])
         
         // events
         hamburgerButton.tap = menuCallback

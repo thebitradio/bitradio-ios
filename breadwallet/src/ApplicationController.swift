@@ -290,7 +290,6 @@ class ApplicationController : Subscriber, Trackable {
             guard let kvStore = self.walletManager?.apiClient?.kv else { return }
             guard let wnd = self.window.rootViewController else { return }
             
-            //let backgroundView = UIImageView(image: #imageLiteral(resourceName: "alertViewBg"))
             let backgroundView = BlurView()
             backgroundView.alpha = 0.0
             

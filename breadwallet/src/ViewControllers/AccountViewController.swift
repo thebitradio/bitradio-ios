@@ -85,7 +85,7 @@ fileprivate class BalanceView: UIView, Subscriber {
     private var animating: Bool = false
     
     private func openView() {
-        guard !viewOpen else { return }
+        //guard !viewOpen else { return }
         guard !animating else { return }
         animating = true
         
@@ -109,7 +109,7 @@ fileprivate class BalanceView: UIView, Subscriber {
     }
     
     private func closeView() {
-        guard viewOpen else { return }
+        //guard viewOpen else { return }
         guard !animating else { return }
         animating = true
         
@@ -314,6 +314,7 @@ fileprivate class CustomSegmentedControl: UIControl {
     var numberOfSegments: Int = 0
     
     var callback: ((Int, Int) -> Void)? = nil
+    var scrollToTopCallback: ((Int) -> Void)? = nil
     
     var animating = false
     
@@ -360,8 +361,13 @@ fileprivate class CustomSegmentedControl: UIControl {
             button.setTitleColor(C.Colors.text, for: .normal)
             button.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
             button.backgroundColor = .clear
+            button.titleLabel?.lineBreakMode = .byCharWrapping
+            button.titleLabel?.textAlignment = .center
             buttons.append(button)
         }
+        
+        // background Rect
+        addSubview(backgroundRect)
         
         let stackView = UIStackView(arrangedSubviews: buttons)
         stackView.axis = .horizontal
@@ -371,15 +377,15 @@ fileprivate class CustomSegmentedControl: UIControl {
         stackView.backgroundColor = .clear
         addSubview(stackView)
         
+        stackView.constrain([
+            stackView.topAnchor.constraint(equalTo: self.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: padding),
+            stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -padding),
+        ])
+        
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        stackView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        stackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        
-        // background Rect
-        addSubview(backgroundRect)
-        
+
         backgroundRect.constrain([
             backgroundRect.topAnchor.constraint(equalTo: topAnchor, constant: padding),
             backgroundRect.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
@@ -398,8 +404,13 @@ fileprivate class CustomSegmentedControl: UIControl {
             
             if (btn == button) {
                 guard !animating else { return }
+                
+                guard selectedSegmentIdx != buttonIndex else {
+                    scrollToTopCallback?(buttonIndex)
+                    return
+                }
+                
                 animating = true
-                guard selectedSegmentIdx != buttonIndex else { return }
                 callback?(selectedSegmentIdx, buttonIndex)
                 selectedSegmentIdx = buttonIndex
                 selectorStartPosition = padding + (frame.width - 2 * padding) / CGFloat(buttons.count) * CGFloat(buttonIndex)
@@ -565,6 +576,7 @@ fileprivate class HamburgerViewMenu: UIView {
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: E.is320wDevice ? 55 : 80, bottom: 0, right: 0)
         button.tintColor = C.Colors.text
         button.contentHorizontalAlignment = .left
+        button.imageView?.contentMode = .scaleAspectFit
         
         scrollInner.addArrangedSubview(button)
         
@@ -944,6 +956,21 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         menu.callback = { (oldIdx, idx) -> () in
             let forward = (idx > oldIdx)
             self.pageController.setViewControllers([self.pages[idx]], direction: forward ? .forward : .reverse, animated: true, completion: nil)
+        }
+        menu.scrollToTopCallback = { (idx) -> () in
+            switch(idx) {
+            case 0:
+                self.transactionsTableView.tableView.setContentOffset(CGPoint.zero, animated: true)
+                break
+            case 1:
+                self.transactionsTableViewForSentTransactions.tableView.setContentOffset(CGPoint.zero, animated: true)
+                break
+            case 2:
+                self.transactionsTableViewForReceivedTransactions.tableView.setContentOffset(CGPoint.zero, animated: true)
+                break
+            default:
+                break
+            }
         }
     }
 

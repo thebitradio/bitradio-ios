@@ -15,6 +15,12 @@ struct Amount {
     let rate: Rate
     let maxDigits: Int
     
+    init(amount: UInt64, rate: Rate, maxDigits: Int) {
+        self.amount = amount
+        self.rate = rate
+        self.maxDigits = maxDigits
+    }
+    
     var amountForBtcFormat: Double {
         var decimal = Decimal(self.amount)
         var amount: Decimal = 0.0
@@ -23,10 +29,11 @@ struct Amount {
     }
 
     var localAmount: Double {
-        return Double(amount)/100000000.0*rate.rate
+        return Double(amount) / 100000000.0*rate.rate
     }
 
     var bits: String {
+        guard self.amount < INT64_MAX else { return "" }
         var decimal = Decimal(self.amount)
         var amount: Decimal = 0.0
         NSDecimalMultiplyByPowerOf10(&amount, &decimal, Int16(-maxDigits), .up)

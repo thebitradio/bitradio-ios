@@ -70,7 +70,7 @@ class SecurityCenterCell : UIControl {
         }
     }
 
-    private let title = UILabel(font: .customBold(size: 13.0), color: C.Colors.text)
+    private let title = UILabel(font: .customMedium(size: 13.0), color: C.Colors.text)
     private let descriptionLabel = UILabel(font: .customBody(size: 13.0), color: C.Colors.lightText)
     private let separator = UIView(color: .secondaryShadow)
     private let check = UIButton(type: .system)
