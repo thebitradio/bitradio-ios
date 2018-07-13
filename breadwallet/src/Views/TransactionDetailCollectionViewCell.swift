@@ -275,8 +275,8 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
                 return .complete
             }
         }()
-        let confirmations = "Confirmations"
-        confirmationsLabel.text = "\(confirmations): \(transaction.confirms)".uppercased()
+        let confirmations = S.TransactionDetailView.confirmations.uppercased()
+        confirmationsLabel.text = "\(confirmations): \(transaction.confirms)"
         comment.text = transaction.comment
         amountDetails.text = transaction.amountDetails(isBtcSwapped: isBtcSwapped, rate: rate, rates: rates, maxDigits: maxDigits)
         addressHeader.text = transaction.direction.addressHeader.capitalized
