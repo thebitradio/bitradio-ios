@@ -186,6 +186,7 @@ enum S {
         static let date = NSLocalizedString("TransactionDetailView.date", value:"date", comment: "DATE: ...")
         static let processed = NSLocalizedString("TransactionDetailView.processed", value:"processed", comment: "PROCESSED: ...")
         static let status = NSLocalizedString("TransactionDetailView.status", value:"status", comment: "STATUS: ...")
+        static let confirmations = NSLocalizedString("TransactionDetailView.confirmations", value:"confirmations", comment: "Confirmations: NUMBER")
     }
 
     enum UpdatePin {
