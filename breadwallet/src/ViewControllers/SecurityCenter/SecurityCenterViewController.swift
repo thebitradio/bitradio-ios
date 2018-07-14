@@ -133,6 +133,7 @@ class SecurityCenterViewController : UIViewController, Subscriber {
         store.subscribe(self, selector: { $1.alert == .paperKeySet(callback: {})
         }, callback: { _ in
             self.setPinAndPhraseChecks() //When paper phrase is confirmed, we need to update the check mark status
+            self.colorShield()
         })
     }
 

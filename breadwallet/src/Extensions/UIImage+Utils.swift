@@ -21,7 +21,7 @@ extension UIImage {
         var filter = colorFilter
 
         qrFilter?.setValue(data, forKey: "inputMessage")
-        qrFilter?.setValue("L", forKey: "inputCorrectionLevel")
+        qrFilter?.setValue("H", forKey: "inputCorrectionLevel")
 
         if Double(color.alpha) > .ulpOfOne {
             invertFilter?.setValue(qrFilter?.outputImage, forKey: inputImageKey)
@@ -40,16 +40,17 @@ extension UIImage {
         defer { objc_sync_exit(context) }
         guard let outputImage = filter?.outputImage else { assert(false, "No qr output image"); return nil }
         guard let cgImage = context.createCGImage(outputImage, from: outputImage.extent) else { assert(false, "Could not create image."); return nil }
+        
         return UIImage(cgImage: cgImage)
     }
 
-    func resize(_ size: CGSize) -> UIImage? {
+    func resize(_ size: CGSize, interpolation: Bool = false) -> UIImage? {
         UIGraphicsBeginImageContext(size)
         defer { UIGraphicsEndImageContext() }
         guard let context = UIGraphicsGetCurrentContext() else { assert(false, "Could not create image context"); return nil }
         guard let cgImage = self.cgImage else { assert(false, "No cgImage property"); return nil }
-
-        context.interpolationQuality = .none
+        
+        context.interpolationQuality = interpolation ? .high : .none
         context.rotate(by: π) // flip
         context.scaleBy(x: -1.0, y: 1.0) // mirror
         context.draw(cgImage, in: context.boundingBoxOfClipPath)

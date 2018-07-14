@@ -63,7 +63,7 @@ class SecurityCenterCell : UIControl {
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                backgroundColor = .secondaryButton
+                backgroundColor = UIColor(white: 1, alpha: 0.2)
             } else {
                 backgroundColor = .clear
             }

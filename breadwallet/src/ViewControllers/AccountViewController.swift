@@ -465,7 +465,12 @@ fileprivate class HamburgerViewMenu: UIView {
     
     private let buttonHeight: CGFloat = 78.0
     
-    private var buttons: [UIButton] = []
+    private struct SideMenuButton {
+        let view: UIView
+        let callback: (() -> Void)
+    }
+    
+    private var buttons: [SideMenuButton] = []
     
     init(walletTitle: String, version: String) {
         super.init(frame: CGRect())
@@ -565,34 +570,65 @@ fileprivate class HamburgerViewMenu: UIView {
         self.supervc = supervc
     }
     
+    @objc private func buttonTapped(button: UIButton) {
+        for (_, btn) in buttons.enumerated() {
+            if (btn.view == button) {
+                self.supervc?.closeHamburgerMenu()
+                self.buttonUp(button: button)
+                btn.callback()
+            }
+        }
+    }
+    
+    @objc private func buttonDown(button: UIButton) {
+        button.backgroundColor = UIColor(white: 1, alpha: 0.2)
+    }
+    
+    @objc private func buttonUp(button: UIButton) {
+        button.backgroundColor = UIColor.clear
+    }
+    
     func addButton(title: String, icon: UIImage, callback: @escaping (() -> Void)) {
-        let button = UIButton(type: .system)
-        button.setImage(icon, for: .normal)
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.customBody(size: 18)
-        button.setTitleColor(C.Colors.text, for: .normal)
-        button.setTitleColor(.gray, for: .highlighted)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: E.is320wDevice ? 35 : 50, bottom: 0, right: 0)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: E.is320wDevice ? 55 : 80, bottom: 0, right: 0)
-        button.tintColor = C.Colors.text
-        button.contentHorizontalAlignment = .left
-        button.imageView?.contentMode = .scaleAspectFit
         
-        scrollInner.addArrangedSubview(button)
+        let buttonImage = UIImageView(image: icon.withRenderingMode(.alwaysTemplate))
+        buttonImage.tintColor = C.Colors.text
+        buttonImage.contentMode = .scaleAspectFit
         
-        button.constrain([
-//            button.topAnchor.constraint(equalTo: scrollInner.topAnchor, constant: y),
-//            button.leftAnchor.constraint(equalTo: scrollInner.leftAnchor),
-            button.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1),
-            button.heightAnchor.constraint(equalToConstant: buttonHeight)
+        let buttonText = UILabel(font: .customBody(size: 18), color: C.Colors.text)
+        buttonText.text = title
+        buttonText.lineBreakMode = .byWordWrapping
+        buttonText.numberOfLines = 0
+        
+        let buttonContainer = UIControl()
+        buttonContainer.isUserInteractionEnabled = true
+        buttonContainer.addSubview(buttonImage)
+        buttonContainer.addSubview(buttonText)
+        
+        scrollInner.addArrangedSubview(buttonContainer)
+        
+        buttonImage.constrain([
+            buttonImage.leadingAnchor.constraint(equalTo: buttonContainer.leadingAnchor, constant: 40),
+            buttonImage.widthAnchor.constraint(equalToConstant: 40),
+            buttonImage.centerYAnchor.constraint(equalTo: buttonContainer.centerYAnchor),
         ])
         
-        button.tap = { () -> Void in
-            self.supervc?.closeHamburgerMenu()
-            callback()
-        }
+        buttonText.constrain([
+            buttonText.leadingAnchor.constraint(equalTo: buttonImage.trailingAnchor, constant: 10),
+            buttonText.trailingAnchor.constraint(equalTo: buttonContainer.trailingAnchor, constant: 10),
+            buttonText.centerYAnchor.constraint(equalTo: buttonContainer.centerYAnchor),
+        ])
         
-        buttons.append(button)
+        buttonContainer.constrain([
+            buttonContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1),
+            buttonContainer.heightAnchor.constraint(equalToConstant: buttonHeight)
+        ])
+        
+        buttonContainer.addTarget(self, action: #selector(buttonDown(button:)), for: .touchDown)
+        buttonContainer.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
+        buttonContainer.addTarget(self, action: #selector(buttonUp(button:)), for: .touchUpOutside)
+        buttonContainer.addTarget(self, action: #selector(buttonUp(button:)), for: .touchCancel)
+        
+        buttons.append(SideMenuButton(view: buttonContainer, callback: callback))
         y += buttonHeight
     }
 }

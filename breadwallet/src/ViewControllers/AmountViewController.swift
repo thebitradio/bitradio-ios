@@ -13,10 +13,11 @@ private let feeHeight: CGFloat = 130.0
 
 class AmountViewController : UIViewController, Trackable {
 
-    init(store: Store, isPinPadExpandedAtLaunch: Bool, isRequesting: Bool = false) {
+    init(store: Store, isPinPadExpandedAtLaunch: Bool, scrollDownOnTap: Bool = false, isRequesting: Bool = false) {
         self.store = store
         self.isPinPadExpandedAtLaunch = isPinPadExpandedAtLaunch
         self.isRequesting = isRequesting
+        self.scrollDownOnTap = scrollDownOnTap
         if let rate = store.state.currentRate, store.state.isBtcSwapped {
             self.currencyToggle = ShadowButton(title: "\(rate.code)  (\(rate.currencySymbol))", type: .primary)
         } else {
@@ -76,7 +77,8 @@ class AmountViewController : UIViewController, Trackable {
     private let tapView = UIView()
     private let editFee = UIButton(type: .system)
     private let feeSelector: FeeSelector
-
+    private let scrollDownOnTap: Bool
+    
     private var amount: Satoshis? {
         didSet {
             updateAmountLabel()
@@ -309,7 +311,13 @@ class AmountViewController : UIViewController, Trackable {
             self.parent?.parent?.view.layoutIfNeeded()
         }, completion: { completed in
             let nc = NotificationCenter.default
-            nc.post(name: NSNotification.Name(rawValue: "scrollDown"), object: nil)
+            
+            let isCollapsed: Bool = self.pinPadHeight?.constant == 0.0
+            
+            // only scroll down if scrollDownOnTap is active, and if we have opened the pinView
+            if self.scrollDownOnTap && !isCollapsed {
+                nc.post(name: NSNotification.Name(rawValue: "scrollDown"), object: nil)
+            }
         })
     }
 

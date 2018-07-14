@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let qrSize: CGFloat = 186.0
+private let qrSize: CGFloat = 512.0
 private let smallButtonHeight: CGFloat = 32.0
 private let buttonPadding: CGFloat = 20.0
 private let smallSharePadding: CGFloat = 12.0
@@ -25,7 +25,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     init(wallet: BRWallet, store: Store, isRequestAmountVisible: Bool) {
         self.wallet = wallet
         self.isRequestAmountVisible = isRequestAmountVisible
-        self.amountView = AmountViewController(store: store, isPinPadExpandedAtLaunch: true, isRequesting: true)
+        self.amountView = AmountViewController(store: store, isPinPadExpandedAtLaunch: true, scrollDownOnTap: true, isRequesting: true)
         self.store = store
         super.init(nibName: nil, bundle: nil)
     }
@@ -34,6 +34,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     private let amountView: AmountViewController
     private let qrCode = UIImageView()
     private let requestString = UILabel(font: .customBody(size: 14.0))
+    private let descriptionLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
     private let addressPopout = InViewAlert(type: .primary)
     private let share: UIButton = {
         let btn = UIButton(type: .system)
@@ -69,13 +70,15 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
                 requestString.layer.opacity = 1
                 share.isUserInteractionEnabled = true
                 share.layer.opacity = 1
+                descriptionLabel.alpha = 0
                 let amountStr: CGFloat = CGFloat(amount.rawValue) / 100000000.0
                 requestString.text = "\(amountStr) \(C.btcCurrencyCode) \(S.Confirmation.to.lowercased())\n\(address)"
             } else {
                 addressButton.isUserInteractionEnabled = false
-                qrCode.layer.opacity = 0.1
+                qrCode.layer.opacity = 0.0
                 share.layer.opacity = 0.1
                 requestString.layer.opacity = 0.0
+                descriptionLabel.alpha = 1
                 share.isUserInteractionEnabled = false
             }
             setQrCode()
@@ -88,6 +91,9 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         setStyle()
         addActions()
         setupCopiedMessage()
+        
+        qrCode.contentMode = .scaleAspectFill
+        
         store.subscribe(self, selector: { $0.walletState.balance != $1.walletState.balance }, callback: {
             self.balance = $0.walletState.balance
         })
@@ -95,6 +101,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     private func addSubviews() {
         view.addSubview(qrCode)
+        view.addSubview(descriptionLabel)
         view.addSubview(requestString)
         view.addSubview(share)
         view.addSubview(addressPopout)
@@ -105,10 +112,14 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     private func addConstraints() {
         qrCode.constrain([
-            qrCode.constraint(.width, constant: qrSize),
-            qrCode.constraint(.height, constant: qrSize),
+            qrCode.constraint(.width, constant: 186.0),
+            qrCode.constraint(.height, constant: 186.0),
             qrCode.constraint(.top, toView: view, constant: C.padding[4]),
             qrCode.constraint(.centerX, toView: view) ])
+        descriptionLabel.constrain([
+            descriptionLabel.centerXAnchor.constraint(equalTo: qrCode.centerXAnchor),
+            descriptionLabel.centerYAnchor.constraint(equalTo: qrCode.centerYAnchor),
+        ])
         requestString.constrain([
             requestString.constraint(toBottom: qrCode, constant: C.padding[1]),
             requestString.constraint(.centerX, toView: view) ])
@@ -144,7 +155,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
                 amountView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: E.isIPhoneX ? -C.padding[5] : -C.padding[2])
                 ])
             
-            amountView.closePinPad()
+            // amountView.closePinPad()
         })
         
         addressButton.constrain([
@@ -171,6 +182,12 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         qrCode.backgroundColor = .white
         addressButton.isUserInteractionEnabled = false
         
+        descriptionLabel.alpha = 1.0
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.lineBreakMode = .byWordWrapping
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.text = ""
+        
         setReceiveAddress()
     }
     
@@ -179,6 +196,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         let request = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
         qrCode.image = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(CGSize(width: qrSize, height: qrSize))!
+        qrCode.image = placeLogoIntoQR(qrCode.image!, width: qrSize, height: qrSize)
     }
 
     private func setReceiveAddress() {
@@ -186,6 +204,8 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         
         qrCode.image = UIImage.qrCode(data: "\(wallet.receiveAddress)".data(using: .utf8)!, color: CIColor(color: .white))?
             .resize(CGSize(width: qrSize, height: qrSize))!
+        
+        qrCode.image = placeLogoIntoQR(qrCode.image!, width: qrSize, height: qrSize)
     }
 
     private func addActions() {
@@ -208,11 +228,12 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         
         if
             let qrImage = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .black))?.resize(CGSize(width: 512, height: 512)),
-            let imgData = UIImageJPEGRepresentation(qrImage, 1.0),
+            let qrImageLogo = placeLogoIntoQR(qrImage, width: 512, height: 512),
+            let imgData = UIImageJPEGRepresentation(qrImageLogo, 1.0),
             let jpegRep = UIImage(data: imgData) {
-            let activityViewController = UIActivityViewController(activityItems: [request, jpegRep], applicationActivities: nil)
-            activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
-            present(activityViewController, animated: true, completion: {})
+                let activityViewController = UIActivityViewController(activityItems: [request, jpegRep], applicationActivities: nil)
+                activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
+                present(activityViewController, animated: true, completion: {})
         }
     }
 

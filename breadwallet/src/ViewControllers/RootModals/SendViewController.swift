@@ -40,7 +40,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         self.initialAddress = initialAddress
         self.initialRequest = initialRequest
         self.currency = ShadowButton(title: S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits), type: .tertiary)
-        amountView = AmountViewController(store: store, isPinPadExpandedAtLaunch: false)
+        amountView = AmountViewController(store: store, isPinPadExpandedAtLaunch: false, scrollDownOnTap: false)
 
         super.init(nibName: nil, bundle: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)

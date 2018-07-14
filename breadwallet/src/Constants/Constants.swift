@@ -64,5 +64,5 @@ struct C {
 	static let sqliteFileName = "BreadWallet.sqlite"
     
     static let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-    static let applicationTitle = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "DigibyteWallet"
+    static let applicationTitle = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "DigiByte"
 }

@@ -8,11 +8,41 @@
 
 import UIKit
 
-private let qrSize: CGFloat = 186.0
+private let qrSize: CGFloat = 512.0
 private let smallButtonHeight: CGFloat = 32.0
 private let buttonPadding: CGFloat = 20.0
 private let smallSharePadding: CGFloat = 12.0
 private let largeSharePadding: CGFloat = 20.0
+
+// ToDo: export to external class
+func placeLogoIntoQR(_ image: UIImage, width: CGFloat, height: CGFloat) -> UIImage? {
+    let img = image.resize(CGSize(width: width, height: height))
+    UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+    img?.draw(at: CGPoint.zero)
+    let ctx = UIGraphicsGetCurrentContext()!
+    
+    ctx.saveGState()
+    ctx.setAllowsAntialiasing(true)
+    ctx.setShouldAntialias(true)
+    
+    let size = width / 3.5
+    let logoSize = width / 4.0
+    
+    let rect = CGRect(x: width / 2 - size / 2, y: height / 2 - size / 2, width: size, height: size)
+    ctx.interpolationQuality = .high
+    ctx.setFillColor(UIColor.white.cgColor)
+    ctx.fillEllipse(in: rect)
+    
+    let logo = #imageLiteral(resourceName: "DigiByteSymbol").resize(CGSize(width: logoSize, height: logoSize), interpolation: true)
+    logo?.draw(at: CGPoint(x: width / 2 - logoSize / 2, y: height / 2 - logoSize / 2))
+    
+    ctx.restoreGState()
+    
+    let res = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    return res
+}
+
 
 class ShowAddressViewController : UIViewController, Subscriber, Trackable {
 
@@ -75,13 +105,14 @@ class ShowAddressViewController : UIViewController, Subscriber, Trackable {
         view.addSubview(sharePopout)
         view.addSubview(addressPopout)
         
+        qrCode.contentMode = .scaleAspectFill
         qrCode.backgroundColor = .white
     }
 
     private func addConstraints() {
         qrCode.constrain([
-            qrCode.constraint(.width, constant: qrSize),
-            qrCode.constraint(.height, constant: qrSize),
+            qrCode.constraint(.width, constant: 186.0),
+            qrCode.constraint(.height, constant: 186.0),
             qrCode.constraint(.top, toView: view, constant: C.padding[4]),
             qrCode.constraint(.centerX, toView: view) ])
         address.constrain([
@@ -136,6 +167,8 @@ class ShowAddressViewController : UIViewController, Subscriber, Trackable {
         address.text = wallet.receiveAddress
         qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(CGSize(width: qrSize, height: qrSize))!
+        
+        qrCode.image = placeLogoIntoQR(qrCode.image!, width: qrSize, height: qrSize)
     }
 
     private func addActions() {
