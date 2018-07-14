@@ -234,7 +234,7 @@ class StartFlowPresenter : Subscriber {
         loginView.modalPresentationCapturesStatusBarAppearance = true
         loginViewController = loginView
         rootViewController.present(loginView, animated: false, completion: nil)
-        
+
         /*
         let pin = UpdatePinViewController(store: store, walletManager: walletManager, type: .update, showsBackButton: false, phrase: "Enter your PIN")
         pin.transitioningDelegate = loginTransitionDelegate

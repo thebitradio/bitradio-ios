@@ -129,6 +129,8 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     private func addButtonActions() {
         addressCell.paste.addTarget(self, action: #selector(SendViewController.pasteTapped), for: .touchUpInside)
         addressCell.scan.addTarget(self, action: #selector(SendViewController.scanTapped), for: .touchUpInside)
+        amountView.maxButton.addTarget(self, action: #selector(maxTapped), for: .touchUpInside)
+        
         sendButton.addTarget(self, action: #selector(sendTapped), for: .touchUpInside)
         descriptionCell.didReturn = { textView in
             textView.resignFirstResponder()
@@ -197,6 +199,14 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         ]
 
         return (NSAttributedString(string: balanceOutput, attributes: attributes), NSAttributedString(string: feeOutput, attributes: feeAttributes))
+    }
+    
+    @objc private func maxTapped() {
+        if balance > 0 {
+            let fee = sender.feeForTx(amount: balance)
+            let output = balance - fee
+            amountView.amount = Satoshis(rawValue: output)
+        }
     }
 
     @objc private func pasteTapped() {

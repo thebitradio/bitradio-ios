@@ -476,6 +476,12 @@ class ModalPresenter : Subscriber, Trackable {
                 }, callback: {
                     settingsNav.pushViewController(PushNotificationsViewController(store: self.store), animated: true)
                 }),*/
+                Setting(switchWithTitle: S.Settings.maxSendEnabled, initial: UserDefaults.maxSendButtonVisible, callback: { (active) in
+                    UserDefaults.maxSendButtonVisible = active
+                }),
+                Setting(switchWithTitle: S.Settings.excludeLogoInQR, initial: UserDefaults.excludeLogoInQR, callback: { (a) in
+                    UserDefaults.excludeLogoInQR = a
+                }),
                 Setting(title: LAContext.biometricType() == .face ? S.Settings.faceIdLimit : S.Settings.touchIdLimit, accessoryText: { [weak self] in
                     guard let myself = self else { return "" }
                     guard let rate = myself.store.state.currentRate else { return "" }

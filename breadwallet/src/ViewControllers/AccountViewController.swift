@@ -31,6 +31,18 @@ fileprivate class BalanceView: UIView, Subscriber {
     private var currencyLabelTop: NSLayoutConstraint? = nil
     private var balanceHeaderLabelTop: NSLayoutConstraint? = nil
     
+    private let grUp: UISwipeGestureRecognizer = {
+       let g = UISwipeGestureRecognizer()
+        g.direction = .up
+        return g
+    }()
+    
+    private let grDown: UISwipeGestureRecognizer = {
+        let g = UISwipeGestureRecognizer()
+        g.direction = .down
+        return g
+    }()
+    
     private let store: Store
     private var isBtcSwapped: Bool {
         didSet { updateBalancesAnimated() }
@@ -140,6 +152,7 @@ fileprivate class BalanceView: UIView, Subscriber {
     }
     
     @objc private func balanceViewSwipeUp() {
+        print("SWIPE UP")
         viewMode = .small
     }
     
@@ -148,12 +161,7 @@ fileprivate class BalanceView: UIView, Subscriber {
     }
     
     private func addGestureRecognizers() {
-        let grUp = UISwipeGestureRecognizer()
-        grUp.direction = .up
         grUp.addTarget(self, action: #selector(balanceViewSwipeUp))
-       
-        let grDown = UISwipeGestureRecognizer()
-        grDown.direction = .down
         grDown.addTarget(self, action: #selector(balanceViewSwipeDown))
         
         let gr = UITapGestureRecognizer()
@@ -240,7 +248,7 @@ fileprivate class BalanceView: UIView, Subscriber {
         
         balanceHeaderLabel.numberOfLines = 2
         balanceHeaderLabel.textColor = .gray
-        balanceHeaderLabel.text = S.Balance.header
+        balanceHeaderLabel.text = S.Balance.header.uppercased()
         balanceHeaderLabel.textAlignment = .center
         
         //balanceLabel.text = "D 132 293.787"
@@ -677,6 +685,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
                 loginView.shouldSelfDismiss = true
                 
                 self.present(self.loginView, animated: false, completion: {
+                    self.tempView.removeFromSuperview()
                     self.tempLoginView.remove()
                     //self.attemptShowWelcomeView()
                 })
@@ -686,6 +695,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
                 pin.modalPresentationStyle = .overFullScreen
                 pin.modalPresentationCapturesStatusBarAppearance = true
                 self.present(pin, animated: false, completion: {
+                    self.tempView.removeFromSuperview()
                     self.tempLoginView.remove()
                 })
                 
@@ -720,6 +730,8 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     private let transactionsTableView: TransactionsTableViewController
     private let transactionsTableViewForSentTransactions: TransactionsTableViewController
     private let transactionsTableViewForReceivedTransactions: TransactionsTableViewController
+    
+    private let tempView = UIView(color: C.Colors.background)
     
     private let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     private var pages = [UIViewController]()
@@ -1221,6 +1233,9 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     }
 
     private func addTemporaryStartupViews() {
+        view.addSubview(tempView)
+        tempView.constrain(toSuperviewEdges: nil)
+        
         guardProtected(queue: DispatchQueue.main) {
             if !WalletManager.staticNoWallet {
                 self.addChildViewController(self.tempLoginView, layout: {

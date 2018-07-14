@@ -16,6 +16,7 @@ private let largeSharePadding: CGFloat = 20.0
 
 // ToDo: export to external class
 func placeLogoIntoQR(_ image: UIImage, width: CGFloat, height: CGFloat) -> UIImage? {
+    guard !UserDefaults.excludeLogoInQR else { return image }
     let img = image.resize(CGSize(width: width, height: height))
     UIGraphicsBeginImageContext(CGSize(width: width, height: height))
     img?.draw(at: CGPoint.zero)

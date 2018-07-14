@@ -350,12 +350,13 @@ class LoginViewController: PINViewController, Trackable {
     }
     
     private func setData() {
-        securityCheckLabel.text = S.Prompts.SecurityCheck.header;
+        securityCheckLabel.text = S.Prompts.SecurityCheck.header.uppercased()
         securityCheckLabel.numberOfLines = 2
         securityCheckLabel.textAlignment = .center
         securityCheckLabel.lineBreakMode = .byWordWrapping
         
         header.text = S.UnlockScreen.subheader
+
     }
     
     override func viewDidLoad() {
@@ -416,6 +417,11 @@ class LoginViewController: PINViewController, Trackable {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard UIApplication.shared.applicationState != .background else { return }
+        
+        if isPresentedForLock {
+            walletLocked()
+        }
+        
         print("BIO", shouldUseBiometrics && !hasAttemptedToShowBiometrics && !isPresentedForLock && UserDefaults.hasShownWelcome)
         if shouldUseBiometrics && !hasAttemptedToShowBiometrics && !isPresentedForLock {
             hasAttemptedToShowBiometrics = true
@@ -465,7 +471,6 @@ class LoginViewController: PINViewController, Trackable {
             header.topAnchor.constraint(equalTo: securityCheckLabel.bottomAnchor, constant: 18),
             header.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
             header.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]),
-            header.heightAnchor.constraint(equalToConstant: 15),
         ])
     }
     
@@ -502,6 +507,46 @@ class LoginViewController: PINViewController, Trackable {
         authenticationSucceded()
     }
     
+    private func walletLocked() {
+        let label = UILabel(font: .customBody(size: 14))
+        label.textColor = .white
+        label.text = S.UnlockScreen.locked
+    
+        let lock = UIImageView(image: #imageLiteral(resourceName: "locked").withRenderingMode(.alwaysTemplate))
+        lock.tintColor = UIColor.white
+        
+        view.addSubview(label)
+        view.addSubview(lock)
+        
+        label.constrain([
+            label.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: -C.padding[1]),
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor) ])
+        lock.constrain([
+            lock.topAnchor.constraint(equalTo: label.bottomAnchor, constant: C.padding[1]),
+            lock.centerXAnchor.constraint(equalTo: label.centerXAnchor) ])
+        view.layoutIfNeeded()
+        
+        self.pinView.alpha = 0.0
+        self.pinPad.view.alpha = 0.0
+        self.biometricsView.alpha = 0.0
+        self.header.alpha = 0.0
+        self.securityCheckLabel.alpha = 0.0
+        
+        lock.alpha = 1.0
+        label.alpha = 1.0
+        
+        UIView.animate(withDuration: 0.4, delay: 1.0, options: .curveEaseInOut, animations: {
+            self.pinView.alpha = 1.0
+            self.pinPad.view.alpha = 1.0
+            self.biometricsView.alpha = 1.0
+            self.header.alpha = 1.0
+            self.securityCheckLabel.alpha = 1.0
+            
+            lock.alpha = 0
+            label.alpha = 0
+        }, completion: nil)
+    }
+    
     private func authenticationSucceded() {
         authenticated = true
         //saveEvent("login.success")
@@ -509,7 +554,7 @@ class LoginViewController: PINViewController, Trackable {
         label.textColor = .white
         label.text = S.UnlockScreen.unlocked
         label.alpha = 0.0
-        let lock = UIImageView(image: #imageLiteral(resourceName: "hamburger_004Locked").withRenderingMode(.alwaysTemplate))
+        let lock = UIImageView(image: #imageLiteral(resourceName: "unlocked").withRenderingMode(.alwaysTemplate))
         lock.tintColor = UIColor.white
         lock.alpha = 0.0
         

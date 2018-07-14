@@ -76,11 +76,19 @@ class SettingsViewController : UITableViewController, CustomTitleView {
             cell.textLabel?.font = .customBody(size: 16.0)
             cell.textLabel?.textColor = C.Colors.text
             cell.backgroundColor = C.Colors.background
+            
+            if setting.switchViewMode {
+                let switchView = UISwitch()
+                switchView.isOn = setting.initialSwitchValue
+                switchView.valueChanged = { () in setting.callback(switchView.isOn) }
+                cell.accessoryView = switchView
+            } else {
+                let label = UILabel(font: .customMedium(size: 14.0), color: C.Colors.greyBlue)
+                label.text = setting.accessoryText?()
+                label.sizeToFit()
+                cell.accessoryView = label
+            }
 
-            let label = UILabel(font: .customMedium(size: 14.0), color: C.Colors.greyBlue)
-            label.text = setting.accessoryText?()
-            label.sizeToFit()
-            cell.accessoryView = label
         }
         return cell
     }
@@ -116,7 +124,9 @@ class SettingsViewController : UITableViewController, CustomTitleView {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let setting = rows[sections[indexPath.section]]?[indexPath.row] {
-            setting.callback()
+            if !setting.switchViewMode {
+                setting.callback(true)
+            }
         }
     }
 

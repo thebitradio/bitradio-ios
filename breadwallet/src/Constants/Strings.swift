@@ -83,6 +83,8 @@ enum S {
         static let remoteRequestError = NSLocalizedString("Send.remoteRequestError", value: "Could not load payment request", comment: "Could not load remote request error message")
         static let loadingRequest = NSLocalizedString("Send.loadingRequest", value: "Loading Request", comment: "Loading request activity view message")
         static let insufficientFunds = NSLocalizedString("Send.insufficientFunds", value: "Insufficient Funds", comment: "Insufficient funds error")
+        
+        static let max = NSLocalizedString("Send.max", value: "Max", comment: "maximum amount")
     }
 
     enum Receive {
@@ -121,6 +123,7 @@ enum S {
         static let touchIdPrompt = NSLocalizedString("UnlockScreen.touchIdPrompt", value:"Unlock your DigiByte.", comment: "TouchID/FaceID prompt text")
         static let subheader = NSLocalizedString("UnlockScreen.subheader", value:"Enter PIN", comment: "Unlock Screen sub-header")
         static let unlocked = NSLocalizedString("UnlockScreen.unlocked", value:"Wallet Unlocked", comment: "Wallet unlocked message")
+        static let locked = NSLocalizedString("UnlockScreen.locked", value:"Wallet Locked", comment: "Wallet locked message")
         static let disabled = NSLocalizedString("UnlockScreen.disabled", value:"Disabled until: %1$@", comment: "Disabled until date")
         static let resetPin = NSLocalizedString("UnlockScreen.resetPin", value:"Reset PIN", comment: "Reset PIN with Paper Key button label.")
         static let faceIdText = NSLocalizedString("UnlockScreen.faceIdText", value:"Unlock with FaceID", comment: "Unlock with FaceID accessibility label")
@@ -292,6 +295,10 @@ enum S {
         static let faceIdLimit = NSLocalizedString("Settings.faceIdLimit", value:"Face ID Spending Limit", comment: "Face ID spending limit label")
         
         static let invalidPort = NSLocalizedString("Settings.invalidPortHeader", value:"Invalid port", comment: "Port must be greater than 0 and less than 65535")
+        
+        static let maxSendEnabled = NSLocalizedString("Settings.maxSendEnabled", value:"Send Max Button visible", comment: "send max button visible or not")
+        
+        static let excludeLogoInQR = NSLocalizedString("Settings.excludeLogoInQR", value:"Hide Digibyte Logo in QR codes", comment: "do not place a digibyte logo into qr codes")
     }
 
     enum About {

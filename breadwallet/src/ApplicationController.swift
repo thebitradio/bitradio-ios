@@ -237,7 +237,7 @@ class ApplicationController : Subscriber, Trackable {
             _ = urlController?.handleUrl(url)
             launchURL = nil
         }
-
+        
         if UIApplication.shared.applicationState != .background {
             if walletManager.noWallet {
                 // UserDefaults.hasShownWelcome = true

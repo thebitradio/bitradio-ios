@@ -23,6 +23,8 @@ private let customNodeIPKey = "customNodeIPKey"
 private let customNodePortKey = "customNodePortKey"
 private let hasPromptedShareDataKey = "hasPromptedShareDataKey"
 private let hasShownWelcomeKey = "hasShownWelcomeKey"
+private let maxSendButtonVisibleKey = "maxSendButtonVisible"
+private let excludeLogoInQRKey = "excludeLogoInQRKey"
 
 extension UserDefaults {
 
@@ -138,6 +140,21 @@ extension UserDefaults {
         }
         set { defaults.set(newValue, forKey: hasShownWelcomeKey) }
     }
+    
+    static var maxSendButtonVisible: Bool {
+        get {
+            return defaults.bool(forKey: maxSendButtonVisibleKey)
+        }
+        set { defaults.set(newValue, forKey: maxSendButtonVisibleKey) }
+    }
+    
+    static var excludeLogoInQR: Bool {
+        get {
+            return defaults.bool(forKey: excludeLogoInQRKey)
+        }
+        set { defaults.set(newValue, forKey: excludeLogoInQRKey) }
+    }
+    
 }
 
 //MARK: - Wallet Requires Backup

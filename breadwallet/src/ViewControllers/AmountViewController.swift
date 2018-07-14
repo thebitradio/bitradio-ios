@@ -27,10 +27,11 @@ class AmountViewController : UIViewController, Trackable {
         self.pinPad = PinPadViewController(style: .white, keyboardType: .decimalPad, maxDigits: store.state.maxDigits)
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     var balanceTextForAmount: ((Satoshis?, Rate?) -> (NSAttributedString?, NSAttributedString?)?)?
     var didUpdateAmount: ((Satoshis?) -> Void)?
     var didChangeFirstResponder: ((Bool) -> Void)?
+    let maxButton = ShadowButton(title: S.Send.max, type: .primary)
 
     var currentOutput: String {
         return amountLabel.text ?? ""
@@ -79,7 +80,7 @@ class AmountViewController : UIViewController, Trackable {
     private let feeSelector: FeeSelector
     private let scrollDownOnTap: Bool
     
-    private var amount: Satoshis? {
+    var amount: Satoshis? {
         didSet {
             updateAmountLabel()
             updateBalanceLabel()
@@ -97,6 +98,7 @@ class AmountViewController : UIViewController, Trackable {
         view.addSubview(amountLabel)
         view.addSubview(placeholder)
         view.addSubview(currencyToggle)
+        view.addSubview(maxButton)
         view.addSubview(feeContainer)
         view.addSubview(border)
         view.addSubview(cursor)
@@ -110,6 +112,7 @@ class AmountViewController : UIViewController, Trackable {
     private func addConstraints() {
         amountLabel.constrain([
             amountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
+            amountLabel.trailingAnchor.constraint(equalTo: maxButton.leadingAnchor, constant: -5),
             amountLabel.centerYAnchor.constraint(equalTo: currencyToggle.centerYAnchor) ])
         placeholder.constrain([
             placeholder.leadingAnchor.constraint(equalTo: amountLabel.leadingAnchor, constant: 2.0),
@@ -122,6 +125,18 @@ class AmountViewController : UIViewController, Trackable {
         currencyToggle.constrain([
             currencyToggle.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[2]),
             currencyToggle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
+        
+        let widthAnchor = maxButton.widthAnchor.constraint(equalToConstant: 0)
+        
+        maxButton.constrain([
+            maxButton.trailingAnchor.constraint(equalTo: currencyToggle.leadingAnchor, constant: -5),
+            maxButton.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[2]),
+        ])
+        
+        if !UserDefaults.maxSendButtonVisible {
+            maxButton.constrain([widthAnchor])
+        }
+        
         feeSelectorHeight = feeContainer.heightAnchor.constraint(equalToConstant: 0.0)
         feeSelectorTop = feeContainer.topAnchor.constraint(equalTo: feeLabel.bottomAnchor, constant: 0.0)
 
@@ -168,12 +183,17 @@ class AmountViewController : UIViewController, Trackable {
         tapView.constrain([
             tapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tapView.topAnchor.constraint(equalTo: view.topAnchor),
-            tapView.trailingAnchor.constraint(equalTo: currencyToggle.leadingAnchor, constant: 4.0),
+            tapView.trailingAnchor.constraint(equalTo: maxButton.leadingAnchor, constant: 4.0),
             tapView.bottomAnchor.constraint(equalTo: feeContainer.topAnchor) ])
+        
         preventAmountOverflow()
     }
 
+
+    
     private func setInitialData() {
+        maxButton.isHidden = !UserDefaults.maxSendButtonVisible
+        
         cursor.isHidden = true
         cursor.startBlinking()
         amountLabel.text = ""
