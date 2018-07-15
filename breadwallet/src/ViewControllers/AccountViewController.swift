@@ -152,7 +152,6 @@ fileprivate class BalanceView: UIView, Subscriber {
     }
     
     @objc private func balanceViewSwipeUp() {
-        print("SWIPE UP")
         viewMode = .small
     }
     

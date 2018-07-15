@@ -14,7 +14,7 @@ enum ModalType {
 }
 
 class ModalTransitionDelegate : NSObject, Subscriber {
-
+    
     //MARK: - Public
     init(type: ModalType, store: Store) {
         self.type = type
@@ -39,6 +39,8 @@ class ModalTransitionDelegate : NSObject, Subscriber {
     fileprivate let interactiveTransition = UIPercentDrivenInteractiveTransition()
     fileprivate var presentedViewController: UIViewController?
     fileprivate var panGestureRecognizer: UIPanGestureRecognizer?
+    
+    fileprivate var panGr: UIPanGestureRecognizer? = nil
 
     private var yVelocity: CGFloat = 0.0
     private var progress: CGFloat = 0.0
@@ -86,16 +88,20 @@ class ModalTransitionDelegate : NSObject, Subscriber {
 }
 
 extension ModalTransitionDelegate : UIViewControllerTransitioningDelegate {
+    
+    
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         presentedViewController = presented
         return PresentModalAnimator(shouldCoverBottomGap: type == .regular, completion: {
-            let panGr = UIPanGestureRecognizer(target: self, action: #selector(ModalTransitionDelegate.didUpdate(gr:)))
-            UIApplication.shared.keyWindow?.addGestureRecognizer(panGr)
-            // self.panGestureRecognizer = panGr
+            self.panGr = UIPanGestureRecognizer(target: self, action: #selector(ModalTransitionDelegate.didUpdate(gr:)))
+            UIApplication.shared.keyWindow?.addGestureRecognizer(self.panGr!)
         })
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let pan = panGr {
+            UIApplication.shared.keyWindow?.removeGestureRecognizer(pan)
+        }
         return DismissModalAnimator()
     }
 

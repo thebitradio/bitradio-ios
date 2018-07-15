@@ -120,13 +120,13 @@ enum S {
         static let myAddress = NSLocalizedString("UnlockScreen.myAddress", value:"My Address", comment: "My Address button title")
         static let scan = NSLocalizedString("UnlockScreen.scan", value:"Scan", comment: "Scan button title")
         static let touchIdText = NSLocalizedString("UnlockScreen.touchIdText", value:"Unlock with TouchID", comment: "Unlock with TouchID accessibility label")
-        static let touchIdPrompt = NSLocalizedString("UnlockScreen.touchIdPrompt", value:"Unlock your DigiByte.", comment: "TouchID/FaceID prompt text")
+        static let touchIdPrompt = NSLocalizedString("UnlockScreen.touchIdPrompt", value:"Tap here to unlock your DigiByte with TouchID.", comment: "TouchID/FaceID prompt text")
         static let subheader = NSLocalizedString("UnlockScreen.subheader", value:"Enter PIN", comment: "Unlock Screen sub-header")
         static let unlocked = NSLocalizedString("UnlockScreen.unlocked", value:"Wallet Unlocked", comment: "Wallet unlocked message")
         static let locked = NSLocalizedString("UnlockScreen.locked", value:"Wallet Locked", comment: "Wallet locked message")
         static let disabled = NSLocalizedString("UnlockScreen.disabled", value:"Disabled until: %1$@", comment: "Disabled until date")
         static let resetPin = NSLocalizedString("UnlockScreen.resetPin", value:"Reset PIN", comment: "Reset PIN with Paper Key button label.")
-        static let faceIdText = NSLocalizedString("UnlockScreen.faceIdText", value:"Unlock with FaceID", comment: "Unlock with FaceID accessibility label")
+        static let faceIdPrompt = NSLocalizedString("UnlockScreen.faceIdPrompt", value:"Tap here to unlock your DigiByte with FaceID", comment: "Unlock with FaceID accessibility label")
     }
 
     enum Transaction {

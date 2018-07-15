@@ -305,7 +305,8 @@ class LoginViewController: PINViewController, Trackable {
         let view = UIView()
 
         let label = UILabel(font: UIFont.customBody(size: 14), color: .white)
-        label.text = LAContext.biometricType() == .face ? S.UnlockScreen.faceIdText : S.UnlockScreen.touchIdText
+        label.text = LAContext.biometricType() == .face ? S.UnlockScreen.faceIdPrompt : S.UnlockScreen.touchIdText
+        label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
         
         let biometricsImage = { () -> UIImageView in

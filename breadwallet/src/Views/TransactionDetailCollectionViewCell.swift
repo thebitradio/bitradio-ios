@@ -261,7 +261,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         directionLabel.text = String(format: transaction.direction.amountFormat, "")
         //amount.text = String(format: transaction.direction.amountFormat, "\(transaction.amountDescription(isBtcSwapped: isBtcSwapped, rate: rate, maxDigits: maxDigits))")
         //address.text = transaction.detailsAddressText
-        address.text = transaction.toAddress ?? "unknown"
+        address.setTitle(transaction.toAddress ?? "unknown", for: .normal)
         status.text = transaction.status
         status.status = {
             switch transaction.statusCode {
@@ -358,12 +358,18 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     private let processedLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
     private let statusLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
     
-    private let address: UILabel = {
-        let lbl = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
-        lbl.lineBreakMode = .byCharWrapping
-        lbl.numberOfLines = 0
-        lbl.textAlignment = .center
-        return lbl
+    private let address: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.titleLabel?.font = .customBody(size: 14.0)
+        
+        btn.titleLabel?.lineBreakMode = .byCharWrapping
+        btn.titleLabel?.numberOfLines = 0
+        btn.titleLabel?.textAlignment = .center
+        
+        btn.setTitleColor(C.Colors.text, for: .normal)
+        btn.contentHorizontalAlignment = .center
+        
+        return btn
     }()
     private let card: UIView = {
         let c = UIView()
@@ -439,6 +445,12 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         }
         
         cardInitialized = true
+        
+        address.tap = { () in
+            self.address.tempDisable()
+            self.store?.trigger(name: .lightWeightAlert(S.Receive.copied))
+            UIPasteboard.general.string = self.address.titleLabel?.text
+        }
     }
     
     @objc private func cardPan(recognizer: UIPanGestureRecognizer) {
