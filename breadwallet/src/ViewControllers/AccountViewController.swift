@@ -776,6 +776,18 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     }
     private var didEndLoading = false
 
+    private func showActivity(_ view: UIView) {
+        let act = UIActivityIndicatorView()
+        act.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        act.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        view.addSubview(act)
+        act.constrain([
+            act.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            act.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+        act.startAnimating()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -1234,6 +1246,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     private func addTemporaryStartupViews() {
         view.addSubview(tempView)
         tempView.constrain(toSuperviewEdges: nil)
+        showActivity(tempView)
         
         guardProtected(queue: DispatchQueue.main) {
             if !WalletManager.staticNoWallet {
