@@ -9,6 +9,7 @@
 import UIKit
 import BRCore
 import MachO
+import QuartzCore
 
 let accountHeaderHeight: CGFloat = 136.0
 private let transactionsLoadingViewHeightConstant: CGFloat = 48.0
@@ -437,6 +438,7 @@ fileprivate class CustomSegmentedControl: UIControl {
     
     func animationStep(progress: CGFloat) {
         guard !animating else { return }
+    
         let progress = (progress > 1 ? 1 : (progress < -1 ? -1 : progress))
         let singleWidth = (frame.width - 2*padding) / CGFloat(buttons.count)
         let maxIndex = CGFloat(buttons.count) - 1
@@ -451,14 +453,22 @@ fileprivate class CustomSegmentedControl: UIControl {
         backgroundRect.frame.origin.x = newPos
     }
     
+    @objc private func stopped() {
+        self.selectedSegmentIdx  = nextIndex
+    }
+    
+    private var nextIndex: Int = 0
+    
     func updateSegmentedControlSegs(index: Int) {
         var selectorStartPosition: CGFloat!
         selectorStartPosition = padding + (frame.width - 2*padding) / CGFloat(buttons.count) * CGFloat(index)
         
-        UIView.spring(0.2, animations: {
+        selectedSegmentIdx = index
+
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 10, options: [ .allowUserInteraction, .curveLinear ], animations: {
             self.backgroundRect.frame.origin.x = selectorStartPosition
         }) { (done) in
-            self.selectedSegmentIdx = index
+            // 
         }
     }
 }
@@ -1296,6 +1306,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        guard completed else { return }
         if let viewControllers = pageViewController.viewControllers {
             if let viewControllerIndex = self.pages.index(of: viewControllers[0]) {
                 menu.updateSegmentedControlSegs(index: viewControllerIndex)
