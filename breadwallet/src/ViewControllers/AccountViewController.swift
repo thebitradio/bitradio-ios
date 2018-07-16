@@ -393,12 +393,14 @@ fileprivate class CustomSegmentedControl: UIControl {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
-        backgroundRect.constrain([
-            backgroundRect.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-            backgroundRect.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
-            backgroundRect.widthAnchor.constraint(equalToConstant: selectorWidth),
-            backgroundRect.leftAnchor.constraint(equalTo: leftAnchor, constant: padding)
-        ])
+//        backgroundRect.constrain([
+//            backgroundRect.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+//            backgroundRect.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
+//            backgroundRect.widthAnchor.constraint(equalToConstant: selectorWidth),
+//            backgroundRect.leftAnchor.constraint(equalTo: leftAnchor, constant: padding)
+//        ])
+        
+        backgroundRect.frame = CGRect(x: padding, y: padding, width: selectorWidth, height: self.frame.height - 2*padding)
         
         backgroundColor = UIColor(red: 0x23 / 255, green: 0x24 / 255, blue: 0x37 / 255, alpha: 1.0)
         layer.cornerRadius = 4
@@ -452,6 +454,7 @@ fileprivate class CustomSegmentedControl: UIControl {
     func updateSegmentedControlSegs(index: Int) {
         var selectorStartPosition: CGFloat!
         selectorStartPosition = padding + (frame.width - 2*padding) / CGFloat(buttons.count) * CGFloat(index)
+        
         UIView.spring(0.2, animations: {
             self.backgroundRect.frame.origin.x = selectorStartPosition
         }) { (done) in
@@ -832,7 +835,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let point = scrollView.contentOffset
-        var percentageComplete: CGFloat = (point.x - view.frame.size.width) / view.frame.size.width
+        let percentageComplete: CGFloat = (point.x - view.frame.size.width) / view.frame.size.width
         
         if percentageComplete != 0 {
             menu.animationStep(progress: percentageComplete)
@@ -1041,7 +1044,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         menu.update()
         
         menuLeftConstraint?.constant = -hamburgerMenuView.frame.width
