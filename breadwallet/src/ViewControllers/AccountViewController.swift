@@ -1241,6 +1241,8 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
                     self.tempLoginView.view.constrain(toSuperviewEdges: nil)
                 })
             } else {
+                self.tempView.removeFromSuperview()
+                
                 let startView = StartViewController(
                     store: self.store,
                     didTapCreate: {},
