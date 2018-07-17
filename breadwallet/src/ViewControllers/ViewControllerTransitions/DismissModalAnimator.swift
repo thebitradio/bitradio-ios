@@ -13,6 +13,13 @@ let blurView = UIVisualEffectView()
 
 class DismissModalAnimator : NSObject, UIViewControllerAnimatedTransitioning {
 
+    private let callback: (() -> Void)?
+    
+    init(callback: (() -> Void)? = nil) {
+        self.callback = callback
+        super.init()
+    }
+    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.4
     }
@@ -26,6 +33,9 @@ class DismissModalAnimator : NSObject, UIViewControllerAnimatedTransitioning {
             blurView.alpha = 0.0 //Preferrably, this would animatate .effect, but it's not playing nicely with UIPercentDrivenInteractiveTransition
             fromView.frame = fromView.frame.offsetBy(dx: 0, dy: fromView.frame.height)
         }, completion: { _ in
+            if !transitionContext.transitionWasCancelled {
+                self.callback?()
+            }
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }

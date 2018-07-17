@@ -83,6 +83,10 @@ fileprivate class BalanceView: UIView, Subscriber {
         addGestureRecognizers()
         
         addSubscriptions()
+        
+        if UserDefaults.balanceViewCollapsed {
+            closeView()
+        }
     }
     
     private func resizeView(_ viewMode: ViewMode) {
@@ -118,6 +122,7 @@ fileprivate class BalanceView: UIView, Subscriber {
         }) { (c) in
             self.animating = false
             self.viewOpen = true
+            UserDefaults.balanceViewCollapsed = false
         }
     }
     
@@ -142,6 +147,7 @@ fileprivate class BalanceView: UIView, Subscriber {
         }) { (c) in
             self.animating = false
             self.viewOpen = false
+            UserDefaults.balanceViewCollapsed = true
         }
     }
     

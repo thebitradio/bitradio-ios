@@ -24,7 +24,8 @@ private let customNodePortKey = "customNodePortKey"
 private let hasPromptedShareDataKey = "hasPromptedShareDataKey"
 private let hasShownWelcomeKey = "hasShownWelcomeKey"
 private let maxSendButtonVisibleKey = "maxSendButtonVisible"
-private let excludeLogoInQRKey = "excludeLogoInQRKey"
+private let excludeLogoInQRKey = "excludeLogoInQR"
+private let balanceViewCollapsedKey = "balanceViewCollapsed"
 
 extension UserDefaults {
 
@@ -153,6 +154,12 @@ extension UserDefaults {
             return defaults.bool(forKey: excludeLogoInQRKey)
         }
         set { defaults.set(newValue, forKey: excludeLogoInQRKey) }
+    }
+    
+    static var balanceViewCollapsed: Bool {
+        get {
+            return defaults.bool(forKey: balanceViewCollapsedKey)
+        } set { defaults.set(newValue, forKey: balanceViewCollapsedKey) }
     }
     
 }

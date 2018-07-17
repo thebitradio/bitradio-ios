@@ -27,6 +27,7 @@ class ModalTransitionDelegate : NSObject, Subscriber {
         presentedViewController = nil
         if let panGr = panGestureRecognizer {
             UIApplication.shared.keyWindow?.removeGestureRecognizer(panGr)
+            panGestureRecognizer = nil
         }
         store.trigger(name: .showStatusBar)
     }
@@ -89,20 +90,22 @@ class ModalTransitionDelegate : NSObject, Subscriber {
 
 extension ModalTransitionDelegate : UIViewControllerTransitioningDelegate {
     
-    
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         presentedViewController = presented
         return PresentModalAnimator(shouldCoverBottomGap: type == .regular, completion: {
-            self.panGr = UIPanGestureRecognizer(target: self, action: #selector(ModalTransitionDelegate.didUpdate(gr:)))
-            UIApplication.shared.keyWindow?.addGestureRecognizer(self.panGr!)
+            let panner = UIPanGestureRecognizer(target: self, action: #selector(ModalTransitionDelegate.didUpdate(gr:)))
+            UIApplication.shared.keyWindow?.addGestureRecognizer(panner)
+            self.panGestureRecognizer = panner
         })
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let pan = panGr {
-            UIApplication.shared.keyWindow?.removeGestureRecognizer(pan)
-        }
-        return DismissModalAnimator()
+        return DismissModalAnimator(callback: {
+            if let pan = self.panGestureRecognizer {
+                UIApplication.shared.keyWindow?.removeGestureRecognizer(pan)
+                self.panGestureRecognizer = nil
+            }
+        })
     }
 
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {

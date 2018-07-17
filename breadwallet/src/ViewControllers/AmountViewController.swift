@@ -13,11 +13,12 @@ private let feeHeight: CGFloat = 130.0
 
 class AmountViewController : UIViewController, Trackable {
 
-    init(store: Store, isPinPadExpandedAtLaunch: Bool, scrollDownOnTap: Bool = false, isRequesting: Bool = false) {
+    init(store: Store, isPinPadExpandedAtLaunch: Bool, scrollDownOnTap: Bool = false, isRequesting: Bool = false, hideMaxButton: Bool = false) {
         self.store = store
         self.isPinPadExpandedAtLaunch = isPinPadExpandedAtLaunch
         self.isRequesting = isRequesting
         self.scrollDownOnTap = scrollDownOnTap
+        self.hideMaxButton = hideMaxButton
         if let rate = store.state.currentRate, store.state.isBtcSwapped {
             self.currencyToggle = ShadowButton(title: "\(rate.code)  (\(rate.currencySymbol))", type: .primary)
         } else {
@@ -60,6 +61,7 @@ class AmountViewController : UIViewController, Trackable {
     private let store: Store
     private let isPinPadExpandedAtLaunch: Bool
     private let isRequesting: Bool
+    private let hideMaxButton: Bool
     var minimumFractionDigits = 0
     private var hasTrailingDecimal = false
     private var pinPadHeight: NSLayoutConstraint?
@@ -133,7 +135,7 @@ class AmountViewController : UIViewController, Trackable {
             maxButton.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[2]),
         ])
         
-        if !UserDefaults.maxSendButtonVisible {
+        if !UserDefaults.maxSendButtonVisible || hideMaxButton {
             maxButton.constrain([widthAnchor])
         }
         
@@ -192,7 +194,7 @@ class AmountViewController : UIViewController, Trackable {
 
     
     private func setInitialData() {
-        maxButton.isHidden = !UserDefaults.maxSendButtonVisible
+        maxButton.isHidden = !UserDefaults.maxSendButtonVisible || hideMaxButton
         
         cursor.isHidden = true
         cursor.startBlinking()

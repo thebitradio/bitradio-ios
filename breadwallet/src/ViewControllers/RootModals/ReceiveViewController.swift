@@ -25,7 +25,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     init(wallet: BRWallet, store: Store, isRequestAmountVisible: Bool) {
         self.wallet = wallet
         self.isRequestAmountVisible = isRequestAmountVisible
-        self.amountView = AmountViewController(store: store, isPinPadExpandedAtLaunch: true, scrollDownOnTap: true, isRequesting: true)
+        self.amountView = AmountViewController(store: store, isPinPadExpandedAtLaunch: true, scrollDownOnTap: true, isRequesting: true, hideMaxButton: true)
         self.store = store
         super.init(nibName: nil, bundle: nil)
     }
@@ -154,7 +154,6 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
                 amountView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 amountView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: E.isIPhoneX ? -C.padding[5] : -C.padding[2])
                 ])
-            
             // amountView.closePinPad()
         })
         
@@ -232,11 +231,14 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             let imgData = UIImageJPEGRepresentation(qrImageLogo, 1.0),
             let jpegRep = UIImage(data: imgData) {
                 let activityViewController = UIActivityViewController(activityItems: [request, jpegRep], applicationActivities: nil)
+                activityViewController.completionWithItemsHandler = {(activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+                    guard completed else { return }
+                    self.store.trigger(name: .lightWeightAlert(S.Import.success))
+                }
                 activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
                 present(activityViewController, animated: true, completion: {})
         }
     }
-
 
     private func setupCopiedMessage() {
         let copiedMessage = UILabel(font: .customMedium(size: 14.0))

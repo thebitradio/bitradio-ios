@@ -63,11 +63,9 @@ class ConfirmPaperPhraseViewController : UIViewController {
 
         confirmFirstPhrase.textField.becomeFirstResponder()
     
-        
         NotificationCenter.default.addObserver(forName: .UIApplicationWillResignActive, object: nil, queue: nil) { [weak self] note in
             self?.dismiss(animated: true, completion: nil)
         }
-
         
         /*let faqButton = UIButton.buildFaqButton(store: store, articleId: ArticleIds.confirmPhrase)
         faqButton.tintColor = .white

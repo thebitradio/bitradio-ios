@@ -190,11 +190,16 @@ class ShowAddressViewController : UIViewController, Subscriber, Trackable {
     @objc private func shareTapped() {
         if
             let qrImage = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?.resize(CGSize(width: 512, height: 512)),
-            let imgData = UIImageJPEGRepresentation(qrImage, 1.0),
+            let qrImageLogo = placeLogoIntoQR(qrImage, width: 512, height: 512),
+            let imgData = UIImageJPEGRepresentation(qrImageLogo, 1.0),
             let jpegRep = UIImage(data: imgData),
             let address = address.text {
                 let paymentURI = PaymentRequest.requestString(withAddress: address)
                 let activityViewController = UIActivityViewController(activityItems: [paymentURI, jpegRep], applicationActivities: nil)
+                activityViewController.completionWithItemsHandler = {(activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+                    guard completed else { return }
+                    self.store.trigger(name: .lightWeightAlert(S.Import.success))
+                }
                 activityViewController.excludedActivityTypes = [UIActivityType.assignToContact, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
                 present(activityViewController, animated: true, completion: {})
         }

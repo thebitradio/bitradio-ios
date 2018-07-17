@@ -205,8 +205,8 @@ class SecurityCenterViewController : UIViewController, Subscriber {
     private func colorShield() {
         shield.tintColor = .white
         
-        guard store.state.pinLength == 6 &&
-            !UserDefaults.walletRequiresBackup &&
+        guard pinCell.isCheckHighlighted &&
+            paperKeyCell.isCheckHighlighted &&
             biometricsCell.isCheckHighlighted else {
                 return
         }

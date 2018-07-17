@@ -34,9 +34,9 @@ class FeeSelector : UIView {
     }
 
     private let store: Store
-    private let header = UILabel(font: .customMedium(size: 16.0), color: .darkText)
-    private let subheader = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let warning = UILabel.wrapping(font: .customBody(size: 14.0), color: .red)
+    private let header = UILabel(font: .customMedium(size: 16.0), color: C.Colors.text)
+    private let subheader = UILabel(font: .customBody(size: 14.0), color: C.Colors.lightText)
+    private let warning = UILabel.wrapping(font: .customBody(size: 14.0), color: C.Colors.weirdRed)
     private let control = UISegmentedControl(items: [S.FeeSelector.regular, S.FeeSelector.economy])
     private var bottomConstraint: NSLayoutConstraint?
 
@@ -45,6 +45,9 @@ class FeeSelector : UIView {
         addSubview(header)
         addSubview(subheader)
         addSubview(warning)
+        
+        backgroundColor = C.Colors.background
+        control.tintColor = C.Colors.weirdRed
 
         header.constrain([
             header.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),

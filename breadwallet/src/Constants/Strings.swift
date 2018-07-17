@@ -298,7 +298,7 @@ enum S {
         
         static let maxSendEnabled = NSLocalizedString("Settings.maxSendEnabled", value:"Send Max Button visible", comment: "send max button visible or not")
         
-        static let excludeLogoInQR = NSLocalizedString("Settings.excludeLogoInQR", value:"Hide Digibyte Logo in QR codes", comment: "do not place a digibyte logo into qr codes")
+        static let excludeLogoInQR = NSLocalizedString("Settings.excludeLogoInQR", value:"Hide DigiByte Logo in QR codes", comment: "do not place a digibyte logo into qr codes")
     }
 
     enum About {
