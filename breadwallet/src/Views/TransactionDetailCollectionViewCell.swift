@@ -186,6 +186,7 @@ class StatusView: UILabel {
     override var text: String? {
         didSet {
             super.text = text?.uppercased()
+        
         }
     }
     
@@ -233,6 +234,11 @@ class StatusView: UILabel {
     override func drawText(in rect: CGRect) {
         let insets = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
         super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize(width: size.width + 20, height: size.height + 20)
     }
 }
 
@@ -582,6 +588,9 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     }
 
     private func addConstraints() {
+        // ToDo: Do device specific calculations of padding?
+        let padding: CGFloat = 22
+        
         scrollViewHeight = scrollView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: 20)
         scrollView.constrain([
             scrollView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -20),
@@ -629,17 +638,17 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         
         dateLabel.constrain([
             dateLabel.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 50 + 28),
-            dateLabel.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: 32),
+            dateLabel.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: padding),
         ])
         timestamp1.constrain([
             timestamp1.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
             timestamp1.leftAnchor.constraint(equalTo: dateLabel.leftAnchor, constant: 0),
-            timestamp1.rightAnchor.constraint(equalTo: timestamp2.leftAnchor, constant: -15),
+            timestamp1.rightAnchor.constraint(equalTo: timestamp2.leftAnchor, constant: -padding),
         ])
         
         processedLabel.constrain([
             processedLabel.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 50 + 28),
-            processedLabel.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor, constant: 32),
+            processedLabel.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor, constant: padding),
             processedLabel.widthAnchor.constraint(equalTo: scrollViewContent.widthAnchor, multiplier: 0.5, constant: 0),
         ])
         timestamp2.constrain([
@@ -649,25 +658,24 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         
         statusLabel.constrain([
             statusLabel.topAnchor.constraint(equalTo: timestamp1.bottomAnchor, constant: 30),
-            statusLabel.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: 32),
+            statusLabel.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: padding),
         ])
         status.constrain([
             status.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 10),
             status.leftAnchor.constraint(equalTo: statusLabel.leftAnchor, constant: 0),
-            status.widthAnchor.constraint(equalToConstant: 120),
             status.heightAnchor.constraint(equalToConstant: 28),
         ])
         
         confirmationsLabel.constrain([
             confirmationsLabel.topAnchor.constraint(equalTo: status.bottomAnchor, constant: 30),
-            confirmationsLabel.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: 32),
+            confirmationsLabel.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: padding),
         ])
         
         let cardTopAnchor = card.topAnchor.constraint(equalTo: confirmationsLabel.bottomAnchor, constant: 30)
         card.constrain([
             cardTopAnchor,
-            card.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: 15),
-            card.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor, constant: -15),
+            card.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: padding),
+            card.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor, constant: -padding),
         ])
         
         let walletOverlay = WalletOverlay()
