@@ -45,7 +45,7 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
 
     private let header = ModalHeaderView(title: S.Confirmation.title, style: .dark)
     private let cancel = ShadowButton(title: S.Button.cancel, type: .secondary)
-    private let sendButton = ShadowButton(title: S.Confirmation.send, type: .primary, image: (LAContext.biometricType() == .face ? #imageLiteral(resourceName: "FaceId") : #imageLiteral(resourceName: "TouchId")))
+    private let sendButton = ShadowButton(title: S.Confirmation.send, type: .primary, image: (LAContext.biometricType() == .face ? #imageLiteral(resourceName: "faceId") : #imageLiteral(resourceName: "TouchId")))
 
     private let payLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
     private let toLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.text) 

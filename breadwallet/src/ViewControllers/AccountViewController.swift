@@ -85,7 +85,10 @@ fileprivate class BalanceView: UIView, Subscriber {
         addSubscriptions()
         
         if UserDefaults.balanceViewCollapsed {
+            viewMode = .small
             closeView()
+        } else {
+            viewMode = .normal
         }
     }
     

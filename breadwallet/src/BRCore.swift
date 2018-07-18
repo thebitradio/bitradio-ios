@@ -563,6 +563,7 @@ class BRPeerManager {
         { (info, error) in // syncStopped
             guard let info = info else { return }
             let err = BRPeerManagerError.posixError(errorCode: error, description: String(cString: strerror(error)))
+            // ToDo: On wipe wallet => BAD_ACCESS (listener.syncStopped)
             Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.syncStopped(error != 0 ? err : nil)
         },
         { (info) in // txStatusUpdate

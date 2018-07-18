@@ -158,6 +158,8 @@ class ShadowButton: UIControl {
         imageMargin = iconImageView.constraint(toLeading: label, constant: -C.padding[1])
         iconImageView.constrain([
             imageMargin,
+            iconImageView.heightAnchor.constraint(equalToConstant: 28),
+            iconImageView.widthAnchor.constraint(equalToConstant: 28)
         ])
         imageView = iconImageView
     }
