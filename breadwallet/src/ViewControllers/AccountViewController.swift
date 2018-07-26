@@ -939,9 +939,9 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         hamburgerMenuView.addButton(title: S.MenuButton.security, icon: #imageLiteral(resourceName: "hamburger_002Shield")) {
             self.store.perform(action: HamburgerActions.Present(modal: .securityCenter))
         }
-        hamburgerMenuView.addButton(title: S.MenuButton.support, icon: #imageLiteral(resourceName: "hamburger_001Info")) {
+        /*hamburgerMenuView.addButton(title: S.MenuButton.support, icon: #imageLiteral(resourceName: "hamburger_001Info")) {
             self.store.perform(action: HamburgerActions.Present(modal: .support))
-        }
+        }*/
         hamburgerMenuView.addButton(title: S.MenuButton.settings, icon: #imageLiteral(resourceName: "hamburger_003Settings")) {
             self.store.perform(action: HamburgerActions.Present(modal: .settings))
         }
