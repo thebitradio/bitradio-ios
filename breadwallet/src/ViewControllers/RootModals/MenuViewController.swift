@@ -16,16 +16,12 @@ class MenuViewController : UIViewController, Trackable {
     var didTapSupport: (() -> Void)?
     var didTapSettings: (() -> Void)?
     var didTapLock: (() -> Void)?
-    var didTapBuy: (() -> Void)?
 
     //MARK: - Private
     fileprivate let buttonHeight: CGFloat = 72.0
     fileprivate let buttons: [MenuButton] = {
-        let types: [MenuButtonType] = [.security, .support, .report, .settings, .lock, .buy] // TODO: Writeup support/FAQ documentation for digibyte wallet
+        let types: [MenuButtonType] = [.security, .support, .report, .settings, .lock] // TODO: Writeup support/FAQ documentation for digibyte wallet
         return types.flatMap {
-            if $0 == .buy && !BRAPIClient.featureEnabled(.buyBitcoin) {
-                return nil
-            }
             return MenuButton(type: $0)
         }
     }()
@@ -55,10 +51,6 @@ class MenuViewController : UIViewController, Trackable {
             previousButton?.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[2]) ])
 
         view.backgroundColor = .white
-
-        if BRAPIClient.featureEnabled(.buyBitcoin) {
-            //saveEvent("menu.buyBitcoinIsVisible")
-        }
     }
 
     @objc private func didTapButton(button: MenuButton) {
@@ -71,9 +63,6 @@ class MenuViewController : UIViewController, Trackable {
             didTapSettings?()
         case .lock:
             didTapLock?()
-        case .buy:
-            //saveEvent("menu.didTapBuyBitcoin")
-            didTapBuy?()
         case .report:
             Buglife.shared().presentReporter()
         }

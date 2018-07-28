@@ -552,15 +552,6 @@ class ModalPresenter : Subscriber, Trackable {
         
         rows.removeValue(forKey: "Advanced")
 #endif
-        
-        if BRAPIClient.featureEnabled(.earlyAccess) {
-            rows["DigiByte"]?.insert(Setting(title: S.Settings.earlyAccess, callback: {
-                settingsNav.dismiss(animated: true, completion: {
-                    self.presentBuyController("/ea")
-                })
-            }), at: 1)
-        }
-
         rows["DigiByte"]?.append( Setting(title: S.Settings.review, callback: {
                 let alert = UIAlertController(title: S.Settings.review, message: S.Settings.enjoying, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: S.Button.no, style: .default, handler: { _ in
@@ -733,19 +724,6 @@ class ModalPresenter : Subscriber, Trackable {
         start.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]*/
         paperPhraseNavigationController.viewControllers = [start]
         vc.present(paperPhraseNavigationController, animated: true, completion: nil)
-    }
-
-    private func presentBuyController(_ mountPoint: String) {
-        guard let walletManager = self.walletManager else { return }
-        let vc: BRWebViewController
-        #if Debug || Testflight
-            vc = BRWebViewController(bundleName: "bread-frontend-staging", mountPoint: mountPoint, walletManager: walletManager, store: store)
-        #else
-            vc = BRWebViewController(bundleName: "bread-frontend", mountPoint: mountPoint, walletManager: walletManager, store: store)
-        #endif
-        vc.startServer()
-        vc.preload()
-        self.topViewController?.present(vc, animated: true, completion: nil)
     }
 
     private func presentRescan() {

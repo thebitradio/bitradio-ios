@@ -13,7 +13,6 @@ enum MenuButtonType {
     case support
     case settings
     case lock
-    case buy
     case report
 
     var title: String {
@@ -26,8 +25,6 @@ enum MenuButtonType {
             return S.MenuButton.settings
         case .lock:
             return S.MenuButton.lock
-        case .buy:
-            return S.MenuButton.buy
         case .report:
             return S.MenuButton.report
         }
@@ -43,8 +40,6 @@ enum MenuButtonType {
             return #imageLiteral(resourceName: "Settings")
         case .lock:
             return #imageLiteral(resourceName: "Lock")
-        case .buy:
-            return #imageLiteral(resourceName: "BuyBitcoin")
 		case .report:
 			return #imageLiteral(resourceName: "BugReport")
         }
