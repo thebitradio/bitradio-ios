@@ -94,10 +94,15 @@ struct Amount {
     var localFormat: NumberFormatter {
         let format = NumberFormatter()
         format.isLenient = true
-        format.numberStyle = .currency
+        format.numberStyle = .currency 
         format.generatesDecimalNumbers = true
         format.negativeFormat = format.positiveFormat.replacingCharacters(in: format.positiveFormat.range(of: "#")!, with: "-#")
-        format.currencySymbol = rate.currencySymbol
+        format.currencySymbol = "\(rate.currencySymbol) "
+        
+        if rate.currencySymbol == "BTC" {
+            format.minimumFractionDigits = 2
+            format.maximumFractionDigits = 8
+        }
         return format
     }
 }
