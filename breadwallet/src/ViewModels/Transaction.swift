@@ -275,9 +275,8 @@ class Transaction {
     var timeTimestamp: String {
         guard timestamp > 0 else { return wallet.transactionIsValid(tx) ? S.Transaction.justNow : "" }
         let date = Date(timeIntervalSince1970: Double(timestamp))
-        let df = DateFormatter()
-        df.setLocalizedDateFormatFromTemplate("h:mm a")
-        return df.string(from: date)
+        
+        return DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)
     }
 
     var rawTransaction: BRTransaction {
