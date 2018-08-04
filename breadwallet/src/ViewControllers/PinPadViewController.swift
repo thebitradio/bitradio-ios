@@ -20,7 +20,7 @@ enum KeyboardType {
 
 let deleteKeyIdentifier = "del"
 
-class PinPadViewController : UICollectionViewController {
+class PinPadViewController : UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     let currencyDecimalSeparator = NumberFormatter().currencyDecimalSeparator ?? "."
     var isAppendingDisabled = false
@@ -54,11 +54,11 @@ class PinPadViewController : UICollectionViewController {
         self.maxDigits = maxDigits
         let layout = UICollectionViewFlowLayout()
         let screenWidth = UIScreen.main.safeWidth
-
+        
         layout.minimumLineSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
         layout.sectionInset = .zero
-
+        
         switch keyboardType {
         case .decimalPad:
             items = ["1", "2", "3", "4", "5", "6", "7", "8", "9", currencyDecimalSeparator, "0", deleteKeyIdentifier]
@@ -69,6 +69,28 @@ class PinPadViewController : UICollectionViewController {
         }
 
         super.init(collectionViewLayout: layout)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let screenWidth = UIScreen.main.safeWidth
+        var height: CGFloat = 48.0 - 1.0
+        var width: CGFloat = screenWidth/3.0 - 2.0/3.0
+        
+        switch keyboardType {
+        case .decimalPad:
+            height = height + 0
+        case .pinPad:
+            height = 54.0 - 0.5
+        }
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // iPad fix.. Somehow pinpad was aligned improperly 
+            if UIScreen.main.bounds.width == 768.0 {
+                width -= 1
+            }
+        }
+        
+        return CGSize(width: width, height: height)
     }
 
     private let cellIdentifier = "CellIdentifier"
