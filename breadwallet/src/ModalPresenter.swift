@@ -539,19 +539,6 @@ class ModalPresenter : Subscriber, Trackable {
             ]
         ]
         
-#if REBRAND
-        let excludeManage: [String] = [
-            LAContext.biometricType() == .face ? S.Settings.faceIdLimit : S.Settings.touchIdLimit,
-            S.Settings.currency,
-            S.Settings.sync
-        ]
-        
-        rows["Manage"] = rows["Manage"]?.filter({ (s) -> Bool in
-            return excludeManage.index(of: s.title) == nil
-        })
-        
-        rows.removeValue(forKey: "Advanced")
-#endif
         rows["DigiByte"]?.append( Setting(title: S.Settings.review, callback: {
                 let alert = UIAlertController(title: S.Settings.review, message: S.Settings.enjoying, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: S.Button.no, style: .default, handler: { _ in
