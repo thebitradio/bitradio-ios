@@ -12,7 +12,7 @@ enum S {
     enum Symbols {
         static let bits = "\u{018A}"
 		static let btc = "\u{018A}"
-        static let narrowSpace = "\u{2009}"
+        static let narrowSpace = " "
         static let lock = "\u{1F512}"
         static let redX = "\u{274C}"
         static func currencyButtonTitle(maxDigits: Int) -> String {
