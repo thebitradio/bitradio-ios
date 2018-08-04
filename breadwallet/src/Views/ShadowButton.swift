@@ -134,6 +134,9 @@ class ShadowButton: UIControl {
         label.isUserInteractionEnabled = false
         label.font = UIFont.customBody(size: 16.0)
         configureContentType()
+        
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
     }
 
     private func configureContentType() {
