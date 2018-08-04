@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatusView: UILabel {
+class TransactionStatusView: UILabel {
     enum Status {
         case unknown
         case invalid

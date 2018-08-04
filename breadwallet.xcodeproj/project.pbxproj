@@ -58,8 +58,8 @@
 		22C431361DF8A6DF0017CAEA /* BRAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C431351DF8A6DF0017CAEA /* BRAPIClientTests.swift */; };
 		22E773041EE7813000397E0E /* Bonjour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E773031EE7813000397E0E /* Bonjour.swift */; };
 		3961FCC6211640C8009A62DD /* TransactionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCC5211640C8009A62DD /* TransactionCardView.swift */; };
-		3961FCC921164156009A62DD /* WalletOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCC821164156009A62DD /* WalletOverlayView.swift */; };
 		3961FCCC211641B7009A62DD /* TransactionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCCB211641B7009A62DD /* TransactionStatusView.swift */; };
+		3961FCCE2116425E009A62DD /* WalletOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCCD2116425D009A62DD /* WalletOverlayView.swift */; };
 		39CCB64520E40DFC0008519E /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CCB64420E40DFC0008519E /* BlurView.swift */; };
 		4B12F407819BEE2C20FC72A9 /* Pods_digibyte.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35FACAB4CC40422D8F90369 /* Pods_digibyte.framework */; };
 		7503773D1DF57428005EB8AE /* WalletManager+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503773C1DF57428005EB8AE /* WalletManager+Auth.swift */; };
@@ -658,8 +658,8 @@
 		22E773031EE7813000397E0E /* Bonjour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bonjour.swift; sourceTree = "<group>"; };
 		2D5BD8E0D12DB696F3145E2D /* Pods-digibyteUITests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteUITests.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.testflight.xcconfig"; sourceTree = "<group>"; };
 		3961FCC5211640C8009A62DD /* TransactionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionCardView.swift; path = src/Views/TransactionCardView.swift; sourceTree = "<group>"; };
-		3961FCC821164156009A62DD /* WalletOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletOverlayView.swift; path = src/WalletOverlayView.swift; sourceTree = "<group>"; };
 		3961FCCB211641B7009A62DD /* TransactionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionStatusView.swift; path = src/Views/TransactionStatusView.swift; sourceTree = "<group>"; };
+		3961FCCD2116425D009A62DD /* WalletOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalletOverlayView.swift; path = src/Views/WalletOverlayView.swift; sourceTree = "<group>"; };
 		39CCB64420E40DFC0008519E /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlurView.swift; path = src/Views/BlurView.swift; sourceTree = "<group>"; };
 		3F253E13C3E4A94EE8612B2F /* Pods-digibyteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.release.xcconfig"; sourceTree = "<group>"; };
 		40C6581957990676DAFB3521 /* Pods-digibyteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1891,7 +1891,7 @@
 			isa = PBXGroup;
 			children = (
 				3961FCC5211640C8009A62DD /* TransactionCardView.swift */,
-				3961FCC821164156009A62DD /* WalletOverlayView.swift */,
+				3961FCCD2116425D009A62DD /* WalletOverlayView.swift */,
 				3961FCCB211641B7009A62DD /* TransactionStatusView.swift */,
 			);
 			name = Transactions;
@@ -4296,6 +4296,7 @@
 				CE5E6C961EB8CCF500A476DB /* SupportCenterContainer.swift in Sources */,
 				CE4B6C1A1E219CA600CF935B /* WalletCoordinator.swift in Sources */,
 				CE6D0E5C1E14BFA700137DF1 /* KeyboardNotificationInfo.swift in Sources */,
+				3961FCCE2116425E009A62DD /* WalletOverlayView.swift in Sources */,
 				CEA05CC31F21B53C00D850F0 /* FeeSelector.swift in Sources */,
 				CE20C8F21DBAF71500C8397A /* ApplicationController.swift in Sources */,
 				CEC4CF071F0C48DD00E5C82E /* StartWipeWalletViewController.swift in Sources */,
@@ -4370,7 +4371,6 @@
 				CEF3E8341DE57166007C0A9E /* AnimatableIcon.swift in Sources */,
 				CEF61B161ED2056D00C7EA6A /* NumberFormatter+Additions.swift in Sources */,
 				CEF3E8321DE55540007C0A9E /* CheckView.swift in Sources */,
-				3961FCC921164156009A62DD /* WalletOverlayView.swift in Sources */,
 				CECCE5A91E0378FB00D99448 /* PinPadViewController.swift in Sources */,
 				CEF3D2DB1E8B55C80070178E /* UISlider+Gradient.swift in Sources */,
 				CEC6AA4B1DEFD24C00EE5AFD /* MenuButtonType.swift in Sources */,

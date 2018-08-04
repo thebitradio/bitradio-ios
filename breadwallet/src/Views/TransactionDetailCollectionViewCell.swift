@@ -112,7 +112,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     private let directionLabel = UILabel(font: .customBody(size: 16.0), color: C.Colors.greyBlue)
     private let separators = (0...4).map { _ in UIView(color: C.Colors.text) }
     private let statusHeader = UILabel(font: .customMedium(size: 14.0), color: C.Colors.lightText)
-    private let status = StatusView(font: .customBody(size: 14.0), color: C.Colors.text, status: .unknown)
+    private let status = TransactionStatusView(font: .customBody(size: 14.0), color: C.Colors.text, status: .unknown)
     private let commentsHeader = UILabel(font: .customBody(size: 14.0), color: C.Colors.greyBlue)
     private let comment = UITextView()
     private let amountHeader = UILabel(font: .customMedium(size: 14.0), color: C.Colors.lightText)
@@ -122,7 +122,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     private let addressHeader = UILabel(font: .customBody(size: 14.0), color: C.Colors.lightText)
     private let fullAddress = UIButton(type: .system)
     private let headerHeight: CGFloat = 48.0
-    private let transactionDetailCardView = UITransactionCardView()
+    private let transactionDetailCardView = TransactionCardView()
     private let scrollViewContent = UIView()
     let scrollView = UIScrollView()
     
