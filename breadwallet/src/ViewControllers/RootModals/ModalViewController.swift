@@ -8,6 +8,16 @@
 
 import UIKit
 
+class AlwaysScrollableScrollView: UIScrollView {
+    override func touchesShouldCancel(in view: UIView) -> Bool {
+        if view.isKind(of: UIControl.self) {
+            return true
+        }
+        
+        return super.touchesShouldCancel(in: view)
+    }
+}
+
 class ModalViewController : UIViewController, Subscriber {
 
     //MARK: - Public
@@ -32,7 +42,7 @@ class ModalViewController : UIViewController, Subscriber {
     fileprivate let header: ModalHeaderView
     private let tapGestureRecognizer = UITapGestureRecognizer()
     private let store: Store
-    private let scrollView = UIScrollView()
+    private let scrollView = AlwaysScrollableScrollView()
     private let scrollViewContent = UIView()
     
     private let modalHeaderImage: UIImageView = {
