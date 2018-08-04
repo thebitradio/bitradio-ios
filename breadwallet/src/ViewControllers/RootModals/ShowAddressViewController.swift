@@ -106,16 +106,22 @@ class ShowAddressViewController : UIViewController, Subscriber, Trackable {
         view.addSubview(sharePopout)
         view.addSubview(addressPopout)
         
-        qrCode.contentMode = .scaleAspectFill
+        qrCode.contentMode = .scaleToFill
         qrCode.backgroundColor = .white
     }
 
     private func addConstraints() {
         qrCode.constrain([
-            qrCode.constraint(.width, constant: 186.0),
-            qrCode.constraint(.height, constant: 186.0),
+//            qrCode.constraint(.width, constant: 186.0),
+//            qrCode.constraint(.height, constant: 186.0),
             qrCode.constraint(.top, toView: view, constant: C.padding[4]),
             qrCode.constraint(.centerX, toView: view) ])
+        
+        qrCode.constrain([
+            qrCode.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
+            qrCode.heightAnchor.constraint(equalTo: qrCode.widthAnchor, multiplier: 1.0),
+        ])
+        
         address.constrain([
             address.constraint(toBottom: qrCode, constant: C.padding[1]),
             address.constraint(.centerX, toView: view) ])
@@ -166,8 +172,14 @@ class ShowAddressViewController : UIViewController, Subscriber, Trackable {
 
     private func setReceiveAddress() {
         address.text = wallet.receiveAddress
+        
+        
+        
         qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(CGSize(width: qrSize, height: qrSize))!
+        
+        .resize(CGSize(width: qrSize, height: qrSize))!
+        
         
         qrCode.image = placeLogoIntoQR(qrCode.image!, width: qrSize, height: qrSize)
     }
@@ -188,6 +200,7 @@ class ShowAddressViewController : UIViewController, Subscriber, Trackable {
     }
 
     @objc private func shareTapped() {
+        address.text = "DBVGuaKQv3oNLHnjPieVFrHTbNKHs585mN"
         if
             let qrImage = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?.resize(CGSize(width: 512, height: 512)),
             let qrImageLogo = placeLogoIntoQR(qrImage, width: 512, height: 512),

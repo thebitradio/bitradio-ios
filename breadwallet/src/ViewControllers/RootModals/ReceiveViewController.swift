@@ -92,7 +92,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         addActions()
         setupCopiedMessage()
         
-        qrCode.contentMode = .scaleAspectFill
+        qrCode.contentMode = .scaleToFill
         
         store.subscribe(self, selector: { $0.walletState.balance != $1.walletState.balance }, callback: {
             self.balance = $0.walletState.balance
@@ -112,10 +112,16 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     private func addConstraints() {
         qrCode.constrain([
-            qrCode.constraint(.width, constant: 186.0),
-            qrCode.constraint(.height, constant: 186.0),
+//            qrCode.constraint(.width, toView: view, multiplier: 0.7),
+//            qrCode.constraint(.height, toView: view, multiplier: 0.7),
             qrCode.constraint(.top, toView: view, constant: C.padding[4]),
             qrCode.constraint(.centerX, toView: view) ])
+        
+        qrCode.constrain([
+            qrCode.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
+            qrCode.heightAnchor.constraint(equalTo: qrCode.widthAnchor, multiplier: 1.0),
+        ])
+        
         descriptionLabel.constrain([
             descriptionLabel.centerXAnchor.constraint(equalTo: qrCode.centerXAnchor),
             descriptionLabel.centerYAnchor.constraint(equalTo: qrCode.centerYAnchor),
