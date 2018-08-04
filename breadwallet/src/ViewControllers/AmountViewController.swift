@@ -112,9 +112,11 @@ class AmountViewController : UIViewController, Trackable {
     }
 
     private func addConstraints() {
+        let trailingMax = amountLabel.trailingAnchor.constraint(lessThanOrEqualTo: maxButton.leadingAnchor, constant: -5)
+        
         amountLabel.constrain([
             amountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            amountLabel.trailingAnchor.constraint(equalTo: maxButton.leadingAnchor, constant: -5),
+            trailingMax,
             amountLabel.centerYAnchor.constraint(equalTo: currencyToggle.centerYAnchor) ])
         placeholder.constrain([
             placeholder.leadingAnchor.constraint(equalTo: amountLabel.leadingAnchor, constant: 2.0),
@@ -390,7 +392,7 @@ class AmountViewController : UIViewController, Trackable {
 
     private func updateCurrencyToggleTitle() {
         if let rate = selectedRate {
-            self.currencyToggle.title = "\(rate.code)  (\(rate.currencySymbol))"
+            self.currencyToggle.title = "\(rate.code) (\(rate.currencySymbol))"
         } else {
             self.currencyToggle.title = S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits)
         }

@@ -100,7 +100,7 @@ struct Amount {
         format.currencySymbol = "\(rate.currencySymbol) "
         
         if rate.currencySymbol == "BTC" {
-            format.minimumFractionDigits = 2
+            format.minimumFractionDigits = 0
             format.maximumFractionDigits = 8
         }
         return format
