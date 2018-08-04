@@ -206,9 +206,12 @@ class SecurityCenterViewController : UIViewController, Subscriber {
         shield.tintColor = .white
         
         guard pinCell.isCheckHighlighted &&
-            paperKeyCell.isCheckHighlighted &&
-            biometricsCell.isCheckHighlighted else {
+            paperKeyCell.isCheckHighlighted else {
                 return
+        }
+        
+        guard !LAContext.isBiometricsAvailable || biometricsCell.isCheckHighlighted else {
+            return
         }
         
         UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseInOut, animations: {
