@@ -57,6 +57,9 @@
 		22C431341DF89DFE0017CAEA /* BRCoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C431331DF89DFE0017CAEA /* BRCoderTests.swift */; };
 		22C431361DF8A6DF0017CAEA /* BRAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C431351DF8A6DF0017CAEA /* BRAPIClientTests.swift */; };
 		22E773041EE7813000397E0E /* Bonjour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E773031EE7813000397E0E /* Bonjour.swift */; };
+		3961FCC6211640C8009A62DD /* TransactionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCC5211640C8009A62DD /* TransactionCardView.swift */; };
+		3961FCC921164156009A62DD /* WalletOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCC821164156009A62DD /* WalletOverlayView.swift */; };
+		3961FCCC211641B7009A62DD /* TransactionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCCB211641B7009A62DD /* TransactionStatusView.swift */; };
 		39CCB64520E40DFC0008519E /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CCB64420E40DFC0008519E /* BlurView.swift */; };
 		4B12F407819BEE2C20FC72A9 /* Pods_digibyte.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35FACAB4CC40422D8F90369 /* Pods_digibyte.framework */; };
 		7503773D1DF57428005EB8AE /* WalletManager+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503773C1DF57428005EB8AE /* WalletManager+Auth.swift */; };
@@ -654,6 +657,9 @@
 		22C431351DF8A6DF0017CAEA /* BRAPIClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRAPIClientTests.swift; sourceTree = "<group>"; };
 		22E773031EE7813000397E0E /* Bonjour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bonjour.swift; sourceTree = "<group>"; };
 		2D5BD8E0D12DB696F3145E2D /* Pods-digibyteUITests.testflight.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteUITests.testflight.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteUITests/Pods-digibyteUITests.testflight.xcconfig"; sourceTree = "<group>"; };
+		3961FCC5211640C8009A62DD /* TransactionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionCardView.swift; path = src/Views/TransactionCardView.swift; sourceTree = "<group>"; };
+		3961FCC821164156009A62DD /* WalletOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletOverlayView.swift; path = src/WalletOverlayView.swift; sourceTree = "<group>"; };
+		3961FCCB211641B7009A62DD /* TransactionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionStatusView.swift; path = src/Views/TransactionStatusView.swift; sourceTree = "<group>"; };
 		39CCB64420E40DFC0008519E /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlurView.swift; path = src/Views/BlurView.swift; sourceTree = "<group>"; };
 		3F253E13C3E4A94EE8612B2F /* Pods-digibyteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.release.xcconfig"; sourceTree = "<group>"; };
 		40C6581957990676DAFB3521 /* Pods-digibyteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1879,6 +1885,16 @@
 			);
 			name = libbz2;
 			path = Modules/libbz2;
+			sourceTree = "<group>";
+		};
+		3961FCC7211640EE009A62DD /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				3961FCC5211640C8009A62DD /* TransactionCardView.swift */,
+				3961FCC821164156009A62DD /* WalletOverlayView.swift */,
+				3961FCCB211641B7009A62DD /* TransactionStatusView.swift */,
+			);
+			name = Transactions;
 			sourceTree = "<group>";
 		};
 		755CD3191DAA0A110075898E /* secp256k1 */ = {
@@ -3119,6 +3135,7 @@
 		CE20C90F1DBE5B5100C8397A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3961FCC7211640EE009A62DD /* Transactions */,
 				9F2E8CBC20DA4CBF00F16465 /* CircleProgressView.swift */,
 				9F2E8CBD20DA4CBF00F16465 /* DGBAnimatedWaveView.swift */,
 				CE6BCF5C1EE9E89A0029849C /* CustomTitleView.swift */,
@@ -4353,9 +4370,11 @@
 				CEF3E8341DE57166007C0A9E /* AnimatableIcon.swift in Sources */,
 				CEF61B161ED2056D00C7EA6A /* NumberFormatter+Additions.swift in Sources */,
 				CEF3E8321DE55540007C0A9E /* CheckView.swift in Sources */,
+				3961FCC921164156009A62DD /* WalletOverlayView.swift in Sources */,
 				CECCE5A91E0378FB00D99448 /* PinPadViewController.swift in Sources */,
 				CEF3D2DB1E8B55C80070178E /* UISlider+Gradient.swift in Sources */,
 				CEC6AA4B1DEFD24C00EE5AFD /* MenuButtonType.swift in Sources */,
+				3961FCC6211640C8009A62DD /* TransactionCardView.swift in Sources */,
 				CE4CA7BC1EE3649100373F11 /* BRActivityView.swift in Sources */,
 				CEC6AA421DEFC88F00EE5AFD /* ReceiveViewController.swift in Sources */,
 				9F2E8CBF20DA4CC000F16465 /* DGBAnimatedWaveView.swift in Sources */,
@@ -4432,6 +4451,7 @@
 				CE20C90C1DBC59E600C8397A /* StartFlowPresenter.swift in Sources */,
 				CE20C8FC1DBB0F3A00C8397A /* UIColor+BRWAdditions.swift in Sources */,
 				CEA3626A1E01150D0061FC0E /* CGContext+Additions.swift in Sources */,
+				3961FCCC211641B7009A62DD /* TransactionStatusView.swift in Sources */,
 				22A9A9541DF61945000F0016 /* BRReplicatedKVStore.swift in Sources */,
 				CE6B6B4A1E54C0CB00B31405 /* SecurityCenterCell.swift in Sources */,
 				CED811AA1EB2B2D1003A8D1E /* SharedConstants.swift in Sources */,

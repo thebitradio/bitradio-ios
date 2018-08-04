@@ -2,7 +2,7 @@
 //  BlurView.swift
 //  digibyte
 //
-//  Created by Julian Jäger on 27.06.18.
+//  Created by Yoshi Jäger on 27.06.18.
 //  Copyright © 2018 breadwallet LLC. All rights reserved.
 //
 
