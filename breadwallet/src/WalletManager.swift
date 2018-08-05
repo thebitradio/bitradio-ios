@@ -69,6 +69,7 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
     var masterPubKey = BRMasterPubKey()
     var earliestKeyTime: TimeInterval = 0
     var startBlock: StartBlock? = nil
+    var kvStore: BRReplicatedKVStore? = nil
     
     var wallet: BRWallet? {
         guard self.masterPubKey != BRMasterPubKey() else { return nil }
@@ -148,7 +149,8 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
 
     private lazy var lazyAPIClient: BRAPIClient? = {
         guard let wallet = self.wallet else { return nil }
-        return BRAPIClient(authenticator: self)
+        let client = BRAPIClient(authenticator: self)
+        return client
     }()
 
     var wordList: [NSString]? {

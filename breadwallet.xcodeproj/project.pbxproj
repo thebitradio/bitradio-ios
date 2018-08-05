@@ -60,6 +60,7 @@
 		3961FCC6211640C8009A62DD /* TransactionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCC5211640C8009A62DD /* TransactionCardView.swift */; };
 		3961FCCC211641B7009A62DD /* TransactionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCCB211641B7009A62DD /* TransactionStatusView.swift */; };
 		3961FCCE2116425E009A62DD /* WalletOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCCD2116425D009A62DD /* WalletOverlayView.swift */; };
+		3961FCD02116432E009A62DD /* TransactionCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCCF2116432E009A62DD /* TransactionCardViewCell.swift */; };
 		39CCB64520E40DFC0008519E /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CCB64420E40DFC0008519E /* BlurView.swift */; };
 		4B12F407819BEE2C20FC72A9 /* Pods_digibyte.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35FACAB4CC40422D8F90369 /* Pods_digibyte.framework */; };
 		7503773D1DF57428005EB8AE /* WalletManager+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503773C1DF57428005EB8AE /* WalletManager+Auth.swift */; };
@@ -660,6 +661,7 @@
 		3961FCC5211640C8009A62DD /* TransactionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionCardView.swift; path = src/Views/TransactionCardView.swift; sourceTree = "<group>"; };
 		3961FCCB211641B7009A62DD /* TransactionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionStatusView.swift; path = src/Views/TransactionStatusView.swift; sourceTree = "<group>"; };
 		3961FCCD2116425D009A62DD /* WalletOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalletOverlayView.swift; path = src/Views/WalletOverlayView.swift; sourceTree = "<group>"; };
+		3961FCCF2116432E009A62DD /* TransactionCardViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionCardViewCell.swift; path = src/Views/TransactionCardViewCell.swift; sourceTree = "<group>"; };
 		39CCB64420E40DFC0008519E /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlurView.swift; path = src/Views/BlurView.swift; sourceTree = "<group>"; };
 		3F253E13C3E4A94EE8612B2F /* Pods-digibyteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.release.xcconfig"; sourceTree = "<group>"; };
 		40C6581957990676DAFB3521 /* Pods-digibyteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3298,6 +3300,7 @@
 		CEBF32F71DDD191300348FC6 /* TransactionCells */ = {
 			isa = PBXGroup;
 			children = (
+				3961FCCF2116432E009A62DD /* TransactionCardViewCell.swift */,
 				CEBF32F81DDD193500348FC6 /* TransactionTableViewCell.swift */,
 				CE3754AC1DDE6E080045B0CB /* MaskedShadow.swift */,
 				CE3754AE1DDE6E2E0045B0CB /* RoundedContainer.swift */,
@@ -4458,6 +4461,7 @@
 				CE36454C1E7B42850079D0CF /* WhiteDecimalPad.swift in Sources */,
 				CE5F21D91E4A922700C47B8E /* DismissLoginAnimator.swift in Sources */,
 				CECCE5A51E02408300D99448 /* UIView+FrameChangeBlocking.swift in Sources */,
+				3961FCD02116432E009A62DD /* TransactionCardViewCell.swift in Sources */,
 				22A9A94F1DF61945000F0016 /* BRHTTPRouter.swift in Sources */,
 				CE6DCC271E6108D50044257B /* EnterPhraseCell.swift in Sources */,
 				CE760EDD1E561DF900EFAC2B /* PinViewController.swift in Sources */,

@@ -732,8 +732,8 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         self.syncViewController = SyncViewController(store: store)
         
         self.transactionsTableView = TransactionsTableViewController(store: store, didSelectTransaction: didSelectTransaction)
-        self.transactionsTableViewForSentTransactions = TransactionsTableViewController(store: store, didSelectTransaction: didSelectTransaction, filterMode: .showOutgoing)
-        self.transactionsTableViewForReceivedTransactions = TransactionsTableViewController(store: store, didSelectTransaction: didSelectTransaction, filterMode: .showIncoming)
+        self.transactionsTableViewForSentTransactions = TransactionsTableViewController(store: store, didSelectTransaction: didSelectTransaction, kvStore: nil, filterMode: .showOutgoing)
+        self.transactionsTableViewForReceivedTransactions = TransactionsTableViewController(store: store, didSelectTransaction: didSelectTransaction, kvStore: nil, filterMode: .showIncoming)
         
         self.loginView = LoginViewController(store: store, isPresentedForLock: false)
         self.tempLoginView = LoginViewController(store: store, isPresentedForLock: false)
@@ -1133,35 +1133,40 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     }
 
     private func addConstraints() {
-#if REBRAND
-        
-#else
-        //headerContainer.constrainTopCorners(sidePadding: 0, topPadding: 0)
-        //headerContainer.constrain([ headerContainer.constraint(.height, constant: E.isIPhoneX ? accountHeaderHeight + 14.0 : accountHeaderHeight) ])
         balanceView.constrain([
             balanceView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
             balanceView.leftAnchor.constraint(equalTo: view.leftAnchor),
             balanceView.rightAnchor.constraint(equalTo: view.rightAnchor),
         ])
+        
         menu.constrain([
             menu.topAnchor.constraint(equalTo: balanceView.bottomAnchor),
             menu.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8),
             menu.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
             menu.heightAnchor.constraint(equalToConstant: 60)
         ])
-#endif
 
         footerView.constrainBottomCorners(sidePadding: 0, bottomPadding: 0)
         footerView.constrain([
-            footerView.constraint(.height, constant: E.isIPhoneX ? footerHeight + 19.0 : footerHeight) ])
+            footerView.constraint(.height, constant: E.isIPhoneX ? footerHeight + 19.0 : footerHeight)
+        ])
         searchHeaderview.constrain(toSuperviewEdges: nil)
         
         syncViewController.view.constrain(toSuperviewEdges: nil)
     }
+    
+    var kvStore: BRReplicatedKVStore? = nil {
+        didSet {
+            guard kvStore != nil else { return }
+            transactionsTableView.kvStore = kvStore
+            transactionsTableViewForSentTransactions.kvStore = kvStore
+            transactionsTableViewForReceivedTransactions.kvStore = kvStore
+        }
+    }
 
     private func addSubscriptions() {
-        
         store.subscribe(self, selector: { $0.walletState.syncProgress != $1.walletState.syncProgress }, callback: { state in
+            
             self.syncViewController.updateSyncState(
                 state: nil,
                 percentage: state.walletState.syncProgress * 100.0,

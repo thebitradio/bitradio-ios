@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransactionDetailsViewController: UICollectionViewController, Subscriber {
+class TransactionDetailsViewController: UICollectionViewController, Subscriber, UICollectionViewDelegateFlowLayout {
 
     private let header = ModalHeaderView(title: S.TransactionDetails.title, style: .dark)
     private let onDismiss: ((UIViewController) -> Void)
@@ -29,6 +29,12 @@ class TransactionDetailsViewController: UICollectionViewController, Subscriber {
         layout.minimumLineSpacing = C.padding[1]
         super.init(collectionViewLayout: layout)
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        var width = UIScreen.main.bounds.width
+//        width = width > 375 ? 375 : width
+//        return CGSize(width: width, height: UIScreen.main.bounds.height)
+//    }
 
     //MARK: - Private
     fileprivate let store: Store

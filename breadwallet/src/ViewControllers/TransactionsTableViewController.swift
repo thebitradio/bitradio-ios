@@ -24,8 +24,9 @@ var firstLogin: Bool = true
 class TransactionsTableViewController : UITableViewController, Subscriber, Trackable {
 
     //MARK: - Public
-    init(store: Store, didSelectTransaction: @escaping ([Transaction], Int) -> Void, filterMode: TransactionFilterMode = .showAll) {
+    init(store: Store, didSelectTransaction: @escaping ([Transaction], Int) -> Void, kvStore: BRReplicatedKVStore? = nil, filterMode: TransactionFilterMode = .showAll) {
         self.store = store
+        self.kvStore = kvStore
         self.didSelectTransaction = didSelectTransaction
         self.isBtcSwapped = store.state.isBtcSwapped
         self.filterMode = filterMode
@@ -38,6 +39,12 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
     var filters: [TransactionFilter] = [] {
         didSet {
             transactions = filters.reduce(allTransactions, { $0.filter($1) })
+            tableView.reloadData()
+        }
+    }
+    
+    var kvStore: BRReplicatedKVStore? {
+        didSet {
             tableView.reloadData()
         }
     }
@@ -96,6 +103,8 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // this will only be called once after login (create a fancy animation)
+        cell.clipsToBounds = true
+        
         if firstLogin {
             cell.transform = CGAffineTransform(translationX: 0, y: 800)
             UIView.spring(0.5 + (Double(indexPath.row) * 0.2), animations: {
@@ -109,8 +118,8 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(TransactionTableViewCell.self, forCellReuseIdentifier: transactionCellIdentifier)
-        tableView.register(TransactionTableViewCell.self, forCellReuseIdentifier: headerCellIdentifier)
+        tableView.register(TransactionCardViewCell.self, forCellReuseIdentifier: transactionCellIdentifier)
+        tableView.register(TransactionCardViewCell.self, forCellReuseIdentifier: headerCellIdentifier)
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -216,7 +225,7 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if hasExtraSection && indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: headerCellIdentifier, for: indexPath)
-            if let transactionCell = cell as? TransactionTableViewCell {
+            if let transactionCell = cell as? TransactionCardViewCell {
                 transactionCell.setStyle(.single)
                 transactionCell.container.subviews.forEach {
                     $0.removeFromSuperview()
@@ -246,9 +255,11 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
             }
 
             let cell = tableView.dequeueReusableCell(withIdentifier: transactionCellIdentifier, for: indexPath)
-            if let transactionCell = cell as? TransactionTableViewCell, let rate = rate {
+            if let transactionCell = cell as? TransactionCardViewCell, let rate = rate {
                 transactionCell.setStyle(style)
+                transactions[indexPath.row].kvStore = kvStore
                 transactionCell.setTransaction(transactions[indexPath.row], isBtcSwapped: isBtcSwapped, rate: rate, maxDigits: store.state.maxDigits, isSyncing: store.state.walletState.syncState != .success)
+                transactionCell.layer.zPosition = CGFloat(indexPath.row)
             }
             return cell
         }

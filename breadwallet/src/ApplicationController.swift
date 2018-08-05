@@ -231,6 +231,7 @@ class ApplicationController : Subscriber, Trackable {
         feeUpdater = FeeUpdater(walletManager: walletManager, store: store)
         startFlowController = StartFlowPresenter(store: store, walletManager: walletManager, rootViewController: rootViewController)
         accountViewController?.walletManager = walletManager
+        accountViewController?.kvStore = walletManager.apiClient?.kv
         defaultsUpdater = UserDefaultsUpdater(walletManager: walletManager)
         urlController = URLController(store: self.store, walletManager: walletManager)
         if let url = launchURL {
