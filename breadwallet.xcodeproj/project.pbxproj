@@ -61,6 +61,7 @@
 		3961FCCC211641B7009A62DD /* TransactionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCCB211641B7009A62DD /* TransactionStatusView.swift */; };
 		3961FCCE2116425E009A62DD /* WalletOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCCD2116425D009A62DD /* WalletOverlayView.swift */; };
 		3961FCD02116432E009A62DD /* TransactionCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961FCCF2116432E009A62DD /* TransactionCardViewCell.swift */; };
+		398C0CDB211E1DD800AF2E58 /* EmergencyRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C0CDA211E1DD800AF2E58 /* EmergencyRates.swift */; };
 		39CCB64520E40DFC0008519E /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CCB64420E40DFC0008519E /* BlurView.swift */; };
 		4B12F407819BEE2C20FC72A9 /* Pods_digibyte.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35FACAB4CC40422D8F90369 /* Pods_digibyte.framework */; };
 		7503773D1DF57428005EB8AE /* WalletManager+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503773C1DF57428005EB8AE /* WalletManager+Auth.swift */; };
@@ -662,6 +663,7 @@
 		3961FCCB211641B7009A62DD /* TransactionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransactionStatusView.swift; path = src/Views/TransactionStatusView.swift; sourceTree = "<group>"; };
 		3961FCCD2116425D009A62DD /* WalletOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalletOverlayView.swift; path = src/Views/WalletOverlayView.swift; sourceTree = "<group>"; };
 		3961FCCF2116432E009A62DD /* TransactionCardViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransactionCardViewCell.swift; path = src/Views/TransactionCardViewCell.swift; sourceTree = "<group>"; };
+		398C0CDA211E1DD800AF2E58 /* EmergencyRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyRates.swift; sourceTree = "<group>"; };
 		39CCB64420E40DFC0008519E /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlurView.swift; path = src/Views/BlurView.swift; sourceTree = "<group>"; };
 		3F253E13C3E4A94EE8612B2F /* Pods-digibyteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.release.xcconfig"; sourceTree = "<group>"; };
 		40C6581957990676DAFB3521 /* Pods-digibyteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digibyteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-digibyteTests/Pods-digibyteTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1899,6 +1901,14 @@
 			name = Transactions;
 			sourceTree = "<group>";
 		};
+		398C0CD9211E1DC000AF2E58 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				398C0CDA211E1DD800AF2E58 /* EmergencyRates.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		755CD3191DAA0A110075898E /* secp256k1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2718,6 +2728,7 @@
 		75A2A7921DA5934300A983D8 /* breadwallet */ = {
 			isa = PBXGroup;
 			children = (
+				398C0CD9211E1DC000AF2E58 /* Data */,
 				75A2A87C1DA59E4E00A983D8 /* breadwallet.entitlements */,
 				75A2A7931DA5934300A983D8 /* AppDelegate.swift */,
 				CE20C8F11DBAF71500C8397A /* ApplicationController.swift */,
@@ -4368,6 +4379,7 @@
 				22A9A9461DF61945000F0016 /* BRAPIClient.swift in Sources */,
 				CEAA9E9B1DC2B9320066731D /* ConfirmPhrase.swift in Sources */,
 				75A2A7941DA5934300A983D8 /* AppDelegate.swift in Sources */,
+				398C0CDB211E1DD800AF2E58 /* EmergencyRates.swift in Sources */,
 				CEEC70901E95D5C100EF788E /* PushNotificationsViewController.swift in Sources */,
 				222C42501E90492800078EB5 /* BRAPIClient+KV.swift in Sources */,
 				CE5E6C941EB7964900A476DB /* WalletDisabledView.swift in Sources */,

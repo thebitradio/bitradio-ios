@@ -46,11 +46,47 @@ extension BRAPIClient {
         task.resume()
     }
     
+    private func cache(_ data: Data, name: String) {
+        do {
+            let filename = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent(name)
+            try data.write(to: filename)
+        } catch {
+            print("[BRAPIClient::cache]", error)
+        }
+    }
+    
+    private func loadFromCache(_ name: String) -> Data? {
+        do {
+            let filename = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent(name)
+            let data = FileManager.default.contents(atPath: filename.path)
+            
+            if data == nil {
+                // Emergency currency conversion fallback
+                return Data(base64Encoded: EMERGENCY_RATES)!
+            }
+            
+            return data
+        } catch {
+            print("[BRAPIClient::loadFromCache]", error)
+            return nil
+        }
+    }
+    
     func exchangeRates(isFallback: Bool = false, _ handler: @escaping (_ rates: [Rate], _ error: String?) -> Void) {
         let request = isFallback ? URLRequest(url: URL(string: fallbackRatesURL)!) : URLRequest(url: URL(string: ratesURL)!)
         let task = dataTaskWithRequest(request) { (data, response, error) in
-            if error == nil, let data = data,
-                let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
+            var dataRAW: Data? = data
+            
+            if error != nil {
+                // if data from response is nil,
+                // we try to load the recent valid version of rates that we have cached.
+                dataRAW = self.loadFromCache("rates.json")
+            }
+            
+            if let data = dataRAW,
+               let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
+                self.cache(data, name: "rates.json")
+                
                 if isFallback {
                     guard let array = parsedData as? [Any] else {
                         return handler([], "/rates didn't return an array")

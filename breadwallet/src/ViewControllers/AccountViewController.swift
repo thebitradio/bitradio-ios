@@ -1329,9 +1329,6 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
     }
     
     private func addTransactionsView() {
-#if REBRAND
-        
-#else
         addChildViewController(pageController, layout: {
             pageController.view.constrain([
                 pageController.view.topAnchor.constraint(equalTo: menu.bottomAnchor),
@@ -1358,7 +1355,6 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         pages.append(transactionsTableViewForSentTransactions)
         pages.append(transactionsTableViewForReceivedTransactions)
         pageController.setViewControllers([pages[0]], direction: .forward, animated: true, completion: nil)
-#endif
     }
 
     private func addAppLifecycleNotificationEvents() {
