@@ -158,6 +158,14 @@ extension TransactionDetailsViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return transactions.count
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        //super.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
+        guard let transactionDetailCell = cell as? TransactionDetailCollectionViewCell else { return }
+
+        transactionDetailCell.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        transactionDetailCell.resetView()
+    }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
@@ -179,7 +187,6 @@ extension TransactionDetailsViewController {
         }
         
         transactionDetailCell.store = store
-        transactionDetailCell.resetView()
 
         if transactionDetailCell.didBeginEditing == nil {
             transactionDetailCell.didBeginEditing = { [weak self] in

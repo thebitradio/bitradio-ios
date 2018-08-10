@@ -57,10 +57,6 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         availability.isHidden = !transaction.shouldDisplayAvailableToSpend
         blockHeight.text = transaction.blockHeight
         
-        if self.transaction?.hash != transaction.hash {
-            scrollView.contentOffset = CGPoint(x: 0, y: 0)
-        }
-        
         self.transaction = transaction
         self.rate = rate
                 
@@ -214,6 +210,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         if top > 0 {
             contentOffsetTop?.constant = top
             transactionDetailCardView.layoutIfNeeded()
+            scrollView.contentOffset = CGPoint(x: 0, y: 0)
         }
         
         cardInitialized = true
@@ -414,8 +411,8 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         
         processedLabel.constrain([
             processedLabel.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 50 + 28),
-            processedLabel.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor, constant: padding),
-            processedLabel.widthAnchor.constraint(equalTo: scrollViewContent.widthAnchor, multiplier: 0.5, constant: 0),
+            processedLabel.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor, constant: -padding),
+            processedLabel.widthAnchor.constraint(equalTo: scrollViewContent.widthAnchor, multiplier: 0.4, constant: 0),
         ])
         timestamp2.constrain([
             timestamp2.topAnchor.constraint(equalTo: processedLabel.bottomAnchor, constant: 10),
