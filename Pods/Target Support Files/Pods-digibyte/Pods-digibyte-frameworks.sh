@@ -144,7 +144,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Buglife/Buglife.framework"
-  install_framework "${PODS_ROOT}/Reveal-SDK/RevealServer-15/iOS/RevealServer.framework"
+  install_framework "${PODS_ROOT}/Reveal-SDK/RevealServer-17/iOS/RevealServer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/VisualEffectView/VisualEffectView.framework"
 fi
 if [[ "$CONFIGURATION" == "Testnet" ]]; then

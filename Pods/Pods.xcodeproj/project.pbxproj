@@ -67,7 +67,6 @@
 		38E9ACB42BDC7A151BCA02D2464EF609 /* LIFEReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B1657EA39B28E525DCE6FCF9500310AC /* LIFEReportBuilder.m */; };
 		39F6D61A5CCAE28FD1F0E0004FFA4334 /* LIFETTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 633FB6604920A77534B03317268BF4B0 /* LIFETTYLogger.m */; };
 		3AC9E4C06D8A557C2C52E9E6F786D392 /* LIFEContinuousForceTouchGestureRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = CD00A6AA3DE5F67E49E046F700737244 /* LIFEContinuousForceTouchGestureRecognizer.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3C4F8715B6AF88636C6574389057A6F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		3CCC4F1D48739AA94B3127A053E667E3 /* LIFEReportOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C032E613CA67A50F5DD37115D6E60B /* LIFEReportOwner.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3D949C34EF08D9E1C0CA95CEE5E662B9 /* LIFEAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D36FC1723565CEC95D0072DD90B91AB /* LIFEAttribute.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3E0A1872565E6425DBC05715C57CB148 /* LIFEAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FCC3CD7A7ECC241A8442E0069D5B2BC /* LIFEAppInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -85,6 +84,7 @@
 		485FF49B45623F5879D6C7DCDE6F272C /* LIFEAnnotatedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = DFB54D6260962E7E91402BA9F839BEED /* LIFEAnnotatedImage.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4A83ED2A26A6CD5C3626D929064BEE4F /* Buglife+UIStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EBC6CAFBE0AA35002BE0D431CBC35B /* Buglife+UIStuff.m */; };
 		4AF40EC62F59608851CE383016C4D02A /* UIView+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 30D273FCA4E3CAA4B07A4E05B26317B1 /* UIView+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4B6677C9171C49DA3832D9B543B6AB4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		4DF2CDD652F9F7D2CC58C25656689858 /* UITextView+LIFEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C761DAD42833B0C4A6DAC7F904D652E /* UITextView+LIFEAdditions.m */; };
 		4DF9897DC5CCE279B48E57110124753E /* LIFELogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B7D96A5E61C444F76CF3212BFDB511 /* LIFELogger.m */; };
 		4EC5412168BDB5E0F08CE28B40AD226A /* LIFEAttachmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9EF70E364C2194F8E1806F6C6C10ED /* LIFEAttachmentManager.m */; };
@@ -137,7 +137,7 @@
 		7DA3CC1144A692E606A3654734F09575 /* LIFEDeviceInfoProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = FC8DF3F1BAF40F59850F593EB16F8DDA /* LIFEDeviceInfoProvider.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7DB9C5978B1982CE7D72FE0D20103717 /* LIFEStepsToReproduceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCBD0161A46A96F991E95D023643E39 /* LIFEStepsToReproduceCell.m */; };
 		7F727458AAB9E05923C7F533B82082D5 /* LIFEAlertController.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E3EB60A31DB9858BB0FEB541B846F2 /* LIFEAlertController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8029537274345396AF05DEB6DFF461A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		8046F56556C7C00012FFB5056CBD5358 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		804C3D716008D6D681AC845F32B87460 /* LIFEPickerInputField.h in Headers */ = {isa = PBXBuildFile; fileRef = E55459A7473076E9AEB6A4BD128E3181 /* LIFEPickerInputField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		805B503A8F11A4F2B78376A3FD216D4B /* LIFEBlurAnnotationView.h in Headers */ = {isa = PBXBuildFile; fileRef = E9C545E9C4C22805258BAF4E2C860050 /* LIFEBlurAnnotationView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8363C3EB6B5C554BA9C0A7C2E5A66664 /* LIFEWhatHappenedTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CDE802BB4D42B4925209E2A6B302F29 /* LIFEWhatHappenedTextView.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -164,6 +164,7 @@
 		9624EAB8F6A38605DB9D444D19D3431D /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C2874DA1E9FF1E7F4BF4DDF800DA1E /* VisualEffectView.swift */; };
 		97B2D241AEAA5E21A00BC184A5824968 /* LIFEPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC49333FB4126B558EB33024CBCECF45 /* LIFEPanGestureRecognizer.m */; };
 		99FF551D174DE08294100DC2499B7A32 /* LIFEToolButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 68DE70AE65FA9A26E2D848E583799BCA /* LIFEToolButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9A3191136FB1637CE24E620884D1EB81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		9A9FA720AB0C693F393A4BBEED92D619 /* LIFEAppInfoProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE2B12109A8A4F727BB58CB3E8EB0B0 /* LIFEAppInfoProvider.m */; };
 		9AE03D1FA2557154FEC7B57AF93ABBB2 /* LIFEMenuPopoverView.h in Headers */ = {isa = PBXBuildFile; fileRef = 362B44D2A3DF051253B611023BE72701 /* LIFEMenuPopoverView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9AF283DCA6B0B778DF1F03337EB0BF37 /* LIFEJSONLogFileFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BA1BC7ADC7483B39CC1A6AFBAA45435 /* LIFEJSONLogFileFormatter.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -196,8 +197,8 @@
 		B1DB984A8D8626359859A65393CFC1CD /* LIFEContainerModalDismissAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = D5759754CC1366A803FD107DC8204957 /* LIFEContainerModalDismissAnimator.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B578A9CACBC5B9A800C77B0724C7502A /* NSArray+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6CE84AD7A0BB69480F26477B37A7A6 /* NSArray+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B5A91D91BDCDD2A2D680491F3389D03A /* Pods-digibyteUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F606E71D000799424D82864237C929 /* Pods-digibyteUITests-dummy.m */; };
+		B63FECCA2CFA125FC1BFC07F5DA58D42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		B792408BB55CB60D1DBC9A1365401A02 /* NSMutableDictionary+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C6DC4BA59361A290271E6E47D37D16 /* NSMutableDictionary+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BA128B48659E5D877C688CBC1A0B1223 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		BA7FCF8868FF1692F0D9B3DFB1820229 /* NSString+LIFEAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = F993F65AE4EF51F735590B89218B102F /* NSString+LIFEAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BB136E571FD2C33E271BF780FED20012 /* LIFEAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 09947E511080F88BB6C6B470A7983EE5 /* LIFEAlertAction.m */; };
 		BC2C29B2B85CB23E8D5D873E0A02C426 /* LIFEDependencyLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BD50023107F085B4B45CA7E0215281B /* LIFEDependencyLoader.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -238,8 +239,8 @@
 		DAF4A8718646092E19CF6AD9D47D5F2F /* NSLayoutConstraint+LIFEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B1497EDA0D50294FE724A05A9FB3FE43 /* NSLayoutConstraint+LIFEAdditions.m */; };
 		E14CDF0D5C3CEE38C01EBA34EF14B6EB /* LIFECompatibilityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E8B16D999E76322BE7F278F146C788 /* LIFECompatibilityUtils.m */; };
 		E16AE5D3815B2B301F465A4AAF4EB50C /* LIFEContainerTransitionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 55078B281D2AA365DD89DB95E7125EB4 /* LIFEContainerTransitionContext.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E2859556DE351AAF91E7A00268991441 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		E5F5EA83670F9EBDAE361AE18D4C6C89 /* LIFEPoweredByBuglifeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6588DEAEB30BDEB9079531D5F43F06 /* LIFEPoweredByBuglifeView.m */; };
+		E5F9A2751F9C9BC68C7F6B123DCE99FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		E8B712F615EC8CB53FD2C5567763CB50 /* LIFEContainerModalPresentAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = B910203FAB1271879A6DC60827A396F5 /* LIFEContainerModalPresentAnimator.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EAAA7DA5E60A864194195FBF8BE02519 /* LIFETextInputField.h in Headers */ = {isa = PBXBuildFile; fileRef = 37E1D1CEC7125004B97CAD8DA406A713 /* LIFETextInputField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE49D5014BD41F94AAF336E7FE83A69F /* LIFEAnnotatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D90B3760910C5CB2970DC8EC480821 /* LIFEAnnotatedImage.m */; };
@@ -250,7 +251,6 @@
 		F25867CB1787BCEED09B944CE1C53661 /* LIFEReportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCC89071B55C17E8FA1C0CCD313A2D2 /* LIFEReportTableViewController.m */; };
 		F30175514E9D584B3999191EEC037F4F /* LIFEContainerModalPresentAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7F540047487D9B0B63263559E8371B /* LIFEContainerModalPresentAnimator.m */; };
 		F34A701B11B77061E3BF0DFD1F2CFCDF /* LIFEVideoAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = E4475C3036279DF688EB9F50FF824612 /* LIFEVideoAttachment.m */; };
-		F37236A07630539776A24EB78F3DBBE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		F4F921B783F64B9498DB1E768A9E70A7 /* LIFEDeviceBatteryState.h in Headers */ = {isa = PBXBuildFile; fileRef = 26251F486073146A705A9AB4AF97D515 /* LIFEDeviceBatteryState.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F5F8B155066E7E47AC1AF84C43E105CF /* LIFEImageEditorSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7B75A4853F9BED7C8FCF084EED69B /* LIFEImageEditorSegmentedControl.m */; };
 		F6F5DF9C85BC68C75FCA7246C142D420 /* LIFEBlurAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543DA73DFF8B2F32B7C82ACC63CF5FB /* LIFEBlurAnnotationView.m */; };
@@ -405,7 +405,6 @@
 		599CC35046EA383EAB5FE278FCBD6DEC /* NSError+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSError+LIFEAdditions.m"; path = "Source/Additions/NSError+LIFEAdditions.m"; sourceTree = "<group>"; };
 		59F606E71D000799424D82864237C929 /* Pods-digibyteUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-digibyteUITests-dummy.m"; sourceTree = "<group>"; };
 		5A1291EE23C4F881F90F75DB7E14C496 /* LIFETextInputViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFETextInputViewController.h; path = Source/Controllers/LIFETextInputViewController.h; sourceTree = "<group>"; };
-		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		5BCC89071B55C17E8FA1C0CCD313A2D2 /* LIFEReportTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReportTableViewController.m; path = Source/Controllers/LIFEReportTableViewController.m; sourceTree = "<group>"; };
 		5D6588DEAEB30BDEB9079531D5F43F06 /* LIFEPoweredByBuglifeView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEPoweredByBuglifeView.m; path = Source/Views/LIFEPoweredByBuglifeView.m; sourceTree = "<group>"; };
 		5D67E7656E407F081E4269BF63B59436 /* UIApplication+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+LIFEAdditions.h"; path = "Source/Additions/UIApplication+LIFEAdditions.h"; sourceTree = "<group>"; };
@@ -422,6 +421,7 @@
 		65799FDDE953D9BCD150F67960C97A63 /* Pods-digibyteTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-digibyteTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		657D96FC67F352B6D1959664DF0C03BC /* LIFENavigationController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFENavigationController.h; path = Source/Controllers/LIFENavigationController.h; sourceTree = "<group>"; };
 		6585B4F1476065DBB387861CE7DD7C30 /* LIFEAnnotation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAnnotation.m; path = Source/Models/LIFEAnnotation.m; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		66524CE62CCB925A07CEDEC94238323F /* LIFESwizzler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFESwizzler.h; path = Source/Services/LIFESwizzler.h; sourceTree = "<group>"; };
 		66DFC437101FBB13F4B9056630937F31 /* Buglife-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Buglife-umbrella.h"; sourceTree = "<group>"; };
 		672A0164F0B1FA3C9106D4AE06DA9307 /* LIFEAlertActionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAlertActionView.m; path = "Source/Controllers/Alert View/LIFEAlertActionView.m"; sourceTree = "<group>"; };
@@ -441,7 +441,6 @@
 		733B815C869C88B179401932890221BA /* LIFEImageProcessor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEImageProcessor.h; path = Source/Services/LIFEImageProcessor.h; sourceTree = "<group>"; };
 		754DADA6D0F1B4E7C0C342C9C5A56C6A /* LIFEScreenshotAnnotatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEScreenshotAnnotatorView.m; path = Source/Views/LIFEScreenshotAnnotatorView.m; sourceTree = "<group>"; };
 		7737CACC085554F951149164582950D0 /* LIFEScreenshotAnnotatorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEScreenshotAnnotatorViewController.h; path = Source/Controllers/LIFEScreenshotAnnotatorViewController.h; sourceTree = "<group>"; };
-		77A1FAB5901216B136DCDEED722F0EB9 /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevealServer.framework; path = "RevealServer-15/iOS/RevealServer.framework"; sourceTree = "<group>"; };
 		77B66178788D6FE2EBF7A0297A53859D /* LIFENotificationLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFENotificationLogger.h; path = Source/Services/Logging/LIFENotificationLogger.h; sourceTree = "<group>"; };
 		79CBB75323B92D30EC90DC25D080D273 /* LIFEComponentPickerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEComponentPickerViewController.m; path = Source/Controllers/LIFEComponentPickerViewController.m; sourceTree = "<group>"; };
 		79E80EBE02ABA736F06B9C44464FE22D /* LIFELoupeAnnotationView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELoupeAnnotationView.h; path = Source/Views/AnnotationViews/LIFELoupeAnnotationView.h; sourceTree = "<group>"; };
@@ -533,6 +532,7 @@
 		C990413816D82802A29DA40E194357F3 /* UIWindow+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIWindow+LIFEAdditions.h"; path = "Source/Additions/UIWindow+LIFEAdditions.h"; sourceTree = "<group>"; };
 		CA354BBBC9D1C0DE51A2295D5E4F17BD /* LIFELoupeAnnotationView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFELoupeAnnotationView.m; path = Source/Views/AnnotationViews/LIFELoupeAnnotationView.m; sourceTree = "<group>"; };
 		CA5AB47CAF491C44502D5637754D48C8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAB6B6FA1B700DEB89E7F39B6602EC89 /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RevealServer.framework; path = "RevealServer-17/iOS/RevealServer.framework"; sourceTree = "<group>"; };
 		CB2A310A39FBAFBB8BBF8EC3A94EE4D5 /* LIFEImageEditorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEImageEditorView.m; path = "Source/Controllers/Image Editor/LIFEImageEditorView.m"; sourceTree = "<group>"; };
 		CC3E59936839896A72E12CCE741E84AE /* LIFETextInputField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFETextInputField.m; path = Source/LIFETextInputField.m; sourceTree = "<group>"; };
 		CC7F540047487D9B0B63263559E8371B /* LIFEContainerModalPresentAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEContainerModalPresentAnimator.m; path = "Source/Views/Container Window/LIFEContainerModalPresentAnimator.m"; sourceTree = "<group>"; };
@@ -604,7 +604,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8029537274345396AF05DEB6DFF461A7 /* Foundation.framework in Frameworks */,
+				4B6677C9171C49DA3832D9B543B6AB4B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,7 +612,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA128B48659E5D877C688CBC1A0B1223 /* Foundation.framework in Frameworks */,
+				E5F9A2751F9C9BC68C7F6B123DCE99FB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,7 +620,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F37236A07630539776A24EB78F3DBBE7 /* Foundation.framework in Frameworks */,
+				B63FECCA2CFA125FC1BFC07F5DA58D42 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,7 +628,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C4F8715B6AF88636C6574389057A6F8 /* Foundation.framework in Frameworks */,
+				8046F56556C7C00012FFB5056CBD5358 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,7 +636,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2859556DE351AAF91E7A00268991441 /* Foundation.framework in Frameworks */,
+				9A3191136FB1637CE24E620884D1EB81 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,10 +927,10 @@
 			path = Buglife;
 			sourceTree = "<group>";
 		};
-		4EA9CB47F78E047324BF1161FA5EDCBC /* Frameworks */ = {
+		2DB4D2343A58306BF03F0D833E478FA8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				77A1FAB5901216B136DCDEED722F0EB9 /* RevealServer.framework */,
+				CAB6B6FA1B700DEB89E7F39B6602EC89 /* RevealServer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -964,14 +964,6 @@
 				5EEBE2117D319347B62BD29FC2D50650 /* VisualEffectView */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		5E0D919E635D23B70123790B8308F8EF /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 		5EEBE2117D319347B62BD29FC2D50650 /* VisualEffectView */ = {
@@ -1043,7 +1035,7 @@
 		BA38731DCD85B6A72249903EB73182AF /* Reveal-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				4EA9CB47F78E047324BF1161FA5EDCBC /* Frameworks */,
+				2DB4D2343A58306BF03F0D833E478FA8 /* Frameworks */,
 			);
 			name = "Reveal-SDK";
 			path = "Reveal-SDK";
@@ -1052,9 +1044,17 @@
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5E0D919E635D23B70123790B8308F8EF /* iOS */,
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		F47F6F84B2A983E47B3C3D56A050B490 /* Products */ = {

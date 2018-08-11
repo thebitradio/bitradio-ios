@@ -9,7 +9,7 @@
 import Foundation
 
 private let feeURL = "https://go.digibyte.co/bws/api/v2/feelevels/"
-private let ratesURL = "https://digibyteprojects.com/rates.php"
+private let ratesURL = "https://digibyte.io/rates.php"
 private let fallbackRatesURL = "http://pettys.website/rates.php"
 
 extension BRAPIClient {

@@ -53,7 +53,7 @@
 #import "LIFEToastController.h"
 #import "UIControl+LIFEAdditions.h"
 
-static NSString * const kSDKVersion = @"2.8.0";
+static NSString * const kSDKVersion = @"2.8.1";
 void life_dispatch_async_to_main_queue(dispatch_block_t block);
 
 LIFEAttachmentType * const LIFEAttachmentTypeIdentifierText   = @"public.plain-text";
@@ -62,6 +62,7 @@ LIFEAttachmentType * const LIFEAttachmentTypeIdentifierSqlite = @"com.buglife.bu
 LIFEAttachmentType * const LIFEAttachmentTypeIdentifierImage  = @"public.image";
 LIFEAttachmentType * const LIFEAttachmentTypeIdentifierPNG    = @"public.png";
 LIFEAttachmentType * const LIFEAttachmentTypeIdentifierJPEG   = @"public.jpeg";
+LIFEAttachmentType * const LIFEAttachmentTypeIdentifierHEIC   = @"public.heic";
 
 NSString * const LIFENotificationWillPresentReporter    = @"LIFENotificationWillPresentReporter";
 NSString * const LIFENotificationUserCanceledReport     = @"LIFENotificationUserCanceledReport";

@@ -1,6 +1,6 @@
 PODS:
-  - Buglife (2.8.0)
-  - Reveal-SDK (15)
+  - Buglife (2.8.1)
+  - Reveal-SDK (17)
   - VisualEffectView (3.0.2)
 
 DEPENDENCIES:
@@ -15,8 +15,8 @@ SPEC REPOS:
     - VisualEffectView
 
 SPEC CHECKSUMS:
-  Buglife: fed8594db4b440bc85d44629b90f2575713e8825
-  Reveal-SDK: 25e21896c478b60b948f876043f91570d368d23d
+  Buglife: cbf83ab8a0e203a76ee640b24c2e3c3cae9f2c8a
+  Reveal-SDK: a6df49f47319bd19a110c960c498af32df72c0af
   VisualEffectView: 42c25f5a3c643d7c3021a3e50dac9946642225d7
 
 PODFILE CHECKSUM: c1d3907509faa7f064164fe066deadd123868b82
