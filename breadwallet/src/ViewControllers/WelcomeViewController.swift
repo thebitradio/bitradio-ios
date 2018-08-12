@@ -235,10 +235,20 @@ class WelcomeViewController: UIPageViewController, UIPageViewControllerDataSourc
         
         return p
     }()
+    private let fifth: WelcomeViewPage = {
+        let page = WelcomeViewPage(
+            image: #imageLiteral(resourceName: "welcome_digiid"),
+            title: "Login using Digi-ID",
+            description: "Utilize the might of blockchain security with Digi-ID Open Auth."
+        )
+        
+        return page
+    }()
+    
     
     // pages as array
     private lazy var pages = {
-        return [first, second, third, fourth]
+        return [first, second, third, fourth, fifth]
     }()
     
     // additional background images
