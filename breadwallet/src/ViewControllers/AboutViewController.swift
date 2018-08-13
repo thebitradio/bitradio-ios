@@ -131,21 +131,20 @@ class AboutViewController : UIViewController {
         let res = NSMutableAttributedString(string: "")
         
         res.append(createHeading("Development\n"))
-        res.append(createLine("Fredrick Gabelmann\n"))
+        res.append(createLine("GTO90\n"))
         res.append(createLine("Noah Seidmann\n"))
         res.append(createLine("Yoshi Jäger\n"))
-        res.append(createLine("Ploenne\n"))
+        res.append(createLine("Thomas Ploentzke\n"))
         res.append(NSAttributedString(string: "\n"))
         
         res.append(createHeading("UI\n"))
         res.append(createLine("Damir Čengić\n"))
         res.append(NSAttributedString(string: "\n"))
         
-//        res.append(createHeading("Translations\n"))
-//        res.append(createLine("\n"))
-//        res.append(createLine("\n"))
-//        res.append(createLine("\n"))
-//        res.append(NSAttributedString(string: "\n"))
+        res.append(createHeading("Translations\n"))
+        res.append(createLine("Glenn\n"))
+		res.append(createLine("GTO90\n"))
+        res.append(NSAttributedString(string: "\n"))
         
         return res
     }
