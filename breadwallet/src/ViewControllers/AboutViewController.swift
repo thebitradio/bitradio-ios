@@ -11,90 +11,153 @@ import SafariServices
 
 class AboutViewController : UIViewController {
 
-    private let titleLabel = UILabel(font: .customBold(size: 26.0), color: .darkText)
-    private let logo = UIImageView(image: #imageLiteral(resourceName: "LogoCutout"))
-    private let logoBackground = GradientView()
-    private let blog = AboutCell(text: S.About.blog)
-    private let twitter = AboutCell(text: S.About.twitter)
-    private let reddit = AboutCell(text: S.About.reddit)
-    private let privacy = UIButton(type: .system)
-    private let footer = UILabel(font: .customBody(size: 13.0), color: .secondaryGrayText)
-    override func viewDidLoad() {
+    private let scrollView = UIScrollView(frame: .zero)
+    private let versionLabel = UILabel(frame: .zero)
+    private let introductionLabel = UILabel(frame: .zero)
+    private let logo = UIImageView(image: #imageLiteral(resourceName: "aboutHeaderImage"))
+    private let credits = UITextView(frame: .zero)
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
         addSubviews()
         addConstraints()
         setData()
         setActions()
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func addSubviews() {
-        view.addSubview(titleLabel)
-        view.addSubview(logoBackground)
-        logoBackground.addSubview(logo)
-        view.addSubview(blog)
-        view.addSubview(twitter)
-        view.addSubview(reddit)
-        view.addSubview(privacy)
-        view.addSubview(footer)
+        view.addSubview(scrollView)
+        scrollView.addSubview(logo)
+        scrollView.addSubview(versionLabel)
+        scrollView.addSubview(introductionLabel)
+        scrollView.addSubview(credits)
+        
     }
 
     private func addConstraints() {
-        titleLabel.constrain([
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            titleLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: C.padding[2]) ])
-        logoBackground.constrain([
-            logoBackground.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoBackground.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: C.padding[3]),
-            logoBackground.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
-            logoBackground.heightAnchor.constraint(equalTo: logoBackground.widthAnchor, multiplier: 342.0/553.0) ])
-        logo.constrain(toSuperviewEdges: nil)
-        blog.constrain([
-            blog.topAnchor.constraint(equalTo: logoBackground.bottomAnchor, constant: C.padding[2]),
-            blog.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            blog.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
-        twitter.constrain([
-            twitter.topAnchor.constraint(equalTo: blog.bottomAnchor, constant: C.padding[2]),
-            twitter.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            twitter.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
-        reddit.constrain([
-            reddit.topAnchor.constraint(equalTo: twitter.bottomAnchor, constant: C.padding[2]),
-            reddit.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            reddit.trailingAnchor.constraint(equalTo: view.trailingAnchor) ])
-        privacy.constrain([
-            privacy.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            privacy.topAnchor.constraint(equalTo: reddit.bottomAnchor, constant: C.padding[2])])
-        footer.constrain([
-            footer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            footer.topAnchor.constraint(equalTo: privacy.bottomAnchor) ])
+        scrollView.constrain([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+        ])
+        
+        logo.constrain([
+            logo.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            logo.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            logo.widthAnchor.constraint(equalToConstant: 180),
+        ])
+        
+        versionLabel.constrain([
+            versionLabel.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 20),
+            versionLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+        ])
+        
+        introductionLabel.constrain([
+            introductionLabel.topAnchor.constraint(equalTo: versionLabel.bottomAnchor, constant: 30),
+            introductionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25),
+            introductionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25),
+        ])
+        
+        credits.constrain([
+            credits.topAnchor.constraint(equalTo: introductionLabel.bottomAnchor, constant: 30),
+            credits.centerXAnchor.constraint(equalTo: logo.centerXAnchor),
+            credits.widthAnchor.constraint(equalToConstant: 230),
+            credits.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30)
+        ])
     }
 
     private func setData() {
-        view.backgroundColor = .whiteTint
-        titleLabel.text = S.About.title
-        privacy.setTitle(S.About.privacy, for: .normal)
-        privacy.titleLabel?.font = UIFont.customBody(size: 13.0)
-        footer.textAlignment = .center
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
-            footer.text = String(format: S.About.footer, "\(version) (\(build))")
-        }
+        view.backgroundColor = C.Colors.background
+        
+        scrollView.alwaysBounceVertical = true
+        
+        versionLabel.numberOfLines = 1
+        versionLabel.textColor = C.Colors.blueGrey
+        versionLabel.font = UIFont(name: "Helvetica", size: 16)
+        versionLabel.textAlignment = .center
+        
+        introductionLabel.numberOfLines = 0
+        introductionLabel.textColor = C.Colors.blueGrey
+        introductionLabel.font = UIFont(name: "Helvetica", size: 14)
+        introductionLabel.textAlignment = .center
+        
+        credits.font = UIFont(name: "Helvetica", size: 14)
+        credits.textColor = C.Colors.blueGrey
+        
+        versionLabel.text = "Version \(C.version)"
+        introductionLabel.text = "This app was built by DigiByte & Blockchain enthusiasts, unpaid volunteers who devoted their time and skills to a project they believe in."
+        credits.attributedText = creditText()
+        credits.backgroundColor = .clear
+        credits.isScrollEnabled = false
+        credits.setContentOffset(.zero, animated: false)
+        credits.textAlignment = .center
+        
+        credits.isEditable = false
+        credits.autocorrectionType = .no
+        credits.isSelectable = false
+    }
+    
+    private func createLine(_ text: String) -> NSAttributedString {
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 6
+        
+        return NSAttributedString(
+            string: text,
+            attributes: [
+                NSAttributedStringKey.foregroundColor: C.Colors.blueGrey,
+                NSAttributedStringKey.font: UIFont(name: "Helvetica", size: 14) ?? UIFont.systemFont(ofSize: 14),
+                NSAttributedStringKey.paragraphStyle: style,
+            ]
+        )
+    }
+    
+    private func createHeading(_ text: String) -> NSAttributedString {
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 10
+        
+        return NSAttributedString(
+            string: text,
+            attributes: [
+                NSAttributedStringKey.foregroundColor: UIColor.white,
+                NSAttributedStringKey.font: UIFont(name: "Helvetica-Bold", size: 14) ?? UIFont.systemFont(ofSize: 14),
+                NSAttributedStringKey.paragraphStyle: style,
+            ]
+        )
+    }
+    
+    private func creditText() -> NSAttributedString {
+        let res = NSMutableAttributedString(string: "")
+        
+        res.append(createHeading("Development\n"))
+        res.append(createLine("GTO90\n"))
+        res.append(createLine("Noah Seidmann\n"))
+        res.append(createLine("Yoshi Jäger\n"))
+        res.append(createLine("Thomas Ploentzke\n"))
+        res.append(NSAttributedString(string: "\n"))
+        
+        res.append(createHeading("UI\n"))
+        res.append(createLine("Damir Čengić\n"))
+        res.append(NSAttributedString(string: "\n"))
+        
+        res.append(createHeading("Translations\n"))
+        res.append(createLine("Glenn\n"))
+		res.append(createLine("GTO90\n"))
+        res.append(NSAttributedString(string: "\n"))
+        
+        return res
     }
 
     private func setActions() {
-        blog.button.tap = strongify(self) { myself in
-            myself.presentURL(string: "https://www.digibyte.co")
-        }
-        twitter.button.tap = strongify(self) { myself in
-            myself.presentURL(string: "https://twitter.com/DigiByteCoin")
-        }
-        reddit.button.tap = strongify(self) { myself in
-            myself.presentURL(string: "https://www.reddit.com/r/Digibyte/")
-        }
-        privacy.tap = strongify(self) { myself in
-            myself.presentURL(string: "https://www.digibyte.co/digibyte-legal-disclaimer")
-        }
     }
 
-    private func presentURL(string: String) {
-        let vc = SFSafariViewController(url: URL(string: string)!)
-        self.present(vc, animated: true, completion: nil)
-    }
+//    private func presentURL(string: String) {
+//        let vc = SFSafariViewController(url: URL(string: string)!)
+//        self.present(vc, animated: true, completion: nil)
+//    }
 }
