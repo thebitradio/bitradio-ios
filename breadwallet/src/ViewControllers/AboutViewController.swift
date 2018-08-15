@@ -97,6 +97,10 @@ class AboutViewController : UIViewController {
         credits.isScrollEnabled = false
         credits.setContentOffset(.zero, animated: false)
         credits.textAlignment = .center
+        
+        credits.isEditable = false
+        credits.autocorrectionType = .no
+        credits.isSelectable = false
     }
     
     private func createLine(_ text: String) -> NSAttributedString {
