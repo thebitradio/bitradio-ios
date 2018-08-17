@@ -537,7 +537,7 @@ enum S {
     }
 
     enum BitID {
-        static let title = NSLocalizedString("BitID.title", value: "BitID Authentication Request", comment: "BitID Authentication Request alert view title")
+        static let title = NSLocalizedString("BitID.title", value: "Digi-ID Authentication Request", comment: "Digi-ID Authentication Request alert view title")
         static let authenticationRequest = NSLocalizedString("BitID.authenticationRequest", value: "%1$@ is requesting authentication using your DigiByte", comment: "<sitename> is requesting authentication using your DigiByte")
         static let deny = NSLocalizedString("BitID.deny", value: "Deny", comment: "Deny button label")
         static let approve = NSLocalizedString("BitID.approve", value: "Approve", comment: "Approve button label")
