@@ -15,7 +15,7 @@ typealias PresentScan = ((@escaping ScanCompletion) -> Void)
 private let verticalButtonPadding: CGFloat = 32.0
 private let buttonSize = CGSize(width: 52.0, height: 32.0)
 
-class SendViewController : UIViewController, Subscriber, ModalPresentable, Trackable {
+class SendViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, Subscriber, ModalPresentable, Trackable {
 
     //MARK - Public
     var presentScan: PresentScan?
@@ -82,7 +82,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         view.addSubview(descriptionCell)
         view.addSubview(sendButton)
 
-        addressCell.constrainTopCorners(height: SendCell.defaultHeight)
+        addressCell.constrainTopCorners(height: SendCell.defaultHeight * 1.25)
 
         addChildViewController(amountView, layout: {
             amountView.view.constrain([
@@ -129,6 +129,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     private func addButtonActions() {
         addressCell.paste.addTarget(self, action: #selector(SendViewController.pasteTapped), for: .touchUpInside)
         addressCell.scan.addTarget(self, action: #selector(SendViewController.scanTapped), for: .touchUpInside)
+		addressCell.qrImage.addTarget(self, action: #selector(SendViewController.qrImageTapped), for: .touchUpInside)
         amountView.maxButton.addTarget(self, action: #selector(maxTapped), for: .touchUpInside)
         
         sendButton.addTarget(self, action: #selector(sendTapped), for: .touchUpInside)
@@ -227,6 +228,56 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
             self?.handleRequest(request)
         }
     }
+
+	@objc private func qrImageTapped() {
+		descriptionCell.textView.resignFirstResponder()
+		addressCell.textField.resignFirstResponder()
+
+		let imagePicker = UIImagePickerController()
+
+		if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+			imagePicker.delegate = self
+			imagePicker.sourceType = .savedPhotosAlbum;
+			imagePicker.allowsEditing = false
+
+			self.present(imagePicker, animated: true, completion: nil)
+		}
+	}
+
+	internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+		self.dismiss(animated: true, completion: { () -> Void in
+
+		})
+
+		if
+			let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage,
+			let cgImage = originalImage.cgImage {
+
+			let ciImage = CIImage(cgImage:cgImage)
+
+			if
+				let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: CIContext(), options: [CIDetectorAccuracy : CIDetectorAccuracyHigh]) {
+				let features = detector.features(in: ciImage)
+
+				if features.count == 1 {
+					if let qrCode = features.first as? CIQRCodeFeature {
+						if let decode = qrCode.messageString {
+							if let payRequest = PaymentRequest(string: decode) {
+								self.handleRequest(payRequest)
+								return showAlert(title: S.QRImageReader.title, message: S.QRImageReader.SuccessFoundMessage + decode, buttonLabel: S.Button.ok)
+							}
+						}
+					}
+				} else if features.count > 1 {
+					return showAlert(title: S.QRImageReader.title, message: S.QRImageReader.TooManyFoundMessage, buttonLabel: S.Button.ok)
+				} else {
+					return showAlert(title: S.QRImageReader.title, message: S.QRImageReader.NotFoundMessage, buttonLabel: S.Button.ok)
+				}
+
+			}
+		}
+
+	}
 
     @objc private func sendTapped() {
         if addressCell.textField.isFirstResponder {
