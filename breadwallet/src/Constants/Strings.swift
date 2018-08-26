@@ -52,6 +52,14 @@ enum S {
         static let flashButtonLabel = NSLocalizedString("Scanner.flashButtonLabel", value:"Camera Flash", comment: "Scan DigiByte address camera flash toggle")
     }
 
+	enum QRImageReader {
+		static let title = NSLocalizedString("QRImageReader.title", value: "QRImage Reader", comment: "ImageReader Title")
+		static let buttonLabel = NSLocalizedString("QRImageReader.readQRButtonLabel", value:"Image", comment: "Image button label")
+		static let NotFoundMessage = NSLocalizedString("QRImageReader.readQRMessageNotFound", value:"No QR fode fund in image", comment: "no qr code found")
+		static let SuccessFoundMessage = NSLocalizedString("QRImageReader.readQRMessageSuccess", value:"Found:\n", comment: "Found qrcode")
+		static let TooManyFoundMessage = NSLocalizedString("QRImageReader.readQRMessageTooMany", value:"Multiply qr codes found.", comment: "Found multiply qr code im image")
+	}
+
     enum Send {
         static let title = NSLocalizedString("Send.title", value:"Send", comment: "Send modal title")
         static let toLabel = NSLocalizedString("Send.toLabel", value:"To", comment: "Send money to label")
@@ -537,7 +545,7 @@ enum S {
     }
 
     enum BitID {
-        static let title = NSLocalizedString("BitID.title", value: "BitID Authentication Request", comment: "BitID Authentication Request alert view title")
+        static let title = NSLocalizedString("BitID.title", value: "Digi-ID Authentication Request", comment: "Digi-ID Authentication Request alert view title")
         static let authenticationRequest = NSLocalizedString("BitID.authenticationRequest", value: "%1$@ is requesting authentication using your DigiByte", comment: "<sitename> is requesting authentication using your DigiByte")
         static let deny = NSLocalizedString("BitID.deny", value: "Deny", comment: "Deny button label")
         static let approve = NSLocalizedString("BitID.approve", value: "Approve", comment: "Approve button label")

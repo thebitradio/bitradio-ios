@@ -181,7 +181,7 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
         contentBox.layer.cornerRadius = 6.0
         contentBox.layer.masksToBounds = true
 
-        sendButton.imageView?.tintColor = C.Colors.blue
+        sendButton.imageView?.tintColor = C.Colors.text
         if !isUsingBiometrics {
             sendButton.image = nil
         }
