@@ -573,7 +573,7 @@ class BRPeerManager {
             // Is there a way to fix that?
             Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.txStatusUpdate()
         },
-        { (info, replace, blocks, blocksCount) in // saveBlocks
+        { (info, replace, blocks, blocksCount, integrityCheck) in // saveBlocks
             guard let info = info else { return }
             let blockRefs = [BRBlockRef?](UnsafeBufferPointer(start: blocks, count: blocksCount))
             
@@ -581,9 +581,14 @@ class BRPeerManager {
             let blocks = blockRefs.map({ (blockRef) -> BRMerkleBlock? in
                 if let b = blockRef { return b.pointee } else { return nil }
             })
-#if Debug
-            print("blocksCount =", blocksCount, "& replace =", replace)
-#endif
+            
+            // do a memory integrity check and exit, if the data is corrupted in any way
+            let memIntegrityCheck = [UInt64](UnsafeBufferPointer(start: integrityCheck, count: 1))
+            guard memIntegrityCheck[0] == 0xAAAAAAAAAAAAAAAA else {
+                print("saveBlocks: Memory integrity check failed")
+                return
+            }
+
             let lockQueue = DispatchQueue(label: "com.digibyte.persistBlocks")
             lockQueue.sync() {
                 Unmanaged<BRPeerManager>.fromOpaque(info).takeUnretainedValue().listener.saveBlocks(replace != 0, blocks)

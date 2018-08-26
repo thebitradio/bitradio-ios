@@ -200,7 +200,6 @@ class ShowAddressViewController : UIViewController, Subscriber, Trackable {
     }
 
     @objc private func shareTapped() {
-        address.text = "DBVGuaKQv3oNLHnjPieVFrHTbNKHs585mN"
         if
             let qrImage = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?.resize(CGSize(width: 512, height: 512)),
             let qrImageLogo = placeLogoIntoQR(qrImage, width: 512, height: 512),

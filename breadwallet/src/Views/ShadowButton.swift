@@ -44,17 +44,23 @@ class ShadowButton: UIControl {
         }
     }
     var image: UIImage? {
-        didSet {
-            imageView?.image = image
-            if let m = imageMargin {
-                if image != nil {
-                    m.constant = -C.padding[1]
-                } else {
-                    m.constant = 0
-                }
-            }
-            imageView?.setNeedsLayout()
-        }
+		didSet {
+			imageView?.image = image
+			if image != nil {
+				if let m = imageMargin {
+					if image != nil {
+						m.constant = -C.padding[1]
+					} else {
+						m.constant = 0
+					}
+				}
+				imageView?.setNeedsLayout()
+			} else {
+				imageView?.removeFromSuperview()
+				label.removeFromSuperview()
+				self.setupLabelOnly()
+			}
+		}
     }
     var imageView: UIImageView?
     
@@ -161,8 +167,8 @@ class ShadowButton: UIControl {
         imageMargin = iconImageView.constraint(toLeading: label, constant: -C.padding[1])
         iconImageView.constrain([
             imageMargin,
-            iconImageView.heightAnchor.constraint(equalToConstant: 28),
-            iconImageView.widthAnchor.constraint(equalToConstant: 28)
+            iconImageView.heightAnchor.constraint(equalToConstant: 20),
+            iconImageView.widthAnchor.constraint(equalToConstant: 20)
         ])
         imageView = iconImageView
     }
