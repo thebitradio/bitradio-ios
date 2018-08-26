@@ -36,10 +36,13 @@ class AddressCell : UIView {
     let textField = UITextField()
     let paste = ShadowButton(title: S.Send.pasteLabel, type: .primary)
     let scan = ShadowButton(title: S.Send.scanLabel, type: .primary)
+	let qrImage = ShadowButton(title: S.QRImageReader.buttonLabel, type: .primary)
+
     fileprivate let contentLabel = UILabel(font: .customBody(size: 14.0), color: C.Colors.text)
-    private let label = UILabel(font: .customBody(size: 16.0))
+    private let toLabel = UILabel(font: .customBody(size: 16.0))
     fileprivate let gr = UITapGestureRecognizer()
     fileprivate let tapView = UIView()
+	fileprivate let underLineView = UIView()
     private let border = UIView(color: .clear)
     private var pasteWidthAnchor: NSLayoutConstraint?
     private var scanWidthAnchor: NSLayoutConstraint?
@@ -62,63 +65,94 @@ class AddressCell : UIView {
         setInitialData()
     }
 
+	override func didMoveToSuperview() {
+		self.constrain([
+			paste.widthAnchor.constraint(equalTo: scan.widthAnchor),
+			scan.widthAnchor.constraint(equalTo: qrImage.widthAnchor),
+			qrImage.widthAnchor.constraint(equalTo: paste.widthAnchor)
+			])
+	}
+
     private func addSubviews() {
-        addSubview(label)
+        addSubview(toLabel)
         addSubview(contentLabel)
         addSubview(textField)
+		addSubview(underLineView)
         addSubview(tapView)
         addSubview(border)
         addSubview(paste)
         addSubview(scan)
+		addSubview(qrImage)
     }
 
     private func addConstraints() {
-        label.constrain([
-            label.constraint(.centerY, toView: self),
-            label.constraint(.leading, toView: self, constant: C.padding[2]) ])
+        toLabel.constrain([
+            toLabel.constraint(.leading, toView: self, constant: 10.0),
+            toLabel.constraint(.top, toView: self, constant: 10.0),
+			toLabel.heightAnchor.constraint(equalToConstant: 20.0) ])
         contentLabel.constrain([
-            contentLabel.constraint(.leading, toView: label),
-            contentLabel.constraint(toBottom: label, constant: 0.0),
-            contentLabel.trailingAnchor.constraint(equalTo: paste.leadingAnchor, constant: -C.padding[1]) ])
+			contentLabel.constraint(.leading, toView: self, constant: 35.0),
+			contentLabel.constraint(.trailing, toView: self, constant: -10.0),
+			contentLabel.constraint(.top, toView: self, constant: 10.0),
+			contentLabel.heightAnchor.constraint(equalToConstant: 20.0) ])
         textField.constrain([
-            textField.constraint(.leading, toView: label),
-            textField.constraint(toBottom: label, constant: 0.0),
-            textField.trailingAnchor.constraint(equalTo: paste.leadingAnchor, constant: -C.padding[1]) ])
+			textField.constraint(.leading, toView: contentLabel),
+			textField.constraint(.trailing, toView: contentLabel),
+            textField.constraint(.top, toView: contentLabel),
+            textField.constraint(.height, toView: contentLabel) ])
+		underLineView.constrain([
+			underLineView.constraint(.leading, toView: contentLabel),
+			underLineView.constraint(.trailing, toView: contentLabel),
+			underLineView.constraint(.bottom, toView: contentLabel, constant: 3.0),
+			underLineView.heightAnchor.constraint(equalToConstant: 1.0) ])
+
         tapView.constrain([
             tapView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tapView.topAnchor.constraint(equalTo: topAnchor),
-            tapView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            tapView.trailingAnchor.constraint(equalTo: paste.leadingAnchor) ])
+            tapView.heightAnchor.constraint(equalToConstant: 45.0),
+            tapView.trailingAnchor.constraint(equalTo: trailingAnchor) ])
+
+		paste.constrain([
+			paste.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[1]),
+			paste.trailingAnchor.constraint(equalTo: scan.leadingAnchor, constant: -C.padding[1]),
+			paste.constraint(.bottom, toView: self, constant: -C.padding[1])])
+
         scan.constrain([
-            scan.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
-            scan.centerYAnchor.constraint(equalTo: centerYAnchor) ])
-        
-        pasteWidthAnchor = paste.widthAnchor.constraint(equalToConstant: 0)
-        pasteWidthAnchor?.isActive = false
-        
-        scanWidthAnchor = scan.widthAnchor.constraint(equalToConstant: 0)
-        scanWidthAnchor?.isActive = false
-        
-        paste.constrain([
-            paste.centerYAnchor.constraint(equalTo: centerYAnchor),
-            paste.trailingAnchor.constraint(equalTo: scan.leadingAnchor, constant: -C.padding[1]) ])
+			scan.trailingAnchor.constraint(equalTo: qrImage.leadingAnchor, constant: -C.padding[1]),
+			scan.constraint(.bottom, toView: self, constant: -C.padding[1]) ])
+
+		qrImage.constrain([
+			qrImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[1]),
+			qrImage.constraint(.bottom, toView: self, constant: -C.padding[1]) ])
+
         border.constrain([
             border.leadingAnchor.constraint(equalTo: leadingAnchor),
             border.bottomAnchor.constraint(equalTo: bottomAnchor),
             border.trailingAnchor.constraint(equalTo: trailingAnchor),
             border.heightAnchor.constraint(equalToConstant: 1.0) ])
+
+//		toLabel.textColor = UIColor.blue
+//		contentLabel.textColor = UIColor.yellow
+//		textField.backgroundColor = UIColor.red
+//		contentLabel.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.4)
+//		self.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.8)
+//		tapView.backgroundColor = UIColor(red: 1.0, green: 0.1, blue: 0.3, alpha: 0.2)
     }
 
     private func setInitialData() {
         backgroundColor = .clear
-        label.text = S.Send.toLabel
+        toLabel.text = S.Send.toLabel
+		toLabel.textColor = C.Colors.blueGrey
+
         textField.font = contentLabel.font
         textField.textColor = C.Colors.text
         textField.isHidden = true
         textField.returnKeyType = .done
         textField.delegate = self
         textField.clearButtonMode = .whileEditing
-        label.textColor = C.Colors.blueGrey
+
+		underLineView.backgroundColor = C.Colors.lightGrey
+
         contentLabel.lineBreakMode = .byTruncatingMiddle
 
         textField.editingChanged = strongify(self) { myself in
