@@ -64,12 +64,7 @@ class CircleProgressView: UIView {
         let gradient2 = CGGradient(colorsSpace: nil, colors: [inner1.cgColor, inner2.cgColor] as CFArray, locations: [0, 1])!
         let gradient3 = CGGradient(colorsSpace: nil, colors: [color3.cgColor, color4.cgColor] as CFArray, locations: [0, 1])!
         let gradient4 = CGGradient(colorsSpace: nil, colors: [color5.cgColor, color6.cgColor] as CFArray, locations: [0, 1])!
-        
-        //// Variable Declarations
-        let outerExpression: CGFloat = 450.0 - outerProgress * 360
-        let innerExpression: CGFloat = 450.0 - innerProgress * 360
-        
-        
+
         //// Subframes
         let baseRings: CGRect = CGRect(x: frame.minX, y: frame.minY + fastFloor((frame.height) * 0.00000 + 0.5), width: frame.width, height: frame.height - fastFloor((frame.height) * 0.00000 + 0.5))
         let rings: CGRect = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height)
@@ -222,12 +217,12 @@ class CircleProgressView: UIView {
             
             //// Oval 2 Drawing
             context.saveGState()
-            context.setBlendMode(.destinationIn)
+            context.setBlendMode(.destinationOut)
             context.beginTransparencyLayer(auxiliaryInfo: nil)
             
             let oval2Rect = CGRect(x: rings.minX + fastFloor(rings.width * 0.08000 + 0.5), y: rings.minY + fastFloor(rings.height * 0.08000 + 0.5), width: fastFloor(rings.width * 0.92000 + 0.5) - fastFloor(rings.width * 0.08000 + 0.5), height: fastFloor(rings.height * 0.92000 + 0.5) - fastFloor(rings.height * 0.08000 + 0.5))
             let oval2Path = UIBezierPath()
-            oval2Path.addArc(withCenter: CGPoint(x: oval2Rect.midX, y: oval2Rect.midY), radius: oval2Rect.width / 2, startAngle: 270.05 * CGFloat.pi/180, endAngle: -innerExpression * CGFloat.pi/180, clockwise: true)
+            oval2Path.addArc(withCenter: CGPoint(x: oval2Rect.midX, y: oval2Rect.midY), radius: oval2Rect.width / 2, startAngle: -0.5 * CGFloat.pi, endAngle: (innerProgress * 2.0 * CGFloat.pi) - 0.5 * CGFloat.pi, clockwise: false)
             oval2Path.addLine(to: CGPoint(x: oval2Rect.midX, y: oval2Rect.midY))
             oval2Path.close()
             
@@ -299,31 +294,26 @@ class CircleProgressView: UIView {
                                    options: [])
         context.restoreGState()
         
-        
         //// Oval Drawing
         context.saveGState()
-        context.setBlendMode(.destinationIn)
+        context.setBlendMode(.destinationOut)
         context.beginTransparencyLayer(auxiliaryInfo: nil)
         
         let ovalRect = CGRect(x: rings.minX + fastFloor(rings.width * 0.00000 + 0.5), y: rings.minY + fastFloor(rings.height * 0.00000 + 0.5), width: fastFloor(rings.width * 1.00000 + 0.5) - fastFloor(rings.width * 0.00000 + 0.5), height: fastFloor(rings.height * 1.00000 + 0.5) - fastFloor(rings.height * 0.00000 + 0.5))
         let ovalPath = UIBezierPath()
-        ovalPath.addArc(withCenter: CGPoint(x: ovalRect.midX, y: ovalRect.midY), radius: ovalRect.width / 2, startAngle: 270.05 * CGFloat.pi/180, endAngle: -outerExpression * CGFloat.pi/180, clockwise: true)
+        ovalPath.addArc(withCenter: CGPoint(x: ovalRect.midX, y: ovalRect.midY), radius: ovalRect.width / 2, startAngle: -0.5 * CGFloat.pi, endAngle: (outerProgress * 2.0 * CGFloat.pi) - 0.5 * CGFloat.pi, clockwise: false)
         ovalPath.addLine(to: CGPoint(x: ovalRect.midX, y: ovalRect.midY))
         ovalPath.close()
         
-        UIColor.gray.setFill()
+        UIColor.white.setFill()
         ovalPath.fill()
         
         context.endTransparencyLayer()
         context.restoreGState()
-        
-        
+
         context.endTransparencyLayer()
         context.restoreGState()
-        
-        
-        
-        
+
         //// Lines
         //// Bezier Drawing
         let bezierPath = UIBezierPath()
