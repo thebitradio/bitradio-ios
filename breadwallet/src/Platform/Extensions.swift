@@ -79,10 +79,10 @@ public extension String {
     func base58DecodedData() -> Data {
         let len = BRBase58Decode(nil, 0, self)
         var data = Data(count: len)
-        return data.withUnsafeMutableBytes { (ptr: UnsafeMutablePointer<CUnsignedChar>) in
+        _ = data.withUnsafeMutableBytes { (ptr: UnsafeMutablePointer<CUnsignedChar>) in
             BRBase58Decode(ptr, len, self)
-            return data
         }
+        return data
     }
     
     var urlEscapedString: String {
@@ -211,7 +211,8 @@ public extension Data {
                             success = false
                             return
                         }
-                        buff.withUnsafeBytes({ (bp: UnsafePointer<UInt8>) -> Void in
+                        let buffCopy = Data(bytes: outBuff, count: Int(BZCompressionBufferSize))
+                        buffCopy.withUnsafeBytes({ (bp: UnsafePointer<UInt8>) -> Void in
                             let bpp = UnsafeBufferPointer(
                                 start: bp, count: (Int(BZCompressionBufferSize) - Int(stream.avail_out)))
                             compressed.append(contentsOf: bpp)
@@ -257,7 +258,8 @@ public extension Data {
                         success = false
                         return
                     }
-                    buff.withUnsafeBytes({ (bp: UnsafePointer<UInt8>) -> Void in
+                    let buffCopy = Data(bytes: outBuff, count: Int(BZCompressionBufferSize))
+                    buffCopy.withUnsafeBytes({ (bp: UnsafePointer<UInt8>) -> Void in
                         let bpp = UnsafeBufferPointer(
                             start: bp, count: (Int(BZCompressionBufferSize) - Int(stream.avail_out)))
                         decompressed.append(contentsOf: bpp)
@@ -346,10 +348,10 @@ public extension Data {
         return self.withUnsafeBytes({ (selfBytes: UnsafePointer<UInt8>) -> Data in
             var data = Data(count: 65)
             var k = key
-            return data.withUnsafeMutableBytes({ (bytes: UnsafeMutablePointer<UInt8>) -> Data in
+            _ = data.withUnsafeMutableBytes({ (bytes: UnsafeMutablePointer<UInt8>) in
                 BRKeyCompactSign(&k, bytes, 65, self.uInt256)
-                return data
             })
+            return data
         })
     }
 
