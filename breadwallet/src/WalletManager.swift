@@ -190,7 +190,7 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
     init(masterPubKey: BRMasterPubKey, earliestKeyTime: TimeInterval, dbPath: String? = nil, store: Store) throws {
         self.masterPubKey = masterPubKey
         self.earliestKeyTime = earliestKeyTime
-		self.dbPath = try dbPath ??
+        self.dbPath = try dbPath ??
             FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil,
                                     create: false).appendingPathComponent(C.sqliteFileName).path
         self.store = store

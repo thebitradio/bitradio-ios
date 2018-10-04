@@ -109,7 +109,9 @@ extension BRAddress: CustomStringConvertible, Hashable {
     }
     
     public var description: String {
-        return String(cString: UnsafeRawPointer([self.s]).assumingMemoryBound(to: CChar.self))
+        let addressBytes = UnsafeMutablePointer<CChar>.allocate(capacity: 36)
+        addressBytes.initialize(from: UnsafeRawPointer([self.s]).assumingMemoryBound(to: CChar.self), count: 36)
+        return String(cString: addressBytes)
     }
     
     public var hashValue: Int {
@@ -248,7 +250,9 @@ extension BRTxInput {
 
 extension BRTxOutput {
     var swiftAddress: String {
-        get { return String(cString: UnsafeRawPointer([self.address]).assumingMemoryBound(to: CChar.self)) }
+        get { let addressBytes = UnsafeMutablePointer<CChar>.allocate(capacity: 36)
+              addressBytes.initialize(from: UnsafeRawPointer([self.address]).assumingMemoryBound(to: CChar.self), count: 36)
+              return String(cString: addressBytes) }
         set { BRTxOutputSetAddress(&self, newValue) }
     }
     

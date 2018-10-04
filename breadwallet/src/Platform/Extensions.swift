@@ -195,7 +195,6 @@ public extension Data {
                 stream.next_in = selfBuff
                 stream.avail_in = UInt32(self.count)
                 var buff = Data(capacity: Int(BZCompressionBufferSize))
-                let buffCpy = buff
                 buff.withUnsafeMutableBytes({ (outBuff: UnsafeMutablePointer<Int8>) -> Void in
                     stream.next_out = outBuff
                     stream.avail_out = BZCompressionBufferSize
@@ -212,7 +211,8 @@ public extension Data {
                             success = false
                             return
                         }
-                        buffCpy.withUnsafeBytes({ (bp: UnsafePointer<UInt8>) -> Void in
+                        let buffCopy = Data(bytes: outBuff, count: Int(BZCompressionBufferSize))
+                        buffCopy.withUnsafeBytes({ (bp: UnsafePointer<UInt8>) -> Void in
                             let bpp = UnsafeBufferPointer(
                                 start: bp, count: (Int(BZCompressionBufferSize) - Int(stream.avail_out)))
                             compressed.append(contentsOf: bpp)
@@ -242,7 +242,6 @@ public extension Data {
             stream.next_in = datBuff
             stream.avail_in = UInt32(data.count)
             var buff = Data(capacity: Int(BZCompressionBufferSize))
-            let buffCpy = buff
             buff.withUnsafeMutableBytes { (outBuff: UnsafeMutablePointer<Int8>) -> Void in
                 stream.next_out = outBuff
                 stream.avail_out = BZCompressionBufferSize
@@ -259,7 +258,8 @@ public extension Data {
                         success = false
                         return
                     }
-                    buffCpy.withUnsafeBytes({ (bp: UnsafePointer<UInt8>) -> Void in
+                    let buffCopy = Data(bytes: outBuff, count: Int(BZCompressionBufferSize))
+                    buffCopy.withUnsafeBytes({ (bp: UnsafePointer<UInt8>) -> Void in
                         let bpp = UnsafeBufferPointer(
                             start: bp, count: (Int(BZCompressionBufferSize) - Int(stream.avail_out)))
                         decompressed.append(contentsOf: bpp)
