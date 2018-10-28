@@ -6,7 +6,7 @@
 	url = https://github.com/breadwallet/nettle.git
 [submodule "Modules/digibytewallet-core"]
 	path = Modules/digibytewallet-core
-	url = https://github.com/Dajiban/digibytewallet-core.git
+	url = https://github.com/DigiByte-Core/digibytewallet-core.git
 [submodule "Modules/dns"]
 	path = Modules/dns
 	url = https://github.com/wahern/dns.git
