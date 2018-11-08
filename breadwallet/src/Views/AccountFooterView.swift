@@ -565,6 +565,7 @@ class AccountFooterView: UIView {
     var digiIDCallback: (() -> Void)?
     var showAddressCallback: (() -> Void)?
     var qrScanCallback: (() -> Void)?
+    var debugDigiAssetsCallback: (() -> Void)?
     
     let height: CGFloat = 73
     let menuHeightOffset = CGFloat(E.isIPhoneX ? 15 : 0)
@@ -584,6 +585,12 @@ class AccountFooterView: UIView {
         guard !hasSetup else { return }
         setupSubViews()
         hasSetup = true
+    }
+    
+    @objc private func circleButtonLongPress(sender: UITapGestureRecognizer) {
+        if sender.state == .began {
+            debugDigiAssetsCallback?()
+        }
     }
     
     func setupSubViews(){
@@ -623,6 +630,12 @@ class AccountFooterView: UIView {
         circleButtonContainer.isUserInteractionEnabled = true
         circleButtonContainer.backgroundColor = UIColor(red: 0x0F / 255, green: 0x0F / 255, blue: 0x1A / 255, alpha: 1)
         circleButtonContainer.layer.cornerRadius = (buttonSize + buttonBorderWidth * 2) / 2
+        
+        // REMOVE
+        // This is for DigiAssets
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(circleButtonLongPress(sender:)))
+        longPress.minimumPressDuration = 5
+        circleButtonContainer.addGestureRecognizer(longPress)
         
         // add all to view
         backgroundView.addSubview(hamburgerButton)
