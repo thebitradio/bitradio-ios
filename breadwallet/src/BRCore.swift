@@ -364,6 +364,37 @@ protocol BRWalletListener {
     func txDeleted(_ txHash: UInt256, notifyUser: Bool, recommendRescan: Bool)
 }
 
+extension UnicodeScalar {
+    var hexNibble:UInt8 {
+        let value = self.value
+        if 48 <= value && value <= 57 {
+            return UInt8(value - 48)
+        }
+        else if 65 <= value && value <= 70 {
+            return UInt8(value - 55)
+        }
+        else if 97 <= value && value <= 102 {
+            return UInt8(value - 87)
+        }
+        fatalError("\(self) not a legal hex nibble")
+    }
+}
+
+extension Data {
+    init(hex:String) {
+        let scalars = hex.unicodeScalars
+        var bytes = Array<UInt8>(repeating: 0, count: (scalars.count + 1) >> 1)
+        for (index, scalar) in scalars.enumerated() {
+            var nibble = scalar.hexNibble
+            if index & 1 == 0 {
+                nibble <<= 4
+            }
+            bytes[index >> 1] |= nibble
+        }
+        self = Data(bytes: bytes)
+    }
+}
+
 class BRWallet {
     let cPtr: OpaquePointer
     let listener: BRWalletListener
@@ -462,6 +493,40 @@ class BRWallet {
     // returns true if all inputs were signed, or false if there was an error or not all inputs were able to be signed
     func signTransaction(_ tx: BRTxRef, forkId: Int = 0, seed: inout UInt512) -> Bool {
         return BRWalletSignTransaction(cPtr, tx, Int32(forkId), &seed, MemoryLayout<UInt512>.stride) != 0
+    }
+    
+    // signs hexadecimal tx and returns signed hexadecimal tx if signing was possible.
+    // "seed" is the private wallet derivation key.
+    // Otherwise signSerializedTransaction returns nil
+    func signSerializedTransaction(hex: String, seed: inout UInt512) -> String? {
+        let txIn = Data(hex: hex)
+        guard let d = signSerializedTransaction(txIn, seed: &seed) else { return nil }
+        return d.hexString
+    }
+    
+    // signs base64-encoded binary tx and returns signed base64-encoded tx if signing was possible.
+    // "seed" is the private wallet derivation key.
+    // Otherwise signSerializedTransaction returns nil
+    func signSerializedTransaction(base64: String, seed: inout UInt512) -> String? {
+        guard let txIn = Data(base64Encoded: base64) else { return nil }
+        guard let d = signSerializedTransaction(txIn, seed: &seed) else { return nil }
+        return d.base64EncodedString()
+    }
+    
+    private func signSerializedTransaction(_ data: Data, seed: inout UInt512) -> Data? {
+        let output = UnsafeMutablePointer<UInt8>.allocate(capacity: 1024)
+        
+        let txParsed = data.withUnsafeBytes { (bytes: UnsafePointer<UInt8>) -> UnsafeMutablePointer<BRTransaction> in
+            BRTransactionParse(bytes, data.count)
+        }
+        
+        let signed = BRWalletSignTransaction(cPtr, txParsed, 0, &seed, MemoryLayout<UInt512>.stride)
+        guard signed != 0 else { return nil }
+        
+        let count = BRTransactionSerialize(txParsed, output, 1024)
+        guard count > 0 else { return nil }
+        
+        return Data(bytes: output, count: Int(count))
     }
     
     // true if no previous wallet transaction spends any of the given transaction's inputs, and no inputs are invalid

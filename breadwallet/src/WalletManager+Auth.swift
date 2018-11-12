@@ -544,6 +544,34 @@ extension WalletManager : WalletAuthenticator {
             catch { return false }
         }
     }
+    
+    func signSerializedTransaction(hex: String) -> String? {
+        return autoreleasepool {
+            do {
+                var seed = UInt512()
+                defer { seed = UInt512() }
+                guard let wallet = wallet else { return nil }
+                guard let phrase: String = try keychainItem(key: KeychainKey.mnemonic) else { return nil }
+                BRBIP39DeriveKey(&seed, phrase, nil)
+                return wallet.signSerializedTransaction(hex: hex, seed: &seed)
+            }
+            catch { return nil }
+        }
+    }
+    
+    func signSerializedTransaction(base64: String) -> String? {
+        return autoreleasepool {
+            do {
+                var seed = UInt512()
+                defer { seed = UInt512() }
+                guard let wallet = wallet else { return nil }
+                guard let phrase: String = try keychainItem(key: KeychainKey.mnemonic) else { return nil }
+                BRBIP39DeriveKey(&seed, phrase, nil)
+                return wallet.signSerializedTransaction(base64: base64, seed: &seed)
+            }
+            catch { return nil }
+        }
+    }
 }
 
 private func keychainItem<T>(key: String) throws -> T? {
