@@ -3975,7 +3975,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'master'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi\n";
+			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'develop'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi\n";
 		};
 		37905F5A49F5EB10788E9E50 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4065,7 +4065,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'master'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi";
+			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'develop'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi\n";
 		};
 		78D04F1C20C710DB00AD1403 /* Build Versioning */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4079,7 +4079,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'master'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi";
+			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'develop'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi\n";
 		};
 		78D04F3120C710E700AD1403 /* Build Versioning */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4093,7 +4093,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'master'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi";
+			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'develop'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi\n";
 		};
 		78D04F4C20C710F100AD1403 /* Build Versioning */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4107,7 +4107,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'master'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi";
+			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'develop'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi\n";
 		};
 		AA532F321FEB1A7E00CFF3F9 /* Build Versioning */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4121,7 +4121,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'master'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi";
+			shellScript = "#!/bin/bash\n\n#  update_build_number.sh\n#  Usage: `update_build_number.sh [branch]`\n#  Run this script after the 'Copy Bundle Resources' build phase\n#  Ref: http://tgoode.com/2014/06/05/sensible-way-increment-bundle-version-cfbundleversion-xcode/\n\nbranch=${1:-'develop'}\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\necho \"Updating build number to $buildNumber using branch '$branch'.\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ -f \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\" ]; then\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}.dSYM/Contents/Info.plist\"\nfi\n";
 		};
 		CEE0EF531EBF8C8A0018DB36 /* Icon Versioning */ = {
 			isa = PBXShellScriptBuildPhase;
