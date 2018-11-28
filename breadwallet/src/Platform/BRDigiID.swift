@@ -32,7 +32,7 @@ open class BRDigiID : NSObject {
     static let PARAM_NONCE = "x"
     static let PARAM_UNSECURE = "u"
     static let USER_DEFAULTS_NONCE_KEY = "BRDigiID_nonces"
-    static let DEFAULT_INDEX: UInt32 = 42
+    static let DEFAULT_INDEX: UInt32 = 0
     
     class func isBitIDURL(_ url: URL!) -> Bool {
         return url.scheme == SCHEME
