@@ -4037,9 +4037,9 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-digibyte/Pods-digibyte-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-digibyte/Pods-digibyte-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Buglife/Buglife.framework",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-17/iOS/RevealServer.framework",
+				"${PODS_ROOT}/Reveal-SDK/RevealServer-20/iOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/VisualEffectView/VisualEffectView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -4050,7 +4050,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-digibyte/Pods-digibyte-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-digibyte/Pods-digibyte-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		78D04F0E20C7106000AD1403 /* Build Versioning */ = {
