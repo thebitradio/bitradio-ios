@@ -22,6 +22,7 @@ class ModalViewController : UIViewController, Subscriber {
 
     //MARK: - Public
     var childViewController: UIViewController
+    let scrollView = AlwaysScrollableScrollView()
 
     init<T: UIViewController>(childViewController: T, store: Store) where T: ModalDisplayable {
         self.childViewController = childViewController
@@ -42,7 +43,7 @@ class ModalViewController : UIViewController, Subscriber {
     fileprivate let header: ModalHeaderView
     private let tapGestureRecognizer = UITapGestureRecognizer()
     private let store: Store
-    private let scrollView = AlwaysScrollableScrollView()
+    
     private let scrollViewContent = UIView()
     
     private let modalHeaderImage: UIImageView = {

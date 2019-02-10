@@ -27,6 +27,54 @@ import Foundation
 import Security
 import BRCore
 
+public extension URLRequest {
+    
+    /// Returns a cURL command for a request
+    /// - return A String object that contains cURL command or "" if an URL is not properly initalized.
+    public var cURL: String {
+        
+        guard
+            let url = url,
+            let httpMethod = httpMethod,
+            url.absoluteString.utf8.count > 0
+            else {
+                return ""
+        }
+        
+        var curlCommand = "curl --verbose \\\n"
+        
+        // URL
+        curlCommand = curlCommand.appendingFormat(" '%@' \\\n", url.absoluteString)
+        
+        // Method if different from GET
+        if "GET" != httpMethod {
+            curlCommand = curlCommand.appendingFormat(" -X %@ \\\n", httpMethod)
+        }
+        
+        // Headers
+        let allHeadersFields = allHTTPHeaderFields!
+        let allHeadersKeys = Array(allHeadersFields.keys)
+        let sortedHeadersKeys  = allHeadersKeys.sorted(by: <)
+        for key in sortedHeadersKeys {
+            curlCommand = curlCommand.appendingFormat(" -H '%@: %@' \\\n", key, self.value(forHTTPHeaderField: key)!)
+        }
+        
+        // HTTP body
+        if let httpBody = httpBody, httpBody.count > 0 {
+            let httpBodyString = String(data: httpBody, encoding: String.Encoding.utf8)!
+            let escapedHttpBody = URLRequest.escapeAllSingleQuotes(httpBodyString)
+            curlCommand = curlCommand.appendingFormat(" --data '%@' \\\n", escapedHttpBody)
+        }
+        
+        return curlCommand
+    }
+    
+    /// Escapes all single quotes for shell from a given string.
+    static func escapeAllSingleQuotes(_ value: String) -> String {
+        return value.replacingOccurrences(of: "'", with: "'\\''")
+    }
+}
+
 open class BRDigiID : NSObject {
     static let SCHEME = "digiid"
     static let PARAM_NONCE = "x"
@@ -63,7 +111,7 @@ open class BRDigiID : NSObject {
     let walletManager: WalletManager
     
     open var siteName: String {
-        return "\(url.host!)\(portStr)\(url.path)"
+        return "\(url.host!)\(portStr)"
     }
     
     init(url u: URL, walletManager wm: WalletManager) {
@@ -151,14 +199,16 @@ open class BRDigiID : NSObject {
                 nonce = newNonce() // we are generating our own nonce
             }
             
-            let uri = "\(scheme)://\(url.host!)\(portStr)\(url.path)"
+//            let uri = "\(scheme)://\(url.host!)\(portStr)\(url.path)"
+    
 
             // build a payload consisting of the signature, address and signed uri
-            guard var priv = walletManager.buildBitIdKey(url: uri, index: Int(BRDigiID.DEFAULT_INDEX)) else {
+            guard var priv = walletManager.buildBitIdKey(url: url.absoluteString, index: Int(BRDigiID.DEFAULT_INDEX)) else {
                 return
             }
 
-            let uriWithNonce = "digiid://\(url.host!)\(portStr)\(url.path)?x=\(nonce)"
+//            let uriWithNonce = "digiid://\(url.host!)\(portStr)\(url.path)?x=\(nonce)"
+            let uriWithNonce = url.absoluteString
             let signature = BRDigiID.signMessage(uriWithNonce, usingKey: priv)
             let payload: [String: String] = [
                 "address": priv.address()!,
@@ -172,11 +222,13 @@ open class BRDigiID : NSObject {
             //   print("DIGIID json:", string)
             
             // send off said payload
-            var req = URLRequest(url: URL(string: "\(uri)?x=\(nonce)")!)
+            //var req = URLRequest(url: URL(string: "\(uri)?x=\(nonce)")!)
+            var req = URLRequest(url: url)
             req.setValue("application/json", forHTTPHeaderField: "Content-Type")
             req.httpMethod = "POST"
             req.httpBody = json
             let session = URLSession.shared
+            print(req.cURL)
             session.dataTask(with: req, completionHandler: { (dat: Data?, resp: URLResponse?, err: Error?) in
                 var rerr: NSError?
                 if err != nil {
@@ -185,5 +237,30 @@ open class BRDigiID : NSObject {
                 completionHandler(dat, resp, rerr)
             }).resume()
         }
+    }
+}
+
+extension URL {
+    
+    @discardableResult
+    func append(_ queryItem: String, value: String?) -> URL {
+        
+        guard var urlComponents = URLComponents(string:  absoluteString) else { return absoluteURL }
+        
+        // create array of existing query items
+        var queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
+        
+        // create query item if value is not nil
+        guard let value = value else { return absoluteURL }
+        let queryItem = URLQueryItem(name: queryItem, value: value)
+        
+        // append the new query item in the existing query items array
+        queryItems.append(queryItem)
+        
+        // append updated query items array in the url component object
+        urlComponents.queryItems = queryItems// queryItems?.append(item)
+        
+        // returns the url from new url components
+        return urlComponents.url!
     }
 }

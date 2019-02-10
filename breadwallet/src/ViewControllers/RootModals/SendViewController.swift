@@ -82,7 +82,7 @@ class SendViewController : UIViewController, UIImagePickerControllerDelegate, UI
         view.addSubview(descriptionCell)
         view.addSubview(sendButton)
 
-        addressCell.constrainTopCorners(height: SendCell.defaultHeight * 1.25)
+        addressCell.constrainTopCorners(sidePadding: 0, topPadding: 0)
 
         addChildViewController(amountView, layout: {
             amountView.view.constrain([
@@ -285,7 +285,8 @@ class SendViewController : UIViewController, UIImagePickerControllerDelegate, UI
         }
 
         if sender.transaction == nil {
-            guard let address = addressCell.address else {
+            let address = addressCell.address
+            guard address != "" else {
                 return showAlert(title: S.Alert.error, message: S.Send.noAddress, buttonLabel: S.Button.ok)
             }
             guard address.isValidAddress else {

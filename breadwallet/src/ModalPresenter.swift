@@ -257,6 +257,8 @@ class ModalPresenter : Subscriber, Trackable {
             return makeSendView()
         case .showAddress:
             return showAddressView()
+        case .showAddressBook:
+            return showAddressBook()
         case .receive:
             return receiveView(isRequestAmountVisible: true)
         case .loginScan:
@@ -331,6 +333,18 @@ class ModalPresenter : Subscriber, Trackable {
         return root
     }
     
+    private func showAddressBook() -> UIViewController? {
+        let addressBookVC = AddressBookViewControllerOverview()
+        
+        let root = ModalViewController(childViewController: addressBookVC, store: store)
+        root.scrollView.isScrollEnabled = false
+        
+        addressBookVC.presentScanForAdd = presentScan(parent: addressBookVC.addContactVC)
+        addressBookVC.presentScanForEdit = presentScan(parent: addressBookVC.editContactVC)
+
+        return root
+    }
+    
     private func showAddressView() -> UIViewController? {
         guard let wallet = walletManager?.wallet else { return nil }
         let receiveVC = ShowAddressViewController(wallet: wallet, store: store)
@@ -385,7 +399,7 @@ class ModalPresenter : Subscriber, Trackable {
                             // we can not open the sender app again, we will just display a messagebox
                             let alert = UIAlertController(title: S.BitID.success, message: nil, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
-                            top.present(alert, animated: true, completion: nil)
+                            alert.show()
                         } else {
                             // open the sender app
                             if let u = URL(string: senderAppInfo.appURI) {
@@ -396,7 +410,7 @@ class ModalPresenter : Subscriber, Trackable {
                         let statusCode = (response as? HTTPURLResponse)?.statusCode
                         let additionalInformation = statusCode != nil ? "\(statusCode!)" : ""
                         
-                        var errorInformation: String {
+                        let errorInformation: String = {
                             guard let data = data else { return S.BitID.errorMessage }
                             do {
                                 // check if server gave json response in format { message: <error description> }
@@ -404,14 +418,17 @@ class ModalPresenter : Subscriber, Trackable {
                                 return json["message"] as! String
                             } catch {
                                 // just return response as string
-                                return String(data: data, encoding: String.Encoding.utf8) ?? S.BitID.errorMessage
+                                if let s = String(data: data, encoding: String.Encoding.utf8), s.count > 0 {
+                                    return s
+                                }
+                                return S.BitID.errorMessage
                             }
-                        }
+                        }()
                         
                         // show alert controller and display error description
                         let alert = UIAlertController(title: S.BitID.error, message: "\(errorInformation).\n\n\(additionalInformation)", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
-                        top.present(alert, animated: true, completion: nil)
+                        alert.show()
                     }
                 })
             }
@@ -855,7 +872,7 @@ class ModalPresenter : Subscriber, Trackable {
     }
     
     private func handleDigiIdScanQrURL() {
-        guard !store.state.isLoginRequired else { presentLoginScan(); return }
+        guard !store.state.isLoginRequired else { presentLoginScanForDigiId(); return }
         
         if topViewController is AccountViewController || topViewController is LoginViewController {
             presentLoginScanForDigiId()
@@ -898,7 +915,7 @@ class ModalPresenter : Subscriber, Trackable {
 
     private func authenticateForBitId(prompt: String, callback: @escaping (BitIdAuthResult) -> Void) {
         if UserDefaults.isBiometricsEnabled {
-            walletManager?.authenticate(biometricsPrompt: prompt, completion: { result in
+            walletManager?.authenticate(biometricsPrompt: prompt, isDigiIDAuth: true, completion: { result in
                 switch result {
                 case .success:
                     return callback(.success)

@@ -16,6 +16,7 @@ class DescriptionSendCell : SendCell {
         textView.textColor = C.Colors.text
         textView.font = .customBody(size: 20.0)
         textView.returnKeyType = .done
+        textView.keyboardAppearance = .dark
         self.placeholder.textColor = C.Colors.blueGrey
         self.placeholder.text = placeholder
         backgroundColor = .clear
@@ -78,11 +79,7 @@ extension DescriptionSendCell : UITextViewDelegate {
         }
 
         let count = (textView.text ?? "").utf8.count + text.utf8.count
-        if count > C.maxMemoLength {
-            return false
-        } else {
-            return true
-        }
+        return count <= C.maxMemoLength
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {

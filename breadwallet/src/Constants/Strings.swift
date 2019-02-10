@@ -55,10 +55,31 @@ enum S {
 	enum QRImageReader {
 		static let title = NSLocalizedString("QRImageReader.title", value: "QRImage Reader", comment: "ImageReader Title")
 		static let buttonLabel = NSLocalizedString("QRImageReader.readQRButtonLabel", value:"Image", comment: "Image button label")
-		static let NotFoundMessage = NSLocalizedString("QRImageReader.readQRMessageNotFound", value:"No QR fode fund in image", comment: "no qr code found")
+		static let NotFoundMessage = NSLocalizedString("QRImageReader.readQRMessageNotFound", value:"No QR code found in image", comment: "no qr code found")
 		static let SuccessFoundMessage = NSLocalizedString("QRImageReader.readQRMessageSuccess", value:"Found:\n", comment: "Found qrcode")
 		static let TooManyFoundMessage = NSLocalizedString("QRImageReader.readQRMessageTooMany", value:"Multiply qr codes found.", comment: "Found multiply qr code im image")
 	}
+    
+    enum AddressBook {
+        static let title = NSLocalizedString("AddressBook.title", value:"Address Book", comment: "address book modal title")
+        static let name = NSLocalizedString("AddressBook.name", value: "Name", comment: "Name of contact")
+        static let searchPlaceholder = NSLocalizedString("AddressBook.searchPlaceholder", value:"Search contacts", comment: "Placeholder for searchbar")
+        static let favorites = NSLocalizedString("AddressBook.favorites", value:"Favorites", comment: "Favorites header title")
+        
+        static let addContact = NSLocalizedString("AddressBook.addContact", value:"Add a new contact", comment: "Header title in address book")
+        
+        static let addContactButtonTitle = NSLocalizedString("AddressBook.addContactButtonTitle", value:"Add contact", comment: "button title for add button")
+        
+        static let editContactButtonTitle = NSLocalizedString("AddressBook.editContactButtonTitle", value:"Edit contact", comment: "button title for edit button")
+        
+        static let editContact = NSLocalizedString("AddressBook.editContact", value:"Edit contact", comment: "Header title in address book")
+        
+        static let address = NSLocalizedString("AddressBook.address", value:"Address", comment: "the contact's address (textfield label)")
+        
+        static let deleteContactHeader = NSLocalizedString("AddressBook.deleteContactHeader", value:"Delete contact", comment: "header in confirm dialog to delete contact")
+        
+        static let deleteContact = NSLocalizedString("AddressBook.deleteContact", value:"Do you really want to delete this contact?", comment: "description in confirm dialog to delete contact")
+    }
 
     enum Send {
         static let title = NSLocalizedString("Send.title", value:"Send", comment: "Send modal title")
