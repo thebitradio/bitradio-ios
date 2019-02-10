@@ -53,7 +53,7 @@
 #import "LIFEToastController.h"
 #import "UIControl+LIFEAdditions.h"
 
-static NSString * const kSDKVersion = @"2.8.1";
+static NSString * const kSDKVersion = @"2.8.4";
 void life_dispatch_async_to_main_queue(dispatch_block_t block);
 
 LIFEAttachmentType * const LIFEAttachmentTypeIdentifierText   = @"public.plain-text";
@@ -67,6 +67,7 @@ LIFEAttachmentType * const LIFEAttachmentTypeIdentifierHEIC   = @"public.heic";
 NSString * const LIFENotificationWillPresentReporter    = @"LIFENotificationWillPresentReporter";
 NSString * const LIFENotificationUserCanceledReport     = @"LIFENotificationUserCanceledReport";
 NSString * const LIFENotificationUserSubmittedReport    = @"LIFENotificationUserSubmittedReport";
+NSString * const LIFEAttributeKeyJiraProjectKey         = @"jira.project.key";
 
 /**
  UIScreenCapturedDidChangeNotification is only available on iOS 11, but
