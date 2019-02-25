@@ -397,7 +397,7 @@ class ModalPresenter : Subscriber, Trackable {
                         let senderAppInfo = getSenderAppInfo(request: request)
                         if senderAppInfo.unknownApp {
                             // we can not open the sender app again, we will just display a messagebox
-                            let alert = UIAlertController(title: S.BitID.success, message: nil, preferredStyle: .alert)
+                            let alert = UIAlertController(title: S.DigiID.success, message: nil, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
                             DispatchQueue.main.async { alert.show() }
                         } else {
@@ -411,7 +411,7 @@ class ModalPresenter : Subscriber, Trackable {
                         let additionalInformation = statusCode != nil ? "\(statusCode!)" : ""
                         
                         let errorInformation: String = {
-                            guard let data = data else { return S.BitID.errorMessage }
+                            guard let data = data else { return S.DigiID.errorMessage }
                             do {
                                 // check if server gave json response in format { message: <error description> }
                                 let json = try JSONSerialization.jsonObject(with: data) as! [String: Any]
@@ -421,12 +421,12 @@ class ModalPresenter : Subscriber, Trackable {
                                 if let s = String(data: data, encoding: String.Encoding.utf8), s.count > 0 {
                                     return s
                                 }
-                                return S.BitID.errorMessage
+                                return S.DigiID.errorMessage
                             }
                         }()
                         
                         // show alert controller and display error description
-                        let alert = UIAlertController(title: S.BitID.error, message: "\(errorInformation).\n\n\(additionalInformation)", preferredStyle: .alert)
+                        let alert = UIAlertController(title: S.DigiID.error, message: "\(errorInformation).\n\n\(additionalInformation)", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
                         DispatchQueue.main.async { alert.show() }
                     }
