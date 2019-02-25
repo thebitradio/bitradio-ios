@@ -181,33 +181,53 @@ open class BRDigiID : NSObject {
 
     private func run(_ completionHandler: @escaping (Data?, URLResponse?, NSError?) -> Void) {
         autoreleasepool {
+            // Default scheme is https;
+            // http will only be used, if the digi-id request specifies 1 as the value for the argument u.
             var scheme = "https"
+            
+            // Request id / ad-hoc token
             var nonce: String
-            guard let query = url.query?.parseQueryString() else {
+            
+            // First we check, if a valid URL was passed
+            guard url.query != nil else {
                 DispatchQueue.main.async {
                     completionHandler(nil, nil, NSError(domain: "", code: -1001, userInfo:
                         [NSLocalizedDescriptionKey: NSLocalizedString("Malformed URI", comment: "")]))
                 }
                 return
             }
-            if let u = query[BRDigiID.PARAM_UNSECURE] , u.count == 1 && u[0] == "1" {
+            
+            // Convert query parameters to dictionary for easy access
+            let query = url.query!.parseQueryString()
+            
+            // Check if unsecure parameter was specified.
+            // That is, the service wants to use http instead of https.
+            // ToDo: Since we want to provide a secure authentication algorithm, we
+            //       should actually force users to use HTTPS. Or at least the wallet user
+            //       must enable a switch in the wallet settings. We need to discuss that in the
+            //       future.
+            if let u = query[BRDigiID.PARAM_UNSECURE], u.count == 1 && u[0] == "1" {
                 scheme = "http"
             }
-            if let x = query[BRDigiID.PARAM_NONCE] , x.count == 1 {
+            
+            // Check if service is providing a nonce, or if we should generate one.
+            if let x = query[BRDigiID.PARAM_NONCE], x.count == 1 {
                 nonce = x[0] // service is providing a nonce
             } else {
                 nonce = newNonce() // we are generating our own nonce
             }
             
-//            let uri = "\(scheme)://\(url.host!)\(portStr)\(url.path)"
-    
-
-            // build a payload consisting of the signature, address and signed uri
+            // Build a payload consisting of the signature, address and signed uri
             guard var priv = walletManager.buildBitIdKey(url: url.absoluteString, index: Int(BRDigiID.DEFAULT_INDEX)) else {
                 return
             }
 
-//            let uriWithNonce = "digiid://\(url.host!)\(portStr)\(url.path)?x=\(nonce)"
+            // Sign the input url with wallet's private key.
+            // According to the Digi-ID protocol, we will have to provide
+            // the public address of the private key and the signature itself.
+            // Also the input URI will be provided.
+            // Cryptographic proof: signature will be decrypted with provided address,
+            //                      which should result in the value of the field uri
             let uriWithNonce = url.absoluteString
             let signature = BRDigiID.signMessage(uriWithNonce, usingKey: priv)
             let payload: [String: String] = [
@@ -215,25 +235,41 @@ open class BRDigiID : NSObject {
                 "signature": signature,
                 "uri": uriWithNonce
             ]
-            let json = try! JSONSerialization.data(withJSONObject: payload, options: [])
-
-            // output:
-            //   let string = NSString(data: json, encoding: String.Encoding.utf8.rawValue)
-            //   print("DIGIID json:", string)
             
-            // send off said payload
-            //var req = URLRequest(url: URL(string: "\(uri)?x=\(nonce)")!)
-            var req = URLRequest(url: url)
+            // Encode the payload to JSON
+            let json = try! JSONSerialization.data(withJSONObject: payload, options: [])
+            
+            // The Digi-ID protocol foresees the digi-id uri to start with digiid://.
+            // In order to call the callback, we need to replace that pattern with http(s)://
+            let digiidURIString = url.absoluteString
+            let httpURLString = try! NSRegularExpression(pattern: "^digiid://", options: NSRegularExpression.Options.caseInsensitive).stringByReplacingMatches(in: digiidURIString, options: [], range: NSMakeRange(0, digiidURIString.count), withTemplate: "\(scheme)://")
+            guard let httpURL = URL(string: httpURLString) else {
+                DispatchQueue.main.async {
+                    completionHandler(nil, nil, NSError(domain: "", code: -1001, userInfo:
+                    [NSLocalizedDescriptionKey: NSLocalizedString("Malformed http URI", comment: "")]))
+                }
+                return
+            }
+            
+            // Prepare the request
+            var req = URLRequest(url: httpURL)
             req.setValue("application/json", forHTTPHeaderField: "Content-Type")
             req.httpMethod = "POST"
             req.httpBody = json
             let session = URLSession.shared
-            print(req.cURL)
+            
+            // debug (print as CURL)
+               print(req.cURL)
+            
+            // Fire the digi-id callback request
             session.dataTask(with: req, completionHandler: { (dat: Data?, resp: URLResponse?, err: Error?) in
                 var rerr: NSError?
                 if err != nil {
                     rerr = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "\(err!.localizedDescription)"])
                 }
+                
+                // Call the completion handler with the return data.
+                // rerr: return error is optional.
                 completionHandler(dat, resp, rerr)
             }).resume()
         }

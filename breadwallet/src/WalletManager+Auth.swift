@@ -265,6 +265,9 @@ extension WalletManager : WalletAuthenticator {
                 return
             }
             
+            // This callback will be executed either if
+            // - wallet will be unlocked
+            // - ongoing digi-id request was confirmed by clicking yes in a dialog
             let execBiometricsPrompt: (() -> Void) = {
                 ctx.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: biometricsPrompt) { (success, error) in
                     DispatchQueue.main.async {
@@ -286,9 +289,9 @@ extension WalletManager : WalletAuthenticator {
                     // it's important to show the url before authenticating.
                     // When using touchID the user must have a chance to cancel the request.
                     // Hence, we display a prompt before using touchID
-                    let alert = UIAlertController(title: "Digi-ID", message: biometricsPrompt, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: { _ in /* do nothing */ }))
-                    alert.addAction(UIAlertAction(title: S.Button.yes, style: .default, handler: { _ in execBiometricsPrompt() }))
+                    let alert = UIAlertController(title: S.BitID.title, message: biometricsPrompt, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: S.BitID.deny, style: .cancel, handler: { _ in /* do nothing */ }))
+                    alert.addAction(UIAlertAction(title: S.BitID.approve, style: .default, handler: { _ in execBiometricsPrompt() }))
                     alert.show()
                 } else {
                     // just show the prompt, in case of wallet authentication (from lock screen)

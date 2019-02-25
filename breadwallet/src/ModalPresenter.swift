@@ -399,7 +399,7 @@ class ModalPresenter : Subscriber, Trackable {
                             // we can not open the sender app again, we will just display a messagebox
                             let alert = UIAlertController(title: S.BitID.success, message: nil, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
-                            alert.show()
+                            DispatchQueue.main.async { alert.show() }
                         } else {
                             // open the sender app
                             if let u = URL(string: senderAppInfo.appURI) {
@@ -428,7 +428,7 @@ class ModalPresenter : Subscriber, Trackable {
                         // show alert controller and display error description
                         let alert = UIAlertController(title: S.BitID.error, message: "\(errorInformation).\n\n\(additionalInformation)", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
-                        alert.show()
+                        DispatchQueue.main.async { alert.show() }
                     }
                 })
             }
