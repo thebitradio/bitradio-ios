@@ -691,8 +691,10 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         }
     }
     
-    var showAddressCallback: (() -> Void)? {
-        didSet { footerView.showAddressCallback = showAddressCallback }
+    var showAddressBookCallback: (() -> Void)? {
+        didSet {
+            footerView.addressBookCallback = showAddressBookCallback
+        }
     }
 
     var walletManager: WalletManager? {

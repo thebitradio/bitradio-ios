@@ -2,7 +2,7 @@
 //  BRDigiAssetsTestViewController.swift
 //  digibyte
 //
-//  Created by Julian Jäger on 08.11.18.
+//  Created by Yoshi Jäger on 08.11.18.
 //  Copyright © 2018 breadwallet LLC. All rights reserved.
 //
 

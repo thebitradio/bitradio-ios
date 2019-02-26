@@ -563,7 +563,8 @@ class AccountFooterView: UIView {
     var receiveCallback: (() -> Void)?
     var menuCallback: (() -> Void)?
     var digiIDCallback: (() -> Void)?
-    var showAddressCallback: (() -> Void)?
+    var addressBookCallback: (() -> Void)?
+//    var showAddressCallback: (() -> Void)?
     var qrScanCallback: (() -> Void)?
     var debugDigiAssetsCallback: (() -> Void)?
     
@@ -597,14 +598,14 @@ class AccountFooterView: UIView {
         let backgroundView = FooterBackgroundView()
         
         // add menu items
+        circleButton.addMenuItem(img: UIImage(named: "AddressBook")!, text: S.AddressBook.title) {
+            self.addressBookCallback?()
+        }
         circleButton.addMenuItem(img: #imageLiteral(resourceName: "receiveArrow"), text: S.Receive.title) {
             self.receiveCallback?()
         }
         circleButton.addMenuItem(img: #imageLiteral(resourceName: "sendArrow"), text: S.Send.title) {
             self.sendCallback?()
-        }
-        circleButton.addMenuItem(img: #imageLiteral(resourceName: "wallet"), text: S.UnlockScreen.myAddress) {
-            self.showAddressCallback?()
         }
         
         // left button (trigger hamburger menu)

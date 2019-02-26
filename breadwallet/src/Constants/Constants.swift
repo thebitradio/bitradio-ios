@@ -45,6 +45,7 @@ struct C {
         static let blue = UIColor(red: 0x02 / 255, green: 0x5D / 255, blue: 0xBA / 255, alpha: 1.0) // #025DBA
         static let weirdGreen = UIColor(red: 63.0 / 255.0, green: 231.0 / 255.0, blue: 123.0 / 255.0, alpha: 1.0) //#3fe77b
 		static let weirdRed = UIColor(red: 0xFF / 255, green: 0x74 / 255, blue: 0x16 / 255, alpha: 1)
+        static let favoriteYellow = UIColor(red: 0xEA / 255, green: 0xD3 / 255, blue: 0x34 / 255, alpha: 1) // #EAD334
     }
     
     static let animationDuration: TimeInterval = 0.3
@@ -55,6 +56,7 @@ struct C {
     static let btcCurrencyCode = "DGB"
     static let null = "(null)"
     static let maxMemoLength = 250
+    static let maxContactNameLength = 30
 	//FIXME: We need a valid feedback email address.
     static let feedbackEmail = "info@digibyte.io"
 	static let reviewLink = "https://itunes.apple.com/us/app/digibyte-wallet/id1328006562?action=write-review"

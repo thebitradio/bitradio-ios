@@ -138,7 +138,8 @@ class BCashTransactionViewController : UIViewController {
     }
 
     private func presentConfirm() {
-        guard let address = addressCell.address, address.isValidBCHAddress else { return showErrorMessage(S.Send.invalidAddressMessage) }
+        let address = addressCell.address
+        guard address != "", address.isValidBCHAddress else { return showErrorMessage(S.Send.invalidAddressMessage) }
         let amount = DisplayAmount(amount: Satoshis(rawValue: walletManager.bCashBalance), state: store.state, selectedRate: nil, minimumFractionDigits: 0)
         let message = String(format: S.BCH.confirmationMessage, amount.description, address)
         let alert = UIAlertController(title: S.BCH.confirmationTitle, message: message, preferredStyle: .alert)

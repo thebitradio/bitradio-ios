@@ -138,16 +138,16 @@ class URLController : Trackable {
         // senderApp
         let req = DigiIdRequest(string: url.absoluteString)
         
-        let message = String(format: S.BitID.authenticationRequest, bitid.url.host!)
-        let alert = UIAlertController(title: S.BitID.title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: S.BitID.deny, style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: S.BitID.approve, style: .default, handler: { _ in
+        let message = String(format: S.DigiID.authenticationRequest, bitid.url.host!)
+        let alert = UIAlertController(title: S.DigiID.title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: S.DigiID.deny, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: S.DigiID.approve, style: .default, handler: { _ in
             bitid.runCallback(store: self.store) { data, response, error in
                 if let resp = response as? HTTPURLResponse, error == nil && resp.statusCode >= 200 && resp.statusCode < 300 {
                     let senderAppInfo = getSenderAppInfo(request: req)
                     if senderAppInfo.unknownApp {
                         // we can not open the sender app again, we will just display a messagebox
-                        let alert = UIAlertController(title: S.BitID.success, message: nil, preferredStyle: .alert)
+                        let alert = UIAlertController(title: S.DigiID.success, message: nil, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
                         self.present(alert: alert)
                     } else {
@@ -161,19 +161,19 @@ class URLController : Trackable {
                     let additionalInformation = statusCode != nil ? "\(statusCode!)" : ""
                     
                     var errorInformation: String {
-                        guard let data = data else { return S.BitID.errorMessage }
+                        guard let data = data else { return S.DigiID.errorMessage }
                         do {
                             // check if server gave json response in format { message: <error description> }
                             let json = try JSONSerialization.jsonObject(with: data) as! [String: Any]
                             return json["message"] as! String
                         } catch {
                             // just return response as string
-                            return String(data: data, encoding: String.Encoding.utf8) ?? S.BitID.errorMessage
+                            return String(data: data, encoding: String.Encoding.utf8) ?? S.DigiID.errorMessage
                         }
                     }
                     
                     // show alert controller and display error description
-                    let alert = UIAlertController(title: S.BitID.error, message: "\(errorInformation).\n\n\(additionalInformation)", preferredStyle: .alert)
+                    let alert = UIAlertController(title: S.DigiID.error, message: "\(errorInformation).\n\n\(additionalInformation)", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: nil))
                     self.present(alert: alert)
                 }
