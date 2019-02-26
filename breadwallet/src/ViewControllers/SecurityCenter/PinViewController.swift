@@ -300,6 +300,7 @@ class LoginViewController: PINViewController, Trackable {
     private let isPresentedForLock: Bool
     private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     private let securityCheckLabel = UILabel(font: .customMedium(size: 12), color: C.Colors.blueGrey)
+    private let digiIdButton = UIButton()
 
     private let biometricsView: UIView = {
         let view = UIView()
@@ -366,6 +367,7 @@ class LoginViewController: PINViewController, Trackable {
         addSubviews()
         addConstraints()
         addBiometricsButton()
+        addDigiIDButton()
         addPinPadCallback()
         setData()
         
@@ -400,6 +402,13 @@ class LoginViewController: PINViewController, Trackable {
         store.subscribe(self, name: .loginFromSend, callback: {_ in
             self.authenticationSucceded()
         })
+    }
+    
+    private func addDigiIDButton() {
+        digiIdButton.setImage(UIImage(named: "DigiID-Logo"), for: .normal)
+        digiIdButton.tap = {
+            self.walletManager?.store.trigger(name: .scanDigiId)
+        }
     }
     
     private func addPinPadCallback() {
@@ -448,6 +457,7 @@ class LoginViewController: PINViewController, Trackable {
         }
         
         view.addSubview(securityCheckLabel)
+        view.addSubview(digiIdButton)
     }
     
     private func addConstraints() {
@@ -464,6 +474,13 @@ class LoginViewController: PINViewController, Trackable {
             securityCheckLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             securityCheckLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             securityCheckLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+        ])
+        
+        digiIdButton.constrain([
+            digiIdButton.centerYAnchor.constraint(equalTo: securityCheckLabel.bottomAnchor),
+            digiIdButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
+            digiIdButton.widthAnchor.constraint(equalToConstant: 40),
+            digiIdButton.heightAnchor.constraint(equalToConstant: 40),
         ])
         
         constraints["header.top"]?.isActive = false
@@ -532,6 +549,7 @@ class LoginViewController: PINViewController, Trackable {
         self.biometricsView.alpha = 0.0
         self.header.alpha = 0.0
         self.securityCheckLabel.alpha = 0.0
+        self.digiIdButton.alpha = 0.0
         
         lock.alpha = 1.0
         label.alpha = 1.0
@@ -542,6 +560,7 @@ class LoginViewController: PINViewController, Trackable {
             self.biometricsView.alpha = 1.0
             self.header.alpha = 1.0
             self.securityCheckLabel.alpha = 1.0
+            self.digiIdButton.alpha = 1.0
             
             lock.alpha = 0
             label.alpha = 0
@@ -576,6 +595,7 @@ class LoginViewController: PINViewController, Trackable {
             self.biometricsView.alpha = 0.0
             self.header.alpha = 0.0
             self.securityCheckLabel.alpha = 0.0
+            self.digiIdButton.alpha = 0.0
             
             lock.alpha = 1.0
             label.alpha = 1.0
@@ -612,7 +632,10 @@ class LoginViewController: PINViewController, Trackable {
     @objc func biometricsTapped() {
         print("DEBUG disabled")
         guard !isWalletDisabled else { return }
-        self.walletManager?.authenticate(biometricsPrompt: S.UnlockScreen.touchIdPrompt, completion: { result in
+        // YOSHI
+//        self.authenticationSucceded()
+//        return;
+        self.walletManager?.authenticate(biometricsPrompt: S.UnlockScreen.touchIdPrompt, isDigiIDAuth: false, completion: { result in
             if result == .success {
                 self.authenticationSucceded()
             }

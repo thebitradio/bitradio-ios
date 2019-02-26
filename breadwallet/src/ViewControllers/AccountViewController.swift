@@ -691,8 +691,10 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         }
     }
     
-    var showAddressCallback: (() -> Void)? {
-        didSet { footerView.showAddressCallback = showAddressCallback }
+    var showAddressBookCallback: (() -> Void)? {
+        didSet {
+            footerView.addressBookCallback = showAddressBookCallback
+        }
     }
 
     var walletManager: WalletManager? {
@@ -741,6 +743,12 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         
         self.edgeGesture = UIScreenEdgePanGestureRecognizer()
         super.init(nibName: nil, bundle: nil)
+        
+        footerView.debugDigiAssetsCallback = { [unowned self] in
+            guard let w = self.walletManager else { return }
+            let vc = BRDigiAssetsTestViewController(wallet: w)
+            self.present(vc, animated: true, completion: nil)
+        }
     }
 
     //MARK: - Private

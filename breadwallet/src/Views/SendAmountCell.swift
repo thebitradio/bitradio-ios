@@ -20,6 +20,7 @@ class SendAmountCell : SendCell {
         textField.delegate = self
         textField.textColor = .darkText
         textField.inputView = UIView()
+        textField.keyboardAppearance = .dark
         setupViews()
     }
 

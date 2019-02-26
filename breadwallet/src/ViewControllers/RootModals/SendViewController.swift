@@ -41,8 +41,35 @@ class SendViewController : UIViewController, UIImagePickerControllerDelegate, UI
         self.initialRequest = initialRequest
         self.currency = ShadowButton(title: S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits), type: .tertiary)
         amountView = AmountViewController(store: store, isPinPadExpandedAtLaunch: false, scrollDownOnTap: false)
-
         super.init(nibName: nil, bundle: nil)
+        
+        self.addressCell = AddressCell(showAddressBookButton: true, addressBookCallback: { [unowned self] in
+            // Show address book (modal selector)
+            let vc = AddressBookOverviewViewController()
+            vc.view.backgroundColor = UIColor(red: 0x15 / 255, green: 0x15 / 255, blue: 0x1F / 255, alpha: 1) // #15151F
+            
+            // Use a Bread modal window
+            let root = ModalViewController(childViewController: vc, store: store)
+            root.header.backgroundColor = vc.view.backgroundColor
+            root.view.backgroundColor = vc.view.backgroundColor
+            root.scrollView.isScrollEnabled = false
+            root.modalHeaderImage.isHidden = true
+            root.providesPresentationContextTransitionStyle = true
+            root.definesPresentationContext = true
+            root.modalPresentationStyle = .fullScreen
+            root.modalPresentationCapturesStatusBarAppearance = true
+        
+            // Set the callback, so that AddressBookOverviewViewController won't show
+            // the edit / add button
+            vc.contactSelectedCallback = { [unowned self] contact in
+                self.addressCell.setContent(contact.address)
+                self.contactNameLabel.text = "\(contact.name)"
+                root.dismiss(animated: true, completion: nil)
+            }
+            
+            self.present(root, animated: true, completion: nil)
+        })
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
         
@@ -61,7 +88,7 @@ class SendViewController : UIViewController, UIImagePickerControllerDelegate, UI
     private let sender: Sender
     private let walletManager: WalletManager
     private let amountView: AmountViewController
-    private let addressCell = AddressCell()
+    private var addressCell: AddressCell!
     private let descriptionCell = DescriptionSendCell(placeholder: S.Send.descriptionLabel)
     private let sendButton = ShadowButton(title: S.Send.sendLabel, type: .primary)
     private let currency: ShadowButton
@@ -75,14 +102,23 @@ class SendViewController : UIViewController, UIImagePickerControllerDelegate, UI
     private let initialRequest: PaymentRequest?
     private let confirmTransitioningDelegate = PinTransitioningDelegate()
     private var feeType: Fee?
+    
+    private let contactNameLabel = UILabel()
+    private var indexedContacts: [String: AddressBookContact] = [:]
 
     override func viewDidLoad() {
         view.backgroundColor = .clear
         view.addSubview(addressCell)
+        view.addSubview(contactNameLabel)
         view.addSubview(descriptionCell)
         view.addSubview(sendButton)
 
-        addressCell.constrainTopCorners(height: SendCell.defaultHeight * 1.25)
+        addressCell.constrainTopCorners(sidePadding: 0, topPadding: 0)
+        
+        contactNameLabel.constrain([
+            contactNameLabel.bottomAnchor.constraint(equalTo: addressCell.textField.bottomAnchor, constant: -9),
+            contactNameLabel.leftAnchor.constraint(equalTo: addressCell.textField.textView.leftAnchor, constant: 5),
+        ])
 
         addChildViewController(amountView, layout: {
             amountView.view.constrain([
@@ -114,15 +150,38 @@ class SendViewController : UIViewController, UIImagePickerControllerDelegate, UI
                             }
         })
         walletManager.wallet?.feePerKb = store.state.fees.regular
+        
+        contactNameLabel.textColor = C.Colors.greyBlue
+        contactNameLabel.font = UIFont.customBody(size: 13)
+        
+        addressCell.didEdit = { [unowned self] in
+            self.contactNameLabel.text = ""
+            
+            if let contact = self.indexedContacts[self.addressCell.address] {
+                self.contactNameLabel.text = contact.name
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        indexContacts()
+        
         if initialAddress != nil {
             addressCell.setContent(initialAddress)
             amountView.expandPinPad()
         } else if let initialRequest = initialRequest {
             handleRequest(initialRequest)
+        }
+    }
+    
+    private func indexContacts() {
+        indexedContacts = [:]
+        
+        let contacts = AddressBookContact.loadContacts()
+        for contact in contacts {
+            indexedContacts[contact.address] = contact
         }
     }
 
@@ -245,9 +304,7 @@ class SendViewController : UIViewController, UIImagePickerControllerDelegate, UI
 	}
 
 	internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-		self.dismiss(animated: true, completion: { () -> Void in
-
-		})
+		self.dismiss(animated: true, completion: { () -> Void in })
 
 		if
 			let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage,
@@ -285,7 +342,8 @@ class SendViewController : UIViewController, UIImagePickerControllerDelegate, UI
         }
 
         if sender.transaction == nil {
-            guard let address = addressCell.address else {
+            let address = addressCell.address
+            guard address != "" else {
                 return showAlert(title: S.Alert.error, message: S.Send.noAddress, buttonLabel: S.Button.ok)
             }
             guard address.isValidAddress else {

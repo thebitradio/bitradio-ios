@@ -67,7 +67,11 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
     private var peerEnt: Int32 = 0
     internal let store: Store
     var masterPubKey = BRMasterPubKey()
-    var earliestKeyTime: TimeInterval = 0
+    var earliestKeyTime: TimeInterval = 0 {
+        didSet {
+            print(earliestKeyTime)
+        }
+    }
     var startBlock: StartBlock? = nil
     var kvStore: BRReplicatedKVStore? = nil
     

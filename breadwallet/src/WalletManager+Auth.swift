@@ -255,7 +255,7 @@ extension WalletManager : WalletAuthenticator {
     }
 
     // show biometric dialog and call completion block with success or failure
-    func authenticate(biometricsPrompt: String, completion: @escaping (BiometricsResult) -> ()) {
+    func authenticate(biometricsPrompt: String, isDigiIDAuth: Bool, completion: @escaping (BiometricsResult) -> ()) {
         let ctx = LAContext()
         var err: NSError?
         
@@ -264,19 +264,45 @@ extension WalletManager : WalletAuthenticator {
                 print(error)
                 return
             }
-            ctx.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: biometricsPrompt) { (success, error) in
-                DispatchQueue.main.async {
-                    if success { return completion(.success) }
-                    
-                    guard let error = error else { return completion(.failure) }
-                    if error._code == Int(kLAErrorUserCancel) {
-                        return completion (.cancel)
-                    } else if error._code == Int(kLAErrorUserFallback) {
-                        return completion (.fallback)
+            
+            // This callback will be executed either if
+            // - wallet will be unlocked
+            // - ongoing digi-id request was confirmed by clicking yes in a dialog
+            let execBiometricsPrompt: (() -> Void) = {
+                ctx.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: biometricsPrompt) { (success, error) in
+                    DispatchQueue.main.async {
+                        if success { return completion(.success) }
+                        
+                        guard let error = error else { return completion(.failure) }
+                        if error._code == Int(kLAErrorUserCancel) {
+                            return completion (.cancel)
+                        } else if error._code == Int(kLAErrorUserFallback) {
+                            return completion (.fallback)
+                        }
+                        completion(.failure)
                     }
-                    completion(.failure)
                 }
             }
+            
+            if LAContext.biometricType() == .face {
+                if isDigiIDAuth {
+                    // it's important to show the url before authenticating.
+                    // When using touchID the user must have a chance to cancel the request.
+                    // Hence, we display a prompt before using touchID
+                    let alert = UIAlertController(title: S.DigiID.title, message: biometricsPrompt, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: S.DigiID.deny, style: .cancel, handler: { _ in /* do nothing */ }))
+                    alert.addAction(UIAlertAction(title: S.DigiID.approve, style: .default, handler: { _ in execBiometricsPrompt() }))
+                    alert.show()
+                } else {
+                    // just show the prompt, in case of wallet authentication (from lock screen)
+                    execBiometricsPrompt()
+                }
+            } else {
+                // touchID
+                // just display the touchID-prompt
+                execBiometricsPrompt()
+            }
+
         } else {
             if let error = err {
                 print(error)
@@ -300,7 +326,7 @@ extension WalletManager : WalletAuthenticator {
         }
         catch { return completion(.failure) }
         store.perform(action: biometricsActions.setIsPrompting(true))
-        authenticate(biometricsPrompt: biometricsPrompt) { result in
+        authenticate(biometricsPrompt: biometricsPrompt, isDigiIDAuth: false) { result in
             self.store.perform(action: biometricsActions.setIsPrompting(false))
             guard result == .success else { return completion(result) }
             completion(self.signTx(tx) == true ? .success : .failure)
@@ -544,9 +570,37 @@ extension WalletManager : WalletAuthenticator {
             catch { return false }
         }
     }
+    
+    func signSerializedTransaction(hex: String) -> String? {
+        return autoreleasepool {
+            do {
+                var seed = UInt512()
+                defer { seed = UInt512() }
+                guard let wallet = wallet else { return nil }
+                guard let phrase: String = try keychainItem(key: KeychainKey.mnemonic) else { return nil }
+                BRBIP39DeriveKey(&seed, phrase, nil)
+                return wallet.signSerializedTransaction(hex: hex, seed: &seed)
+            }
+            catch { return nil }
+        }
+    }
+    
+    func signSerializedTransaction(base64: String) -> String? {
+        return autoreleasepool {
+            do {
+                var seed = UInt512()
+                defer { seed = UInt512() }
+                guard let wallet = wallet else { return nil }
+                guard let phrase: String = try keychainItem(key: KeychainKey.mnemonic) else { return nil }
+                BRBIP39DeriveKey(&seed, phrase, nil)
+                return wallet.signSerializedTransaction(base64: base64, seed: &seed)
+            }
+            catch { return nil }
+        }
+    }
 }
 
-private func keychainItem<T>(key: String) throws -> T? {
+func keychainItem<T>(key: String) throws -> T? {
     let query = [kSecClass as String : kSecClassGenericPassword as String,
                  kSecAttrService as String : WalletSecAttrService,
                  kSecAttrAccount as String : key,
@@ -569,12 +623,14 @@ private func keychainItem<T>(key: String) throws -> T? {
         return data.withUnsafeBytes { $0.pointee }
     case is Dictionary<AnyHashable, Any>.Type:
         return NSKeyedUnarchiver.unarchiveObject(with: data) as? T
+    case is NSArray.Type:
+        return NSKeyedUnarchiver.unarchiveObject(with: data) as? T
     default:
         throw NSError(domain: NSOSStatusErrorDomain, code: Int(errSecParam))
     }
 }
 
-private func setKeychainItem<T>(key: String, item: T?, authenticated: Bool = false) throws {
+func setKeychainItem<T>(key: String, item: T?, authenticated: Bool = false) throws {
     let accessible = (authenticated) ? kSecAttrAccessibleWhenUnlockedThisDeviceOnly as String
                                      : kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly as String
     let query = [kSecClass as String : kSecClassGenericPassword as String,
@@ -582,6 +638,7 @@ private func setKeychainItem<T>(key: String, item: T?, authenticated: Bool = fal
                  kSecAttrAccount as String : key]
     var status = noErr
     var data: Data? = nil
+    
     if let item = item {
         switch T.self {
         case is Data.Type:
@@ -593,6 +650,8 @@ private func setKeychainItem<T>(key: String, item: T?, authenticated: Bool = fal
             data = CFDataCreateMutable(secureAllocator, MemoryLayout<T>.stride) as Data
             [item].withUnsafeBufferPointer { data?.append($0) }
         case is Dictionary<AnyHashable, Any>.Type:
+            data = NSKeyedArchiver.archivedData(withRootObject: item)
+        case is NSArray.Type:
             data = NSKeyedArchiver.archivedData(withRootObject: item)
         default:
             throw NSError(domain: NSOSStatusErrorDomain, code: Int(errSecParam))

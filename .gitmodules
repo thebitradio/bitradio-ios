@@ -4,9 +4,9 @@
 [submodule "Modules/nettle"]
 	path = Modules/nettle
 	url = https://github.com/breadwallet/nettle.git
-[submodule "Modules/digibytewallet-core"]
-	path = Modules/digibytewallet-core
-	url = https://github.com/DigiByte-Core/digibytewallet-core.git
 [submodule "Modules/dns"]
 	path = Modules/dns
 	url = https://github.com/wahern/dns.git
+[submodule "Modules/digibytewallet-core"]
+	path = Modules/digibytewallet-core
+	url = https://github.com/DigiByte-Core/digibytewallet-core.git

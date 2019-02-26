@@ -20,6 +20,7 @@ enum ArticleIds {
     static let manageWallet = "manage-wallet"
     static let receiveBitcoin = "receive-bitcoin"
     static let requestAmount = "request-amount"
+    static let addressBook = "addressbook"
     static let sendBitcoin = "send-bitcoin"
     static let walletDisabled = "wallet-disabled"
     static let resetPinWithPaperKey = "reset-pin-paper-key"

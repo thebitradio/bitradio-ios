@@ -337,8 +337,8 @@ class ApplicationController : Subscriber, Trackable {
             self.store.perform(action: RootModalActions.Present(modal: .receive))
         }
         
-        accountViewController?.showAddressCallback = {
-            self.store.perform(action: RootModalActions.Present(modal: .showAddress))
+        accountViewController?.showAddressBookCallback = {
+            self.store.perform(action: RootModalActions.Present(modal: .showAddressBook))
         }
         
         accountViewController?.digiIDCallback = {

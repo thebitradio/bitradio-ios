@@ -27,6 +27,54 @@ import Foundation
 import Security
 import BRCore
 
+public extension URLRequest {
+    
+    /// Returns a cURL command for a request
+    /// - return A String object that contains cURL command or "" if an URL is not properly initalized.
+    public var cURL: String {
+        
+        guard
+            let url = url,
+            let httpMethod = httpMethod,
+            url.absoluteString.utf8.count > 0
+            else {
+                return ""
+        }
+        
+        var curlCommand = "curl --verbose \\\n"
+        
+        // URL
+        curlCommand = curlCommand.appendingFormat(" '%@' \\\n", url.absoluteString)
+        
+        // Method if different from GET
+        if "GET" != httpMethod {
+            curlCommand = curlCommand.appendingFormat(" -X %@ \\\n", httpMethod)
+        }
+        
+        // Headers
+        let allHeadersFields = allHTTPHeaderFields!
+        let allHeadersKeys = Array(allHeadersFields.keys)
+        let sortedHeadersKeys  = allHeadersKeys.sorted(by: <)
+        for key in sortedHeadersKeys {
+            curlCommand = curlCommand.appendingFormat(" -H '%@: %@' \\\n", key, self.value(forHTTPHeaderField: key)!)
+        }
+        
+        // HTTP body
+        if let httpBody = httpBody, httpBody.count > 0 {
+            let httpBodyString = String(data: httpBody, encoding: String.Encoding.utf8)!
+            let escapedHttpBody = URLRequest.escapeAllSingleQuotes(httpBodyString)
+            curlCommand = curlCommand.appendingFormat(" --data '%@' \\\n", escapedHttpBody)
+        }
+        
+        return curlCommand
+    }
+    
+    /// Escapes all single quotes for shell from a given string.
+    static func escapeAllSingleQuotes(_ value: String) -> String {
+        return value.replacingOccurrences(of: "'", with: "'\\''")
+    }
+}
+
 open class BRDigiID : NSObject {
     static let SCHEME = "digiid"
     static let PARAM_NONCE = "x"
@@ -63,7 +111,7 @@ open class BRDigiID : NSObject {
     let walletManager: WalletManager
     
     open var siteName: String {
-        return "\(url.host!)\(portStr)\(url.path)"
+        return "\(url.host!)\(portStr)"
     }
     
     init(url u: URL, walletManager wm: WalletManager) {
@@ -133,57 +181,122 @@ open class BRDigiID : NSObject {
 
     private func run(_ completionHandler: @escaping (Data?, URLResponse?, NSError?) -> Void) {
         autoreleasepool {
+            // Default scheme is https;
+            // http will only be used, if the digi-id request specifies 1 as the value for the argument u.
             var scheme = "https"
+            
+            // Request id / ad-hoc token
             var nonce: String
-            guard let query = url.query?.parseQueryString() else {
+            
+            // First we check, if a valid URL was passed
+            guard url.query != nil else {
                 DispatchQueue.main.async {
                     completionHandler(nil, nil, NSError(domain: "", code: -1001, userInfo:
                         [NSLocalizedDescriptionKey: NSLocalizedString("Malformed URI", comment: "")]))
                 }
                 return
             }
-            if let u = query[BRDigiID.PARAM_UNSECURE] , u.count == 1 && u[0] == "1" {
+            
+            // Convert query parameters to dictionary for easy access
+            let query = url.query!.parseQueryString()
+            
+            // Check if unsecure parameter was specified.
+            // That is, the service wants to use http instead of https.
+            // ToDo: Since we want to provide a secure authentication algorithm, we
+            //       should actually force users to use HTTPS. Or at least the wallet user
+            //       must enable a switch in the wallet settings. We need to discuss that in the
+            //       future.
+            if let u = query[BRDigiID.PARAM_UNSECURE], u.count == 1 && u[0] == "1" {
                 scheme = "http"
             }
-            if let x = query[BRDigiID.PARAM_NONCE] , x.count == 1 {
+            
+            // Check if service is providing a nonce, or if we should generate one.
+            if let x = query[BRDigiID.PARAM_NONCE], x.count == 1 {
                 nonce = x[0] // service is providing a nonce
             } else {
                 nonce = newNonce() // we are generating our own nonce
             }
             
-            let uri = "\(scheme)://\(url.host!)\(portStr)\(url.path)"
-
-            // build a payload consisting of the signature, address and signed uri
-            guard var priv = walletManager.buildBitIdKey(url: uri, index: Int(BRDigiID.DEFAULT_INDEX)) else {
+            // Build a payload consisting of the signature, address and signed uri
+            guard var priv = walletManager.buildBitIdKey(url: url.absoluteString, index: Int(BRDigiID.DEFAULT_INDEX)) else {
                 return
             }
 
-            let uriWithNonce = "digiid://\(url.host!)\(portStr)\(url.path)?x=\(nonce)"
+            // Sign the input url with wallet's private key.
+            // According to the Digi-ID protocol, we will have to provide
+            // the public address of the private key and the signature itself.
+            // Also the input URI will be provided.
+            // Cryptographic proof: signature will be decrypted with provided address,
+            //                      which should result in the value of the field uri
+            let uriWithNonce = url.absoluteString
             let signature = BRDigiID.signMessage(uriWithNonce, usingKey: priv)
             let payload: [String: String] = [
                 "address": priv.address()!,
                 "signature": signature,
                 "uri": uriWithNonce
             ]
-            let json = try! JSONSerialization.data(withJSONObject: payload, options: [])
-
-            // output:
-            //   let string = NSString(data: json, encoding: String.Encoding.utf8.rawValue)
-            //   print("DIGIID json:", string)
             
-            // send off said payload
-            var req = URLRequest(url: URL(string: "\(uri)?x=\(nonce)")!)
+            // Encode the payload to JSON
+            let json = try! JSONSerialization.data(withJSONObject: payload, options: [])
+            
+            // The Digi-ID protocol foresees the digi-id uri to start with digiid://.
+            // In order to call the callback, we need to replace that pattern with http(s)://
+            let digiidURIString = url.absoluteString
+            let httpURLString = try! NSRegularExpression(pattern: "^digiid://", options: NSRegularExpression.Options.caseInsensitive).stringByReplacingMatches(in: digiidURIString, options: [], range: NSMakeRange(0, digiidURIString.count), withTemplate: "\(scheme)://")
+            guard let httpURL = URL(string: httpURLString) else {
+                DispatchQueue.main.async {
+                    completionHandler(nil, nil, NSError(domain: "", code: -1001, userInfo:
+                    [NSLocalizedDescriptionKey: NSLocalizedString("Malformed http URI", comment: "")]))
+                }
+                return
+            }
+            
+            // Prepare the request
+            var req = URLRequest(url: httpURL)
             req.setValue("application/json", forHTTPHeaderField: "Content-Type")
             req.httpMethod = "POST"
             req.httpBody = json
             let session = URLSession.shared
+            
+            // debug (print as CURL)
+               print(req.cURL)
+            
+            // Fire the digi-id callback request
             session.dataTask(with: req, completionHandler: { (dat: Data?, resp: URLResponse?, err: Error?) in
                 var rerr: NSError?
                 if err != nil {
                     rerr = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "\(err!.localizedDescription)"])
                 }
+                
+                // Call the completion handler with the return data.
+                // rerr: return error is optional.
                 completionHandler(dat, resp, rerr)
             }).resume()
         }
+    }
+}
+
+extension URL {
+    
+    @discardableResult
+    func append(_ queryItem: String, value: String?) -> URL {
+        
+        guard var urlComponents = URLComponents(string:  absoluteString) else { return absoluteURL }
+        
+        // create array of existing query items
+        var queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
+        
+        // create query item if value is not nil
+        guard let value = value else { return absoluteURL }
+        let queryItem = URLQueryItem(name: queryItem, value: value)
+        
+        // append the new query item in the existing query items array
+        queryItems.append(queryItem)
+        
+        // append updated query items array in the url component object
+        urlComponents.queryItems = queryItems// queryItems?.append(item)
+        
+        // returns the url from new url components
+        return urlComponents.url!
     }
 }

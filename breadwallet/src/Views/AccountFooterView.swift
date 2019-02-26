@@ -563,8 +563,10 @@ class AccountFooterView: UIView {
     var receiveCallback: (() -> Void)?
     var menuCallback: (() -> Void)?
     var digiIDCallback: (() -> Void)?
-    var showAddressCallback: (() -> Void)?
+    var addressBookCallback: (() -> Void)?
+//    var showAddressCallback: (() -> Void)?
     var qrScanCallback: (() -> Void)?
+    var debugDigiAssetsCallback: (() -> Void)?
     
     let height: CGFloat = 73
     let menuHeightOffset = CGFloat(E.isIPhoneX ? 15 : 0)
@@ -586,18 +588,24 @@ class AccountFooterView: UIView {
         hasSetup = true
     }
     
+    @objc private func circleButtonLongPress(sender: UITapGestureRecognizer) {
+        if sender.state == .began {
+            debugDigiAssetsCallback?()
+        }
+    }
+    
     func setupSubViews(){
         let backgroundView = FooterBackgroundView()
         
         // add menu items
+        circleButton.addMenuItem(img: UIImage(named: "AddressBook")!, text: S.AddressBook.title) {
+            self.addressBookCallback?()
+        }
         circleButton.addMenuItem(img: #imageLiteral(resourceName: "receiveArrow"), text: S.Receive.title) {
             self.receiveCallback?()
         }
         circleButton.addMenuItem(img: #imageLiteral(resourceName: "sendArrow"), text: S.Send.title) {
             self.sendCallback?()
-        }
-        circleButton.addMenuItem(img: #imageLiteral(resourceName: "wallet"), text: S.UnlockScreen.myAddress) {
-            self.showAddressCallback?()
         }
         
         // left button (trigger hamburger menu)
@@ -623,6 +631,12 @@ class AccountFooterView: UIView {
         circleButtonContainer.isUserInteractionEnabled = true
         circleButtonContainer.backgroundColor = UIColor(red: 0x0F / 255, green: 0x0F / 255, blue: 0x1A / 255, alpha: 1)
         circleButtonContainer.layer.cornerRadius = (buttonSize + buttonBorderWidth * 2) / 2
+        
+        // REMOVE
+        // This is for DigiAssets
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(circleButtonLongPress(sender:)))
+        longPress.minimumPressDuration = 5
+        circleButtonContainer.addGestureRecognizer(longPress)
         
         // add all to view
         backgroundView.addSubview(hamburgerButton)

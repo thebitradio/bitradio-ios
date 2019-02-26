@@ -56,6 +56,7 @@ enum RootModal {
     case none
     case send
     case showAddress
+    case showAddressBook
     case receive
     
     case loginAddress

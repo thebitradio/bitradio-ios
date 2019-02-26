@@ -71,8 +71,8 @@ class AmountViewController : UIViewController, Trackable {
     private let amountLabel = UILabel(font: .customBody(size: 26.0), color: C.Colors.text)
     private let pinPad: PinPadViewController
     private let currencyToggle: ShadowButton
-    private let border = UIView(color: C.Colors.greyBlue)
-    private let bottomBorder = UIView(color: C.Colors.greyBlue)
+    private let border = UIView(color: C.Colors.blueGrey)
+    private let bottomBorder = UIView(color: C.Colors.blueGrey)
     private let cursor = BlinkingView(blinkColor: .orange)
     private let balanceLabel = UILabel()
     private let feeLabel = UILabel()

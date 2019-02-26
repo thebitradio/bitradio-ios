@@ -49,6 +49,12 @@ class ModalTransitionDelegate : NSObject, Subscriber {
     private let progressThreshold: CGFloat = 0.5
 
     @objc fileprivate func didUpdate(gr: UIPanGestureRecognizer) {
+        // ignore pan gesture movement if the rootViewController is not the viewcontroller,
+        // that was originally presented. This fix was necessary as we are using a modal view controller
+        // in addressbook, that opens if you add a contact
+        guard presentedViewController == UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        // visible view controller seems to be the originally presented view controller
         guard shouldDismissInteractively else { return }
         switch gr.state {
         case .began:
@@ -62,7 +68,7 @@ class ModalTransitionDelegate : NSObject, Subscriber {
             self.progress = progress
             interactiveTransition.update(progress)
         case .cancelled:
-            reset()
+//            reset()
             interactiveTransition.cancel()
         case .ended:
             if transitionShouldFinish {
