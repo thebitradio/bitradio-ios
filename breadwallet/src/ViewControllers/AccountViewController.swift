@@ -745,7 +745,6 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
         super.init(nibName: nil, bundle: nil)
         
         footerView.debugDigiAssetsCallback = { [unowned self] in
-            return;
             guard let w = self.walletManager else { return }
             let vc = BRDigiAssetsTestViewController(wallet: w)
             self.present(vc, animated: true, completion: nil)
