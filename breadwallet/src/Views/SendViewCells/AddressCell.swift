@@ -53,7 +53,9 @@ class ToCell: SendCell {
 
 class AddressCell: UIView {
 
-    init() {
+    init(showAddressBookButton: Bool = false, addressBookCallback: (() -> Void)? = nil) {
+        self.showAddressBookButton = showAddressBookButton
+        self.didTapAddressBook = addressBookCallback
         super.init(frame: .zero)
         setupViews()
     }
@@ -62,6 +64,7 @@ class AddressCell: UIView {
         return textField.textView.text
     }
 
+    var didTapAddressBook: (() -> Void)?
     var didEdit: (() -> Void)?
     var didBeginEditing: (() -> Void)?
     var didReceivePaymentRequest: ((PaymentRequest) -> Void)?
@@ -78,7 +81,9 @@ class AddressCell: UIView {
         }
     }
 
+    let showAddressBookButton: Bool
     let textField = ToCell(placeholder: S.Send.toLabel)
+    let addressBookButton = UIButton()
     let paste = ShadowButton(title: S.Send.pasteLabel, type: .primary)
     let scan = ShadowButton(title: S.Send.scanLabel, type: .primary)
 	let qrImage = ShadowButton(title: S.QRImageReader.buttonLabel, type: .primary)
@@ -110,17 +115,18 @@ class AddressCell: UIView {
         addSubviews()
         addConstraints()
         setInitialData()
+        setStyle()
     }
 
 	override func didMoveToSuperview() {
         paste.widthAnchor.constraint(equalTo: scan.widthAnchor).isActive = true
         scan.widthAnchor.constraint(equalTo: qrImage.widthAnchor).isActive = true
         qrImage.widthAnchor.constraint(equalTo: paste.widthAnchor).isActive = true
-			
 	}
 
     private func addSubviews() {
         addSubview(textField)
+        addSubview(addressBookButton)
         addSubview(paste)
         addSubview(scan)
 		addSubview(qrImage)
@@ -131,8 +137,24 @@ class AddressCell: UIView {
             textField.heightAnchor.constraint(equalToConstant: ToCell.defaultHeight),
             textField.topAnchor.constraint(equalTo: topAnchor),
             textField.leftAnchor.constraint(equalTo: leftAnchor),
-            textField.rightAnchor.constraint(equalTo: rightAnchor),
         ])
+        
+        if showAddressBookButton {
+            addressBookButton.constrain([
+                addressBookButton.topAnchor.constraint(equalTo: textField.topAnchor, constant: 24),
+                addressBookButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+                addressBookButton.widthAnchor.constraint(equalToConstant: 24),
+                addressBookButton.heightAnchor.constraint(equalToConstant: 24),
+            ])
+            
+            textField.constrain([
+                textField.rightAnchor.constraint(equalTo: rightAnchor, constant: -50)
+            ])
+        } else {
+            textField.constrain([
+                textField.rightAnchor.constraint(equalTo: rightAnchor)
+            ])
+        }
 
 		paste.constrain([
 			paste.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[0]),
@@ -153,6 +175,11 @@ class AddressCell: UIView {
             qrImage.heightAnchor.constraint(equalToConstant: 35),
 			qrImage.constraint(.bottom, toView: self, constant: -C.padding[1]) ])
     }
+    
+    private func setStyle() {
+        addressBookButton.setBackgroundImage(UIImage(named: "AddressBook"), for: .normal)
+        addressBookButton.isHidden = !showAddressBookButton
+    }
 
     private func setInitialData() {
         backgroundColor = .clear
@@ -163,6 +190,12 @@ class AddressCell: UIView {
         textField.textView.returnKeyType = .done
 
 		underLineView.backgroundColor = C.Colors.blueGrey
+        
+        addressBookButton.addTarget(self, action: #selector(addressBookButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func addressBookButtonTapped() {
+        didTapAddressBook?()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -181,12 +214,12 @@ extension AddressCell : UITextViewDelegate {
             didReceivePaymentRequest?(request)
             return false
         } else {
-            didEdit?()
             return true
         }
     }
     
     func textViewDidChange(_ textView: UITextView) {
         self.textField.placeholder.isHidden = textView.text != ""
+        didEdit?()
     }
 }

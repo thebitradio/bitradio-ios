@@ -40,13 +40,12 @@ class ModalViewController : UIViewController, Subscriber {
     //MARK: - Private
     private let modalInfo: ModalDisplayable
     private let headerHeight: CGFloat = 49.0
-    fileprivate let header: ModalHeaderView
     private let tapGestureRecognizer = UITapGestureRecognizer()
     private let store: Store
-    
     private let scrollViewContent = UIView()
     
-    private let modalHeaderImage: UIImageView = {
+    let header: ModalHeaderView
+    let modalHeaderImage: UIImageView = {
         let img = UIImageView(image: #imageLiteral(resourceName: "modalHeader"))
         img.contentMode = .scaleAspectFill
         return img

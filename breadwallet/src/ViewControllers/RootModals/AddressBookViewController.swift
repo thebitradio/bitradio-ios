@@ -16,7 +16,6 @@ func hBox(_ view: UIView, horizontal padding: CGFloat) -> UIView {
 }
 
 fileprivate class NameCell: SendCell, UITextViewDelegate {
-    
     init(placeholder: String) {
         super.init()
         textView.delegate = self
@@ -79,6 +78,7 @@ fileprivate class NameCell: SendCell, UITextViewDelegate {
 }
 
 fileprivate class AddressBookAddContactViewController: UIViewController {
+    // MARK: Private
     private let topBox = UIView()
     private let icon = UIImageView(image: UIImage(named: "AddressBook_AddContact_white"))
     private let headerLabel = UILabel()
@@ -98,6 +98,7 @@ fileprivate class AddressBookAddContactViewController: UIViewController {
     private var fav: UIImageView!
     private var favWidth: NSLayoutConstraint!
     
+    // MARK: Public
     var presentScan: PresentScan?
     
     var id: String = ""
@@ -545,6 +546,21 @@ class AddressBookContact: NSCoder, NSCoding {
         self.isFavorite = isFavorite
         super.init()
     }
+    
+    // loads the contacts from memory
+    static func loadContacts() -> [AddressBookContact] {
+        do {
+            if
+                let s = try keychainItem(key: "addressBook") as NSArray?,
+                let addressBook: [AddressBookContact] = s as? [AddressBookContact] {
+                return addressBook
+            }
+        } catch {
+            return []
+        }
+        
+        return []
+    }
 }
 
 fileprivate class AddressBookHeaderLine: UIView {
@@ -603,15 +619,17 @@ fileprivate class AddressBookHeaderLine: UIView {
     }
 }
 
-class AddressBookViewControllerOverview : UIViewController, Trackable, Subscriber {
+class AddressBookOverviewViewController: UIViewController, Trackable, Subscriber {
     // MARK: - Public
     var presentScanForAdd: PresentScan?
     var presentScanForEdit: PresentScan?
     var addContactVC: UIViewController!
     var editContactVC: UIViewController!
+    var contactSelectedCallback: ((AddressBookContact) -> Void)? = nil
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        
         addSubviews()
         addConstraints()
         setStyle()
@@ -690,22 +708,6 @@ class AddressBookViewControllerOverview : UIViewController, Trackable, Subscribe
         } catch let e {
             print(e)
         }
-    }
-    
-    // loads the contacts from memory
-    private func loadContacts() -> [AddressBookContact] {
-        do {
-//            try setKeychainItem(key: "addressBook", item: NSArray(array: []))
-            if
-                let s = try keychainItem(key: "addressBook") as NSArray?,
-                let addressBook: [AddressBookContact] = s as? [AddressBookContact] {
-                    return addressBook
-            }
-        } catch {
-            return []
-        }
-        
-        return []
     }
     
     private func createVC() {
@@ -838,7 +840,7 @@ class AddressBookViewControllerOverview : UIViewController, Trackable, Subscribe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        contacts = loadContacts()
+        contacts = AddressBookContact.loadContacts()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -852,14 +854,14 @@ class AddressBookViewControllerOverview : UIViewController, Trackable, Subscribe
     }
 }
 
-extension AddressBookViewControllerOverview: UITextFieldDelegate {
+extension AddressBookOverviewViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 }
 
-extension AddressBookViewControllerOverview: UITableViewDataSource, UITableViewDelegate {
+extension AddressBookOverviewViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return indexedContacts.count
     }
@@ -891,6 +893,14 @@ extension AddressBookViewControllerOverview: UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var cellData = indexedContacts[indexPath.section]!
         let contact = cellData[indexPath.row]
+        
+        // If contactSelectedCallback is set, this view controller was
+        // definitely called from send dialog. In that case, we just execute the callback
+        // with the selected data.
+        if let callback = contactSelectedCallback {
+            callback(contact)
+            return
+        }
         
         // create AddressBookAddContactViewController
         let vc = editContactVC as! AddressBookAddContactViewController
@@ -944,7 +954,7 @@ extension AddressBookViewControllerOverview: UITableViewDataSource, UITableViewD
     }
 }
 
-extension AddressBookViewControllerOverview : ModalDisplayable {
+extension AddressBookOverviewViewController : ModalDisplayable {
     var faqArticleId: String? {
         return ArticleIds.addressBook
     }

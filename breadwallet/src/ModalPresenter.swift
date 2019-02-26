@@ -334,7 +334,7 @@ class ModalPresenter : Subscriber, Trackable {
     }
     
     private func showAddressBook() -> UIViewController? {
-        let addressBookVC = AddressBookViewControllerOverview()
+        let addressBookVC = AddressBookOverviewViewController()
         
         let root = ModalViewController(childViewController: addressBookVC, store: store)
         root.scrollView.isScrollEnabled = false
