@@ -10,3 +10,6 @@
 [submodule "Modules/digibytewallet-core"]
 	path = Modules/digibytewallet-core
 	url = https://github.com/DigiByte-Core/digibytewallet-core.git
+[submodule "Modules/bitradio-core"]
+	path = Modules/bitradio-core
+	url = https://github.com/thebitradio/bitradio-core.git
