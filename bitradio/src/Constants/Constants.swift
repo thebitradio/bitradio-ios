@@ -34,17 +34,17 @@ struct C {
     
     struct Colors {
         static let background = UIColor(red: 0x19/255, green: 0x1a / 255, blue: 0x2a / 255, alpha: 1.0) // #191a2a
-        static let text = UIColor.white
-        static let lightText = UIColor(red: 109, green: 109, blue: 126, alpha: 1.0)
-        static let cardBackground = UIColor(red: 0x2E / 255, green: 0x2E / 255, blue: 0x47 / 255, alpha: 1.0)
-		static let lightGrey = UIColor(red: 0xaa / 255, green: 0xaa / 255, blue: 0xaa / 255, alpha: 1.0) // #9c9eb9
-        static let blueGrey = UIColor(red: 0x9c / 255, green: 0x9e / 255, blue: 0x9b / 255, alpha: 1.0) // #9c9eb9
+        static let text = UIColor.white // #ffffff
+        static let lightText = UIColor(red: 0x6d / 255, green: 0x6d / 255, blue: 0x7e / 255, alpha: 1.0) // #6d6d7e
+        static let cardBackground = UIColor(red: 0x2E / 255, green: 0x2E / 255, blue: 0x47 / 255, alpha: 1.0) // #2e2e47
+		static let lightGrey = UIColor(red: 0xaa / 255, green: 0xaa / 255, blue: 0xaa / 255, alpha: 1.0) // #aaaaaa
+        static let blueGrey = UIColor(red: 0x9c / 255, green: 0x9e / 255, blue: 0x9b / 255, alpha: 1.0) // #9c9e9b
         static let greyBlue = UIColor(red: 0x66 / 255, green: 0x68 / 255, blue: 0x8f / 255, alpha: 1.0) // #66688f
         static let dark2 = UIColor(red: 0x19 / 255, green: 0x1a / 255, blue: 0x2a / 255, alpha: 1.0) // #191a2a
         static let dark3 = UIColor(red: 0x2e / 255, green: 0x2f / 255, blue: 0x47 / 255, alpha: 1.0) // #2e2f47
         static let blue = UIColor(red: 0x02 / 255, green: 0x5D / 255, blue: 0xBA / 255, alpha: 1.0) // #025DBA
-        static let weirdGreen = UIColor(red: 63.0 / 255.0, green: 231.0 / 255.0, blue: 123.0 / 255.0, alpha: 1.0) //#3fe77b
-		static let weirdRed = UIColor(red: 0xFF / 255, green: 0x74 / 255, blue: 0x16 / 255, alpha: 1)
+        static let weirdGreen = UIColor(red: 0x3f / 255, green: 0x37 / 255, blue: 0x7b / 255, alpha: 1.0) //#3fe77b
+        static let weirdRed = UIColor(red: 0xFF / 255, green: 0x74 / 255, blue: 0x16 / 255, alpha: 1) // #ff7416
         static let favoriteYellow = UIColor(red: 0xEA / 255, green: 0xD3 / 255, blue: 0x34 / 255, alpha: 1) // #EAD334
     }
     
