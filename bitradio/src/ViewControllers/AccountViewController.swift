@@ -412,7 +412,7 @@ fileprivate class CustomSegmentedControl: UIControl {
         
         backgroundRect.frame = CGRect(x: padding, y: padding, width: selectorWidth, height: self.frame.height - 2*padding)
         
-        backgroundColor = UIColor(red: 0x23 / 255, green: 0x24 / 255, blue: 0x37 / 255, alpha: 1.0)
+        backgroundColor = C.Colors.SegmentedControl //UIColor(red: 0x23 / 255, green: 0x24 / 255, blue: 0x37 / 255, alpha: 1.0)
         layer.cornerRadius = 4
     }
     
@@ -832,7 +832,7 @@ class AccountViewController: UIViewController, Subscriber, UIPageViewControllerD
             showJailbreakWarnings(isJailbroken: isJailbroken)
         }
 
-        view.backgroundColor = UIColor(red: 0x19 / 255, green: 0x1b / 255, blue: 0x2a / 255, alpha: 1)
+        view.backgroundColor = C.Colors.newBackgroundWhite //UIColor(red: 0x19 / 255, green: 0x1b / 255, blue: 0x2a / 255, alpha: 1)
         
         addBalanceView()
         addSegmentedView()
